@@ -1,34 +1,61 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+import { Route, Routes } from 'react-router-dom'
+import { HomePage } from './components/pages/homePage'
+import { MajorsPage } from './components/pages/majorsPage'
+import { GraduatesPage } from './components/pages/graduatesPage'
+import { AcademicServicesPage } from './components/pages/academicServicesPage'
+import { AboutUsPage } from './components/pages/aboutUsPage'
+import { ContactPage } from './components/pages/contactPage'
+import { AdmissionPage } from './components/pages/admissionPage'
+import { GuestTemplate } from './components/templates/guestTemplate'
 
 function App() {
-  const [count, setCount] = useState(0)
+
+  const routes = [
+    {
+      path: '/',
+      component: HomePage
+    },
+    {
+      path: '/majors',
+      component: MajorsPage
+    },
+    {
+      path: '/graduates',
+      component: GraduatesPage
+    },
+    {
+      path: '/academic-services',
+      component: AcademicServicesPage
+    },
+    {
+      path: '/about-us',
+      component: AboutUsPage
+    },
+    {
+      path: '/contact',
+      component: ContactPage
+    },
+    {
+      path: '/admission',
+      component: AdmissionPage
+    },
+  ]
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <GuestTemplate>
+      <Routes>
+        {
+          routes.map(
+            (route) => {
+              return (
+                <Route path={route.path} Component={route.component} />
+              )
+            }
+          )
+        }
+      </Routes>
+    </GuestTemplate>
   )
 }
 
