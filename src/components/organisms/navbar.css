@@ -1,11 +1,9 @@
 nav { 
   display: flex;
-
-  width: 100vw;
-  height: 3rem;
-
-  grid-template-columns: 1fr 4fr;
-  grid-template-rows: 3rem;
-
+  width: 100%;
+  height: 5rem;
+  grid-template-columns: 30rem 5fr;
+  grid-template-rows: 5rem;
+  justify-content: center;
   padding: 0 3rem;
 }

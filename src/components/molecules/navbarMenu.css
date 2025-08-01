@@ -1,15 +1,40 @@
-ul { 
+.navbar__menu { 
+  font-family: 'Roboto';
   grid-column: 2;
   grid-row: 1;
   display: flex;
   width: 100%;
-
-  justify-content: space-between;
-
-  
+  justify-content: right;
+  align-items: center;
+  gap: 4rem;
 }
 
-ul li{ 
+.navbar__item { 
   list-style: none;
   text-decoration: none;
+  font-size: 1.06rem;
+  transition: var(--trasicion);
+  position: relative;
+  display: block;
+}
+
+.navbar__item::after{
+  content:'';
+  position:absolute;
+  width: 0%;
+  height: 3px;
+  bottom: -3px;
+  left: 0;
+  background-color: var(--Azul-claro-2);
+  transition: width .3s ease-in-out;
+  border-radius: 3px;
+}
+
+.navbar__item:hover{
+  color: var(--Azul-claro-2);
+  transform: translateY(-3px);
+}
+
+.navbar__item:hover::after{
+  width: 100%;
 }

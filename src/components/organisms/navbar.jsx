@@ -3,8 +3,6 @@ import { NavbarMenu } from '../molecules/navbarMenu'
 import './navbar.css'
 
 function Navbar() { 
-  
-
   return(
     <nav>
       <HomeButton />

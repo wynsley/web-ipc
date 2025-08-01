@@ -30,12 +30,12 @@ function NavbarMenu(){
   ]
 
   return(
-    <ul>
+    <ul className='navbar__menu'>
         {
           menu.map(
             (item) => {
               return(
-                <li key={item.text}>
+                <li key={item.text} className='navbar__item'>
                   <NavbarLink text={item.text} href={item.href} />
                 </li>
               )

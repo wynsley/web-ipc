@@ -1,8 +1,22 @@
-a {
+.homebutton  {
   display: flex;
   flex-direction: column;
   grid-template-columns: 1;
   grid-template-rows: 1;
-  
   text-decoration: none;
+  justify-content: center;
+  width: 18%;
 }
+
+.title{
+  font-family: 'Roboto';
+  font-size: 0.9rem;
+  font-weight: normal;
+  color: var(--Azul-logo);
+}
+
+.homebutton:hover{
+  transform: scale(1.05);
+  transition: var(--trasicion);
+}
+

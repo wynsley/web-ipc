@@ -4,9 +4,9 @@ function HomeButton() {
   const title = 'Instituto Privado Celendín'
 
   return (
-    <a href='/'>
+    <a className='homebutton' href='/'>
         <img src="qwe" alt="logo ipc" />
-        <h1>{title}</h1>
+        <h1 className='title'>{title}</h1>
     </a>
   )
 }
