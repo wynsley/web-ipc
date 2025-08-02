@@ -1,0 +1,24 @@
+.footer__decoration {
+    width: 100%;
+    height: 3rem;
+    background: linear-gradient(to right, var(--Azul), var(--Azul-logo));
+    overflow: hidden;
+    position: relative;
+}
+
+.footer__decoration::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: -20%;
+    width: 40%;
+    height: 200%;
+    background: linear-gradient(transparent, #2121c5, transparent);
+    transform: rotate(35deg);
+    animation: footer-right 8s linear infinite;
+}
+
+@keyframes footer-right {
+    0%{left: 120%;}
+    100%{left: -20%}
+}

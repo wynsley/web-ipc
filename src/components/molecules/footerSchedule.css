@@ -1,0 +1,60 @@
+.footer__schedule{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    padding-bottom: 7.5rem;
+}
+
+.footer__title--schedule{
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-align: center;
+}
+
+.footer__list--schedule{
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    list-style: none;
+}
+
+.footer__item--schedule {
+    font-size: 0.9rem;
+    text-align: justify;
+    padding: 0.5rem 1rem;
+}
+
+.footer__link {
+    text-decoration: none;
+    font-weight: 300;
+    text-transform: capitalize;
+    letter-spacing: 1px;
+    padding: 0.5rem 0;
+    transition: var(--transicion);
+    position: relative;
+}
+
+.footer__link::after{
+    content: '';
+    position: absolute;
+    width: 0%;
+    height: 3px;
+    bottom: -3px;
+    left: 0;
+    background: linear-gradient(to left, var(--blanco), var(--anaranjado-fuerte));
+    transition: width 0.3s ease-in-out;
+    border-radius: 3px;
+}
+.footer__link:hover{
+    background-image: linear-gradient(to left, var(--blanco), var(--anaranjado-fuerte));
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    transform:translateY(-3px);
+}
+
+.footer__link:hover::after{
+    width: 100%;
+}

@@ -9,24 +9,25 @@
   --anaranjado-fuerte:#ff5f1f;
   --blanco: #fff;
   --gris:#d3d1d1;
-  --gris-2:rgba(76, 201, 240, 0.3);
+  --gris-2:#4cc9f04d;
   --gris-oscuro:#333;
-  --sombra: 0 4px 24px rgba(26, 35, 126,0.08);
-  --trasicion: .3s cubic-bezier(.4,0,.2,1);
+  --negro: #000;
+  --sombra: 0 4px 24px #1a237e14;
+  --transicion: .3s cubic-bezier(.4,0,.2,1);
 }
 
 /* FUENTES EN WOFF2 */
 @font-face {
   font-family: "Poppins";
-  src: url(/src/fonts/Poppins-Regular.woff2) format(woff2);
+  src: url(/src/fonts/Poppins-Regular.woff2) format(woff2);  /*para los titulos*/
 }
 @font-face {
   font-family: "Roboto";
-  src: url(/src/fonts/Roboto-Regular.woff2) format(woff2);
+  src: url(/src/fonts/Roboto-Regular.woff2) format(woff2);  /*para textos*/
 }
 @font-face {
   font-family: "BebasNeue";
-  src: url(/src/fonts/BebasNeue-Regular.woff2) format(woff2);
+  src: url(/src/fonts/BebasNeue-Regular.woff2) format(woff2);  /* para anuncios */
 }
 
 /* ESTILOS GLOBALES */
