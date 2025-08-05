@@ -2,8 +2,9 @@
 :root{
   --Azul:#162199;
   --Azul-claro:#0d175d;
-  --Azul-claro-2: #141e87;
+  --Azul-claro-2: #153072;
   --Azul-logo:#1262be;
+  --celeste:#1d93ec;
   --anaranjado:#ff9800;
   --anaranjado-oscuro:#db6d00;
   --anaranjado-fuerte:#ff5f1f;
@@ -36,3 +37,4 @@
   margin: 0;
   box-sizing: border-box;
 }
+

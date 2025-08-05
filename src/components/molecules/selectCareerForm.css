@@ -1,0 +1,11 @@
+.select-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.select-container select {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 0.3rem;
+}

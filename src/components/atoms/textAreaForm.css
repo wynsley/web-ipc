@@ -1,0 +1,17 @@
+.Text--container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+.Text--container textarea {
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 0.3rem;
+    resize: vertical;
+    transition: border-color 0.3s ease;
+}
+.Text--container textarea:focus{
+    border: 2px solid var(--celeste); 
+    outline: none;
+}

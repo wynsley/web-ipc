@@ -1,6 +1,7 @@
 import './guestTemplate.css'
 import {Header} from "../organisms/header"
 import { Navbar } from "../organisms/navbar";
+import { CardList } from '../organisms/listEconomicService';
 import { Footer } from "../organisms/footer";
 import { FooterDecoration } from "../organisms/footerDecoration";
 
@@ -14,6 +15,7 @@ function GuestTemplate({ children }){
       </section>
       <FooterDecoration />
       <Footer />
+      
     </>
   )
 }

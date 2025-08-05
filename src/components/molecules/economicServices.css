@@ -1,0 +1,128 @@
+.card__wrapper {
+  width: min(300px, 100%);
+  margin: auto;
+  margin: 5% ;
+}
+
+.card {
+  background-color: #eaefdf;
+  box-shadow: 0 0 25px black;
+  text-align: center;
+  border-top-left-radius: 3.5rem;
+  border: 2px solid #9d9b9b;
+  position: relative;
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  height: 40px;
+  width: 120px;
+  background-color: var(--anaranjado);
+  top: 25px;
+  right: -2.5px;
+  clip-path: polygon(10% 0, 100% 0, 100% 100%, 0 100%);
+}
+
+.card__mont{
+  font-family: 'BebasNeue';
+  position: absolute;
+  top: 32px;
+  right:2.4rem ;
+  font-weight: bold;
+  font-size: 1.6rem;
+  color: var(--blanco);
+}
+
+.card__body {
+  padding: 2rem 1.5rem;
+  max-width: 25ch;
+  margin: auto;
+}
+
+.card__title {
+  padding-top: 2rem;
+  font-family: 'Poppins';
+  font-weight: 800;
+  color: #121513;
+  font-size: 1.3rem;
+  margin-block: 1.5rem 0.75rem;
+}
+
+.card__paragraph {
+  font-family: 'Roboto';
+  color: #303830;
+  font-size: 1rem;
+}
+
+.card__ribbon {
+  margin-top: 1.5rem;
+  display: grid;
+  place-items: center;
+  height: 50px;
+  background-color: var(--Azul-claro-2);
+  width: 110%;
+  left: -5%;
+  top: 10px;
+  position: relative;
+  border-radius: 0 0 2rem 2rem;
+}
+
+.card__ribbon::after,
+.card__ribbon::before {
+  content: "";
+  position: absolute;
+  width: 20px;
+  aspect-ratio: 1 / 1;
+  bottom: 100%;
+  z-index: -2;
+  background-color: #191c39;
+}
+
+.card__ribbon::before {
+  left: 0;
+  transform-origin: left bottom;
+  transform: rotate(45deg);
+}
+
+.card__ribbon::after {
+  right: 0;
+  transform-origin: right bottom;
+  transform: rotate(-45deg);
+}
+
+.card__ribbon-label {
+  width: 84px;
+  aspect-ratio: 1 / 1;
+  background-color: #fff;
+  position: relative;
+  transform: translateY(-50%);
+  border-radius: 50%;
+  border: 8px solid var(--Azul-claro-2);
+  display: grid;
+  place-items: center;
+  font-weight: 900;
+  line-height: 1;
+  font-size: 1.5rem;
+}
+
+.card__ribbon-label::before,
+.card__ribbon-label::after {
+  content: "";
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  bottom: 50%;
+}
+
+.card__ribbon-label::before {
+  right: calc(100% + 4px);
+  border-bottom-right-radius: 20px;
+  box-shadow: 5px 5px 0 var(--Azul-claro-2);
+}
+
+.card__ribbon-label::after {
+  left: calc(100% + 4px);
+  border-bottom-left-radius: 20px;
+  box-shadow: -5px 5px 0 var(--Azul-claro-2);
+}
