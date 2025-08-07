@@ -7,8 +7,11 @@ import { FaChevronLeft, FaChevronRight } from "react-icons/fa6"
 import { AsideCarousel } from "../organisms/logicaCarousel"
 import "../organisms/logicaCarousel.css"
 import { CardList } from '../organisms/listEconomicService'
+import { Carousel } from '../organisms/servicesCarousel'
 import { LibraryService } from '../organisms/libraryServices'
 import { ContactForm } from '../organisms/contacForm'
+import { OurPlatform } from '../organisms/ourPlatform'
+
 
 import Img1 from "../../assets/img/infraestructura.png"
 import Img2 from "../../assets/img/seervicios4.jpg"
@@ -54,11 +57,17 @@ function AcademicServicesPage(){
       </section>
       <h2 className="servicesTitle1">{Title}</h2>
       <CardList/>
-      <h2 className='servicesTitle '>{Title2}</h2>
-       {/*aca va el carrusel de servicios académicos*/}
+      <section className='sectionBecas'>
+        <h2 className='servicesTitle '>{Title2}</h2>
+        <Carousel/>
+      </section>
+      
+      
       <LibraryService/>
 
       <ContactForm/>  
+      <OurPlatform/>
+      
     </>
 
     

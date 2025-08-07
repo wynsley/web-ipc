@@ -61,7 +61,7 @@ const ContactForm = () => {
             <img className='admision__img' src={ImgAdmision} alt="Imganes admisión" />
             <form className="formulario" onSubmit={handleSubmit}>
                 <h3 className="form__title">
-                    <span className="orange">Estudia con nosotros</span>  <span className="blue">y contáctanos</span>
+                    <span className="orange">Estudia con nosotros y</span>  <span className="blue"> contáctanos</span>
                 </h3>
 
                 <Input label="Nombre" name="nombre" value={formData.nombre} onChange={handleChange} type="text" />

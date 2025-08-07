@@ -4,4 +4,27 @@
   justify-content: center;
   gap: 2rem;
   padding: 2rem 1rem;
+  margin: 2rem 3rem 5rem 3rem;  
+}
+
+/*RESPONSIVE DESIGN*/
+
+@media(max-width: 1200){
+    html{
+        font-size: 90%;
+    }
+}
+
+
+@media(max-width: 991){
+    html{
+        font-size: 85%;
+    }
+    
+    .cardlist__container{
+      margin: 0 2rem 0 2rem;
+    }
+
+    
+
 }

@@ -1,0 +1,105 @@
+.carousel-container {
+    position: relative;
+    max-width: 1200px;
+    margin: auto;
+    overflow: hidden;
+    text-align: center;
+    border-radius: 1rem;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    padding: 4rem 0 6rem 0;
+    margin-bottom: 5rem;
+    width: 100%;
+    height: 480px;
+    background-color: #fff;
+}
+
+.carousel-viewport {
+  height: 100%;
+  width: 100%;
+}
+
+.carousel-track {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.5s ease-in-out;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.carousel-item-wrapper {
+  flex: 0 0 30%;
+  transform: scale(0.8);
+  transition: all 0.5s ease-in-out;
+
+}
+
+.carousel-item-wrapper.hidden{
+    filter: grayscale(0%);
+}
+
+.carousel-item-wrapper.active  {
+  flex: 0 0 40%;
+  opacity: 1;
+  transform: scale(1);
+  filter: none;
+  z-index: 2;
+  filter: grayscale(0%);
+  
+}
+
+.carousel-title {
+  margin-top: 1rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: var(--Azul-claro-2);
+  text-shadow: 0 0 1px var(--celeste);
+}
+
+
+
+@media (max-width: 768px) {
+  .carousel-container {
+    width: 95%;
+  }
+
+  .carousel-track {
+    gap: 0.5rem;
+  }
+
+  .carousel-item-wrapper {
+    flex: 0 0 80%;
+  }
+
+  .carousel-item-wrapper.active {
+    flex: 0 0 90%;
+  }
+
+  .carousel-title {
+    font-size: 1rem;
+  }
+}
+
+/*RESPONSIVE DESIGN*/
+
+@media(max-width: 1200){
+    html{
+        font-size: 90%;
+    }
+
+    .carousel-container{
+      margin:2rem 3rem 0rem 2rem ;
+    }
+}
+
+
+@media(max-width: 991){
+    html{
+        font-size: 85%;
+    }
+    .servicesTitle1{
+        font-size: 2rem;
+    }
+
+}
