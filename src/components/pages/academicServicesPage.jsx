@@ -56,7 +56,7 @@ function AcademicServicesPage(){
             </AsideCarousel>
       </section>
       <h2 className="servicesTitle1">{Title}</h2>
-      <CardList/>
+      <CardList/> 
       <section className='sectionBecas'>
         <h2 className='servicesTitle '>{Title2}</h2>
         <Carousel/>

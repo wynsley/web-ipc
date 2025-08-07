@@ -1,7 +1,7 @@
   .card__wrapper {
-  width:  300px;
-  margin: auto;
-  margin-top: 6rem ;
+    width:  300px;
+    margin: auto;
+    margin-top: 2rem;
   
 }
 
@@ -126,4 +126,64 @@
   left: calc(100% + 4px);
   border-bottom-left-radius: 20px;
   box-shadow: -5px 5px 0 var(--Azul-claro-2);
+}
+
+
+/*RESPONSIVE DESIGN*/
+
+@media(max-width: 1200px){
+    html{
+        font-size: 90%;
+    }
+    .card__wrapper{
+      width: 250px;
+    }
+}
+
+
+@media(max-width: 991px){
+    html{
+        font-size: 85%;
+    }
+    .card__wrapper{
+      width: 220px;
+      margin-top: 0;
+    }
+}
+
+
+
+@media(max-width: 768px){
+    html{
+        font-size: 83%;
+    }
+     .card__wrapper{
+      width: 224px;
+    }
+
+}
+@media(max-width: 550px){
+    html{
+        font-size: 78%;
+    }
+     .card__wrapper{
+      width: 210px;
+    }
+
+}
+@media(max-width: 490px){
+    html{
+        font-size: 75%;
+    }
+    .card__wrapper{
+      width: 230px;
+    }
+
+}
+@media(max-width: 320px){
+    html{
+        font-size: 70%;
+    }
+    
+
 }

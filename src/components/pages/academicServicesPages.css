@@ -37,20 +37,78 @@
 
 /*RESPONSIVE DESIGN*/
 
-@media(max-width: 1200){
+@media(max-width: 1200px){
     html{
         font-size: 90%;
     }
+    
 }
 
 
-@media(max-width: 991){
+@media(max-width: 991px){
     html{
         font-size: 85%;
     }
     .servicesTitle1{
         font-size: 2rem;
     }
+
+    .servicesTitle{
+        font-size: 2rem;
+    }
+
+}
+
+@media(max-width: 768px){
+    html{
+        font-size: 83%;
+    }
+    .servicesTitle1{
+        font-size: 1.9rem;
+    }
+     .servicesTitle{
+        font-size: 1.9rem;
+    }
+
+
+}
+@media(max-width: 550px){
+    html{
+        font-size: 78%;
+    }
+    .servicesTitle1{
+        font-size: 1.7rem;
+    }
+     .servicesTitle{
+        font-size: 1.7rem;
+    }
+
+
+}
+@media(max-width: 420px){
+    html{
+        font-size: 75%;
+    }
+    .servicesTitle1{
+        font-size: 1.5rem;
+    }
+     .servicesTitle{
+        font-size: 1.5rem;
+    }
+
+
+}
+@media(max-width: 320px){
+    html{
+        font-size: 70%;
+    }
+    .servicesTitle1{
+        font-size: 1.3rem;
+    }
+     .servicesTitle{
+        font-size: 1.3rem;
+    }
+
 
 }
 

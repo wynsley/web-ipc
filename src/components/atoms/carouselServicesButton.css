@@ -20,16 +20,43 @@
 }
 
 .nav-arrow:hover {
-  background: rgba(0, 0, 0, 0.8);
+  background: var(--anaranjado);
   transform: translateY(-50%) scale(1.1);
+  color: var(--Azul);
 }
 
 .nav-arrow.left {
   left: 2px;
   padding-right: 3px;
+  margin-left: 1rem;
 }
 
 .nav-arrow.right {
   right: 2px;
   padding-left: 3px;
+  margin-right: 1rem;
 }
+
+
+
+/*  RESPONSIVE DESING*/
+
+@media(max-width:1200px){
+    html{
+      font-size: 90%;
+    }
+  }
+@media(max-width:991px){
+    .nav-arrow.left{
+      margin-left: 3%;
+    }
+
+    .nav-arrow.right{
+      margin-right: 3%;
+    }
+  }
+@media(max-width:768px){
+  .nav-arrow{
+    display: none;
+  }
+  }

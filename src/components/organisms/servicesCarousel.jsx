@@ -104,7 +104,7 @@ const Carousel = () => {
 
       <div className="carousel-dots">
         {originalSlides.map((_, i) => (
-          <CarouselDot key={i} active={i === currentIndex} onClick={() => updateCarousel(i)} />
+          <CarouselDot key={i} active ={i === currentIndex} onClick={() => updateCarousel(i)} />
         ))}
       </div>
 

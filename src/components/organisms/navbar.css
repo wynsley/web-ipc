@@ -1,9 +1,12 @@
-nav { 
-  display: flex;
-  width: 100%;
-  height: 5rem;
-  grid-template-columns: 30rem 5fr;
-  grid-template-rows: 5rem;
-  justify-content: center;
-  padding: 0 3rem;
+.navbar { 
+    position: sticky;
+    top: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 6%;
+    background-color: var(--blanco);
+    width: 100%;
+    height: 5rem;
+    z-index: 1;
 }
