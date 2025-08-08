@@ -6,26 +6,22 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
-  height: 100%;
-  margin-top: 2rem;
   gap: 2rem;
+  margin-top: 2rem;
 
 }
 .admision__img{
-  width: 45rem;
-  height: auto;      
-  object-fit: contain;
-  display: block;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.463);
-  border-radius: 5px;
+  width: 45vw;
+  height: 53vh;      
+  border-radius: 10px;
 }
 
 .formulario {
     font-family: 'Roboto';
     width: 440px;
+    height: 41rem;
     margin: auto;
-    padding: 2rem;
+    padding:  2rem;
     background: #f8f9fa;
     border-radius: 1rem;
     display: flex;
@@ -33,7 +29,8 @@
     gap: 1rem;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.366);
     margin-left: 0;
-    margin-right: 0; 
+    margin-right: 0;
+    
 }
 
 .form__title {
@@ -42,7 +39,6 @@
     text-align: center;
     font-size: 1.5rem;
     font-weight: bold;
-    margin-bottom: 1rem;
     
 }
 
@@ -80,4 +76,98 @@
   font-size: 0.85rem;
   margin-top: -0.5rem;
   margin-bottom: -0.5rem;
+}
+
+/*RESPONSIVE DESIGN*/
+
+/* 
+   1200px ↓
+   ============================= */
+@media(max-width: 1200px) {
+  .container__admision{
+    font-size: 98%;
+  }
+  .formulario{
+    width: 400px;
+    height: 41rem;
+    
+  }
+  .admision__img{
+    width: 50vw;
+  }
+
+  .form__title{
+    margin-bottom: -.5rem;
+  }
+}
+
+
+/*RESPONSIVE DESING*/
+/* 
+   991px ↓
+   ============================= */
+@media(max-width: 991px) {
+
+  .formulario{
+    width: 390px;
+    height: 37.3rem;
+    gap: .6rem;
+    margin-right: 1rem;
+    padding: 1.5rem;
+  }
+  .admision__img{
+    width: 50vw;
+    height: 45vh;
+    margin-left: 1rem;
+  }
+}
+
+
+/* 
+   768px ↓
+   ============================= */
+@media (max-width: 768px) {
+  .formulario{
+    width: 380px;
+  }
+  .admision__img{
+    width: 80vw;
+    height: 48vh;
+  }
+
+  .container__admision{
+    flex-direction: column;
+  }
+}
+
+/* 
+   550px 
+   ============================= */
+
+@media (max-width: 550px) {
+ .formulario{
+    width: 320px;
+    padding: 2rem;
+  }
+  .admision__img{
+    width: 85vw;
+    height: 40vh;
+  }
+}
+
+
+
+/* 
+   420px 
+   ============================= */
+@media (max-width: 420px) {
+ 
+}
+
+
+/* 
+   320px 
+   ============================= */
+@media (max-width: 320px) {
+  
 }

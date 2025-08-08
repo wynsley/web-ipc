@@ -18,7 +18,7 @@
     width: 0;
     top: 0;
     left: 0;
-    background: linear-gradient(135deg, var(--Azul-claro-2)0%,  var(--Azul-claro-2) 50%, var(--Azul-claro-2) 50%, var(--Azul-claro-2) 60%);
+    background: linear-gradient(135deg, var(--blanco)0%,  var(--Azul-claro-2) 50%, var(--Azul-claro-2) 50%, var(--blanco) 60%);
     border-radius: 0 0 0.5em 0;
     box-shadow: 0.2em 0.2em 0.2em rgba(0, 0, 0, 0.3);
     transition: 0.3s;
@@ -36,3 +36,33 @@
     transform: translate(0.5em, 0.1em);
 
   }
+
+  /*RESPONSIVE DESIGN*/
+
+  
+
+/* =============================
+   768px ↓
+   ============================= */
+@media (max-width: 768px) {
+    .button{
+      margin-top: -1rem;
+    font-size: 99%;
+  }
+}
+
+
+/* =============================
+   420px ↓ (solo 1 imagen visible)
+   ============================= */
+@media (max-width: 420px) {
+ 
+}
+
+
+/* =============================
+   320px ↓ (ajuste extra móvil pequeño)
+   ============================= */
+@media (max-width: 320px) {
+ 
+}

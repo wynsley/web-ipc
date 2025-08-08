@@ -32,3 +32,67 @@
     height: 99%;
     
 }
+
+/*RESPONSIVE DESIGN*/
+
+
+/* =============================
+   991px ↓
+   ============================= */
+@media (max-width: 991px) {
+  .img__container {
+    font-size: 90%;
+    width: 70vw;
+    height: 27em;
+  } 
+  
+}
+
+
+/* 
+   768px ↓
+   ============================= */
+@media (max-width: 768px) {
+ .img__container {
+    font-size: 90%;
+    width: 80vw;
+    height: 23em;
+  } 
+}
+
+/* 
+   550px 
+   ============================= */
+
+@media (max-width: 550px) {
+ .img__container {
+    font-size: 90%;
+    width: 82vw;
+    height: 16em;
+  } 
+}
+
+
+
+/* 
+   420px 
+   ============================= */
+@media (max-width: 420px) {
+ .img__container {
+    font-size: 90%;
+    width: 80vw;
+    height: 14em;
+  } 
+}
+
+
+/* 
+   320px 
+   ============================= */
+@media (max-width: 320px) {
+    .img__container {
+    font-size: 90%;
+    width: 90vw;
+    height: 14em;
+  } 
+}
