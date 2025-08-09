@@ -58,13 +58,10 @@ function AcademicServicesPage(){
       <h2 className="servicesTitle1">{Title}</h2>
       <CardList/> 
       <section className='sectionBecas'>
-        <h2 className='servicesTitle '>{Title2}</h2>
+        <h2 className='servicesTitle   '>{Title2}</h2>
         <Carousel/>
       </section>
-      
-      
       <LibraryService/>
-
       <ContactForm/>  
       <OurPlatform/>
       

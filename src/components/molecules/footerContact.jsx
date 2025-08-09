@@ -1,5 +1,5 @@
 import { FooterIconLink } from "../atoms/footerIconLink";
-import { FaFacebookF, FaInstagram, FaXTwitter, FaYoutube, FaFileSignature, FaLocationDot, FaPhone } from "react-icons/fa6";
+import { FaFacebookF, FaInstagram, FaXTwitter, FaYoutube, FaFileSignature, FaLocationDot, FaPhone,  } from "react-icons/fa6";
 import "./footerContact.css"
 
 const redes = [

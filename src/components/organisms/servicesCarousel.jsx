@@ -4,9 +4,11 @@ import { CarouselItem } from '../molecules/becasCarouselItem';
 import { CarouselButton } from '../atoms/carouselServicesButton';
 import { CarouselDot } from '../atoms/carouselServicesDots';
 import './servicesCarousel.css';
-import Img1 from "../../assets/img/infraestructura.png"
-import Img2 from "../../assets/img/seervicios4.jpg"
-import Img3 from "../../assets/img/servivios2.jpg"      
+import Img1 from "../../assets/img/beca1.png"
+import Img2 from "../../assets/img/beca2.png"
+import Img3 from "../../assets/img/beca3.jpg"      
+import Img4 from "../../assets/img/beca4.jpg"      
+import Img5 from "../../assets/img/beca5.jpg"      
 
 
 
@@ -24,11 +26,11 @@ const originalSlides = [
     title: 'Becas por convenio',
   },
   {
-    image: Img2,
+    image: Img4,
     title: 'Beca por Hermanos',
   },
   {
-    image: Img1,
+    image: Img5,
     title: 'Becas por Orfandad',
   },
 ];
@@ -47,13 +49,13 @@ const Carousel = () => {
 
     setTimeout(() => {
       isAnimating.current = false;
-    }, 800);
+    }, 600);
   };
 
   useEffect(() => {
     const interval = setInterval(() => {
       updateCarousel(currentIndex + 1);
-    }, 8000);
+    }, 6000);
     return () => clearInterval(interval);
   }, [currentIndex]);
 
