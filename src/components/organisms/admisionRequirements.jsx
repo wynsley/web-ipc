@@ -13,24 +13,24 @@ import ImgAdmission from "../../assets/img/admisionR.jpg"
   ];
 
   return (
-    <section className="admission-section">
-      <h2 className="admission-title">
+    <section className="section--admision">
+      <h2 className="title__requerimients">
         Si ya terminas el colegio, estos son los requisitos que debes cumplir <br />
         para rendir tu examen de admisión
       </h2>
 
-      <div className="admission-content">
-        <div className="admission-image">
+      <div className="admission__content">
+        
           <img className='admision__img'
             src={ImgAdmission} 
             alt="Admisión"
           />
-        </div>
+        
 
-        <ul className="admission-list">
+        <ul className="admission__list">
           {requisitos.map((req, index) => (
-            <li key={index}>
-              <FaPenFancy className="admission-icon" />
+            <li className='requeriment_item' key={index}>
+              <FaPenFancy className="admission__icon" />
               {req}
             </li>
           ))}

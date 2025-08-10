@@ -48,11 +48,11 @@
   }
 @media(max-width:991px){
     .nav-arrow.left{
-      margin-left: 3%;
+      margin-left: 5%;
     }
-
+  
     .nav-arrow.right{
-      margin-right: 3%;
+      margin-right: 5%;
     }
   }
 @media(max-width:768px){

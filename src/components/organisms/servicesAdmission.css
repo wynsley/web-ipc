@@ -1,0 +1,76 @@
+.section--admision{
+  margin: 3rem 0 0 0;
+}
+
+.container__admisionS{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  margin-top: 2rem;
+
+}
+
+.container__admision__img{
+  width: 45vw;
+  height: 53vh;      
+  border-radius: 10px;
+}
+
+
+/*RESPONSIVE DESIGN*/
+
+/* 
+   1200px ↓
+   ============================= */
+@media(max-width: 1200px) {
+  .container__admisionS{
+    font-size: 98%;
+  }
+  
+  .container__admision__img{
+    width: 50vw;
+  }
+
+
+}
+
+
+/*RESPONSIVE DESING*/
+/* 
+   991px ↓
+   ============================= */
+@media(max-width: 991px) {
+  .container__admision__img{
+    width: 50vw;
+    height: 42vh;
+    margin-left: 1rem;
+  }
+}
+
+
+/* 
+   768px ↓
+   ============================= */
+@media (max-width: 768px) {
+    .container__admision__img{
+    width: 80vw;
+    height: 48vh;
+  }
+
+  .container__admisionS{
+    flex-direction: column;
+  }
+}
+
+/* 
+   550px 
+   ============================= */
+
+@media (max-width: 550px) {
+  .container__admision__img{
+    width: 85vw;
+    height: 40vh;
+  }
+}
+

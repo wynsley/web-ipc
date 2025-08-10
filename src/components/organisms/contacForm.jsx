@@ -4,11 +4,10 @@ import { TextArea } from '../atoms/textAreaForm'
 import { SelectCareer } from '../molecules/selectCareerForm'
 import './contacForm.css'
 
-import ImgAdmision from '../../assets/img/admision.jpg'
+
 
 const ContactForm = () => {
 
-    const Title= 'ADMISIÓN'
     const [formData, setFormData] = useState({
         nombre: '',
         apellidos: '',
@@ -55,59 +54,70 @@ const ContactForm = () => {
   };
 
   return (
-    <section className='section--admision'>
-        <h2 className='servicesTitle admision'>{Title}</h2>
-        <div className='container__admision'>
-            <img className='admision__img' src={ImgAdmision} alt="Imganes admisión" />
-            <form className="formulario" onSubmit={handleSubmit}>
-                <h3 className="form__title">
-                    <span className="orange">Estudia con nosotros y</span>  <span className="blue"> contáctanos</span>
-                </h3>
+    <form className="formulario" onSubmit={handleSubmit}>
+      <h3 className="form__title">
+        <span className="orange">Estusdia con nosotros y</span>{" "}
+        <span className="blue"> contáctanos</span>
+      </h3>
 
-                <Input label="Nombre" name="nombre" value={formData.nombre} onChange={handleChange} type="text" />
-                {errores.nombre && <span className="error">{errores.nombre}</span>}
+      <Input
+        label="Nombre"
+        name="nombre"
+        value={formData.nombre}
+        onChange={handleChange}
+        type="text"
+      />
+      {errores.nombre && <span className="error">{errores.nombre}</span>}
 
-                <Input label="Apellidos" name="apellidos" value={formData.apellidos} onChange={handleChange} type="text" />
-                {errores.apellidos && <span className="error">{errores.apellidos}</span>}
+      <Input
+        label="Apellidos"
+        name="apellidos"
+        value={formData.apellidos}
+        onChange={handleChange}
+        type="text"
+      />
+      {errores.apellidos && <span className="error">{errores.apellidos}</span>}
 
-                <Input
-                label="Celular"
-                name="celular"
-                value={formData.celular}
-                type="tel"
-                onChange={(e) => {
-                const soloNumeros = e.target.value.replace(/\D/g, '');
-                setFormData(prev => ({ ...prev, celular: soloNumeros }));
-                }} />
-                {errores.celular && <span className="error">{errores.celular}</span>}
-      
+      <Input
+        label="Celular"
+        name="celular"
+        value={formData.celular}
+        type="tel"
+        onChange={(e) => {
+          const soloNumeros = e.target.value.replace(/\D/g, "");
+          setFormData((prev) => ({ ...prev, celular: soloNumeros }));
+        }}
+      />
+      {errores.celular && <span className="error">{errores.celular}</span>}
 
-                <Input label="Correo Electrónico" name="correo" value={formData.correo} onChange={handleChange} type="email" />
-                 {errores.correo && <span className="error">{errores.correo}</span>}
+      <Input
+        label="Correo Electrónico"
+        name="correo"
+        value={formData.correo}
+        onChange={handleChange}
+        type="email"
+      />
+      {errores.correo && <span className="error">{errores.correo}</span>}
 
-                <SelectCareer
-                label="Carrera de Interés"
-                name="carrera"
-                value={formData.carrera}
-                onChange={handleChange}
-                options={carrerasDisponibles}
-                />
-                {errores.carrera && <span className="error">{errores.carrera}</span>}
+      <SelectCareer
+        label="Carrera de Interés"
+        name="carrera"
+        value={formData.carrera}
+        onChange={handleChange}
+        options={carrerasDisponibles}
+      />
+      {errores.carrera && <span className="error">{errores.carrera}</span>}
 
-                <TextArea
-                label="Déjanos tu consulta"
-                name="consulta"
-                value={formData.consulta}
-                onChange={handleChange}
-                />
-                {errores.consulta && <span className="error">{errores.consulta}</span>}
+      <TextArea
+        label="Déjanos tu consulta"
+        name="consulta"
+        value={formData.consulta}
+        onChange={handleChange}
+      />
+      {errores.consulta && <span className="error">{errores.consulta}</span>}
 
-                <button type="submit">Enviar</button>
-            </form>
-        </div>
-        
-    </section>
-    
+      <button type="submit">Enviar</button>
+    </form>
   );
 };
 

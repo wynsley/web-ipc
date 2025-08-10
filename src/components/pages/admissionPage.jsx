@@ -8,6 +8,7 @@ import { AsideCarousel } from "../organisms/logicaCarousel"
 import { AdmisionSectionOne } from "../organisms/admisionSectionOne"
 import { InfraestructuraIPC } from "../organisms/admisionSectionIPC"
 import { AdmissionRequirements } from "../organisms/admisionRequirements"
+import { SectionForm } from "../organisms/admissionForm"
 
 
 import Img1 from "../../assets/img/infraestructura.png"
@@ -52,6 +53,8 @@ function AdmissionPage(){
         <InfraestructuraIPC/>
         <h2 className="titleAdmision careers">Explora las carreras disponibles que tenemos para ti</h2>
         <AdmissionRequirements/>
+        <h2 className="titleAdmision mode"> MODALIDAD DE ESTUDIO</h2>
+        <SectionForm/>
       </>
 
 

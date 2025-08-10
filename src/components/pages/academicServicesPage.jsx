@@ -9,7 +9,7 @@ import "../organisms/logicaCarousel.css"
 import { CardList } from '../organisms/listEconomicService'
 import { Carousel } from '../organisms/servicesCarousel'
 import { LibraryService } from '../organisms/libraryServices'
-import { ContactForm } from '../organisms/contacForm'
+import { ServicesAdmission } from '../organisms/servicesAdmission'
 import { OurPlatform } from '../organisms/ourPlatform'
 
 
@@ -62,7 +62,7 @@ function AcademicServicesPage(){
         <Carousel/>
       </section>
       <LibraryService/>
-      <ContactForm/>  
+      <ServicesAdmission/>  
       <OurPlatform/>
       
     </>
