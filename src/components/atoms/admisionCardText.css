@@ -1,0 +1,19 @@
+.container-card-text{
+    font-family: 'Roboto';
+    text-align: center;
+}
+
+.card__title{
+    
+    font-size: 1.8em;
+    font-weight: bold;
+    color: var(--celeste);
+    margin-bottom: 0.5rem;
+    text-shadow: 0 2px 2px var(--negro);
+}
+
+.card__time{
+    font-size: 1.1rem;
+    font-weight: bold;
+
+}

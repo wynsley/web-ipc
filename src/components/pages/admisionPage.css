@@ -2,10 +2,6 @@
     text-align: center;
     font-size: 1.8rem;
     padding: 2rem;
+    background-color: var(--gris);
 }
 
-.mode{
-    margin: 3rem;
-    text-align: center;
-    padding: 1rem;
-}

@@ -1,5 +1,6 @@
 import './admissionForm.css'
 import { ContactForm } from './contacForm'
+import imgRegister from '../../assets/img/imgRegistro.png'
 
 
 const SectionForm = () =>{
@@ -10,9 +11,11 @@ const SectionForm = () =>{
     return (
         <section className='sectionForm'>
             <div className='container__form'>
-                <p className='register-title interogation'>{Title1}</p>
-                <p className='register-title exclamation'>{Title2}</p>
-                <img className='register__now' src="" alt="Register now" />
+                <div className='titlesR'>
+                    <p className='register-title interrogation'>{Title1}</p>
+                    <p className='register-title exclamation'>{Title2}</p>
+                </div>
+                <img className='img__register-now' src={imgRegister} alt="Register now" />
             </div>
             <ContactForm/>
         

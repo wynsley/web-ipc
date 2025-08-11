@@ -1,6 +1,9 @@
+import { GuestTemplate } from "../templates/guestTemplate"
+import { ContactForm } from "../organisms/contacForm"
+
 function ContactPage(){
   return (
-    <h2>Contacto</h2>
+    <ContactForm/>
   )
 }
 

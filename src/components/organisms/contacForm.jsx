@@ -56,7 +56,7 @@ const ContactForm = () => {
   return (
     <form className="formulario" onSubmit={handleSubmit}>
       <h3 className="form__title">
-        <span className="orange">Estusdia con nosotros y</span>{" "}
+        <span className="orange">Estudia con nosotros y</span>{" "}
         <span className="blue"> contáctanos</span>
       </h3>
 

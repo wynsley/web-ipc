@@ -1,6 +1,6 @@
 .formulario {
     font-family: 'Roboto';
-    width: 400px;
+    width: 430px;
     height: 41rem;
     margin: auto;
     padding:  2rem;
@@ -16,7 +16,7 @@
 }
 
 .form__title {
-    font-family: 'Poppins';
+    font-family: 'Roboto';
     font-weight: bold;
     text-align: center;
     font-size: 1.5rem;
@@ -92,8 +92,8 @@
 
   .formulario{
     width: 350px;
-    height: 37.3rem;
-    gap: .6rem;
+    height: 38rem;
+    gap: .8rem;
     margin-right: 1rem;
     padding: 1.5rem;
   }
@@ -111,6 +111,7 @@
 @media (max-width: 768px) {
   .formulario{
     width: 312px;
+    height: 39rem;
   }
   .container__admision__img{
     width: 80vw;

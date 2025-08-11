@@ -1,0 +1,49 @@
+.section-sifts{
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(183, 198, 197, 0.304);
+}
+
+.admisionSifts{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 2rem 3rem 5rem ;
+    text-wrap: wrap;
+
+}
+
+
+
+/*RESPONSIVE DESIGN*/
+
+/* 1200PX
+        =====================================*/
+@media(max-width: 1200px){
+    .admisionSifts{
+        padding: 2rem 2rem 5rem ;
+
+}
+}
+/* 1200PX
+        =====================================*/
+@media(max-width: 1200px){
+
+}
+/* 768PX
+        =====================================*/
+@media(max-width: 768px){
+    .admisionSifts{
+        gap: 1.3rem;
+    }
+}
+/* 1200PX
+        =====================================*/
+@media(max-width: 420px){
+
+}
+/* 1200PX
+        =====================================*/
+@media(max-width: 320px){
+
+}
