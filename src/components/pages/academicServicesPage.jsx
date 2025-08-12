@@ -25,23 +25,33 @@ function AcademicServicesPage(){
   const Title = 'SERVICIOS ACADÉMICOS'
   const Title2 = 'BECAS ACADÉMICAS'
   const Title3 ='ADMISIÓN'
+
+
+  if (!homeSlides || homeSlides.length === 0){
+    return (
+      <div>
+        <h1>No hay imágenes para mostrar</h1>
+      </div>
+    )
+  }
   
   return (
     <>
+      <section>
         <CarouselContainer 
-            items= {homeSlides}
-            renderItem={(slide) =>(
-              <CarouselSlide 
-                type={slide.type}
-                src={slide.src}
-                alt={slide.alt}
-              />
-            )}
+          items={homeSlides}
+          renderItem={(slide) => (
+            <CarouselSlide 
+              type={slide.type}
+              src={slide.src}
+              alt={slide.alt}
+            />
+          )}
         >
           {{
             prev: (goToPrev) => (
               <CarouselPrevButton
-                onClick= {goToPrev}
+                onClick={goToPrev}
                 className="carousel__aside__btn carousel__aside__btn--prev"
               >
                 <FaChevronLeft />
@@ -57,6 +67,7 @@ function AcademicServicesPage(){
             )
           }}
         </CarouselContainer>
+      </section>
 
         <h2 className="servicesTitle1">{Title}</h2>
         <CardList/>

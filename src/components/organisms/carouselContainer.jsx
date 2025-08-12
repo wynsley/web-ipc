@@ -1,5 +1,5 @@
 import UseCarousel from "../../hooks/useCarousel"
-import CarouselIndicators from "../molecules/CarouselIndicators"
+import CarouselIndicators from "../molecules/carouselIndicators" 
 import "./carouselContainer.css"
 
 /**
@@ -26,7 +26,7 @@ const CarouselContainer = ({
 }) => {
     const {
         activeIndex,
-        currenItem,
+        currentItem, 
         goToNext,
         goToPrev,
         goToSlide,
@@ -35,7 +35,7 @@ const CarouselContainer = ({
         hasMultiple
     } = UseCarousel(items, interval, autoPlay)
 
-    const handleMosueEnter = () => {
+    const handleMouseEnter = () => { 
         if (pauseOnHover && autoPlay) pause()
     }
 
@@ -43,25 +43,24 @@ const CarouselContainer = ({
         if (pauseOnHover && autoPlay) play()
     }
 
-    //si no hay items no renderiza
-    if (!items,length) return null
+    // Si no hay items no renderiza
+    if (!items.length) return null 
 
     return(
         <div
-            className={` carousel-container ${className}`}
-            onMouseEnter={handleMosueEnter}
+            className={`carousel-container ${className}`}
+            onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
         >
-
-            {/* el contendio principal*/}
+            {/* El contenido principal */}
             <div className="carousel-content">
                 {renderItem ?
-                    renderItem(currenItem, activeIndex) :
-                    <div className="carousel-item">{currenItem}</div>
+                    renderItem(currentItem, activeIndex) : 
+                    <div className="carousel-item">{currentItem}</div>
                 }
             </div>
 
-            {/* Botones de navegacion */}
+            {/* Botones de navegación */}
             {hasMultiple && children && (
                 <div className="carousel-controls">
                     {children.prev && children.prev(goToPrev)}
@@ -69,7 +68,7 @@ const CarouselContainer = ({
                 </div>
             )}
 
-            {/* indicadores  */}
+            {/* Indicadores */}
             {showIndicators && hasMultiple && (
                 <CarouselIndicators 
                     total={items.length}

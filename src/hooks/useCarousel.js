@@ -13,7 +13,7 @@ import { useState, useEffect } from "react"
     const total = items.length
 
     // Resetear el índice si cambian los items
-    useEffect(() => {
+    useEffect(() => {   
         if (activeIndex >= total && total > 0) {
             setActiveIndex(0)
         }

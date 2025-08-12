@@ -31,7 +31,7 @@ const CarouselSlide = ({
     const renderContent = () => {
         switch (type) {
             case 'image':
-                return <carouselImage src={src}  alt={alt} />
+                return <CarouselImage src={src}  alt={alt} />
             case 'text':
                 return(
                     <div className="carousel-slide__text-content">
@@ -42,7 +42,7 @@ const CarouselSlide = ({
                     </div>
             )
 
-                        case 'component':
+            case 'component':
                 return component
             
             case 'mixed':

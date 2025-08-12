@@ -12,14 +12,14 @@ const CarouselImage = ({
     src,
     alt = "",
     className = "",
-    onclick
+    onClick
 }) => {
     return (
         <img
             src={src}
             alt={alt}
             className={`carousel-image ${className}`}
-            onclick={onclick}
+            onClick={onClick}
             loading="lazy"
         />
     )

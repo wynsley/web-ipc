@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom"
 import { GuestTemplate } from "../templates/guestTemplate"
-import  CarouselContainer from "../organisms/carouselContainer"
+import CarouselContainer from "../organisms/carouselContainer"
 import CarouselSlide from "../molecules/carouselSlide"
 import CarouselNextButton from "../atoms/carouselNextButton"
 import CarouselPrevButton from "../atoms/carouselPrevButton"
@@ -11,57 +11,63 @@ import Img1 from "../../assets/img/infraestructura.png"
 import Img2 from "../../assets/img/seervicios4.jpg"
 import Img3 from "../../assets/img/servivios2.jpg"
 
-
 function HomePage(){
   const homeSlides = [
     {type: "image", src: Img1, alt: 'Infraestructura del instituto' },
-    {type: "image", src: Img2, alt: 'Estudaintes en marcha' },
+    {type: "image", src: Img2, alt: 'Estudiantes en marcha' },
     {type: "image", src: Img3, alt: 'Clases de contabilidad' }
   ]
 
+
   if (!homeSlides || homeSlides.length === 0){
     return (
-      <>
-        <section>
-            <CarouselContainer 
-              items= {homeSlides}
-              renderItem={(slide) =>(
-                  <CarouselSlide 
-                    type={slide.type}
-                    src={slide.src}
-                    alt={slide.alt}
-                  />
-              )}
-          >
-            {{
-              prev: (goToPrev) => (
-                <CarouselPrevButton
-                  onClick= {goToPrev}
-                  className="carousel__aside__btn carousel__aside__btn--prev"
-                >
-                  <FaChevronLeft />
-                </CarouselPrevButton>
-              ),
-              next: (goToNext) => (
-                <CarouselNextButton
-                  onClick={goToNext}
-                  className="carousel__aside__btn carousel__aside__btn--next"
-                >
-                  <FaChevronRight />
-                </CarouselNextButton>
-              )
-            }}
-          </CarouselContainer>
-        </section>
-
-        <main>
-          <h1>Inicio</h1>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Id impedit reiciendis officia? Aliquam sapiente porro error eius accusamus ab iure id harum officia officiis tenetur asperiores, numquam vero amet cum unde? Officiis, qui ipsa repellendus, at vero cumque iste sunt iure neque quas nesciunt reiciendis, molestiae culpa aliquid ipsum exercitationem illo. Ex voluptatem quasi explicabo perspiciatis nulla inventore enim, est, expedita ipsam saepe vitae, corporis magni maxime. Est esse rerum corrupti eligendi officia omnis eos voluptates delectus labore cupiditate laborum temporibus, eum, neque nesciunt obcaecati. Ullam autem eos, sequi error, pariatur et ut voluptate commodi, tempora odio soluta. Ut, accusantium?</p>
-          <Link to={'/contact'} className="link">ir a  contacto</Link>
-        </main>
-      </>
+      <div>
+        <h1>No hay imágenes para mostrar</h1>
+      </div>
     )
   }
+
+  return (
+    <>
+      <section>
+        <CarouselContainer 
+          items={homeSlides}
+          renderItem={(slide) => (
+            <CarouselSlide 
+              type={slide.type}
+              src={slide.src}
+              alt={slide.alt}
+            />
+          )}
+        >
+          {{
+            prev: (goToPrev) => (
+              <CarouselPrevButton
+                onClick={goToPrev}
+                className="carousel__aside__btn carousel__aside__btn--prev"
+              >
+                <FaChevronLeft />
+              </CarouselPrevButton>
+            ),
+            next: (goToNext) => (
+              <CarouselNextButton
+                onClick={goToNext}
+                className="carousel__aside__btn carousel__aside__btn--next"
+              >
+                <FaChevronRight />
+              </CarouselNextButton>
+            )
+          }}
+        </CarouselContainer>
+      </section>
+
+      <main>
+        <h1>Inicio</h1>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit...</p>
+        <Link to={'/contact'} className="link">ir a contacto</Link>
+      </main>
+    </>
+  )
 }
 
 export { HomePage }
