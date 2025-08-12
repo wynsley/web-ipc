@@ -1,24 +1,279 @@
 .footer__decoration {
     width: 100%;
-    height: 3rem;
-    background: linear-gradient(to right, var(--Azul), var(--Azul-logo));
+    height: 4rem;
+    background: linear-gradient(135deg, var(--Azul), var(--Azul-logo), var(--Azul-claro-2));
     overflow: hidden;
     position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .footer__decoration::before {
     content: '';
     position: absolute;
     top: 50%;
-    left: -20%;
+    left: -30%;
     width: 40%;
-    height: 200%;
-    background: linear-gradient(transparent, #2121c5, transparent);
-    transform: rotate(35deg);
-    animation: footer-right 8s linear infinite;
+    height: 300%;
+    background: linear-gradient(
+        45dreg,
+        transparent 0%,
+        rgba(255, 102, 0, 0.3) 25%,
+        var(--anaranjado-fuerte) 50%,
+        rgba(255, 102, 0, 0.3) 75%,
+        transparent 100%
+    );
+    transform: translateY(-50%) rotate(25deg);
+    animation: footer-wave-right 12s linear infinite;
+    border-radius: 50px;
+    filter: blur(1px);
 }
 
-@keyframes footer-right {
-    0%{left: 120%;}
-    100%{left: -20%}
+.particles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.particle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 50%;
+    animation: float-particles 8s infinite linear;
+}
+
+.particle:nth-child(1) {
+    left: 10%;
+    animation-delay: -2s;
+    animation-duration: 6s;
+}
+.particle:nth-child(2) {
+    left: 30%;
+    animation-delay: -4s;
+    animation-duration: 8s;
+}
+.particle:nth-child(3) {
+    left: 50%;
+    animation-delay: -1s;
+    animation-duration: 7s;
+}
+.particle:nth-child(4) {
+    left: 70%;
+    animation-delay: -3s;
+    animation-duration: 9s;
+}
+.particle:nth-child(5) {
+    left: 90%;
+    animation-delay: -5s;
+    animation-duration: 6s;
+}
+
+.footer__decoration-text {
+    position: relative;
+    z-index: 10;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.9rem;
+    font-weight: 300;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+
+/* ========================================
+                                        ANIMACIONES
+   ======================================== */
+
+@keyframes footer-wave-right {
+    0%{
+        left: -30%;
+        transform: translateY(-50%) rotate(25deg) scale(1);
+    }
+    50%{
+        transform: translateY(-50%) rotate(25deg) scale(1.1);
+    }
+    100%{
+        left: 130%;
+        transform: translateY(-50%) rotate(25deg) scale(1);
+    }
+}
+
+@keyframes footer-wave-left {
+    0%{
+        right: -30%;
+        transform: translateY(-50%) rotate(-25deg) scale(1);
+    }
+    50%{
+        transform: translateY(-50%) rotate(-25deg) scale(1.05);
+    }
+    100%{
+        right: 130%;
+        transform: translateY(-50%) rotate(-25deg) scale(1);
+    }
+}
+
+@keyframes float-particles {
+    0% {
+        transform: translateY(100px) translateX(0px) scale(0);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+        transform: translateY(80px) translateX(10px) scale(1);
+    }
+    50% {
+        transform: translateY(-20px) translateX(-10px) scale(1.2);
+        opacity: 0.8;
+    }
+    90% {
+        transform: translateY(-80px) translateX(5px) scale(0.8);
+        opacity: 0.2;
+    }
+    100% {
+        transform: translateY(-100px) translateX(0px) scale(0);
+        opacity: 0;
+    }
+}
+
+.footer__decoration:hover::before {
+    animation-duration: 8s;
+}
+
+.footer__decoration:hover::after {
+    animation-duration: 10s;
+}
+
+/* ========================================
+   RESPONSIVE DESIGN
+   ======================================== */
+
+/* Tablets grandes (1200px) */
+@media (max-width: 1200px) {
+    .footer__decoration {
+        height: 3.5rem;
+    }
+    
+    .footer__decoration-text {
+        font-size: 0.85rem;
+        letter-spacing: 1.5px;
+    }
+}
+
+/* Tablets medianas (991px) */
+@media (max-width: 991px) {
+    .footer__decoration {
+        height: 3rem;
+    }
+    
+    .footer__decoration::before {
+        width: 60%;
+        animation-duration: 10s;
+    }
+    
+    .footer__decoration::after {
+        width: 50%;
+        animation-duration: 12s;
+    }
+    
+    .footer__decoration-text {
+        font-size: 0.8rem;
+    }
+}
+
+/* Tablets pequeñas (768px) */
+@media (max-width: 768px) {
+    .footer__decoration {
+        height: 2.5rem;
+    }
+    
+    .footer__decoration::before,
+    .footer__decoration::after {
+        height: 200%;
+        filter: blur(3px);
+    }
+    
+    .particle {
+        width: 3px;
+        height: 3px;
+    }
+    
+    .footer__decoration-text {
+        font-size: 0.75rem;
+        letter-spacing: 1px;
+    }
+}
+
+/* Móviles grandes (550px) */
+@media (max-width: 550px) {
+    .footer__decoration {
+        height: 2rem;
+    }
+    
+    .footer__decoration::before {
+        animation-duration: 15s;
+    }
+    
+    .footer__decoration::after {
+        animation-duration: 18s;
+    }
+    
+    .footer__decoration-text {
+        font-size: 0.7rem;
+        display: none;
+    }
+}
+
+/* Móviles medianos (420px) */
+@media (max-width: 420px) {
+    .footer__decoration {
+        height: 1.8rem;
+    }
+    
+    .particle {
+        width: 2px;
+        height: 2px;
+        animation-duration: 6s;
+    }
+}
+
+/* Móviles pequeños (320px) */
+@media (max-width: 320px) {
+    .footer__decoration {
+        height: 1.5rem;
+    }
+    
+    .footer__decoration::before,
+    .footer__decoration::after {
+        height: 150%;
+        filter: blur(4px);
+    }
+}
+
+/* Para dispositivos con preferencia de movimiento reducido */
+@media (prefers-reduced-motion: reduce) {
+    .footer__decoration::before,
+    .footer__decoration::after,
+    .particle {
+        animation: none;
+    }
+    
+    .footer__decoration::before {
+        left: 20%;
+        opacity: 0.3;
+    }
+    
+    .footer__decoration::after {
+        right: 20%;
+        opacity: 0.3;
+    }
+    
+    .particle {
+        display: none;
+    }
 }

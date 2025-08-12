@@ -2,18 +2,25 @@
     display: flex;
     flex-direction: column;
     gap: 1rem;
+    justify-self: center;
+    padding-top: 5px;
 }
 
 .footer__logo{
     width: 7rem;
     text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.footer__logo:hover {
+    transform: scale(1.05);
 }
 
 .footer__logo__link {
     display: flex;
     margin: 0;
     padding: 0;
-    width: 0;
+    width: auto;
     text-decoration: none;
     border-radius: 8px;
     position: relative;
@@ -51,6 +58,60 @@
 
 .footer__text{
     font-size: 0.9rem;
-    text-align: center;
+    font-weight: 300;
+    letter-spacing: 0.5px;
+    text-align: left;
     color: var(--gris);
+}
+
+
+/* ========================================
+                                        RESPONSIVE
+   ======================================== */
+
+@media (max-width: 991px) {
+    .footer__logos {
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .footer__logo--q10{
+        margin: 0;
+
+    }
+}
+
+@media (max-width: 768px) {
+    .footer__logos {
+    justify-content: center;
+    align-items: center;
+    }
+
+    .footer__logo--q10 {
+        width: 8vh;
+        height: 8vh;
+        margin-left: 0;
+    }
+    
+    .footer__text {
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 420px) {
+.footer__logos {
+    justify-content: center;
+    align-items: center;
+}
+
+.footer__logo--q10 {
+        width: 7vh;
+        height: 7vh;
+    }
+    
+    .footer__text {
+        font-size: 0.8rem;
+        text-align: center;
+    }
 }
