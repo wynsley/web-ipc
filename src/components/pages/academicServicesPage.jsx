@@ -71,10 +71,6 @@ function AcademicServicesPage(){
           }}
         </CarouselContainer>
       </section>
-       main
-
-         
-
       <h2 className="servicesTitle1">{Title}</h2>
       <CardList/> 
       <section className='sectionBecas'>

@@ -73,7 +73,7 @@ const Carousel = () => {
   });
 
   return (
-    <div className="carousel-container">
+    <div className="carouselContainer">
       <CarouselButton direction="left" onClick={() => updateCarousel(currentIndex - 1)} />
 
       <div className="carousel-viewport">
