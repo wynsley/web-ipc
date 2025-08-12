@@ -1,0 +1,140 @@
+/* AdmissionRequirements.css */
+.section--admision {
+    text-align: center;
+    padding: 2rem 1rem;
+}
+
+.title__requerimients {
+    font-family: 'Poppins';
+    font-size: 1.6rem;
+    font-weight: bold;
+    color: var(--anaranjado);
+    margin-bottom: 2rem;
+    text-shadow:0 2px 2px var(--negro) ;
+  
+}
+
+.admission__content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 3rem;
+    padding-top: 3rem;
+}
+
+.admision__img {
+    width: 40rem;
+    height: 28rem;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+.admission__list {
+    font-family: 'Roboto';
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    text-align: left;
+    max-width: 400px;
+    margin-top: 1rem;
+}
+.requeriment_item{
+  padding: .8rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px var(--gris);
+  display: flex;
+  align-items: center;
+  font-size: 1rem;
+  margin-bottom: 2.3rem;
+}
+
+
+
+.admission__icon {
+  margin-right: 10px;
+  font-size: 1.2rem;
+  color: var(--Azul-logo);
+}
+
+/*RESPONSIVE DESING*/
+
+
+/*
+    1200PX 
+==============================================*/
+@media (max-width: 1200px){
+  .admision__img {
+    width: 37rem;
+    height: 25rem;
+  }
+}
+/*
+    991PX 
+==============================================*/
+@media (max-width: 991px) {
+  .title__requerimients {
+    font-size: 1.3rem;
+  }
+  .admission__content{
+    gap: 1.3rem;
+  }
+  .admision__img {
+    max-width: 430px;
+    height: 23rem;
+}
+}
+
+/*
+    768PX 
+==============================================*/
+@media (max-width: 768px) {
+  .admission__content {
+    flex-direction: column;
+    text-align: center;
+    padding-top: 2rem;
+  } 
+
+  .title__requerimients{
+    font-size: 1.2rem;
+  }
+
+}
+
+/*
+    480PX 
+==============================================*/
+@media (max-width: 480px) {
+  .admision__img {
+  width: 25rem;
+  height: 18rem;
+  }
+  .title__requerimients{
+    font-size: .9rem;
+  }
+  .admission__list li {
+    font-size: 0.95rem;
+  }
+  .admission-icon {
+    font-size: 1rem;
+    margin-right: 8px;
+  }
+}
+
+/*
+    320PX 
+==============================================*/
+@media (max-width: 320px) {
+  .title__requerimients {
+    font-size: .7rem;
+  }
+  .admission__list li {
+    font-size: 0.9rem;
+  }
+
+  .admision__img {
+  max-width: 250px;
+  height: 18rem;
+  }
+  
+}

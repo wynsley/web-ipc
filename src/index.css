@@ -3,13 +3,13 @@
   --Azul:#162199;
   --Azul-claro:#0d175d;
   --Azul-claro-2: #153072;
-  --Azul-logo:#1262be;
-  --celeste:#1d93ec;
+  --Azul-logo:#0b56ad;
+  --celeste:#0077dd;
   --anaranjado:#ff9800;
   --anaranjado-oscuro:#db6d00;
   --anaranjado-fuerte:#ff5f1f;
   --blanco: #fff;
-  --gris:#d3d1d1;
+  --gris:#d3d1d16e;
   --gris-2:#4cc9f04d;
   --gris-oscuro:#333;
   --negro: #000;
@@ -36,5 +36,15 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  text-decoration: none;
+  border: none;
+  outline: none;
+  scroll-behavior: smooth;
+
+}
+
+html {
+  font-size: 100%;
+  
 }
 

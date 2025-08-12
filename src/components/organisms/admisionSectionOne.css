@@ -1,0 +1,107 @@
+.sectionAdmision{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 3rem;
+    background-color: rgba(193, 190, 190, 0.119);
+    padding-bottom: 3rem;
+}
+
+.graduateIcon{
+    font-size: 10rem;
+    color: var(--anaranjado);
+}
+
+.title1{
+    font-family: 'Poppins';
+    font-size: 2.3rem;
+    font-weight: bold;
+    color: var(--celeste);
+    text-shadow: 0 2px 2px var(--negro);
+}
+
+.title1 span{
+    color: var(--negro);
+    text-shadow: 0 0px 2px var(--celeste);
+}
+
+.admision__Container{
+    margin-top: 2.6rem;
+    font-family: 'Roboto';
+    display: flex;
+    gap: .5rem;
+    padding: 1rem;
+    box-shadow: 0 2px 3px var(--celeste);
+    border-radius: .5rem;
+    font-size: 1.4rem;
+    color: var(--celeste);
+    transition: .3s ease;
+    background-color: var(--gris);
+}
+
+.admision__Container:hover{
+    background-color: var(--blanco);
+    color: var(--anaranjado);
+    box-shadow: 0 2px 3px var(--negro);
+}
+
+.libraryicon{
+    color: var(--anaranjado);
+    font-size: 2rem;
+}
+
+/*RESPONSIVE DESIGN*/
+
+/*
+    991px
+==============================================*/
+@media(max-width: 991px){
+    .graduateIcon{
+        font-size: 8rem;
+    }
+
+    .title1{
+        font-size:2.1rem ;
+    }
+
+ .admision__Container{
+    font-size: 1.2rem;
+    padding: .9rem;
+    margin-top: 2.6rem;
+ }
+
+ .libraryicon{
+    font-size: 1.6rem;
+ }
+}
+
+
+/*
+    768px
+==============================================*/
+@media(max-width: 768px){
+
+    .sectionAdmision{
+        padding: 2rem 0 0 0;
+    }
+    .graduateIcon{
+        font-size: 8rem;
+    }
+
+    .title1{
+        font-size:2rem ;
+    }
+
+    .admision__Container{
+    font-size: 1.1rem;
+    padding: .9rem;
+    margin: 2.5rem 1.5rem 0 1.5rem;
+    text-align: center;
+
+     }
+
+    .libraryicon{
+    font-size: 1.5rem;
+    }
+}

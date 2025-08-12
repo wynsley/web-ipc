@@ -1,6 +1,6 @@
 import React from 'react'
 import './libraryServices.css'
-import { ButtonServices } from '../atoms/buttonServices'
+import { ButtonServices } from '../atoms/button'
 import ImgLibrary from '../../assets/img/biblioteca.jpg'
 
 

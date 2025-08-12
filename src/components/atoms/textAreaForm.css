@@ -5,6 +5,7 @@
 }
 
 .Text--container textarea {
+    font-family: 'Roboto';
     padding: 0.5rem;
     border: 1px solid #ccc;
     border-radius: 0.3rem;

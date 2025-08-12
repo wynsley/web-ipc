@@ -4,4 +4,62 @@
   justify-content: center;
   gap: 2rem;
   padding: 2rem 1rem;
+  margin: 5rem 3rem 5rem 3rem;  
+}
+
+/*RESPONSIVE DESIGN*/
+
+@media(max-width: 1200px){
+    html{
+        font-size: 90%;
+    }
+    .cardlist__container{
+      margin: 7rem 2rem 7rem 2rem;
+    }
+    
+}
+
+
+@media(max-width: 991px){
+    html{
+        font-size: 85%;
+    }
+    .cardlist__container{ 
+      margin: 7rem 1rem 7rem 1rem;
+      gap: 2rem;
+    }
+
+}
+
+@media(max-width: 768px){
+    html{
+        font-size: 83%;
+    }
+    .cardlist__container{
+      margin: 7rem 1rem 7rem 1rem;
+      gap: 2rem;
+    }
+
+}
+@media(max-width: 550px){
+    html{
+        font-size: 78%;
+    }
+    
+    .cardlist__container{
+      margin: 7rem 1rem 7rem 1rem;
+      gap: 3rem;
+    }
+}
+@media(max-width: 420px){
+    html{
+        font-size: 75%;
+    }
+    
+}
+@media(max-width: 320px){
+    html{
+        font-size: 70%;
+    }
+  
 }

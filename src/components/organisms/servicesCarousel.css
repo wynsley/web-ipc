@@ -1,0 +1,160 @@
+.carousel-container {
+    position: relative;
+    max-width: 1200px;
+    margin: auto;
+    overflow: hidden;
+    text-align: center;
+    border-radius: 1rem;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    padding: 4rem 0 8rem 0;
+    margin-bottom: 5rem;
+    width: 100%;
+    height: 500px;
+    background-color: #fff;
+}
+
+.carousel-viewport {
+  height: 100%;
+  width: 100%;
+}
+
+.carousel-track {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.5s ease-in-out;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.carousel-item-wrapper {
+  flex: 0 0 30%;
+  transform: scale(0.8);
+  transition: all 0.5s ease-in-out;
+
+}
+
+.carousel-item-wrapper.hidden{
+    filter: grayscale(0%);
+}
+
+.carousel-item-wrapper.active  {
+  flex: 0 0 40%;
+  opacity: 1;
+  transform: scale(1);
+  filter: none;
+  z-index: 2;
+  filter: grayscale(0%);
+  
+}
+
+.carousel-title {
+  font-family: 'Poppins';
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: var(--Azul-claro-2);
+  text-shadow: 0 0 1px var(--celeste);
+}
+
+
+
+
+
+/* =============================
+   1200px ↓
+   ============================= */
+@media (max-width: 1200px) {
+  .carousel-item-wrapper {
+    flex: 0 0 32%;
+  }
+  .carousel-item-wrapper.active {
+    flex: 0 0 38%;
+  }
+}
+
+
+/* =============================
+   991px ↓
+   ============================= */
+@media (max-width: 991px) {
+  .carousel-container {
+    height: 420px;
+  }
+  .carousel-item-wrapper {
+    flex: 0 0 38%;
+  }
+  .carousel-item-wrapper.active {
+    flex: 0 0 45%;
+  }
+}
+
+
+/* =============================
+   768px ↓
+   ============================= */
+@media (max-width: 768px) {
+  .carousel-container {
+    height: 380px;
+  }
+  .carousel-item-wrapper {
+    flex: 0 0 50%;
+  }
+  .carousel-item-wrapper.active {
+    flex: 0 0 50%;
+  }
+}
+
+
+/* =============================
+   420px ↓ (solo 1 imagen visible)
+   ============================= */
+@media (max-width: 420px) {
+  .carousel-container {
+    height: 360px;
+    padding: 2rem 0 4rem 0;
+  }
+
+  .carousel-track {
+    justify-content: flex-start;
+  }
+
+  .carousel-item-wrapper {
+    flex: 0 0 100%;
+    transform: scale(0.9);
+  }
+
+  .carousel-item-wrapper.active {
+    flex: 0 0 100%;
+    transform: scale(1);
+  }
+
+  .carousel-title {
+    font-size: 1rem;
+  }
+}
+
+
+/* =============================
+   320px ↓ (ajuste extra móvil pequeño)
+   ============================= */
+@media (max-width: 320px) {
+  .carousel-container {
+    height: 320px;
+    padding: 1.5rem 0 3rem 0;
+  }
+
+  .carousel-item-wrapper {
+    transform: scale(0.85);
+  }
+
+  .carousel-item-wrapper.active {
+    transform: scale(1);
+  }
+
+  .carousel-title {
+    font-size: 0.9rem;
+  }
+}
