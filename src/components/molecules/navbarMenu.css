@@ -5,10 +5,9 @@
   width: 100%;
   justify-content: right;
   align-items: center;
-  main
-  gap: 4rem;
+  gap: 3rem;
   list-style: none;
-  main
+  
 }
 
 .navbar__item { 
