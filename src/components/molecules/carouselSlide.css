@@ -1,0 +1,93 @@
+.carousel-slide--text {
+    background: linear-gradient(135deg, var(--Azul-logo, #0066cc), var(--Azul-claro-2, #3399ff));
+    color: white;
+    padding: 2rem;
+}
+
+.carousel-slide--component {
+    background: transparent;
+}
+
+.carousel-slide--mixed {
+    background: var(--negro);
+}
+
+/*para texto*/
+.carousel-slide__text-content {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.carousel-slide__title {
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    color: inherit;
+}
+
+.carousel-slide__subtitle {
+    font-size: 1.5rem;
+    font-weight: 300;
+    margin-bottom: 1.5rem;
+    opacity: 0.9;
+}
+
+.carousel-slide__description {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    opacity: 0.8;
+}
+
+.carousel-slide__actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* Overlay para slides mixtos */
+.carousel-slide__overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 2rem;
+    border-radius: 10px;
+    text-align: center;
+    max-width: 600px;
+    backdrop-filter: blur(10px);
+}
+
+.carousel-slide__component {
+    position: absolute;
+    bottom: 2rem;
+    right: 2rem;
+    z-index: 5;
+}
+
+
+/* Posiciones de texto */
+.carousel-slide--text-left .carousel-slide__text-content {
+    text-align: left;
+    margin-left: 0;
+}
+
+.carousel-slide--text-right .carousel-slide__text-content {
+    text-align: right;
+    margin-right: 0;
+}
+
+.carousel-slide--text-overlay .carousel-slide__text-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.8);
+    padding: 2rem;
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+}

@@ -1,7 +1,7 @@
 import { NavbarLink } from '../atoms/navbarLink'
 import './navbarMenu.css'
 
-function NavbarMenu(){
+function NavbarMenu({ open = false, onClose = () => {} }) {
   const menu = [
     {
       text: 'Carreras',
@@ -30,13 +30,13 @@ function NavbarMenu(){
   ]
 
   return(
-    <ul className='navbar__menu'>
+    <ul className={`navbar__menu ${ open ? "navbar__menu--open" : ""}`}>
         {
           menu.map(
             (item) => {
               return(
                 <li key={item.text} className='navbar__item'>
-                  <NavbarLink text={item.text} href={item.href} />
+                  <NavbarLink text={item.text} href={item.href}  onClick={onClose} />
                 </li>
               )
             }
