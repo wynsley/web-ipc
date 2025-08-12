@@ -1,9 +1,9 @@
   .card__wrapper {
     width:  300px;
     margin: auto;
-    margin-top: 2rem;
   
 }
+
 
 .card {
   background-color: #eaefdf;
@@ -13,6 +13,8 @@
   border: 2px solid #9d9b9b;
   position: relative;
 }
+
+
 
 .card::before {
   content: "";
@@ -41,7 +43,7 @@
   margin: auto;
 }
 
-.card__title {
+.cad__title {
   padding-top: 2rem;
   font-family: 'Poppins';
   font-weight: 800;

@@ -4,7 +4,7 @@
 }
 
 .card__title{
-    
+    margin-top: 3rem;
     font-size: 1.8em;
     font-weight: bold;
     color: var(--celeste);

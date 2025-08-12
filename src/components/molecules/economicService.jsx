@@ -7,7 +7,7 @@ const Card = ({ title,mont, description, number }) => {
       <div className="card">
         <div className="card__body">
           <div className="card__icon"></div>
-          <h3 className="card__title">{title}</h3>
+          <h3 className="cad__title">{title}</h3>
           <p className='card__mont'>{mont}</p>
           <p className="card__paragraph">{description}</p>
         </div>

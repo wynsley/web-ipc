@@ -1,9 +1,14 @@
+import './contactPage.css'
 import { GuestTemplate } from "../templates/guestTemplate"
-import { ContactForm } from "../organisms/contacForm"
-
+import { SectionForm } from "../organisms/contactSectionForm"
+import { ContactSchedulesAt } from '../organisms/contactSchedulesAt'
 function ContactPage(){
   return (
-    <ContactForm/>
+    <section className='mainContact'>
+        <SectionForm/>
+        <ContactSchedulesAt/>
+    </section>
+    
   )
 }
 
