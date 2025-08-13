@@ -32,11 +32,58 @@
 }
 .sch__list__icon{
     font-size: 2rem;
-    color: var(--Blanco);
-    text-shadow:0 2px 3px var(--gris) ;
 }
 .container-sch{
     display: flex;
     flex-direction: column;
     gap: 1rem;
 }
+
+/*  RESPONSIVE DESIGN*/
+
+/*
+    1200px ====================== */
+@media(max-width:1200px){
+    .section-sch{
+         margin: 4rem 6rem 4rem ;
+    }
+}
+/*
+    991px ====================== */
+@media(max-width:991px){
+    .section-sch{
+         margin: 4rem 4rem 4rem 
+    }
+}
+/*
+    769px ====================== */
+@media(max-width:768px){
+     .section-sch{
+         margin: 4rem 2rem 4rem 
+    }
+    .section__title{
+        font-size: 1.6rem;
+    }
+}
+
+/*
+    480px ====================== */
+@media(max-width:480px){
+    .section-sch{
+         margin: 4rem 0 4rem;
+         height: 20rem;
+         
+    }
+
+    .sch_list{
+       padding: .6rem; 
+      
+    }
+    .sch__list__icon{
+        font-size: 1.7rem;
+    }
+    .container-sch{
+        gap: .6rem;
+    }
+}
+

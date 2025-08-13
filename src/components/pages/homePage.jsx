@@ -13,14 +13,14 @@ import Img3 from "../../assets/img/servivios2.jpg"
 import { HomeInstituteSection } from "../organisms/homeInstituteSection"
 
 function HomePage(){
-  const servicesSlides = [
+  const homeSlides = [
     {type: "image", src: Img1, alt: 'Infraestructura del instituto' },
     {type: "image", src: Img2, alt: 'Estudiantes en marcha' },
     {type: "image", src: Img3, alt: 'Clases de contabilidad' }
   ]
 
 
-  if (!servicesSlides || servicesSlides.length === 0){
+  if (!homeSlides || homeSlides.length === 0){
     return (
       <div>
         <h1>No hay imágenes para mostrar</h1>
@@ -32,7 +32,7 @@ function HomePage(){
     <>
       <section>
         <CarouselContainer 
-          items={servicesSlides}
+          items={homeSlides}
           renderItem={(slide) => (
             <CarouselSlide 
               type={slide.type}

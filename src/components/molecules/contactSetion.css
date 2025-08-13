@@ -5,7 +5,7 @@
     font-size: 1.2rem;
     gap: 1rem;
     padding: 3rem 0 2rem 0 ;
-    width: 30vw;
+    width: 30vh;
     height: 35vh;
     
 }
@@ -117,7 +117,7 @@
    RESPONSIVE DESIGN
    ========================= */
 
-/* Pantallas grandes (max 1200px) */
+/*  1200px */
 @media (max-width: 1200px) {
     .container__animation .contLi {
         width: 42px;
@@ -126,31 +126,72 @@
     }
 }
 
-/* Tablets horizontales (max 991px) */
+/*  991px */
 @media (max-width: 991px) {
-    .container__animation .contLi {
+    .container__animation  {
         width: 40px;
         height: 40px;
         font-size: 22px;
+        margin-bottom: -4rem;
+    }
+    .contact__title{
+        margin-bottom: 3rem;
+        font-size: 2rem;
     }
 }
 
-/* Tablets verticales (max 768px) */
+/* 768px */
 @media (max-width: 768px) {
-    .container__animation {
-        gap: 8px;
-    }
+    .container__contS{
+        font-size: 95%;
+        flex-direction: row;
+        gap: 2rem;
+        width: 100%;
+        height: 100%;
+        justify-content: center;
+        align-items: center;
+        padding-bottom: 0;
+}
     .container__animation .contLi {
-        width: 38px;
-        height: 38px;
+        width: 36px;
+        height: 36px;
         font-size: 21px;
     }
+    .contact__title{
+        margin-right: 1rem;
+        margin-left: 1rem;
+        font-size: 1.6rem;
+        text-shadow: 0 1px 1px var(--Azul);
+    }
+    
 }
 
-/* Móviles medianos (max 480px) */
-@media (max-width: 480px) {
+
+
+/* 550px */
+@media (max-width: 550px) {
+    .container__contS{
+        flex-direction: column;
+        gap: 0;
+    }
+    .cont-menu{
+        gap: .2rem;
+        margin-bottom: 1rem;
+    }
+
+    .iconsc{
+        font-size: 1.1rem;
+    }
+    .contact__title{
+        margin-bottom: 1rem;
+        margin-top: -5rem;
+    }
+
+
+
     .container__animation {
         gap: 6px;
+        margin-top: .5rem;
     }
     .container__animation .contLi {
         width: 35px;
@@ -159,7 +200,7 @@
     }
 }
 
-/* Móviles pequeños (max 320px) */
+/* max 320px*/
 @media (max-width: 320px) {
     .container__animation {
         gap: 5px;

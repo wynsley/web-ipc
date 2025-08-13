@@ -114,7 +114,7 @@
   .sectionQ10{
     font-size: 80%;
     height:14rem ;
-    margin: 12rem 1rem 8rem 1rem;
+    margin: 7rem 1rem 5rem 1rem;
   }
 
   .container__img{
@@ -136,33 +136,33 @@
 
 @media (max-width: 550px) {
 .sectionQ10{
+   
+    width: 80vw;
+    height: 10rem;
+    z-index: 3;
+    background: var(--gris);
+    box-shadow: 0 2px 6px var(--negro);
+    margin: 0 auto;
     margin-top: 5rem;
-    width: 100%;
-    border-radius: none;
-    flex-direction: column;
-    gap: 2rem;
-    box-shadow: none;
-    height: 24rem;
-    border-bottom: 2px solid var(--negro); 
+    margin-bottom: 2rem;
+    padding: 1rem;
+
+     
 }
 .sectionQ10::before,
 .sectionQ10::after {
-    content: "";
-    position: absolute;
-    width: 100%;
-    
+    display: none;
 }
 
 .description{
-    margin-top: 4rem;
+    margin-top: 1rem;
 }
 .container__img{
-    width: 10rem;
+    width: 8rem;
   }
 
 .container{
-    width: 10.3rem;
-    margin-bottom: 1rem;
+    width: 8.3rem;
   }
 }
 
@@ -172,7 +172,13 @@
    420px 
    ============================= */
 @media (max-width: 420px) {
- 
+  .sectionQ10{
+    flex-direction: column-reverse;
+    width: 100%;
+    height: 15rem;
+    box-shadow: none;
+    border-radius: 0;
+  }
 }
 
 

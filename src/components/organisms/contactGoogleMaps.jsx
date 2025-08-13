@@ -7,7 +7,7 @@ import './contactGoogleMaps.css'
  function ContactGoogleMap({
   address = "Jirón dos de mayo 1390, Celendín, Cajamarca, Perú",
   zoom = 17,
-  height = "500px",
+  height = "450px",
   className = "",
 }) {
   const query = encodeURIComponent(address);

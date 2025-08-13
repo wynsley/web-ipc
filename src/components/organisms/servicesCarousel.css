@@ -121,7 +121,7 @@
   }
 
   .carousel-track {
-    justify-content: flex-start;
+    justify-content: center;
   }
 
   .carousel-item-wrapper {
@@ -141,7 +141,7 @@
 
 
 /* =============================
-   320px ↓ (ajuste extra móvil pequeño)
+   320px 
    ============================= */
 @media (max-width: 320px) {
   .carouselContainer {

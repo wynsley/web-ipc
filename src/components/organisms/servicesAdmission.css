@@ -11,10 +11,13 @@
 
 }
 
-.container__admision__img{
+.sacontainer__admision__img{
   width: 45vw;
   height: 53vh;      
   border-radius: 10px;
+}
+.admision{
+  margin-top: 1rem;
 }
 
 
@@ -28,7 +31,7 @@
     font-size: 98%;
   }
   
-  .container__admision__img{
+  .sacontainer__admision__img{
     width: 50vw;
   }
 }
@@ -37,17 +40,16 @@
    991px ↓
    ============================= */
 @media(max-width: 991px) {
-  .container__admision__img{
+  .sacontainer__admision__img{
     width: 50vw;
     height: 42vh;
-    margin-left: 1rem;
   }
 }
 /* 
    768px ↓
    ============================= */
 @media (max-width: 768px) {
-    .container__admision__img{
+    .sacontainer__admision__img{
     width: 80vw;
     height: 48vh;
   }
@@ -61,18 +63,18 @@
    550px 
    ============================= */
 
-@media (max-width: 550px) {
-  .container__admision__img{
-    width: 85vw;
-    height: 20vh;
+@media (max-width: 560px) {
+  .sacontainer__admision__img{
+    width: 80vw;
+    height: 30vh;
   }
 
 /**/
 }
 @media (max-width: 420px) {
-  .container__admision__img{
-    width: 60vw;
-    height: 15vh;
+  .sacontainer__admision__img{
+    width: 80vw;
+    height: 13rem;
   }
 }
 

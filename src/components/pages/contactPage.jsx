@@ -6,11 +6,11 @@ import { ContactGoogleMap } from '../organisms/contactGoogleMaps'
 
 function ContactPage(){
   return (
-    <section className='mainContact'>
+    <main className='mainContact'>
         <SectionForm/>
         <ContactSchedulesAt/>
         <ContactGoogleMap/>
-    </section>
+    </main>
     
   )
 }

@@ -66,7 +66,7 @@
 }
 
 
-/* ✅ ≤1200px */
+/* 1200px */
 @media (max-width: 1200px) {
   .carousel-item-wrapper {
     width: 20rem;
@@ -164,7 +164,9 @@
   .carousel-item-wrapper {
     width: 20rem;
     height: 13rem;
-    margin: 2.5rem;
+    margin: 0 auto;       /* Centra en bloque */
+    display: block;       /* Asegura que sea bloque */
+    width: fit-content; 
    
   }
 

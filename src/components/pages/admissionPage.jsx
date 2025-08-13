@@ -35,7 +35,7 @@ function AdmissionPage(){
 
   return (
         <>
-        <section className="section__carousel">
+          <section className="section__carousel">
            <CarouselContainer 
             items={homeSlides}
             renderItem={(slide) => (
@@ -66,12 +66,16 @@ function AdmissionPage(){
             }}
           </CarouselContainer>
         </section>
-        <AdmisionSectionOne/>
-        <InfraestructuraIPC/>
-        <h2 className="titleAdmision careers">Explora las carreras disponibles que tenemos para ti</h2>
-        <AdmissionRequirements/>
-        <AdmisionSifts/>
-        <SectionForm/>
+        <main className='main-admission'>
+          <AdmisionSectionOne/>
+          <InfraestructuraIPC/>
+          <h2 className="titleAdmision careers">Explora las carreras disponibles que tenemos para ti</h2>
+          <AdmissionRequirements/>
+          <AdmisionSifts/>
+          <SectionForm/>
+        </main>
+
+        
       </>
 
 

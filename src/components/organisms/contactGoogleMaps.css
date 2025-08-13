@@ -40,7 +40,7 @@ font-family: 'Roboto';
 }
 
 .map-btn:hover {
-  background: rgba(242, 152, 103, 0.459);
+  background: rgba(255, 89, 0, 0.459);
 }
 
 .map-footer {
@@ -55,25 +55,53 @@ font-family: 'Roboto';
   border-radius: 6px;
 }
 
+/*RESPONSIVE DESIGN*/
+
+/*
+  1200PX =_=_=_=_=_=_=__=_=_=_=_=_=_=_=_=_=_=_=_=_
+*/
 @media (max-width: 1200px) {
-  .map-frame { height: 380px ; }
+  .map-frame { height: 380px !important; }
   .map-btn { font-size: 13px; padding: 5px 10px; }
 }
+
+/*
+  991PX =_=_=_=_=_=_=__=_=_=_=_=_=_=_=_=_=_=_=_=_
+*/
 @media (max-width: 991px) {
-  .map-frame { height: 350px  }
+  .map-frame { height: 200px !important; }
   .map-btn { font-size: 12px; padding: 5px 8px; }
 }
+
+/*
+  768PX =_=_=_=_=_=_=__=_=_=_=_=_=_=_=_=_=_=_=_=_
+*/
 @media (max-width: 768px) {
-  .map-frame { height: 320px ; }
-  .map-controls { flex-direction: column; gap: 6px; }
+  .gm-style-pbc { /* Mensaje de "Ctrl + scroll" */
+    display: none !important;
+  }
+  .gm-bundled-control .gmnoprint {
+    transform: scale(0.8); /* Reducir tamaño botones */
+  }
+  .map-footer { font-size: 11px; }
 }
+/*
+  480PX =_=_=_=_=_=_=__=_=_=_=_=_=_=_=_=_=_=_=_=_
+*/
 @media (max-width: 480px) {
-  .map-frame { height: 280px ; }
-  .map-btn { font-size: 11px; padding: 4px 8px; }
-  .map-footer { font-size: 12px; }
+  .map-controls{
+    flex-direction: column;
+  }
+  .map-frame { height: 100px !important; }
+  .map-btn { font-size: 11px; padding: 4px 7px; }
+  .map-footer { font-size: 10px; }
 }
+
+/*
+  320PX =_=_=_=_=_=_=__=_=_=_=_=_=_=_=_=_=_=_=_=_
+*/
 @media (max-width: 320px) {
-  .map-frame { height: 240px ; }
+  .map-frame { height: 240px !important; }
   .map-btn { font-size: 10px; padding: 3px 6px; }
   .map-footer { font-size: 11px; }
 }
