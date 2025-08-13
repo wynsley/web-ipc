@@ -34,7 +34,7 @@
     align-items: center;
     padding: 0 1rem;
     pointer-events: none;
-    z-index: 10;
+    
 }
 
 .carousel-controls > * {
@@ -47,7 +47,7 @@
     }
 
     .carousel-container{
-        height: 50%;
+        height: 100%;
     }
 }
 
