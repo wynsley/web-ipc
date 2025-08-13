@@ -7,7 +7,7 @@
     padding: 3rem 0 2rem 0 ;
     width: 30vw;
     height: 35vh;
-    position: relative;
+    
 }
 
 .contact__title{
@@ -72,18 +72,20 @@
 }
 
 .container__animation .contLi{
+    position: relative; 
     display: inline-flex;
     justify-content: center;
     align-items: center;
     width: 45px;
     height: 45px;
     background: transparent;
-    border: .1rem solid var(--Azul);
+    border: 0.1rem solid var(--Azul);
     border-radius: 50%;
     font-size: 25px;
+    color: var(--Azul);
     z-index: 1;
     overflow: hidden;
-    transition: .5s;
+    transition: 0.5s;
     box-shadow: 15px 4px 14px var(--negro);
 
 }
@@ -109,4 +111,62 @@
 .container__animation .contLi:hover::before{
     width: 100%;
 
+}
+
+/* =========================
+   RESPONSIVE DESIGN
+   ========================= */
+
+/* Pantallas grandes (max 1200px) */
+@media (max-width: 1200px) {
+    .container__animation .contLi {
+        width: 42px;
+        height: 42px;
+        font-size: 23px;
+    }
+}
+
+/* Tablets horizontales (max 991px) */
+@media (max-width: 991px) {
+    .container__animation .contLi {
+        width: 40px;
+        height: 40px;
+        font-size: 22px;
+    }
+}
+
+/* Tablets verticales (max 768px) */
+@media (max-width: 768px) {
+    .container__animation {
+        gap: 8px;
+    }
+    .container__animation .contLi {
+        width: 38px;
+        height: 38px;
+        font-size: 21px;
+    }
+}
+
+/* Móviles medianos (max 480px) */
+@media (max-width: 480px) {
+    .container__animation {
+        gap: 6px;
+    }
+    .container__animation .contLi {
+        width: 35px;
+        height: 35px;
+        font-size: 20px;
+    }
+}
+
+/* Móviles pequeños (max 320px) */
+@media (max-width: 320px) {
+    .container__animation {
+        gap: 5px;
+    }
+    .container__animation .contLi {
+        width: 32px;
+        height: 32px;
+        font-size: 18px;
+    }
 }
