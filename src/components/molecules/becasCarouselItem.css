@@ -160,12 +160,14 @@
 }
 
 /* ✅ ≤420px → solo 1 tarjeta centrada */
-@media (max-width: 420px) {
+@media (max-width: 480px) {
   .carousel-item-wrapper {
     width: 20rem;
     height: 13rem;
-    margin-left: 4rem;
+    margin: 2.5rem;
+   
   }
+
 
   .carousel-item-wrapper.center {
     transform: scale(1.1);

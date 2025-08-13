@@ -6,12 +6,12 @@ const CardSch = [
     {
         icon: <IoMdTime/>,
         title : 'Ateción al público',
-        text:'Lunes - Viernes 6:ooam - 11:00pm'
+        text:'Lunes - Viernes 6:00am - 11:00pm'
     },
     {
         icon: <FaLocationDot/>,
         title : 'Ubicación',
-        text:'Jr. Dos de Mayo 1390, Celendí-Cajamarca'
+        text:'Jr. Dos de Mayo 1390, Celendín-Cajamarca'
     },
 ] 
 
@@ -29,10 +29,10 @@ const ContactSchedulesAt =() =>{
                        return (
                         
                         <div key={indx} className='sch_list'>
-                            <span>
+                            <span className='sch__list__icon'>
                                 {card.icon}
                             </span> 
-                            <div>
+                            <div className='container-sch'>
                                 <h3>
                                     {card.title}
                                 </h3>

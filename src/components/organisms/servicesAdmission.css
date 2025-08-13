@@ -31,12 +31,8 @@
   .container__admision__img{
     width: 50vw;
   }
-
-
 }
 
-
-/*RESPONSIVE DESING*/
 /* 
    991px ↓
    ============================= */
@@ -47,8 +43,6 @@
     margin-left: 1rem;
   }
 }
-
-
 /* 
    768px ↓
    ============================= */
@@ -70,7 +64,15 @@
 @media (max-width: 550px) {
   .container__admision__img{
     width: 85vw;
-    height: 40vh;
+    height: 20vh;
+  }
+
+/**/
+}
+@media (max-width: 420px) {
+  .container__admision__img{
+    width: 60vw;
+    height: 15vh;
   }
 }
 

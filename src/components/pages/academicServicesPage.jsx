@@ -27,8 +27,6 @@ function AcademicServicesPage(){
 
   const Title = 'SERVICIOS ACADÉMICOS'
   const Title2 = 'BECAS ACADÉMICAS'
-  const Title3 ='ADMISIÓN'
-
 
   if (!homeSlides || homeSlides.length === 0){
     return (
@@ -80,8 +78,6 @@ function AcademicServicesPage(){
       <LibraryService/>
       <ServicesAdmission/>  
       <OurPlatform/>
-      
-      main
     </>
 
     
