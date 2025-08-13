@@ -27,7 +27,7 @@ function Footer(){
                     <div className="footer__developers">
                         <small className="footer__developers--small">
                             Desarrollado por:
-                            <a href="https://despliegueportafolio.vercel.app/" className="footer__developers-link footer__developers-link--1" target="_blank"> Yerson Fustamante  |  </a>
+                            <a href="https://despliegueportafolio.vercel.app/" className="footer__developers-link footer__developers-link--1" target="_blank"> Yerson Fustamante  </a>
                             <a href="https://wynsley.neocities.org/MyPortfolio/" className="footer__developers-link footer__developers-link--2" target="_blank">  Wynsley Durán </a>
                         </small>
                     </div>
