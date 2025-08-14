@@ -5,7 +5,6 @@ import CarouselSlide from "../molecules/carouselSlide"
 import CarouselNextButton from "../atoms/carouselNextButton"
 import CarouselPrevButton from "../atoms/carouselPrevButton"
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa6"
-import "../organisms/carouselContainer.css"
 
 import Img1 from "../../assets/img/infraestructura.png"
 import Img2 from "../../assets/img/seervicios4.jpg"
