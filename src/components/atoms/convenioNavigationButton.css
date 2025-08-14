@@ -1,0 +1,99 @@
+.convenio__nav-button {
+    font-family: 'Roboto', sans-serif;
+    padding: 0.8rem 1.5rem;
+    background: var(--Azul-logo);
+    color: var(--blanco);
+    border: none;
+    border-radius: 0.5rem;
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 120px;
+    position: relative;
+    overflow: hidden;
+}
+
+.convenio__nav-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    transition: left 0.3s ease;
+}
+
+.convenio__nav-button:hover:not(:disabled) {
+    background: var(--Azul-claro-2);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(11, 86, 173, 0.3);
+}
+
+.convenio__nav-button:hover:not(:disabled)::before {
+    left: 100%;
+}
+
+.convenio__nav-button:active {
+    transform: translateY(0);
+}
+
+.convenio__nav-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+    background: var(--gris);
+}
+
+.convenio__nav-button:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(11, 86, 173, 0.5);
+}
+
+.convenio__nav-button--prev {
+    background: linear-gradient(135deg, var(--Azul-logo) 0%, var(--Azul-claro-2) 100%);
+}
+
+.convenio__nav-button--next {
+    background: linear-gradient(135deg, var(--Azul-claro-2) 0%, var(--Azul-logo) 100%);
+}
+
+/* RESPONSIVE DESIGN */
+
+/* 991px */
+@media (max-width: 991px) {
+    .convenio__nav-button {
+        padding: 0.7rem 1.2rem;
+        font-size: 0.9rem;
+        min-width: 100px;
+    }
+}
+
+/* 768px */
+@media (max-width: 768px) {
+    .convenio__nav-button {
+        padding: 0.6rem 1rem;
+        font-size: 0.85rem;
+        min-width: 90px;
+    }
+}
+
+/* 420px */
+@media (max-width: 420px) {
+    .convenio__nav-button {
+        padding: 0.5rem 0.8rem;
+        font-size: 0.8rem;
+        min-width: 80px;
+        width: 100%;
+        max-width: 150px;
+    }
+}
+
+/* 320px */
+@media (max-width: 320px) {
+    .convenio__nav-button {
+        padding: 0.5rem 0.6rem;
+        font-size: 0.75rem;
+    }
+}

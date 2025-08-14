@@ -1,0 +1,178 @@
+.convenios {
+    padding: 4rem 2rem;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    position: relative;
+    overflow: hidden;
+    margin: 3rem 0;
+}
+
+.convenios::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -10%;
+    width: 30%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent 0%, rgba(11, 86, 173, 0.05) 25%, rgba(11, 86, 173, 0.1) 50%, rgba(11, 86, 173, 0.05) 75%, transparent 100%);
+    transform: rotate(-15deg);
+    pointer-events: none;
+}
+
+.eventos::after {
+    content: '';
+    position: absolute;
+    bottom: -50%;
+    right: -10%;
+    width: 30%;
+    height: 200%;
+    background: linear-gradient(225deg, transparent 0%, rgba(255, 95, 31, 0.05) 25%, rgba(255, 95, 31, 0.1) 50%, rgba(255, 95, 31, 0.05) 75%, transparent 100%);
+    transform: rotate(15deg);
+    pointer-events: none;
+}
+
+/* Contenedor  */
+.convenios__container {
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+}
+
+/* header */
+.convenios__header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.convenios__title{
+    font-family: 'Poppins', sans-serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--Azul-logo);
+    margin: 0;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+.convenios__title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, var(--anaranjado-fuerte), var(--Azul-logo));
+    border-radius: 2px;
+}
+
+.convenios__carousel {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    align-items: center;
+}
+
+.convenios__info {
+    width: 100%;
+    max-width: 600px;
+    display: flex;
+    justify-content: center;
+}
+
+/* RESPONSIVE DESIGN */
+
+/* 1200px */
+@media (max-width: 1200px) {
+    .convenios {
+        padding: 3.5rem 1.5rem;
+    }
+    
+    .convenios__title {
+        font-size: 2.3rem;
+    }
+}
+
+/* 991px */
+@media (max-width: 991px) {
+    .convenios {
+        padding: 3rem 1.2rem;
+    }
+    
+    .convenios__header {
+        margin-bottom: 2.5rem;
+    }
+    
+    .convenios__title {
+        font-size: 2.1rem;
+    }
+}
+
+/* 768px */
+@media (max-width: 768px) {
+    .convenios {
+        padding: 2.5rem 1rem;
+    }
+    
+    .convenios__header {
+        margin-bottom: 2rem;
+    }
+    
+    .convenios__title {
+        font-size: 1.9rem;
+    }
+}
+
+/* 550px */
+@media (max-width: 550px) {
+    .convenios {
+        padding: 2rem 0.8rem;
+    }
+    
+    .convenios__title {
+        font-size: 1.7rem;
+    }
+    
+    .convenios__carousel {
+        gap: 1.5rem;
+    }
+}
+
+/* 420px */
+@media (max-width: 420px) {
+    .convenios {
+        padding: 1.5rem 0.5rem;
+    }
+    
+    .convenios__header {
+        margin-bottom: 1.5rem;
+    }
+    
+    .convenios__title {
+        font-size: 1.5rem;
+    }
+    
+    .convenios__carousel {
+        gap: 1.2rem;
+    }
+}
+
+/* 320px */
+@media (max-width: 320px) {
+    .convenios {
+        padding: 1rem 0.3rem;
+    }
+    
+    .convenios__title {
+        font-size: 1.3rem;
+    }
+    
+    .convenios__title::after {
+        width: 60px;
+        height: 3px;
+    }
+    
+    .convenios__carousel {
+        gap: 1rem;
+    }
+}
