@@ -1,0 +1,201 @@
+.convenio__card {
+    background: var(--blanco);
+    border-radius: 1rem;
+    padding: 2.5rem;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    transform: scale(0.95);
+    opacity: 0.8;
+    border: 2px solid transparent;
+}
+
+.convenio__card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, var(--anaranjado-fuerte), var(--Azul-logo));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+}
+
+.convenio__card::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 100%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent 0%, rgba(255, 95, 31, 0.05) 50%, transparent 100%);
+    transform: rotate(45deg);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.convenio__card--active {
+    transform: scale(1);
+    opacity: 1;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+    border-color: rgba(255, 95, 31, 0.2);
+}
+
+.convenio__card--active::before {
+    transform: scaleX(1);
+}
+
+.convenio__card--active::after {
+    opacity: 1;
+}
+
+.convenio__card-content {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+}
+
+.convenio__card-title {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: var(--Azul-logo);
+    margin: 0;
+    line-height: 1.3;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.convenio__card-description {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: var(--gris-oscuro);
+    margin: 0;
+    text-align: center;
+    max-width: 100%;
+}
+
+.convenio__card-button {
+    margin-top: 0.5rem;
+}
+
+.convenio__card:hover:not(.convenio__card--active) {
+    transform: scale(0.98);
+    opacity: 0.9;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+}
+
+/* RESPONSIVE DESIGN */
+
+/* 1200px */
+@media (max-width: 1200px) {
+    .convenio__card {
+        padding: 2rem;
+    }
+    
+    .convenio__card-title {
+        font-size: 1.6rem;
+    }
+    
+    .convenio__card-description {
+        font-size: 1rem;
+    }
+}
+
+/* 991px */
+@media (max-width: 991px) {
+    .convenio__card {
+        padding: 1.8rem;
+    }
+    
+    .convenio__card-title {
+        font-size: 1.5rem;
+    }
+    
+    .convenio__card-content {
+        gap: 1.3rem;
+    }
+}
+
+/* 768px */
+@media (max-width: 768px) {
+    .convenio__card {
+        padding: 1.5rem;
+    }
+    
+    .convenio__card-title {
+        font-size: 1.4rem;
+    }
+    
+    .convenio__card-description {
+        font-size: 0.95rem;
+    }
+    
+    .convenio__card-content {
+        gap: 1.2rem;
+    }
+}
+
+/* 550px */
+@media (max-width: 550px) {
+    .convenio__card {
+        padding: 1.2rem;
+    }
+    
+    .convenio__card-title {
+        font-size: 1.3rem;
+        line-height: 1.2;
+    }
+    
+    .convenio__card-description {
+        font-size: 0.9rem;
+        line-height: 1.5;
+    }
+    
+    .convenio__card-content {
+        gap: 1rem;
+    }
+}
+
+/* 420px */
+@media (max-width: 420px) {
+    .convenio__card {
+        padding: 1rem;
+    }
+    
+    .convenio__card-title {
+        font-size: 1.2rem;
+    }
+    
+    .convenio__card-description {
+        font-size: 0.85rem;
+    }
+}
+
+/* 320px */
+@media (max-width: 320px) {
+    .convenio__card {
+        padding: 0.8rem;
+    }
+    
+    .convenio__card-title {
+        font-size: 1.1rem;
+    }
+    
+    .convenio__card-description {
+        font-size: 0.8rem;
+    }
+    
+    .convenio__card-content {
+        gap: 0.8rem;
+    }
+}

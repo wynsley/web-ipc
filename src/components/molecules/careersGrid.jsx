@@ -18,7 +18,7 @@ const CareersGrid = ({
     const getGridClassName = () => {
         const baseClass = 'careers-grid'
         const columnClass = columns === 'two' ? 'careers-grid--two-columns' :
-                          columns === 'four' ? 'careers-grid--four-columns' : ''
+                        columns === 'four' ? 'careers-grid--four-columns' : ''
         
         return `${baseClass} ${columnClass} ${className}`.trim()
     }

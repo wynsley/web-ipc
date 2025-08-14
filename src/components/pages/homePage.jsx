@@ -7,6 +7,7 @@ import CarouselPrevButton from "../atoms/carouselPrevButton"
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa6"
 import { HomeInstituteSection } from "../organisms/homeInstituteSection"
 import { CareersSection } from "../organisms/careersSection"
+import { ConveniosSection } from "../organisms/conveniosSection"
 import "../organisms/carouselContainer.css"
 
 import Img1 from "../../assets/img/infraestructura.png"
@@ -65,14 +66,16 @@ function HomePage(){
 
       <main>
         <HomeInstituteSection />
+
         <CareersSection 
           title="Nuestras Carreras Profesionales"
           subtitle="Explora nuestras carreras técnicas diseñadas para formar profesionales exitosos en el mercado laboral actual"
           columns="four"
         />
-        <h1>Inicio</h1>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit...</p>
-        <Link to={'/contact'} className="link">ir a contacto</Link>
+
+        <ConveniosSection 
+          title = "Convenios IPC"
+        />
       </main>
     </>
   )
