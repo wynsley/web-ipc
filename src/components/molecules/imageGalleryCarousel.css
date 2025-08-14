@@ -1,0 +1,222 @@
+.image-gallery {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 2rem;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    background: var(--gris);
+}
+
+.image-gallery__container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.image-gallery__track {
+    display: flex;
+    width: 500%; /* 5 imágenes */
+    height: 100%;
+    transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.image-gallery__slide {
+    flex: 0 0 20%; /* 100% / 5 imágenes */
+    height: 100%;
+    position: relative;
+}
+
+.image-gallery__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.image-gallery__slide:hover .image-gallery__image {
+    transform: scale(1.05);
+}
+
+/* Overlay sutil para mejor legibilidad */
+.image-gallery__slide::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        135deg, 
+        rgba(19, 40, 71, 0.1) 0%, 
+        transparent 50%, 
+        rgba(255, 95, 31, 0.1) 100%
+    );
+    pointer-events: none;
+}
+
+/* Indicadores del carrusel */
+.image-gallery__indicators {
+    position: absolute;
+    bottom: 1.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 0.8rem;
+    z-index: 5;
+}
+
+.image-gallery__indicator {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    border: 2px solid rgba(255, 255, 255, 0.8);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(4px);
+}
+
+.image-gallery__indicator--active {
+    background: var(--anaranjado-fuerte);
+    border-color: var(--blanco);
+    transform: scale(1.2);
+    box-shadow: 0 2px 8px rgba(255, 95, 31, 0.5);
+}
+
+.image-gallery__indicator:hover:not(.image-gallery__indicator--active) {
+    background: rgba(255, 255, 255, 0.8);
+    transform: scale(1.1);
+}
+
+/* Efecto de brillo en la imagen activa */
+.image-gallery__slide--active::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg, 
+        transparent 0%, 
+        rgba(255, 255, 255, 0.3) 50%, 
+        transparent 100%
+    );
+    animation: image-shine 3s ease-in-out;
+    z-index: 2;
+}
+
+@keyframes image-shine {
+    0% { left: -100%; }
+    100% { left: 100%; }
+}
+
+/* Progreso del carrusel */
+.image-gallery__progress {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: rgba(0, 0, 0, 0.2);
+    z-index: 10;
+}
+
+.image-gallery__progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, var(--anaranjado-fuerte), var(--Azul-logo));
+    width: 0%;
+    transition: width 0.1s linear;
+}
+
+/* Estados de interacción */
+.image-gallery:hover .image-gallery__progress-bar {
+    animation-play-state: paused;
+}
+
+/* RESPONSIVE DESIGN */
+
+/* 991px */
+@media (max-width: 991px) {
+    .image-gallery {
+        border-radius: 1.5rem;
+    }
+    
+    .image-gallery__indicators {
+        bottom: 1rem;
+        gap: 0.6rem;
+    }
+    
+    .image-gallery__indicator {
+        width: 10px;
+        height: 10px;
+    }
+}
+
+/* 768px */
+@media (max-width: 768px) {
+    .image-gallery {
+        border-radius: 1.2rem;
+    }
+    
+    .image-gallery__indicators {
+        bottom: 0.8rem;
+        gap: 0.5rem;
+    }
+    
+    .image-gallery__indicator {
+        width: 8px;
+        height: 8px;
+        border-width: 1px;
+    }
+    
+    .image-gallery__progress {
+        height: 3px;
+    }
+}
+
+/* 550px */
+@media (max-width: 550px) {
+    .image-gallery {
+        border-radius: 1rem;
+    }
+    
+    .image-gallery__indicators {
+        bottom: 0.6rem;
+        gap: 0.4rem;
+    }
+    
+    .image-gallery__indicator {
+        width: 6px;
+        height: 6px;
+    }
+}
+
+/* 420px */
+@media (max-width: 420px) {
+    .image-gallery {
+        border-radius: 0.8rem;
+    }
+    
+    .image-gallery__indicators {
+        bottom: 0.5rem;
+    }
+    
+    .image-gallery__progress {
+        height: 2px;
+    }
+}
+
+/* 320px */
+@media (max-width: 320px) {
+    .image-gallery__indicators {
+        gap: 0.3rem;
+    }
+    
+    .image-gallery__indicator {
+        width: 5px;
+        height: 5px;
+    }
+}
