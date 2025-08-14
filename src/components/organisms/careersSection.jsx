@@ -31,12 +31,6 @@ const CareersSection = ({
     // Datos de las carreras
     const careers = [
         {
-            id: 'computacion-informatica',
-            title: 'Computación e Informática',
-            description: 'Formate como profesional en el mundo de la tecnología. Aprende programación, desarrollo de sistemas, redes y administración de bases de datos con herramientas modernas y metodologías actuales.',
-            backgroundImage: ComputacionImg
-        },
-        {
             id: 'administracion-empresas',
             title: 'Administración de Empresas',
             description: 'Desarrolla habilidades gerenciales y empresariales. Aprende sobre gestión de recursos humanos, marketing, finanzas y liderazgo para dirigir organizaciones exitosas.',
@@ -47,6 +41,12 @@ const CareersSection = ({
             title: 'Contabilidad',
             description: 'Conviértete en un experto en el manejo financiero y contable. Domina las normas contables, tributación, auditoría y análisis financiero para empresas de todos los tamaños.',
             backgroundImage: ContabilidadImg
+        },
+        {
+            id: 'computacion-informatica',
+            title: 'Computación e Informática',
+            description: 'Formate como profesional en el mundo de la tecnología. Aprende programación, desarrollo de sistemas, redes y administración de bases de datos con herramientas modernas y metodologías actuales.',
+            backgroundImage: ComputacionImg
         },
         {
             id: 'traduccion-idiomas',
