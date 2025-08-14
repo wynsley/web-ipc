@@ -1,4 +1,4 @@
-import './admisionPage.css'
+import './admissionPage.css'
 import { Link } from "react-router-dom"
 import CarouselContainer from "../organisms/carouselContainer"
 import CarouselSlide from "../molecules/carouselSlide"

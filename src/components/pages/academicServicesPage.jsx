@@ -1,4 +1,4 @@
-import './academicServicesPages.css'
+import './academicServicesPage.css'
 import { Link } from "react-router-dom"
 import { GuestTemplate } from "../templates/guestTemplate"
 import  CarouselContainer from "../organisms/carouselContainer"

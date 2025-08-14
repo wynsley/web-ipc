@@ -1,5 +1,7 @@
 .section--admision{
   margin: 3rem 0 0 0;
+  margin-bottom: 2rem;
+   background: linear-gradient(135deg, #394a6a16 50%, #ffffffb8 50%);
 }
 
 .container__admisionS{
@@ -49,13 +51,18 @@
    768px ↓
    ============================= */
 @media (max-width: 768px) {
-    .sacontainer__admision__img{
+  .section--admision{
+    background: linear-gradient(150deg, #92a5c816 50%, #ffffffb8 50%);
+  }
+  
+  .sacontainer__admision__img{
     width: 80vw;
     height: 48vh;
   }
 
   .container__admisionS{
     flex-direction: column;
+    
   }
 }
 

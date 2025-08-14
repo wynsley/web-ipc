@@ -4,7 +4,7 @@ import CarouselSlide from "../molecules/carouselSlide"
 import CarouselNextButton from "../atoms/carouselNextButton"
 import CarouselPrevButton from "../atoms/carouselPrevButton"
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa6"
-import { AboutUsDescription } from "../organisms/aboutUsDescription"
+import { AboutUsMisionVision } from "../organisms/aboutUsMisionVision"
 
 
 import Img1 from "../../assets/img/infraestructura.png"
@@ -63,7 +63,7 @@ function AboutUsPage(){
       </section>
 
       <main>
-        <AboutUsDescription/>
+        <AboutUsMisionVision/>
        
       </main>
     </>
