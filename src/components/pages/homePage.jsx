@@ -5,12 +5,13 @@ import CarouselSlide from "../molecules/carouselSlide"
 import CarouselNextButton from "../atoms/carouselNextButton"
 import CarouselPrevButton from "../atoms/carouselPrevButton"
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa6"
+import { HomeInstituteSection } from "../organisms/homeInstituteSection"
+import { CareersSection } from "../organisms/careersSection"
 import "../organisms/carouselContainer.css"
 
 import Img1 from "../../assets/img/infraestructura.png"
 import Img2 from "../../assets/img/seervicios4.jpg"
 import Img3 from "../../assets/img/servivios2.jpg"
-import { HomeInstituteSection } from "../organisms/homeInstituteSection"
 
 function HomePage(){
   const homeSlides = [
@@ -64,6 +65,11 @@ function HomePage(){
 
       <main>
         <HomeInstituteSection />
+        <CareersSection 
+          title="Nuestras Carreras Profesionales"
+          subtitle="Explora nuestras carreras técnicas diseñadas para formar profesionales exitosos en el mercado laboral actual"
+          columns="four"
+        />
         <h1>Inicio</h1>
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit...</p>
         <Link to={'/contact'} className="link">ir a contacto</Link>

@@ -1,8 +1,11 @@
 import { GuestTemplate } from "../templates/guestTemplate"
+import { CareersSection } from "../organisms/careersSection"
 
 function MajorsPage(){
   return (
-    <h1>Carreras</h1>
+    <>
+      <CareersSection />
+    </>
   )
 }
 
