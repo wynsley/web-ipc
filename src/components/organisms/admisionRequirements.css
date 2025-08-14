@@ -1,5 +1,6 @@
-/* AdmissionRequirements.css */
 .section--admision {
+  display: flex;
+  flex-direction: column;
     text-align: center;
     padding: 2rem 1rem;
 }
@@ -38,6 +39,8 @@
     text-align: left;
     max-width: 400px;
     margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
 }
 .requeriment_item{
   padding: .8rem;
@@ -89,6 +92,10 @@
     768PX 
 ==============================================*/
 @media (max-width: 768px) {
+ .title__requerimients{
+  margin-bottom: 1rem;
+  text-shadow:0 1px 1px var(--negro) 
+ }
   .admission__content {
     flex-direction: column;
     text-align: center;
@@ -97,6 +104,9 @@
 
   .title__requerimients{
     font-size: 1.2rem;
+  }
+  .requeriment_item{
+    margin-bottom: 1.5rem;
   }
 
 }
@@ -118,6 +128,9 @@
   .admission-icon {
     font-size: 1rem;
     margin-right: 8px;
+  }
+  .requeriment_item{
+    margin-bottom: 1rem;
   }
 }
 

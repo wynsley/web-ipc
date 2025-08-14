@@ -8,7 +8,7 @@ const ServicesAdmission = () => {
         <section className='section--Admision'>
             <h2 className='servicesTitle admision'>{Title}</h2>
             <div className='container__admisionS'>
-                <img className='container__admision__img' src={ImgAdmision} alt="Imgagen admision" />
+                <img className='sacontainer__admision__img' src={ImgAdmision} alt="Imgagen admision" />
                 <ContactForm/>
             </div>
         </section>

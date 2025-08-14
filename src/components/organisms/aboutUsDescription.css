@@ -1,0 +1,33 @@
+.section-aboutD{
+    background-color:var(--gris);
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.about__title{
+    font-family: 'Poppins';
+    text-align: center;
+    padding: 1rem;
+    font-weight: bold;
+    font-size: 2.5rem;
+    color: var(--Azul);
+    text-shadow: 0 2px  2px var(--negro);
+
+}
+
+.about__description{
+    font-family: 'Roboto';
+    text-align: center;
+    width: 80vw;
+    padding: 1em;
+    box-shadow: 0 2px 7px var(--negro);
+    border-radius: 10px;
+    transition: transform .5s ease;
+}
+
+.about__description:hover{
+    transform: scale(1.01);
+}

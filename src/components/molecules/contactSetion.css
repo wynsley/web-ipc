@@ -5,9 +5,9 @@
     font-size: 1.2rem;
     gap: 1rem;
     padding: 3rem 0 2rem 0 ;
-    width: 30vw;
+    width: 30vh;
     height: 35vh;
-    position: relative;
+    
 }
 
 .contact__title{
@@ -72,18 +72,20 @@
 }
 
 .container__animation .contLi{
+    position: relative; 
     display: inline-flex;
     justify-content: center;
     align-items: center;
     width: 45px;
     height: 45px;
     background: transparent;
-    border: .1rem solid var(--Azul);
+    border: 0.1rem solid var(--Azul);
     border-radius: 50%;
     font-size: 25px;
+    color: var(--Azul);
     z-index: 1;
     overflow: hidden;
-    transition: .5s;
+    transition: 0.5s;
     box-shadow: 15px 4px 14px var(--negro);
 
 }
@@ -109,4 +111,103 @@
 .container__animation .contLi:hover::before{
     width: 100%;
 
+}
+
+/* =========================
+   RESPONSIVE DESIGN
+   ========================= */
+
+/*  1200px */
+@media (max-width: 1200px) {
+    .container__animation .contLi {
+        width: 42px;
+        height: 42px;
+        font-size: 23px;
+    }
+}
+
+/*  991px */
+@media (max-width: 991px) {
+    .container__animation  {
+        width: 40px;
+        height: 40px;
+        font-size: 22px;
+        margin-bottom: -4rem;
+    }
+    .contact__title{
+        margin-bottom: 3rem;
+        font-size: 2rem;
+    }
+}
+
+/* 768px */
+@media (max-width: 768px) {
+    .container__contS{
+        font-size: 95%;
+        flex-direction: row;
+        gap: 2rem;
+        width: 100%;
+        height: 100%;
+        justify-content: center;
+        align-items: center;
+        padding-bottom: 0;
+}
+    .container__animation .contLi {
+        width: 36px;
+        height: 36px;
+        font-size: 21px;
+    }
+    .contact__title{
+        margin-right: 1rem;
+        margin-left: 1rem;
+        font-size: 1.6rem;
+        text-shadow: 0 1px 1px var(--Azul);
+    }
+    
+}
+
+
+
+/* 550px */
+@media (max-width: 550px) {
+    .container__contS{
+        flex-direction: column;
+        gap: 0;
+    }
+    .cont-menu{
+        gap: .2rem;
+        margin-bottom: 1rem;
+    }
+
+    .iconsc{
+        font-size: 1.1rem;
+    }
+    .contact__title{
+        margin-bottom: 1rem;
+        margin-top: -5rem;
+    }
+
+
+
+    .container__animation {
+        gap: 6px;
+        margin-top: .5rem;
+    }
+    .container__animation .contLi {
+        width: 35px;
+        height: 35px;
+        font-size: 20px;
+    }
+}
+
+/* max 320px*/
+@media (max-width: 320px) {
+    .container__animation {
+        gap: 5px;
+    }
+    .container__animation .contLi {
+        width: 32px;
+        height: 32px;
+        font-size: 18px;
+    }
 }

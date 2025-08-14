@@ -13,6 +13,11 @@
 
 }
 
+.mode{
+    margin: 1rem 0 1rem 0;
+    text-align: center;
+    padding: 1rem;
+}
 
 
 /*RESPONSIVE DESIGN*/
@@ -27,8 +32,13 @@
 }
 /* 1200PX
         =====================================*/
-@media(max-width: 1200px){
-
+@media(max-width: 991px){
+    .admisionSifts{
+        padding: 0 ;
+    }
+    .section-sifts{
+        padding: 1rem;
+    }
 }
 /* 768PX
         =====================================*/
@@ -37,9 +47,12 @@
         gap: 1.3rem;
     }
 }
-/* 1200PX
+/* 590PX
         =====================================*/
-@media(max-width: 420px){
+@media(max-width: 590px){
+        .admisionSifts{
+                flex-direction: column;
+        }
 
 }
 /* 1200PX

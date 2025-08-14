@@ -55,11 +55,17 @@
     html{
         font-size: 75%;
     }
+    .cardlist__container{
+        margin: 1rem;
+    }
     
 }
-@media(max-width: 320px){
+@media(max-width: 325px){
     html{
         font-size: 70%;
+    }
+    .cardlist__container{
+        margin: 1.5rem;
     }
   
 }

@@ -1,7 +1,7 @@
 .cardSifts {
-    border-radius: 5px 90px 5px 90px;
+    border-radius: 1px 70px 1px 70px;
     overflow: hidden;
-    width: 24vw;
+    width: 22vw;
     margin: auto;
     background: #5aa9da1f;
     box-shadow: 15px 15px 6px var(--gris);
@@ -9,21 +9,15 @@
     padding-bottom: 2rem;
     border-right: 1px var(--anaranjado) solid;
     border-bottom: 1px var(--anaranjado) solid;
-
-
 }
-.mode{
-    margin: 3rem 0 1rem 0;
-    text-align: center;
-    padding: 1rem;
-}
+
 .cardSinfts__content {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
     padding: 2rem;
-    gap: 1rem;
+    gap: 2rem;
 }
 
 .cardSifts__image-wrapper {
@@ -52,34 +46,38 @@
 /* 1200PX
         =====================================*/
 @media(max-width: 1200px){
-    .admisionSifts{
-        padding: 2rem 2rem 5rem ;
-
-}
+  .cardSifts{
+    width: 26vw;
+  }
 }
 /* 991PX
         =====================================*/
 @media(max-width: 991px){
   .cardSifts{
     border-radius: 5px 65px 5px 65px;
+    margin-bottom: 2rem;
+  }
 
-  }
-  .cardSinfts__content{
-    padding: 1.5rem;
-  }
   
 }
 /* 768PX
         =====================================*/
 @media(max-width: 768px){
-    
+  .cardSifts{
+    width: 30vw;
+    height: 22rem;
+  }
    
 
 }
-/* 420PX
+/* 580PX
         =====================================*/
-@media(max-width: 420px){
-
+@media(max-width: 590px){
+  .cardSifts{
+    width: 20rem;
+    height: 23rem;
+    margin-bottom: 1rem;
+  }
 }
 /* 320PX
         =====================================*/

@@ -148,7 +148,7 @@
         font-size: 85%;
     }
     .card__wrapper{
-      width: 27vw;
+      width: 20rem;
       margin-top: 0;
     }
 }
@@ -160,8 +160,13 @@
         font-size: 83%;
     }
      .card__wrapper{
-      width: 38VW;
+      width: 20rem;
+      gap: 1rem;
     }
+    .card__ribbon-label {
+      width: 70px;
+    }
+
 
 }
 @media(max-width: 550px){
@@ -169,16 +174,25 @@
         font-size: 78%;
     }
      .card__wrapper{
-      width: 53vw;
+      width: 20rem;
     }
 
+    
 }
 @media(max-width: 420px){
     html{
         font-size: 75%;
     }
      .card__wrapper{
-      width: 75vw;
+      width: 18rem;
+    }
+
+    .card__ribbon-label {
+      width: 60px;
+    }
+
+    .card::before{
+      height: 2.5rem;
     }
 
 }
@@ -187,7 +201,7 @@
         font-size: 70%;
     }
       .card__wrapper{
-      width: 90vw;
+      width: 85vw;
     }
 
 }

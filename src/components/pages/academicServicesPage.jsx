@@ -19,7 +19,7 @@ import Img2 from "../../assets/img/seervicios4.jpg"
 import Img3 from "../../assets/img/servivios2.jpg"
 
 function AcademicServicesPage(){
-  const homeSlides = [
+  const servicesSlides = [
       {type: "image", src: Img1, alt: 'Infraestructura del instituto' },
       {type: "image", src: Img2, alt: 'Estudaintes en marcha' },
       {type: "image", src: Img3, alt: 'Clases de contabilidad' }
@@ -27,10 +27,8 @@ function AcademicServicesPage(){
 
   const Title = 'SERVICIOS ACADÉMICOS'
   const Title2 = 'BECAS ACADÉMICAS'
-  const Title3 ='ADMISIÓN'
 
-
-  if (!homeSlides || homeSlides.length === 0){
+  if (!servicesSlides || servicesSlides.length === 0){
     return (
       <div>
         <h1>No hay imágenes para mostrar</h1>
@@ -42,7 +40,7 @@ function AcademicServicesPage(){
     <>
       <section>
         <CarouselContainer 
-          items={homeSlides}
+          items={servicesSlides}
           renderItem={(slide) => (
             <CarouselSlide 
               type={slide.type}
@@ -71,17 +69,18 @@ function AcademicServicesPage(){
           }}
         </CarouselContainer>
       </section>
-      <h2 className="servicesTitle1">{Title}</h2>
-      <CardList/> 
-      <section className='sectionBecas'>
-        <h2 className='servicesTitle   '>{Title2}</h2>
-        <Carousel/>
-      </section>
-      <LibraryService/>
-      <ServicesAdmission/>  
-      <OurPlatform/>
+      <main className='main-services'>
+        <h2 className="servicesTitle1">{Title}</h2>
+        <CardList/> 
+        <section className='sectionBecas'>
+          <h2 className='servicesTitle   '>{Title2}</h2>
+          <Carousel/>
+        </section>
+        <LibraryService/>
+        <ServicesAdmission/>  
+        <OurPlatform/>
+      </main>
       
-      main
     </>
 
     
