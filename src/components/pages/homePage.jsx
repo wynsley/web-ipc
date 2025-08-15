@@ -8,7 +8,11 @@ import { FaChevronLeft, FaChevronRight } from "react-icons/fa6"
 import { HomeInstituteSection } from "../organisms/homeInstituteSection"
 import { CareersSection } from "../organisms/careersSection"
 import { ConveniosSection } from "../organisms/conveniosSection"
+import { EventsSection } from "../organisms/eventsSection"
+import { HomeContactSection } from "../organisms/homeContactSection"
+import { CtaSection } from "../organisms/ctaSection"
 import "../organisms/carouselContainer.css"
+
 
 import Img1 from "../../assets/img/infraestructura.png"
 import Img2 from "../../assets/img/seervicios4.jpg"
@@ -75,6 +79,26 @@ function HomePage(){
 
         <ConveniosSection 
           title = "Convenios IPC"
+        />
+
+        <EventsSection 
+          title = "Eventos"
+          subtitle = "Mantente informado sobre nuestros próximos eventos, ceremonias y actividades especiales del Instituto Privado Celendín."
+        />
+
+        <CtaSection 
+          title= "Tú también puedes alcanzar tus sueños"
+          description= "En el Instituto Privado Celendín, formamos profesionales altamente capacitados para enfrentar los desafíos del mundo laboral. ¡Únete a nosotros y construye tu futuro!"
+          primaryButtonText= "Conoce Nuestras Carreras"
+          primaryButtonLink= "/majors"
+        />
+
+        <HomeContactSection 
+          title="¡Contáctanos!"
+          subtitle="¿Tienes dudas sobre nuestras carreras? ¿Quieres más información? Estamos aquí para ayudarte a dar el primer paso hacia tu futuro profesional."
+          imageBadgeText="¡18 años!"
+          imageTitle="Formando Profesionales"
+          imageDescription="Más de 18 años de experiencia formando profesionales exitosos que destacan en el mercado laboral nacional e internacional."
         />
       </main>
     </>

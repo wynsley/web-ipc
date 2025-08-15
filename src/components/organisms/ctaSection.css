@@ -1,0 +1,337 @@
+.cta-section {
+    padding: 5rem 2rem;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    position: relative;
+    overflow: hidden;
+    margin: 3rem 0;
+}
+
+/* Efectos de fondo para reutilizar en otras secciones...si es que al la profesora no le guste como está */
+.cta-section::before {
+    content: '';
+    position: absolute;
+    top: -30%;
+    left: -20%;
+    width: 50%;
+    height: 160%;
+    background: linear-gradient(45deg, transparent 0%, rgba(11, 86, 173, 0.08) 25%, rgba(11, 86, 173, 0.12) 50%, rgba(11, 86, 173, 0.08) 75%, transparent 100%);
+    transform: rotate(-12deg);
+    pointer-events: none;
+}
+
+.cta-section::after {
+    content: '';
+    position: absolute;
+    bottom: -30%;
+    right: -20%;
+    width: 40%;
+    height: 140%;
+    background: linear-gradient(225deg, transparent 0%, rgba(255, 95, 31, 0.06) 25%, rgba(255, 95, 31, 0.1) 50%, rgba(255, 95, 31, 0.06) 75%, transparent 100%);
+    transform: rotate(18deg);
+    pointer-events: none;
+}
+
+/* Contenedor principal */
+.cta-section__container {
+    max-width: 1400px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+}
+
+/* Layout principal */
+.cta-section__content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    min-height: 500px;
+}
+
+/* Área de la galería */
+.cta-section__gallery {
+    position: relative;
+    height: 450px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cta-section__gallery-wrapper {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+/* Área de texto */
+.cta-section__text {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 2rem;
+}
+
+.cta-section__title {
+    font-family: 'Poppins', sans-serif;
+    font-size: 2.8rem;
+    font-weight: 700;
+    color: var(--Azul-logo);
+    margin: 0;
+    line-height: 1.2;
+    position: relative;
+}
+
+.cta-section__title::after {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    left: 0;
+    width: 60px;
+    height: 4px;
+    background: linear-gradient(90deg, var(--anaranjado-fuerte), var(--Azul-logo));
+    border-radius: 2px;
+}
+
+.cta-section__description {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.2rem;
+    line-height: 1.7;
+    color: var(--gris-oscuro);
+    margin: 0;
+    opacity: 0.9;
+}
+
+.cta-section__actions {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-top: 1rem;
+}
+
+/* Efectos especiales de decoración */
+.cta-section__decoration {
+    position: absolute;
+    top: 10%;
+    right: 15%;
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(45deg, var(--anaranjado-fuerte), var(--Azul-logo));
+    border-radius: 50%;
+    opacity: 0.1;
+    animation: cta-float 6s ease-in-out infinite;
+}
+
+.cta-section__decoration--secondary {
+    top: auto;
+    bottom: 15%;
+    right: auto;
+    left: 10%;
+    width: 60px;
+    height: 60px;
+    animation-delay: -3s;
+    animation-duration: 8s;
+}
+
+@keyframes cta-float {
+    0%, 100% {
+        transform: translateY(0) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-20px) rotate(180deg);
+    }
+}
+
+/* RESPONSIVE DESIGN */
+
+/* 1200px */
+@media (max-width: 1200px) {
+    .cta-section {
+        padding: 4rem 1.5rem;
+    }
+    
+    .cta-section__content {
+        gap: 3rem;
+    }
+    
+    .cta-section__gallery {
+        height: 400px;
+    }
+    
+    .cta-section__title {
+        font-size: 2.5rem;
+    }
+    
+    .cta-section__description {
+        font-size: 1.1rem;
+    }
+}
+
+/* 991px */
+@media (max-width: 991px) {
+    .cta-section {
+        padding: 3.5rem 1.2rem;
+    }
+    
+    .cta-section__content {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+        text-align: center;
+    }
+    
+    .cta-section__gallery {
+        order: 1;
+        height: 350px;
+    }
+    
+    .cta-section__text {
+        order: 2;
+        padding: 1rem;
+    }
+    
+    .cta-section__title {
+        font-size: 2.3rem;
+    }
+    
+    .cta-section__title::after {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}
+
+/* 768px */
+@media (max-width: 768px) {
+    .cta-section {
+        padding: 3rem 1rem;
+    }
+    
+    .cta-section__content {
+        gap: 2.5rem;
+    }
+    
+    .cta-section__gallery {
+        height: 300px;
+    }
+    
+    .cta-section__title {
+        font-size: 2rem;
+    }
+    
+    .cta-section__description {
+        font-size: 1rem;
+        line-height: 1.6;
+    }
+    
+    .cta-section__text {
+        gap: 1.5rem;
+        padding: 0.5rem;
+    }
+    
+    .cta-section__actions {
+        gap: 1.2rem;
+    }
+}
+
+/* 550px */
+@media (max-width: 550px) {
+    .cta-section {
+        padding: 2.5rem 0.8rem;
+    }
+    
+    .cta-section__content {
+        gap: 2rem;
+    }
+    
+    .cta-section__gallery {
+        height: 280px;
+    }
+    
+    .cta-section__title {
+        font-size: 1.8rem;
+    }
+    
+    .cta-section__description {
+        font-size: 0.95rem;
+    }
+    
+    .cta-section__title::after {
+        width: 50px;
+        height: 3px;
+    }
+}
+
+/* 420px */
+@media (max-width: 420px) {
+    .cta-section {
+        padding: 2rem 0.5rem;
+    }
+    
+    .cta-section__content {
+        gap: 1.5rem;
+    }
+    
+    .cta-section__gallery {
+        height: 250px;
+    }
+    
+    .cta-section__title {
+        font-size: 1.6rem;
+    }
+    
+    .cta-section__description {
+        font-size: 0.9rem;
+    }
+    
+    .cta-section__actions {
+        gap: 1rem;
+        align-items: center;
+    }
+    
+    .cta-section__decoration,
+    .cta-section__decoration--secondary {
+        display: none;
+    }
+}
+
+/* 320px */
+@media (max-width: 320px) {
+    .cta-section {
+        padding: 1.5rem 0.3rem;
+    }
+    
+    .cta-section__gallery {
+        height: 220px;
+    }
+    
+    .cta-section__title {
+        font-size: 1.4rem;
+    }
+    
+    .cta-section__description {
+        font-size: 0.85rem;
+    }
+    
+    .cta-section__title::after {
+        width: 40px;
+        height: 2px;
+    }
+}
+
+/* Estados de accesibilidad */
+@media (prefers-reduced-motion: reduce) {
+    .cta-section__decoration,
+    .cta-section__decoration--secondary {
+        animation: none;
+    }
+}
+
+/* Alto contraste */
+@media (prefers-contrast: high) {
+    .cta-section__title {
+        color: var(--negro);
+    }
+    
+    .cta-section__description {
+        color: var(--negro);
+        opacity: 1;
+    }
+}
