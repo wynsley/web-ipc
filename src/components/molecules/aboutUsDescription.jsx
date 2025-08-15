@@ -2,7 +2,7 @@ import './aboutUsDescription.css'
 
 const AboutUsDescription = () => {
     const Title= 'NOSOSTROS'
-    const AboutDesc = 'Con una formación técnica de primer nivel y un enfoque que combina teoría, práctica e innovación, nuestro Instituto se ha consolidado como un referente en educación superior técnica. Reconocido por sus premios en innovación educativa, cuenta con una infraestructura moderna y equipada con las mejores tecnologías, asegurando un aprendizaje de calidad. Sus valores de responsabilidad, innovación y compromiso marcan la diferencia en la preparación de sus estudiantes. Todo esto respaldado por 18 años de experiencia al servicio de la educación.'
+    const AboutDesc = '"En el Instituto Privado Celendín formamos líderes con visión, compromiso y excelencia. Con tecnología de vanguardia y un enfoque práctico, preparamos a nuestros estudiantes para destacar en el mundo profesional. Somos más que educación: somos el impulso hacia un futuro exitoso."'
     return (
         <div className='contain-aboutD'>
             <h1 className='about__title'>{Title}</h1>

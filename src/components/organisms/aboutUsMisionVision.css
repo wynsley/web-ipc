@@ -3,7 +3,8 @@
     display: flex;
     flex-direction: column;
     gap: 2rem;
-    margin: 3rem;
+    margin: 0 3rem 3rem;
+    
 }
 .about__container-mv{
     display: grid;
@@ -24,22 +25,18 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: transform .7s border 1s ease;
+    transition: transform .6s ease;
 }
 
 .container__title:hover{
     transform: scale(1.03);
     .title--mivi{
     background-color: var(--gris);
-    border-top: .5rem solid var(--anaranjado);
-    border-bottom: .5rem solid var(--anaranjado);
     }
 }
 
 .title--mivi{
     background-color: var(--anaranjado);
-    border-top: .5rem solid var(--Azul-logo);
-    border-bottom: .5rem solid var(--Azul-logo);
     padding: .5rem;
     width: 100%;
     display: flex;

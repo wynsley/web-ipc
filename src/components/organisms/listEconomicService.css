@@ -1,10 +1,11 @@
 .cardlist__container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 2rem;
-  padding: 2rem 1rem;
-  margin: 5rem 3rem 5rem 3rem;  
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+    margin: 0;
+    padding: 5rem 3rem 5rem 3rem;  
+    background: linear-gradient(to right, #f8f9fa 0%, #e9ecef 100%);
 }
 
 /*RESPONSIVE DESIGN*/
