@@ -1,7 +1,8 @@
-import React from "react";
+import './aboutUsBeginningParag.css'
 
-const AboutBeginningParagraph = ({ text }) => {
-    return <p className="card-paragraph">{text}</p>;
+const AboutUsParagaText = ({ type, children }) => {
+  const Tag = type || 'p';
+  return <Tag className={`text-${type}`}>{children}</Tag>;
 };
 
-export {AboutBeginningParagraph}
+export {AboutUsParagaText};

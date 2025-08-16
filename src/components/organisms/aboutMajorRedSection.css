@@ -1,0 +1,24 @@
+.majorRed__container {
+  font-family: 'Poppins';
+  background-color: rgb(0, 0, 0);
+  margin: 2rem 2rem 0;
+  color: white;
+  height: 150px ;
+  transition: .5s ease;
+}
+.majorRed__container:hover{
+  transform: scale(1.01);
+}
+
+.major__titles {
+  display: flex;
+  flex-direction: column;
+  max-width: 55rem;
+  margin: 0 auto;
+}
+
+.line {
+  height: 3px;
+  background: linear-gradient(90deg, var(--anaranjado-fuerte), var(--Azul-logo));
+  margin-bottom: 1rem;
+}

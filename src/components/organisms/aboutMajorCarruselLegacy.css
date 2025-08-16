@@ -1,0 +1,49 @@
+.major-carousel {
+  padding-top: 40px;
+  text-align: center;
+  background: linear-gradient(90deg, var(--negro), var(--Azul-logo),var(--negro) );
+  padding-bottom: 3rem;
+  margin-bottom: 3rem;
+}
+
+.Mcarousel__container {
+  display: inline-block;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.slick-next {
+  position: relative;
+  bottom: -2rem;
+  right: -27rem;
+  box-shadow: 0 2px 30px var(--anaranjado);
+}
+
+.slick-prev {
+  position: relative;
+  bottom: -24.5rem;
+  left: 23rem;
+  box-shadow: 0 3px 30px var(--anaranjado);
+}
+
+.price-icon {
+  padding: 15px;
+  margin-bottom: 10px;
+}
+
+/* Responsive */
+@media only screen and (max-width: 690px) {
+  .slick-next {
+    top: -218px;
+    left: 145px;
+  }
+
+  .slick-prev {
+    top: 192px;
+    left: -150px;
+  }
+
+  .carousel__container {
+    width: 200px;
+  }
+}

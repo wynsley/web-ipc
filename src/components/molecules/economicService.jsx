@@ -4,7 +4,7 @@ import './economicServices.css'
 const Card = ({ title,mont, description, number }) => {
   return (
     <div className="card__wrapper">
-      <div className="card">
+      <div className="card-re">
         <div className="card__body">
           <div className="card__icon"></div>
           <h3 className="cad__title">{title}</h3>

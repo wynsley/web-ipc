@@ -1,14 +1,12 @@
 import React from "react";
 import { AboutBeginningIcon } from "../atoms/aboutUsBeginningIcon";
-import { AboutBeginningTitle } from "../atoms/aboutUsBeginningTitle";
-import { AboutBeginningParagraph } from "../atoms/aboutUsBeginningParag";
 
-const AboutCardBeginning = ({ icon, title, paragraph }) => {
-  return (
-    <div className="card-principio">
-      <AboutBeginningIcon>{icon}</AboutBeginningIcon>
-      <AboutBeginningTitle text={title} />
-      <AboutBeginningParagraph text={paragraph} />
+const AboutCardBeginning = ({ icon, color, title, description }) => {
+    return (
+    <div className="step-card" role="group" aria-label={title}>
+      <AboutBeginningIcon icon={icon} color={color} />
+      <h3 className="step-title">{title}</h3>
+      <p className="step-desc">{description}</p>
     </div>
   );
 };

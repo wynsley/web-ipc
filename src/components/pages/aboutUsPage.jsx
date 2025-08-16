@@ -1,3 +1,4 @@
+import './aboutUsPage.css'
 import { GuestTemplate } from "../templates/guestTemplate"
 import CarouselContainer from "../organisms/carouselContainer"
 import CarouselSlide from "../molecules/carouselSlide"
@@ -7,6 +8,7 @@ import { FaChevronLeft, FaChevronRight } from "react-icons/fa6"
 import { AboutUsMisionVision } from "../organisms/aboutUsMisionVision"
 import { AboutUsValuesList } from "../organisms/aboutUsValuesList"
 import { AboutUsBeginning } from "../organisms/AboutUsBeginning"
+import { AboutMajors } from '../templates/aboutMajors'
 
 import Img1 from "../../assets/img/infraestructura.png"
 import Img2 from "../../assets/img/seervicios4.jpg"
@@ -67,6 +69,7 @@ function AboutUsPage(){
         <AboutUsMisionVision/>
         <AboutUsValuesList/>
         <AboutUsBeginning/>
+        <AboutMajors/>
       </main>
     </>
   )

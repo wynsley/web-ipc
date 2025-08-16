@@ -1,11 +1,15 @@
 import React from "react";
 
-const AboutBeginningIcon = ({ children }) => {
+const AboutBeginningIcon = ({ icon: Icon, color='#d4afafff' }) => {
     return (
-        <div className="icon-wrapper">
-            {children}
-        </div>
-    );
+    <div
+      className="icon-circle"
+      style={{ backgroundColor: color }}
+      aria-hidden="true"
+    >
+      {Icon && <Icon className="icon-circle__glyph" />}
+    </div>
+  );
 };
 
 export {AboutBeginningIcon}

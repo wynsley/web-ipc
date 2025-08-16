@@ -1,0 +1,15 @@
+.major-banner p {
+  color: white;
+  text-align: center;
+}
+
+.majorus-card p {
+  position: relative;
+  top: -10px;
+}
+
+.majorcar__item p {
+  padding: 10px;
+  border-top: 1px solid green;
+  border-bottom: 1px solid green;
+}
