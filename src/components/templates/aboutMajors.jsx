@@ -1,15 +1,14 @@
 import { AboutMajorBanner } from "../organisms/aboutMajorBanner";
-import { AboutMajorCarcContainer } from "../organisms/aboutMajorCarcContainer";
 import { AboutMajorRedSection } from "../organisms/aboutMajorRedSection";
 import { AboutMajorCarruselLegacy } from "../organisms/aboutMajorCarruselLegacy";
-
+import { AboutProfileCarousel } from "../organisms/aboutProfileTeachers";
 
 const AboutMajors = () =>{
 
     return (
         <>
             <AboutMajorBanner/>
-            <AboutMajorCarcContainer/>
+            <AboutProfileCarousel/>
             <AboutMajorRedSection/>
             <AboutMajorCarruselLegacy/>
         </>

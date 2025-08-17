@@ -1,0 +1,44 @@
+.profile-stats {
+  margin-top: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Cada botón tendrá su color según el índice */
+.stats-toggle {
+  border: none;
+  padding: 0.4rem 0.8rem;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  text-align: left;
+  color: white;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.stats-toggle-0 { background-color: #7e8fa2; }  /* Áreas de enseñanza */
+.stats-toggle-1 { background-color: #b5762497; }  /* Asignaturas */
+.stats-toggle-2 { background-color: #16a085; }  /* Extra si hay más */
+.stats-toggle-3 { background-color: #9b59b6; }
+
+.stats-toggle:hover {
+  opacity: 0.9;
+}
+
+.stats-list {
+  margin-top: 0.3rem;
+  padding-left: 1rem;
+  list-style: disc;
+  transition: all 0.3s ease;
+}
+
+.stats-list li {
+  margin-bottom: 0.2rem;
+}
