@@ -1,0 +1,191 @@
+.process-step-icon {
+    position: relative;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    color: var(--blanco);
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    cursor: pointer;
+    border: 3px solid rgba(255, 255, 255, 0.2);
+    background: var(--gris-oscuro);
+    box-shadow: 
+        0 4px 15px rgba(0, 0, 0, 0.1),
+        inset 0 2px 4px rgba(255, 255, 255, 0.1);
+}
+
+.process-step-icon--active {
+    background: linear-gradient(135deg, var(--anaranjado-fuerte) 0%, var(--anaranjado-oscuro) 100%);
+    border-color: rgba(255, 255, 255, 0.4);
+    box-shadow: 
+        0 8px 25px rgba(255, 95, 31, 0.3),
+        0 0 0 4px rgba(255, 95, 31, 0.1),
+        inset 0 2px 4px rgba(255, 255, 255, 0.2);
+    transform: scale(1.05);
+}
+
+.process-step-icon--completed {
+    background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+    border-color: rgba(255, 255, 255, 0.4);
+    box-shadow: 
+        0 8px 25px rgba(34, 197, 94, 0.25),
+        0 0 0 4px rgba(34, 197, 94, 0.1),
+        inset 0 2px 4px rgba(255, 255, 255, 0.2);
+}
+
+.process-step-icon:hover {
+    transform: scale(1.02);
+    border-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 
+        0 6px 20px rgba(0, 0, 0, 0.15),
+        inset 0 2px 4px rgba(255, 255, 255, 0.15);
+}
+
+.process-step-icon--active:hover {
+    transform: scale(1.08);
+    box-shadow: 
+        0 10px 30px rgba(255, 95, 31, 0.4),
+        0 0 0 4px rgba(255, 95, 31, 0.15),
+        inset 0 2px 4px rgba(255, 255, 255, 0.3);
+}
+
+.process-step-icon--completed:hover {
+    transform: scale(1.05);
+    box-shadow: 
+        0 10px 30px rgba(34, 197, 94, 0.3),
+        0 0 0 4px rgba(34, 197, 94, 0.15),
+        inset 0 2px 4px rgba(255, 255, 255, 0.3);
+}
+
+.process-step-icon__number {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 1.4rem;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+    letter-spacing: -0.5px;
+}
+
+.process-step-icon__check {
+    font-size: 1.6rem;
+    animation: check-appear 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+/* Efecto de pulso para el estado activo */
+.process-step-icon--active::after {
+    content: '';
+    position: absolute;
+    top: -8px;
+    left: -8px;
+    right: -8px;
+    bottom: -8px;
+    border: 2px solid var(--anaranjado-fuerte);
+    border-radius: 50%;
+    opacity: 0.6;
+    animation: pulse-ring 2s ease-out infinite;
+}
+
+/* Animaciones mejoradas */
+@keyframes check-appear {
+    0% { 
+        opacity: 0;
+        transform: scale(0) rotate(-45deg); 
+    }
+    60% { 
+        opacity: 1;
+        transform: scale(1.2) rotate(0deg); 
+    }
+    100% { 
+        opacity: 1;
+        transform: scale(1) rotate(0deg); 
+    }
+}
+
+@keyframes pulse-ring {
+    0% {
+        transform: scale(1);
+        opacity: 0.6;
+    }
+    50% {
+        transform: scale(1.1);
+        opacity: 0.3;
+    }
+    100% {
+        transform: scale(1.2);
+        opacity: 0;
+    }
+}
+
+/* RESPONSIVE DESIGN MEJORADO */
+@media (max-width: 768px) {
+    .process-step-icon {
+        width: 60px;
+        height: 60px;
+        font-size: 1.6rem;
+        border-width: 2px;
+    }
+    
+    .process-step-icon__number {
+        font-size: 1.2rem;
+    }
+    
+    .process-step-icon__check {
+        font-size: 1.4rem;
+    }
+    
+    .process-step-icon--active::after {
+        top: -6px;
+        left: -6px;
+        right: -6px;
+        bottom: -6px;
+        border-width: 2px;
+    }
+}
+
+@media (max-width: 420px) {
+    .process-step-icon {
+        width: 50px;
+        height: 50px;
+        font-size: 1.4rem;
+        border-width: 2px;
+    }
+    
+    .process-step-icon__number {
+        font-size: 1rem;
+    }
+    
+    .process-step-icon__check {
+        font-size: 1.2rem;
+    }
+    
+    .process-step-icon--active::after {
+        top: -5px;
+        left: -5px;
+        right: -5px;
+        bottom: -5px;
+        border-width: 1px;
+    }
+}
+
+/* Estados de accesibilidad */
+@media (prefers-reduced-motion: reduce) {
+    .process-step-icon {
+        transition: none;
+    }
+    
+    .process-step-icon__check {
+        animation: none;
+    }
+    
+    .process-step-icon--active::after {
+        animation: none;
+        opacity: 0.4;
+    }
+    
+    .process-step-icon:hover {
+        transform: none;
+    }
+}

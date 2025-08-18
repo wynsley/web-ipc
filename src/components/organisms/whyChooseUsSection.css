@@ -1,18 +1,11 @@
 .why-choose-section {
-    padding: 5rem 2rem;
-    background: linear-gradient(135deg, 
-        #4facfe 0%, 
-        #00f2fe 20%, 
-        #4facfe 40%, 
-        #ff9a8b 60%, 
-        #ff6a00 80%, 
-        #ff5722 100%
-    );
-    background-size: 400% 400%;
+    background-image: url(https://img.freepik.com/vector-gratis/tecnologia-gradiente-fondo-futurista_23-2149122416.jpg);
+    background-size: 150% 150%;
+    padding: 5rem 0;
     animation: gradient-flow 15s ease infinite;
     position: relative;
     overflow: hidden;
-    margin: 3rem 0;
+    margin-bottom: 3rem;
 }
 
 @keyframes gradient-flow {
@@ -21,27 +14,6 @@
     100% { background-position: 0% 50%; }
 }
 
-/* efectos decorativos */
-.why-choose-section::before {
-    content: '';
-    position: absolute;
-    top: -10%;
-    left: -10%;
-    width: 120%;
-    height: 120%;
-    background: 
-        radial-gradient(circle at 20% 20%, rgba(255, 95, 31, 0.3) 0%, transparent 50%),
-        radial-gradient(circle at 80% 80%, rgba(11, 86, 173, 0.3) 0%, transparent 50%),
-        radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
-    animation: float-bubbles 20s ease-in-out infinite;
-    pointer-events: none;
-}
-
-@keyframes float-bubbles {
-    0%, 100% { transform: translateY(0px) rotate(0deg); }
-    33% { transform: translateY(-20px) rotate(120deg); }
-    66% { transform: translateY(10px) rotate(240deg);}
-}
 
 /* particulas flotantes */
 .why-choose-section::after {
