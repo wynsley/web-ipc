@@ -62,7 +62,7 @@
 
 /* dots*/
 
-.carousel-dots {
+.carouselP-dots {
   display: flex;
   justify-content: center;
   gap: 0.6rem;
@@ -74,7 +74,7 @@
   z-index: 5;
 }
 
-.carousel-dot {
+.carouselP-dot {
   width: 12px;
   height: 12px;
   background: #bfb6b677;
@@ -83,7 +83,7 @@
   transition: all 0.3s ease;
 }
 
-.carousel-dot.active {
+.carouselP-dot.active {
   background: var(--Azul-logo);
   transform: scale(1.3);
 }

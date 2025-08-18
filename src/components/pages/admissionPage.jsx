@@ -10,6 +10,8 @@ import { InfraestructuraIPC } from "../organisms/admisionSectionIPC"
 import { AdmissionRequirements } from "../organisms/admisionRequirements"
 import { SectionForm } from "../organisms/admissionForm"
 import { AdmisionSifts } from "../organisms/AdmisionSifts"
+import { CareersSection } from "../organisms/careersSection"
+
 
 import Img1 from "../../assets/img/infraestructura.png"
 import Img2 from "../../assets/img/seervicios4.jpg"
@@ -69,7 +71,10 @@ function AdmissionPage(){
         <main className='main-admission'>
           <AdmisionSectionOne/>
           <InfraestructuraIPC/>
+          <section>
           <h2 className="titleAdmision careers">Explora las carreras disponibles que tenemos para ti</h2>
+          <CareersSection/>  
+          </section>
           <AdmissionRequirements/>
           <AdmisionSifts/>
           <SectionForm/>

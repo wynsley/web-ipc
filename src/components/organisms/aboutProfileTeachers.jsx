@@ -136,11 +136,11 @@ const AboutProfileCarousel = () => {
         })}
       </div>
 
-      <div className="carousel-dots">
+      <div className="carouselP-dots">
         {professors.map((_, idx) => (
           <span
             key={idx}
-            className={`carousel-dot ${idx === current ? "active" : ""}`}
+            className={`carouselP-dot ${idx === current ? "active" : ""}`}
             onClick={() => setCurrent(idx)}
           ></span>
         ))}
