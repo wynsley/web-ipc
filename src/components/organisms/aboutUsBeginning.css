@@ -2,7 +2,6 @@
 .section-major {
   padding: 3rem 1rem;
   text-align: center;
-  background: #fff; 
   display: flex;
   flex-direction: column;
   gap: 2rem;
@@ -30,22 +29,15 @@
   }
 
 /* Wrappers de pasos */
-.steps-wrapper {
+.stepsA-wrapper {
   display: flex;
   align-items: center;
   justify-content: center;
-  display: flex;
   flex-wrap: wrap;
-  gap: 2rem ; 
+  gap: 3rem ; 
 
 }
 
-
-.arrow--vertical {
-  width: 20px;
-  height: 80px;
-  color: var(--Azul);
-}
 
 /* Tarjeta */
 .step-card {
@@ -54,8 +46,7 @@
   max-width: 300px;
   padding: 1rem;
   background: transparent;
-  border-radius: 50%;
-  transition: .5s ease-in;
+  transition: .3s ease-in;
   margin-top: 1rem;
 }
 
@@ -93,7 +84,7 @@
 }
 
 .icon-circle__glyph {
-  font-size: 48px; /* icono grande */
+  font-size: 48px; 
 }
 
 /* ===========================
