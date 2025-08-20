@@ -1,8 +1,8 @@
 .profile-stats {
-  margin-top: 0.5rem;
+  margin-top: 1rem;
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 1rem;
 }
 
 .stat-item {
@@ -11,34 +11,65 @@
 }
 
 /* Cada botón tendrá su color según el índice */
-.stats-toggle {
+.stats__profile {
+  font-family: 'Poppins';
   border: none;
   padding: 0.4rem 0.8rem;
   border-radius: 5px;
   cursor: pointer;
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   text-align: left;
-  color: white;
-  font-weight: bold;
+  color: rgb(8, 57, 77);
+  font-weight: 600;
   transition: all 0.3s ease;
 }
 
-.stats-toggle-0 { background-color: #7e8fa2; }  /* Áreas de enseñanza */
-.stats-toggle-1 { background-color: #b5762497; }  /* Asignaturas */
-.stats-toggle-2 { background-color: #16a085; }  /* Extra si hay más */
-.stats-toggle-3 { background-color: #9b59b6; }
+.stats__profileColor-0 { background-color: #ffad33; }  /* Áreas de enseñanza */
+.stats__profileColor-1 { background-color: #1c89e897; }  /* Asignaturas */
+.stats__profileColor-2 { background-color: #16a085; }  /* Extra si hay más */
+.stats__profileColor-3 { background-color: #9b59b6; }
 
-.stats-toggle:hover {
+.stats__profile:hover {
   opacity: 0.9;
 }
 
-.stats-list {
+.stats__list {
   margin-top: 0.3rem;
   padding-left: 1rem;
   list-style: disc;
-  transition: all 0.3s ease;
+  transition: all 1s ease;
 }
 
-.stats-list li {
+.stats__list li {
   margin-bottom: 0.2rem;
+  list-style: none;
+  margin-left: 1rem;
+}
+
+/* Contenedor animado */
+.stats__list-wrapper {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.7s ease, opacity 0.7s ease;
+  opacity: 0;
+}
+
+.stats__list-wrapper.open {
+  max-height: 300px; /* ajusta según contenido */
+  opacity: 1;
+}
+
+/* Lista desplegada */
+.stats__list {
+  margin: 0;
+  padding: 0.8rem 1rem;
+  list-style: none;
+  background: var(--gris) ; /* Fondo gris claro, cámbialo si quieres */
+  border-radius: 5px;
+}
+
+.stats__list li {
+  padding: 0.3rem 0;
+  font-size: 0.95rem;
+  color: var(--Azul);
 }

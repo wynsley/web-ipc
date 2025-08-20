@@ -71,9 +71,12 @@
     font-family: 'BebasNeue';
     font-size: 1.5rem;
     letter-spacing: .8px;
+    color: var(--Azul-logo);
+    text-shadow: 0 1px 1px var(--negro);
 }
 .item__concept{
     font-family: 'Roboto';
+    color: rgb(127, 127, 127);
 }
 
 /*RESPONSIVE DESIGN*/

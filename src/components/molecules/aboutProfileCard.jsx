@@ -5,7 +5,7 @@ import { AboutProfileInfo } from '../atoms/AboutProfileInfo'
 import { AboutProfileName } from '../atoms/AboutProfileName'
 import { AboutProfileStats } from '../atoms/AboutProfileStats'
 
-const AboutProfileCard = ({ name, speciality,experience, img, stats, post, contact }) => {
+const AboutProfileCard = ({ name, speciality,experience, img, stats, post, phrase }) => {
   return (
     <div className='profile-card'>
       <div className='profileT-card__left'>
@@ -16,7 +16,7 @@ const AboutProfileCard = ({ name, speciality,experience, img, stats, post, conta
       <div className='profileT-card__right'>
         <AboutProfileName name={name} speciality={speciality} />
         <div className='profileT-divider'></div>
-        <AboutProfileInfo post={post} experience={experience} contact={contact} />
+        <AboutProfileInfo post={post} experience={experience} phrase={phrase} />
       </div>
     </div>
   )

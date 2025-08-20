@@ -1,6 +1,6 @@
 import './aboutProfileInfo.css'
 
-const AboutProfileInfo = ({ post, experience, contact }) => {
+const AboutProfileInfo = ({ post, experience, phrase }) => {
   return (
     <div className='profile-info'>
       <div className='profile__post'>
@@ -14,8 +14,8 @@ const AboutProfileInfo = ({ post, experience, contact }) => {
       </div>
 
       <div className='profile__contact'>
-        <h4>Contacto</h4>
-        <p>{contact}</p>
+        <h4>Frase</h4>
+        <p>{phrase}</p>
       </div>
     </div>
   )

@@ -17,18 +17,22 @@ const AboutProfileStats = ({ stats }) => {
       {stats.map((item, idx) => (
         <div key={idx} className='stat-item'>
           <button
-            className={`stats-toggle stats-toggle-${idx}`}
+            className={`stats__profile stats__profileColor-${idx}`}
             onClick={() => toggleItem(idx)}
           >
             {openStates[idx] ? `- ${item.label}` : `+ ${item.label}`}
           </button>
-          {openStates[idx] && item.value && (
-            <ul className='stats-list'>
+          <div
+            className={`stats__list-wrapper ${
+              openStates[idx] ? 'open' : ''
+            }`}
+          >
+            <ul className='stats__list'>
               {item.value.split(',').map((val, i) => (
                 <li key={i}>{val.trim()}</li>
               ))}
             </ul>
-          )}
+          </div>
         </div>
       ))}
     </div>
