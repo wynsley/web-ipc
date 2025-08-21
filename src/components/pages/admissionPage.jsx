@@ -5,13 +5,12 @@ import CarouselSlide from "../molecules/carouselSlide"
 import CarouselNextButton from "../atoms/carouselNextButton"
 import CarouselPrevButton from "../atoms/carouselPrevButton"
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa6"
-import { AdmisionSectionOne } from "../organisms/admisionSectionOne"
-import { InfraestructuraIPC } from "../organisms/admisionSectionIPC"
+import { AdmisionHeading } from '../organisms/admisionHeading' 
 import { AdmissionRequirements } from "../organisms/admisionRequirements"
 import { SectionForm } from "../organisms/admissionForm"
 import { AdmisionSifts } from "../organisms/AdmisionSifts"
 import { CareersSection } from "../organisms/careersSection"
-
+import { AdmissionAdvertising } from '../templates/admissionAdvertising'
 
 import Img1 from "../../assets/img/infraestructura.png"
 import Img2 from "../../assets/img/seervicios4.jpg"
@@ -34,7 +33,7 @@ function AdmissionPage(){
       </div>
     )
   }
-
+  const AdmissionTitle = ''
   return (
         <>
           <section className="section__carousel">
@@ -49,11 +48,11 @@ function AdmissionPage(){
               )}
             >
             {{
-            prev: (goToPrev) => (
-              <CarouselPrevButton
+              prev: (goToPrev) => (
+                <CarouselPrevButton
                 onClick={goToPrev}
                 className="carousel__aside__btn carousel__aside__btn--prev"
-            >
+                >
             <FaChevronLeft />
             </CarouselPrevButton>
             ),
@@ -69,10 +68,9 @@ function AdmissionPage(){
           </CarouselContainer>
         </section>
         <main className='main-admission'>
-          <AdmisionSectionOne/>
-          <InfraestructuraIPC/>
+          <AdmisionHeading/>
+            <AdmissionAdvertising/>
           <section>
-          <h2 className="titleAdmision careers">Explora las carreras disponibles que tenemos para ti</h2>
           <CareersSection/>  
           </section>
           <AdmissionRequirements/>

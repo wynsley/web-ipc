@@ -4,17 +4,14 @@ import { TextArea } from '../atoms/textAreaForm'
 import { SelectCareer } from '../molecules/selectCareerForm'
 import './contacForm.css'
 
-
-
 const ContactForm = () => {
-
-    const [formData, setFormData] = useState({
-        nombre: '',
-        apellidos: '',
-        celular: '',
-        correo: '',
-        carrera: '',
-        consulta: '',
+  const [formData, setFormData] = useState({
+    nombre: '',
+    apellidos: '',
+    celular: '',
+    correo: '',
+    carrera: '',
+    consulta: '',
   });
 
   const [errores, setErrores] = useState({});
@@ -27,20 +24,55 @@ const ContactForm = () => {
   ];
 
   const handleChange = (e) => {
-  const { name, value } = e.target;
-  setFormData(prev => ({ ...prev, [name]: value }));
-  console.log(name, value); 
-};
+    const { name, value } = e.target;
 
+    // Restringimos según el campo
+    if (name === "nombre" || name === "apellidos") {
+      // Solo letras, espacios y tildes
+      const soloLetras = value.replace(/[^a-zA-ZÀ-ÿ\s]/g, "");
+      setFormData(prev => ({ ...prev, [name]: soloLetras }));
+    } else if (name === "celular") {
+      // Solo números
+      const soloNumeros = value.replace(/\D/g, "");
+      setFormData(prev => ({ ...prev, celular: soloNumeros }));
+    } else {
+      setFormData(prev => ({ ...prev, [name]: value }));
+    }
+  };
 
   const validar = () => {
     const err = {};
-    if (!/^[0-9]{9}$/.test(formData.celular)) err.celular = 'Celular inválido (solo 9 dígitos numéricos)';
-    if (!/^\S+@(gmail\.com|outlook\.com)$/.test(formData.correo)) err.correo = 'Correo debe ser gmail.com u outlook.com';
-    if (!formData.nombre.trim()) err.nombre = 'Nombre requerido';
-    if (!formData.apellidos.trim()) err.apellidos = 'Apellidos requeridos';
-    if (!formData.carrera) err.carrera = 'Debe seleccionar una carrera';
-    if (!formData.consulta.trim()) err.consulta = 'Consulta requerida';
+    const soloLetras = /^[a-zA-ZÀ-ÿ\s]+$/;
+
+    if (!formData.nombre.trim()) {
+      err.nombre = 'Nombre requerido';
+    } else if (!soloLetras.test(formData.nombre)) {
+      err.nombre = 'El nombre solo debe contener letras';
+    }
+
+    if (!formData.apellidos.trim()) {
+      err.apellidos = 'Apellidos requeridos';
+    } else if (!soloLetras.test(formData.apellidos)) {
+      err.apellidos = 'Los apellidos solo deben contener letras';
+    }
+
+    if (!/^[0-9]{9}$/.test(formData.celular)) {
+      err.celular = 'Celular inválido (solo 9 dígitos numéricos)';
+    }
+
+    if (!/^\S+@(gmail\.com|outlook\.com|hotmail\.com)$/.test(formData.correo)) {
+    err.correo = 'Correo debe ser gmail.com, outlook.com o hotmail.com';
+  }
+
+
+    if (!formData.carrera) {
+      err.carrera = 'Debe seleccionar una carrera';
+    }
+
+    if (!formData.consulta.trim()) {
+      err.consulta = 'Consulta requerida';
+    }
+
     setErrores(err);
     return Object.keys(err).length === 0;
   };
@@ -82,11 +114,8 @@ const ContactForm = () => {
         label="Celular"
         name="celular"
         value={formData.celular}
+        onChange={handleChange}
         type="tel"
-        onChange={(e) => {
-          const soloNumeros = e.target.value.replace(/\D/g, "");
-          setFormData((prev) => ({ ...prev, celular: soloNumeros }));
-        }}
       />
       {errores.celular && <span className="error">{errores.celular}</span>}
 
@@ -121,4 +150,4 @@ const ContactForm = () => {
   );
 };
 
-export  {ContactForm};
+export { ContactForm };

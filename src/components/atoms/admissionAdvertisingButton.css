@@ -1,0 +1,95 @@
+.Adbtn {
+    position: relative;
+    display: inline-block;
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: .8em;
+}
+
+/* 🔹 El wrapper debe encogerse al tamaño del botón */
+.Adbtn-wrapper {
+    position: relative;
+    display: inline-block;
+    width: max-content;
+    /* se ajusta al contenido (el botón) */
+}
+
+
+
+/* Botón primary */
+.Adbtn.primary {
+    font-family: 'Poppins';
+    padding: 1.2rem;
+    margin-left: 1rem;
+    box-shadow: 0 2px 6px var(--blanco);
+    background: linear-gradient(90deg, var(--blanco), rgb(207, 197, 197));
+    color: var(--Azul-logo);
+    transition: .4s ease;
+}
+
+.Adbtn.primary:hover {
+    background: linear-gradient(90deg, rgb(156, 156, 156), var(--blanco));
+    color: var(--Azul);
+    transform: scale(1.03);
+}
+
+/* Botón secondary */
+.Adbtn.secondary {
+    background: linear-gradient(100deg, var(--anaranjado-oscuro), var(--anaranjado));
+    color: #ffffff;
+    width: 12em;
+}
+
+/* Flechita */
+.arrow {
+    font-size: 1.2rem;
+    color: var(--anaranjado);
+    transition: transform 0.6s ease;
+}
+
+.arrow.open {
+    transform: rotate(180deg);
+}
+
+.Adbtn-dropdown {
+    font-family: 'Roboto';
+    position: absolute;
+    top: 4.5em;
+    /* siempre debajo del botón */
+    left: .8rem;
+    min-width: 97%;
+    /* mismo ancho que el botón */
+    background: #05656f;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    z-index: 20;
+    color: var(--blanco);
+
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transform: translateY(-10px);
+    transition: all 0.4s ease;
+}
+
+/* Estado abierto */
+.Adbtn-dropdown.open {
+    max-height: 500px;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.Adbtn-dropdown li {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.Adbtn-dropdown li:hover {
+    background: #ff9604ce;
+}

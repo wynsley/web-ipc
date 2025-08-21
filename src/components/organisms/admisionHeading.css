@@ -1,11 +1,11 @@
 .sectionAdmision{
+    margin: 0 2rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding-top: 3rem;
-    background-color: rgba(193, 190, 190, 0.119);
-    padding-bottom: 3rem;
+    background: linear-gradient(190deg,var(--negro), rgba(26, 133, 227, 0.699), var(--negro));
+    padding-bottom: 2rem;
 }
 
 .graduateIcon{
@@ -13,37 +13,33 @@
     color: var(--anaranjado);
 }
 
-.title1{
+.heading-title{
+    margin-top: -1rem;
     font-family: 'Poppins';
-    font-size: 2.3rem;
+    font-size: 3.5rem;
     font-weight: bold;
-    color: var(--celeste);
-    text-shadow: 0 2px 2px var(--negro);
-}
-
-.title1 span{
-    color: var(--negro);
-    text-shadow: 0 0px 2px var(--celeste);
+    color: var(--blanco);
+    text-shadow: 0 2px 3px var(--negro);
 }
 
 .admision__Container{
-    margin-top: 2.6rem;
+    margin-top: .8rem;
     font-family: 'Roboto';
     display: flex;
     gap: .5rem;
     padding: 1rem;
-    box-shadow: 0 2px 3px var(--celeste);
-    border-radius: .5rem;
+    box-shadow: 0 2px 15px var(--celeste);
     font-size: 1.4rem;
-    color: var(--celeste);
-    transition: .3s ease;
-    background-color: var(--gris);
+    color: var(--negro);
+    transition: .4s ease;
+    background-color: var(--blanco);
 }
 
 .admision__Container:hover{
-    background-color: var(--blanco);
-    color: var(--anaranjado);
-    box-shadow: 0 2px 3px var(--negro);
+    background-color: var(--gris);
+    color: var(--blanco);
+    box-shadow: 0 2px 20px var(--negro);
+    transform: scale(1.03);
 }
 
 .libraryicon{
@@ -68,7 +64,6 @@
  .admision__Container{
     font-size: 1.2rem;
     padding: .9rem;
-    margin-top: 2.6rem;
  }
 
  .libraryicon{

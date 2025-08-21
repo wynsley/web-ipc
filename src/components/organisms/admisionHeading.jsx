@@ -1,12 +1,11 @@
-import './admisionSectionOne.css'
+import './admisionHeading.css'
 import { GiArchiveRegister, GiGraduateCap  } from "react-icons/gi";
 
 
 
-function AdmisionSectionOne () {
+function AdmisionHeading () {
 
-    const Title= 'ADMISIÓN'
-    let Anio = '2025'
+    const Title= 'ADMISIONES'
     const Description = 'Tu camino hacia adelante se traza desafiando lo que crees que es importante para ti.'
     return (
 
@@ -14,8 +13,8 @@ function AdmisionSectionOne () {
           
             <GiGraduateCap className='graduateIcon'/>
             
-            <h2 className='title1'>
-                {Title} <span>{Anio}</span>
+            <h2 className='heading-title'>
+                {Title} 
             </h2>
             <div className='admision__Container'>
                 <GiArchiveRegister  className='libraryicon'/>    
@@ -29,4 +28,4 @@ function AdmisionSectionOne () {
     )
 }
 
-export {AdmisionSectionOne}
+export {AdmisionHeading}
