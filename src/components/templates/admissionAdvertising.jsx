@@ -17,7 +17,8 @@ const AdmissionAdvertising = () =>{
 
     const Images =[
         'https://www.shutterstock.com/image-vector/school-admission-social-media-post-600nw-2628032041.jpg',
-        'https://www.shutterstock.com/image-vector/styling-school-admission-social-media-260nw-2539121479.jpg'
+        'https://st2.depositphotos.com/1218550/8133/v/450/depositphotos_81338696-stock-illustration-school-admission-people-isometric.jpg',
+        'https://st4.depositphotos.com/14431644/21804/i/450/depositphotos_218046510-stock-illustration-word-writing-text-exams-business.jpg'
     ]
 
     return (

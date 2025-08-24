@@ -1,5 +1,5 @@
 .majorcar__item {
-  background: linear-gradient( var(--negro), var(--gris));
+  background: linear-gradient( var(--blanco), rgb(139, 138, 138) );
   display: flex;
   flex-direction: column;
   text-align: center;
@@ -8,9 +8,8 @@
   gap: 2rem;
   width: 240px;
   height: 300px;
-  -webkit-box-shadow: 2px 3px 1px grey; 
-  border: 1px solid rgb(220, 220, 220);
-  box-shadow: 0px 10px 5px rgb(255, 255, 255);
+  border-radius: 5px;
+  box-shadow: 0px 3px 10px  rgb(1, 1, 1);
 }
 
 
@@ -20,8 +19,9 @@
 }
 
 .major__menu__item{
+  font-family: 'Roboto';
   list-style: none;
-  color: var(--anaranjado);
+  color: var(--Azul-logo);
   margin-bottom: .5rem;
 }
 

@@ -87,11 +87,17 @@ const professors = [
 
 const AboutProfileCarousel = () => {
   const [current, setCurrent] = useState(0);
+  const [resetTrigger, setResetTrigger] = useState(0); // 👈 estado para resetear desplegables
   const intervalRef = useRef(null);
+
   const startAutoplay = () => {
     if (intervalRef.current) return;
     intervalRef.current = setInterval(() => {
-      setCurrent((prev) => (prev === professors.length - 1 ? 0 : prev + 1));
+      setCurrent((prev) => {
+        const next = prev === professors.length - 1 ? 0 : prev + 1;
+        setResetTrigger((t) => t + 1); // 👈 cada cambio dispara reset
+        return next;
+      });
     }, 5000);
   };
 
@@ -99,15 +105,14 @@ const AboutProfileCarousel = () => {
     clearInterval(intervalRef.current);
     intervalRef.current = null;
   };
+
   useEffect(() => {
     startAutoplay();
     return () => stopAutoplay();
   }, []);
 
   return (
-    <div
-      className="teachers-carousel"
-    >
+    <div className="teachers-carousel">
       <div className="cards-profile__container">
         {professors.map((prof, idx) => {
           let positionClass = "";
@@ -121,16 +126,17 @@ const AboutProfileCarousel = () => {
           return (
             <div
               key={idx}
-              onMouseEnter={stopAutoplay}  // pausa al poner el mouse
+              onMouseEnter={stopAutoplay}
               onMouseLeave={startAutoplay}
               className={`profile-card__wrapper ${positionClass}`}
               onClick={() => {
-                if (idx === current) return; // no hacer nada si es la activa
-                else if (idx > current) setCurrent(idx);
-                else if (idx < current) setCurrent(idx);
+                if (idx !== current) {
+                  setCurrent(idx);
+                  setResetTrigger((t) => t + 1); // 👈 reset al cambiar con click
+                }
               }}
             >
-              <AboutProfileCard {...prof} />
+              <AboutProfileCard {...prof} resetTrigger={resetTrigger} />
             </div>
           );
         })}
@@ -141,7 +147,10 @@ const AboutProfileCarousel = () => {
           <span
             key={idx}
             className={`carouselP-dot ${idx === current ? "active" : ""}`}
-            onClick={() => setCurrent(idx)}
+            onClick={() => {
+              setCurrent(idx);
+              setResetTrigger((t) => t + 1); // 👈 reset al cambiar con dot
+            }}
           ></span>
         ))}
       </div>

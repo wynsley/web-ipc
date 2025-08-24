@@ -46,8 +46,7 @@ const AdvertisingInfoCard = ({ title, items, inscriptionText, examentext }) => {
           <AdvertisingButton
             text="Aquí"
             variant="secondary"
-            onClick={() => ('Ir a formulario')}
-            src='#formulario'
+            href='#admisionForm'
           />
         </div>
     </div>

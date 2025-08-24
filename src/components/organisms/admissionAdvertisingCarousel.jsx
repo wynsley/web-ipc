@@ -39,6 +39,7 @@ const AdvertisingCarousel = ({ images, interval = 5000 }) => {
       <div
         onMouseEnter={stopAutoPlay} // Detiene el autoplay al poner el mouse
         onMouseLeave={startAutoPlay} // Lo reanuda al quitar el mouse
+        className="adve-container__img"
       >
         <img
           src={images[current]}

@@ -1,10 +1,10 @@
 .sectionAdmision{
-    margin: 0 2rem;
+    margin: 2rem 2rem 0 2em;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(190deg,var(--negro), rgba(26, 133, 227, 0.699), var(--negro));
+    background: linear-gradient(180deg, rgb(255, 255, 255), rgba(26, 133, 227, 0.699), rgb(48, 139, 208));
     padding-bottom: 2rem;
 }
 
@@ -57,12 +57,12 @@
         font-size: 8rem;
     }
 
-    .title1{
-        font-size:2.1rem ;
+    .heading-title{
+        font-size:2.8   rem ;
     }
 
  .admision__Container{
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     padding: .9rem;
  }
 
@@ -78,20 +78,22 @@
 @media(max-width: 768px){
 
     .sectionAdmision{
-        padding: 2rem 0 0 0;
+        padding: 2rem 0 1rem 0;
+        margin: 1em 1em 0;
     }
     .graduateIcon{
         font-size: 8rem;
+        margin-top: -3rem;
     }
 
-    .title1{
-        font-size:2rem ;
+    .heading-title{
+        font-size:2.6rem ;
     }
 
     .admision__Container{
-    font-size: 1.1rem;
+    font-size: 1rem;
     padding: .9rem;
-    margin: 2.5rem 1.5rem 0 1.5rem;
+    margin: .5rem    1.5rem 0 1.5rem;
     text-align: center;
 
      }
@@ -100,3 +102,19 @@
     font-size: 1.5rem;
     }
 }
+
+@media(max-width: 480px){
+    .sectionAdmision{
+        margin: 2rem 0 0;
+    }
+    .graduateIcon{
+        font-size: 6rem;
+    }
+    .heading-title{
+        font-size: 2rem;
+    }
+      .admision__Container{
+        font-size: .8rem;
+      }
+}
+    

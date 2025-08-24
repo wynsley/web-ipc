@@ -15,7 +15,6 @@ const AboutMajorPriceCard = ({ icon: Icon, title, valuesIPC}) => {
           <li className='major__menu__item' key={idx}>{i}</li>
         ))}
       </ul>
-      <AboutMajorButton text='ver más' url='#' />
     </div>
   );
 };

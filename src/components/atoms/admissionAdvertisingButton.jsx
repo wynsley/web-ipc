@@ -2,12 +2,13 @@
 import './admissionAdvertisingButton.css';
 import React, { useState, useRef, useEffect } from "react";
 
-const AdvertisingButton = ({ text, options, src, onClick, variant = "primary" }) => {
+const AdvertisingButton = ({ text, options, href, onClick, variant = "primary" }) => {
   const [open, setOpen] = useState(false);
   const dropdownRef = useRef(null);
 
-  const toggleDropdown = () => {
+  const toggleDropdown = (e) => {
     if (options) {
+      e.preventDefault(); // evita que el enlace navegue si es dropdown
       setOpen((prev) => !prev);
     } else if (onClick) {
       onClick();
@@ -28,16 +29,16 @@ const AdvertisingButton = ({ text, options, src, onClick, variant = "primary" })
 
   return (
     <div className="Adbtn-wrapper" ref={dropdownRef}>
-      <button
+      <a
         className={`Adbtn ${variant}`}
         onClick={toggleDropdown}
-        src={src}
+        href={href}   // ✅ usamos href en vez de src
       >
         {text}
         {options && (
           <span className={`arrow ${open ? "open" : ""}`}>▼</span>
         )}
-      </button>
+      </a>
 
       {options && (
         <ul className={`Adbtn-dropdown ${open ? "open" : ""}`}>

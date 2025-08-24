@@ -1,4 +1,4 @@
-/* Aseguramos que los estilos no afecten a otros sliders */
+/* Wrapper principal */
 .Mcarousel__wrapper {
   width: 100%;
   display: flex;
@@ -6,20 +6,22 @@
   align-items: center;
   margin: auto;
   padding-top: 5rem;
-  padding-bottom: 5rem;
+  padding-bottom: 3rem;
   margin-bottom: 3rem;
   text-align: center;
-  background: linear-gradient(90deg, var(--negro), var(--Azul-logo), var(--negro));
+  background: linear-gradient(1200deg, rgba(4, 68, 95, 0.87),  rgba(4, 74, 91, 0.932), rgba(4, 68, 95, 0.87));
   position: relative;
 }
 
+/* Contenedor */
 .Mcarousel__container {
-  width: 60%; /* reducimos un poco para que queden más juntas */
-  margin:  auto;
+  width: 60%;
+  margin: auto;
 }
 
+/* Items */
 .Mcarousel__item {
-  padding: 0 8px; /* reducimos padding entre tarjetas */
+  padding: 0 8px;
   transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
@@ -27,7 +29,7 @@
   transform: scale(1.05);
 }
 
-/* Estilo de los slides */
+/* Slides */
 .Mcarousel__container .slick-slide {
   opacity: 0.4;
   transform: scale(0.9);
@@ -39,57 +41,62 @@
   transform: scale(1);
 }
 
-/* Flechas personalizadas */
-.slick-prev,
-.slick-next {
+.Mcarousel__arrow {
   position: absolute;
-  bottom: -80px; 
+  bottom: 1rem;         
   z-index: 3;
-  border-radius: 50%;
   width: 45px;
   height: 45px;
+  border-radius: 999px;
+  background: #2a41d2;
+  box-shadow: 0 2px 15px rgba(0,0,0,.3);
   display: flex;
   justify-content: center;
   align-items: center;
+  font-size: 28px;
+  color: #fff;
+  border: none;
   cursor: pointer;
-  box-shadow: 0 2px 15px rgba(0,0,0,0.3);
-  font-size: 1.5rem;
-  background: rgb(42, 65, 210); 
 }
+
 
 /* Botón izquierdo */
 .slick-prev {
+  z-index: 2;
   left: 50%;
-  transform: translateX(-60px); /* se mueve a la izquierda desde el centro */
+  transform: translateX(-70px); 
 }
 
 /* Botón derecho */
 .slick-next {
   left: 50%;
-  transform: translateX(20px); /* se mueve a la derecha desde el centro */
+  transform: translateX(25px); 
+}
+.Mcarousel__wrapper .slick-prev,
+.Mcarousel__wrapper .slick-next {
+  top: auto !important;  
+  bottom: -1em !important;
 }
 
 /* Íconos */
 .Mcarousel__container .slick-prev:before,
 .Mcarousel__container .slick-next:before {
-  font-size: 28px;
-  color: #38bdf8; /* celeste elegante */
+  font-size: 22px;
+  color: #fff; /* mejor contraste */
 }
 
-
-/* Responsive */
+/* --------- Responsive --------- */
 @media (max-width: 1200px) {
   .Mcarousel__container {
     width: 90%;
   }
 }
 
-@media(max-width:991){
+/* ojo: faltaba px en tu media query */
+@media (max-width: 991px) {
   .Mcarousel__container {
-  width: 40%; /* reducimos un poco para que queden más juntas */
-  margin:  auto;
-}
-
+    width: 70%;
+  }
 }
 
 @media (max-width: 768px) {
@@ -98,10 +105,28 @@
   }
 
   .Mcarousel__container {
-    width: 95%; /* más ancho para móviles */
+    width: 95%;
   }
 
   .Mcarousel__item {
     padding: 0 5px;
+  }
+}
+
+/* 👇 De 550px hacia arriba quiero 2 cards visibles */
+@media (max-width: 768px) and (min-width: 551px) {
+  .Mcarousel__container .slick-slide {
+    transform: scale(0.9) translateX(-10%); /* la de atrás se asoma */
+  }
+}
+
+/* 👇 Menos de 550px solo 1 card centrada */
+@media (max-width: 550px) {
+  .Mcarousel__container {
+    width: 100%;
+  }
+
+  .Mcarousel__container .slick-slide {
+    transform: scale(0.95);
   }
 }

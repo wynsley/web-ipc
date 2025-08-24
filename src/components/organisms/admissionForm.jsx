@@ -9,7 +9,7 @@ const SectionForm = () =>{
 
 
     return (
-        <section className='sectionForm'>
+        <section className='sectionForm ' id='admisionForm'>
             <div className='container__form'>
                 <div className='titlesR'>
                     <p className='register-title interrogation'>{Title1}</p>

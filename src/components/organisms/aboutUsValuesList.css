@@ -15,10 +15,11 @@
 }
 
 .sectuionAboutUs__cards {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 2rem;
-    flex-wrap: nowrap;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem ;
 }
 
 .aboutUscard-wrapper {
@@ -71,9 +72,5 @@
 
 /* <= 320px */
 @media (max-width: 320px) {
-    .sectuionAboutUs__cards {
-        display: flex;
-        flex-direction: column;
-        
-  } 
+   
 }

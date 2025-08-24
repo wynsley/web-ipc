@@ -1,48 +1,54 @@
-/* aboutProfileCard.css */
+
 .profile-card {
   display: flex;
+  flex-direction: column;
   background: #fff;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.356);
   padding: 1rem;
-  width: 22rem;
-  height: 26rem;
+  width: 100%;
+  max-width: 22rem;  
+  height: 28rem;      
   font-family: 'Segoe UI', sans-serif;
+  overflow: hidden;
 }
 
-.profileT-card__left {
+/* ---- Izquierda ---- */
+.profileT-card__up {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1.5rem;
   position: relative;
+  flex-shrink: 0;
 }
 
-.profileT-card__left img {
-  margin-top: 2rem;
+.profileT-card__up img {
+  margin-top: .5rem;
   width: 120px;
   height: 120px;
   border-radius: 50%;
   object-fit: cover;
   box-shadow: 0 2px 6px var(--negro);
-  border: 3px solid #f5f5f5;
+  border: 3px solid var(--blanco);
 }
 
-.profileT-card__right {
+/* ---- Derecha ---- */
+.profileT-card__down {
+  margin-top: 1em;
   flex: 1;
-  padding-left: 1rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
-
 .profileT-divider {
   height: 2px;
-  background: #bebcbc;
-  margin: 1rem 0;
+  background: linear-gradient(80deg, var(--anaranjado), var(--Azul-logo));
+  margin-bottom: 1.5rem;
 }
 
 .profile-info {
+  margin-top: 1rem;
+  margin-left: .5em;
   font-size: 0.9rem;
   line-height: 1.6;
 }
@@ -52,21 +58,66 @@
 }
 
 .profile-stats {
-  margin-top: 1rem;
+  margin-top: .5rem;
   display: flex;
   justify-content: space-between;
 }
 
-.stat-bar {
-  width: 100px;
-  height: 6px;
-  background: #ddd;
-  border-radius: 3px;
-  overflow: hidden;
-  margin-top: 0.3rem;
-}
-
 .stat-bar-fill {
   height: 100%;
-  background: #00b5d8;
+  background: #697f84;
+}
+
+/* ---------------- RESPONSIVE ---------------- */
+
+
+/* Móviles medianos (≤480px) */
+@media (max-width: 420px) {
+  .profile-card {
+    width: 90%;
+    max-width: 350px;
+
+  }
+  .profileT-card__up img {
+    width: 100px;
+    height: 100px;
+    margin-top: 0rem;
+    order: 1;
+  }
+  .profileT-card__up{
+    gap: 0;
+   }
+  .profileT-card__down {
+    padding-left: 0;
+    margin-top: 1rem;
+  }
+
+  .profile-info {
+    font-size: 0.85rem;
+    margin-top: 1em;
+  }
+}
+
+/* Móviles pequeños (≤320px) */
+@media (max-width: 320px) {
+  .profile-card {
+    width: 95%;
+    max-width: 300px;
+    padding: 0.8rem;
+  }
+
+  .profileT-card__up img {
+    width: 80px;
+    height: 80px;
+    margin-top: 0.5rem;
+  }
+
+  .profile-info {
+    font-size: 0.8rem;
+    line-height: 1.4;
+  }
+
+  .stat-bar {
+    width: 80px;
+  }
 }

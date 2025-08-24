@@ -21,6 +21,7 @@
 }
 
 .major__subtitle {
+  margin-top: -1.5em;
   font-family: 'Roboto';
   font-size: 1.1rem;
   color: #bb760d;
@@ -34,7 +35,7 @@
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 3rem ; 
+  gap: 1rem ; 
 
 }
 
@@ -48,6 +49,7 @@
   background: transparent;
   transition: .3s ease-in;
   margin-top: 1rem;
+  box-shadow:  0 2px 2px black;
 }
 
 .step-card:hover{
@@ -99,26 +101,21 @@
 
 /* <= 992px */
 @media (max-width: 992px) {
-  .step-card { 
-    width: 220px;
-    height: 220px;
-   }
   .arrow--horizontal { width: 50px; }
 }
 
 /* <= 768px — cambiamos a columna y flechas verticales */
 @media (max-width: 768px) {
+  .stepsA-wrapper{
+    gap: 1em;
+  }
+  
   .steps-wrapper--mobile {
     display: flex;
     align-items: center;
   }
 
-  .step-card {
-    width: 100%;
-    max-width: 360px;
-    height: 14rem;
-    padding: 0 1rem;
-  }
+  
 
   .arrow--vertical { height: 15px; }
 }

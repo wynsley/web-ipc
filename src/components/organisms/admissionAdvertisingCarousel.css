@@ -1,26 +1,37 @@
-
 .adver-carousel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
   position: relative;
   width: 100%;
   max-width: 800px; /* ajusta según tu diseño */
   margin: 0 auto;
   text-align: center;
 }
+.adve-container__img{
+  display: block;
+  align-items: center;
+  width:31rem ;
+  height: 42rem;
+  background-color: rgba(10, 207, 138, 0.593);
+  box-shadow: 0 4px 12px rgb(16, 177, 206);
+}
 
 .adverCarousel__img {
-  margin-top: 2rem;
-  width: 32rem;
-  height: 40rem; 
+  margin-top: 4rem;
+  width: 100%;
+  height: auto; 
   object-fit: cover; 
-  box-shadow: 0 2px 10px rgb(255, 255, 255);
   transition: opacity 0.6s ease-in-out;
+  border-radius: 5px;
 }
 
 .adver__button {
   margin-top: 1rem;
   display: flex;
   justify-content:center;
-  gap: 3rem;
+  gap: 2rem;
   border-radius: 1rem;
 }
 
@@ -29,5 +40,96 @@
   flex: 1; 
   border-radius: 10px;
   padding: .8rem;
+  cursor: pointer;
+}
+
+/* ============================= */
+/* 📱 RESPONSIVE DESIGN */
+/* ============================= */
+
+/* 🔹 Monitores grandes */
+@media (max-width: 1200px) {
+  .adve-container__img{
+    height: 42rem;
+    width: 30rem;
+  }
+}
+
+/* 🔹 Laptops y pantallas medianas */
+@media (max-width: 991px) {
+  .adver-carousel{
+    margin-top: 3.5rem;
+    gap: .5rem;
+  }
+  .adve-container__img{
+    height: 39rem;
+    width: 28rem;
+  }
+  .adver__button {
+    gap: 1rem;
+  }
+
+  .adver__button button {
+    font-size: 0.95rem;
+    padding: .7rem;
+  }
+}
+
+
+@media(max-width: 860px){
+  .adve-container__img{
+    margin-top: 4rem;
+    height: 34rem;
+    width: 24rem;
+    margin-right: 1rem;
+  }
+}
+/* 🔹 Tablets */
+@media (max-width: 768px) {
+  .adve-container__img{
+    margin-top: 4rem;
+    height: 40rem;
+    width: 30rem;
+    margin-right: 0;
+  }
+  .adver__button {
+    gap: 1rem;
+    max-width: 300px;
+    margin: 1.5rem auto 0 auto;
+  }
+
+  .adver__button button {
+    flex: none;
+    width: 100%;
+  }
+}
+
+/* 🔹 Celulares medianos */
+@media (max-width: 480px) {
+  .adve-container__img{
+    margin-top: 4rem;
+    height: 30rem;
+    width: 20rem;
+    margin-right: 0;
+  }
+  .adver-carousel{
+    min-width: 315px;
+  }
+
+  .adver__button {
+    gap: .8rem;
+  }
+
+  .adver__button button {
+    font-size: 0.9rem;
+    padding: .6rem;
+  }
+}
+@media (max-width: 320px) {
+.adver-carousel{
+    max-width: 290px;
+  }
 
 }
+
+
