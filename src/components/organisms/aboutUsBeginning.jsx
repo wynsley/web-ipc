@@ -2,7 +2,6 @@
 import React from "react";
 import './aboutUsBeginning.css'
 import { FaLightbulb, FaBalanceScale, FaAward,FaUsers  } from "react-icons/fa";
-import { AboutCardBeginning } from "../molecules/aboutUsCardBeginnin";
 
 
 const AboutUsBeginning= () => {
@@ -46,7 +45,6 @@ const steps = [
       <div className="stepsA-wrapper steps-wrapper--desktop" aria-hidden="false">
         {steps.map((s) => (
           <React.Fragment key={s.title}>
-            <AboutCardBeginning {...s} />
            </React.Fragment>
         ))}
       </div>

@@ -1,6 +1,5 @@
 import './aboutMajorPriceCard.css';
 import { AboutMajorHeading } from '../atoms/aboutMajorHeading';
-import { AboutMajorButton } from '../atoms/aboutMajorButton';
 
 const AboutMajorPriceCard = ({ icon: Icon, title, valuesIPC}) => {
 
