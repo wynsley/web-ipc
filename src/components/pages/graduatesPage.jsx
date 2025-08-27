@@ -5,6 +5,7 @@ import CarouselNextButton from "../atoms/carouselNextButton"
 import CarouselPrevButton from "../atoms/carouselPrevButton"
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa6"
 import { GraduationProcessSection } from "../organisms/graduationProcessSection"
+import { GraduatesTestimonialsSection } from "../organisms/graduatesTestimonialsSection"
 
 import Img1 from "../../assets/img/infraestructura.png"
 import Img2 from "../../assets/img/seervicios4.jpg"
@@ -96,6 +97,37 @@ function GraduatesPage(){
     }
   ]
 
+  const customGraduatesData = [
+    {
+      id: 1,
+      name: "María Elena Campos",
+      career: "Computación e Informática",
+      graduationYear: "2020",
+      image: "/assets/images/graduates/maria-campos.jpg", // Tu imagen local
+      testimonial: "El Instituto Privado Celendín me dio las herramientas técnicas y humanas para destacar como desarrolladora. Hoy trabajo en una empresa líder en tecnología.",
+      currentPosition: "Senior Full Stack Developer",
+      company: "TechCorp Peru",
+      featured: true
+    },
+    // ... más egresados
+  ]
+
+  // NUEVO: Estadísticas personalizadas (opcional)
+  const customStats = [
+    { number: "12,500+", label: "Egresados titulados" },
+    { number: "96%", label: "Empleabilidad inmediata" },
+    { number: "18", label: "Años formando profesionales" },
+    { number: "150+", label: "Empresas que contratan nuestros egresados" }
+  ]
+
+  if (!graduatesSlides || graduatesSlides.length === 0){
+    return (
+      <div>
+        <h1>No hay imágenes para mostrar</h1>
+      </div>
+    )
+  }
+
   if (!graduatesSlides || graduatesSlides.length === 0){
     return (
       <div>
@@ -144,6 +176,11 @@ function GraduatesPage(){
           subtitle="Obtén tu título profesional siguiendo nuestro proceso estructurado y con el acompañamiento de nuestro equipo académico especializado."
           processSteps={customProcessSteps}
           documents={customDocuments}
+        />
+
+        <GraduatesTestimonialsSection 
+          graduatesData = {customGraduatesData}
+          stats = {customStats}
         />
       </main>
     </>

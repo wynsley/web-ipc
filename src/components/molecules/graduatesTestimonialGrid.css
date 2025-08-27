@@ -1,0 +1,246 @@
+/* 
+ * Molécula: Grilla de testimonios de egresados
+ * Propósito: Layout responsivo para mostrar múltiples testimonios
+ * Metodología: BEM
+ */
+
+.graduates-testimonial-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    position: relative;
+}
+
+/* Variantes de columnas específicas */
+.graduates-testimonial-grid--two-columns {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.graduates-testimonial-grid--three-columns {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.graduates-testimonial-grid--four-columns {
+    grid-template-columns: repeat(4, 1fr);
+}
+
+/* Animación de entrada escalonada */
+.graduates-testimonial-grid .graduate-testimonial-card {
+    animation: testimonial-fade-in 0.6s ease forwards;
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.graduates-testimonial-grid .graduate-testimonial-card:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.graduates-testimonial-grid .graduate-testimonial-card:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.graduates-testimonial-grid .graduate-testimonial-card:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+.graduates-testimonial-grid .graduate-testimonial-card:nth-child(4) {
+    animation-delay: 0.4s;
+}
+
+.graduates-testimonial-grid .graduate-testimonial-card:nth-child(5) {
+    animation-delay: 0.5s;
+}
+
+.graduates-testimonial-grid .graduate-testimonial-card:nth-child(6) {
+    animation-delay: 0.6s;
+}
+
+@keyframes testimonial-fade-in {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Estado vacío */
+.graduates-testimonial-grid__empty {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 4rem 2rem;
+    color: var(--gris-oscuro);
+    font-family: 'Roboto', sans-serif;
+}
+
+.graduates-testimonial-grid__empty-icon {
+    font-size: 3.5rem;
+    color: var(--anaranjado-fuerte);
+    margin-bottom: 1.5rem;
+    opacity: 0.8;
+}
+
+.graduates-testimonial-grid__empty-title {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: var(--Azul-logo);
+}
+
+.graduates-testimonial-grid__empty-message {
+    opacity: 0.8;
+    font-size: 1rem;
+    line-height: 1.6;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+/* Estado de carga */
+.graduates-testimonial-grid--loading {
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+.graduates-testimonial-grid__loading {
+    grid-column: 1 / -1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 4rem 2rem;
+    font-family: 'Roboto', sans-serif;
+    color: var(--gris-oscuro);
+    font-size: 1.1rem;
+}
+
+/* RESPONSIVE DESIGN */
+
+/* 1200px - Ajuste de columnas para tablets grandes */
+@media (max-width: 1200px) {
+    .graduates-testimonial-grid {
+        gap: 1.8rem;
+    }
+    
+    .graduates-testimonial-grid--four-columns {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* 991px - Tablets medianas */
+@media (max-width: 991px) {
+    .graduates-testimonial-grid {
+        gap: 1.5rem;
+    }
+    
+    .graduates-testimonial-grid--four-columns,
+    .graduates-testimonial-grid--three-columns {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* 768px - Tablets pequeñas */
+@media (max-width: 768px) {
+    .graduates-testimonial-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.2rem;
+    }
+    
+    .graduates-testimonial-grid--four-columns,
+    .graduates-testimonial-grid--three-columns,
+    .graduates-testimonial-grid--two-columns {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* 550px - Móviles grandes */
+@media (max-width: 550px) {
+    .graduates-testimonial-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .graduates-testimonial-grid--four-columns,
+    .graduates-testimonial-grid--three-columns,
+    .graduates-testimonial-grid--two-columns {
+        grid-template-columns: 1fr;
+    }
+    
+    .graduates-testimonial-grid__empty {
+        padding: 3rem 1rem;
+    }
+    
+    .graduates-testimonial-grid__empty-icon {
+        font-size: 3rem;
+    }
+    
+    .graduates-testimonial-grid__empty-title {
+        font-size: 1.4rem;
+    }
+}
+
+/* 420px - Móviles medianos */
+@media (max-width: 420px) {
+    .graduates-testimonial-grid {
+        gap: 1.2rem;
+    }
+    
+    .graduates-testimonial-grid__empty {
+        padding: 2.5rem 0.8rem;
+    }
+    
+    .graduates-testimonial-grid__empty-title {
+        font-size: 1.3rem;
+    }
+    
+    .graduates-testimonial-grid__empty-message {
+        font-size: 0.9rem;
+    }
+}
+
+/* 320px - Móviles pequeños */
+@media (max-width: 320px) {
+    .graduates-testimonial-grid {
+        gap: 1rem;
+    }
+    
+    .graduates-testimonial-grid__empty {
+        padding: 2rem 0.5rem;
+    }
+    
+    .graduates-testimonial-grid__empty-icon {
+        font-size: 2.5rem;
+    }
+    
+    .graduates-testimonial-grid__empty-title {
+        font-size: 1.2rem;
+    }
+    
+    .graduates-testimonial-grid__empty-message {
+        font-size: 0.85rem;
+        line-height: 1.5;
+    }
+}
+
+/* Estados de accesibilidad */
+@media (prefers-reduced-motion: reduce) {
+    .graduates-testimonial-grid .graduate-testimonial-card {
+        animation: none;
+        opacity: 1;
+        transform: none;
+    }
+}
+
+/* Ajustes para impresión */
+@media print {
+    .graduates-testimonial-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+        page-break-inside: avoid;
+    }
+    
+    .graduates-testimonial-grid .graduate-testimonial-card {
+        page-break-inside: avoid;
+        margin-bottom: 1rem;
+    }
+}

@@ -1,0 +1,322 @@
+/* 
+ * Átomo: Tarjeta de testimonio de egresado
+ * Propósito: Mostrar información y testimonio de un egresado exitoso
+ * Metodología: BEM
+ */
+
+.graduate-testimonial-card {
+    background: var(--blanco);
+    border-radius: 1rem;
+    padding: 2rem;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+    border: 2px solid transparent;
+    cursor: pointer;
+    min-height: 280px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+/* Efecto de borde animado al hacer hover */
+.graduate-testimonial-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, var(--anaranjado-fuerte), var(--Azul-logo));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+}
+
+.graduate-testimonial-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    border-color: rgba(255, 95, 31, 0.2);
+}
+
+.graduate-testimonial-card:hover::before {
+    transform: scaleX(1);
+}
+
+/* Header de la tarjeta con imagen y info básica */
+.graduate-testimonial-card__header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Imagen del egresado */
+.graduate-testimonial-card__image {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--anaranjado-fuerte);
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255, 95, 31, 0.2);
+}
+
+.graduate-testimonial-card:hover .graduate-testimonial-card__image {
+    transform: scale(1.1);
+    border-color: var(--Azul-logo);
+    box-shadow: 0 8px 25px rgba(11, 86, 173, 0.3);
+}
+
+/* Información del egresado */
+.graduate-testimonial-card__info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+.graduate-testimonial-card__name {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--Azul-logo);
+    margin: 0;
+    line-height: 1.3;
+}
+
+.graduate-testimonial-card__career {
+    font-family: 'Roboto', sans-serif;
+    font-size: 0.9rem;
+    color: var(--anaranjado-fuerte);
+    margin: 0;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.graduate-testimonial-card__graduation-year {
+    font-family: 'Roboto', sans-serif;
+    font-size: 0.8rem;
+    color: var(--gris-oscuro);
+    margin: 0;
+    opacity: 0.8;
+}
+
+/* Contenido del testimonio */
+.graduate-testimonial-card__content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Texto del testimonio */
+.graduate-testimonial-card__testimonial {
+    font-family: 'Roboto', sans-serif;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--gris-oscuro);
+    margin: 0;
+    text-align: center;
+    font-style: italic;
+    position: relative;
+    flex: 1;
+}
+
+/* Comillas decorativas */
+.graduate-testimonial-card__testimonial::before,
+.graduate-testimonial-card__testimonial::after {
+    font-family: 'Poppins', sans-serif;
+    font-size: 2rem;
+    color: var(--anaranjado-fuerte);
+    opacity: 0.3;
+    position: absolute;
+    font-weight: bold;
+}
+
+.graduate-testimonial-card__testimonial::before {
+    content: '"';
+    top: -10px;
+    left: -10px;
+}
+
+.graduate-testimonial-card__testimonial::after {
+    content: '"';
+    bottom: -15px;
+    right: -10px;
+}
+
+/* Footer de la tarjeta */
+.graduate-testimonial-card__footer {
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Badge de verificación/status */
+.graduate-testimonial-card__badge {
+    font-family: 'Roboto', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.3rem 0.8rem;
+    border-radius: 15px;
+    background: linear-gradient(135deg, var(--anaranjado-fuerte), var(--anaranjado-oscuro));
+    color: var(--blanco);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 2px 8px rgba(255, 95, 31, 0.3);
+}
+
+/* Variante destacada para egresados destacados */
+.graduate-testimonial-card--featured {
+    border: 2px solid var(--anaranjado-fuerte);
+    background: linear-gradient(135deg, #ffffff 0%, #fff8f5 100%);
+}
+
+.graduate-testimonial-card--featured::before {
+    transform: scaleX(1);
+    height: 6px;
+}
+
+.graduate-testimonial-card--featured .graduate-testimonial-card__name {
+    color: var(--anaranjado-fuerte);
+}
+
+.graduate-testimonial-card--featured .graduate-testimonial-card__badge {
+    background: linear-gradient(135deg, var(--Azul-logo), var(--Azul-claro-2));
+}
+
+/* RESPONSIVE DESIGN */
+
+/* 768px */
+@media (max-width: 768px) {
+    .graduate-testimonial-card {
+        padding: 1.5rem;
+        min-height: 260px;
+    }
+    
+    .graduate-testimonial-card__image {
+        width: 70px;
+        height: 70px;
+    }
+    
+    .graduate-testimonial-card__name {
+        font-size: 1.1rem;
+    }
+    
+    .graduate-testimonial-card__testimonial {
+        font-size: 0.9rem;
+    }
+    
+    .graduate-testimonial-card__header {
+        margin-bottom: 1.2rem;
+    }
+}
+
+/* 550px */
+@media (max-width: 550px) {
+    .graduate-testimonial-card {
+        padding: 1.2rem;
+        min-height: 240px;
+    }
+    
+    .graduate-testimonial-card__image {
+        width: 65px;
+        height: 65px;
+    }
+    
+    .graduate-testimonial-card__name {
+        font-size: 1rem;
+    }
+    
+    .graduate-testimonial-card__testimonial {
+        font-size: 0.85rem;
+        line-height: 1.5;
+    }
+    
+    .graduate-testimonial-card__career {
+        font-size: 0.8rem;
+    }
+}
+
+/* 420px */
+@media (max-width: 420px) {
+    .graduate-testimonial-card {
+        padding: 1rem;
+        min-height: 220px;
+    }
+    
+    .graduate-testimonial-card__image {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .graduate-testimonial-card__name {
+        font-size: 0.95rem;
+    }
+    
+    .graduate-testimonial-card__testimonial {
+        font-size: 0.8rem;
+    }
+    
+    .graduate-testimonial-card__testimonial::before,
+    .graduate-testimonial-card__testimonial::after {
+        font-size: 1.5rem;
+    }
+}
+
+/* 320px */
+@media (max-width: 320px) {
+    .graduate-testimonial-card {
+        padding: 0.8rem;
+        min-height: 200px;
+    }
+    
+    .graduate-testimonial-card__image {
+        width: 55px;
+        height: 55px;
+    }
+    
+    .graduate-testimonial-card__name {
+        font-size: 0.9rem;
+    }
+    
+    .graduate-testimonial-card__testimonial {
+        font-size: 0.75rem;
+    }
+    
+    .graduate-testimonial-card__badge {
+        font-size: 0.7rem;
+        padding: 0.2rem 0.6rem;
+    }
+}
+
+/* Estados de accesibilidad */
+@media (prefers-reduced-motion: reduce) {
+    .graduate-testimonial-card,
+    .graduate-testimonial-card__image,
+    .graduate-testimonial-card::before {
+        animation: none;
+        transition: none;
+    }
+    
+    .graduate-testimonial-card:hover {
+        transform: none;
+    }
+}
+
+/* Alto contraste */
+@media (prefers-contrast: high) {
+    .graduate-testimonial-card {
+        border: 2px solid var(--negro);
+    }
+    
+    .graduate-testimonial-card__name,
+    .graduate-testimonial-card__testimonial {
+        color: var(--negro);
+    }
+}
