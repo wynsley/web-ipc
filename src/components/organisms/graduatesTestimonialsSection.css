@@ -1,0 +1,437 @@
+/* 
+ * Organismo: Sección de testimonios de egresados
+ * Propósito: Sección completa con header, grid de testimonios y elementos decorativos
+ * Metodología: BEM
+ */
+
+.graduates-testimonials-section {
+    padding: 4rem 2rem;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    position: relative;
+    overflow: hidden;
+    margin: 3rem 0;
+}
+
+/* Efectos de fondo decorativos */
+.graduates-testimonials-section::before {
+    content: '';
+    position: absolute;
+    top: -30%;
+    left: -20%;
+    width: 40%;
+    height: 160%;
+    background: linear-gradient(45deg, transparent 0%, rgba(11, 86, 173, 0.06) 25%, rgba(11, 86, 173, 0.1) 50%, rgba(11, 86, 173, 0.06) 75%, transparent 100%);
+    transform: rotate(-15deg);
+    pointer-events: none;
+}
+
+.graduates-testimonials-section::after {
+    content: '';
+    position: absolute;
+    bottom: -30%;
+    right: -20%;
+    width: 35%;
+    height: 140%;
+    background: linear-gradient(225deg, transparent 0%, rgba(255, 95, 31, 0.05) 25%, rgba(255, 95, 31, 0.08) 50%, rgba(255, 95, 31, 0.05) 75%, transparent 100%);
+    transform: rotate(18deg);
+    pointer-events: none;
+}
+
+/* Contenedor principal */
+.graduates-testimonials-section__container {
+    max-width: 1400px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+}
+
+/* Header de la sección */
+.graduates-testimonials-section__header {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.graduates-testimonials-section__title {
+    font-family: 'Poppins', sans-serif;
+    font-size: 2.8rem;
+    font-weight: 700;
+    color: var(--Azul-logo);
+    margin: 0 0 1.5rem 0;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+/* Línea decorativa bajo el título */
+.graduates-testimonials-section__title::after {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 4px;
+    background: linear-gradient(90deg, var(--anaranjado-fuerte), var(--Azul-logo));
+    border-radius: 2px;
+}
+
+.graduates-testimonials-section__subtitle {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.2rem;
+    color: var(--gris-oscuro);
+    margin: 0;
+    opacity: 0.8;
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+/* Contenido principal */
+.graduates-testimonials-section__content {
+    position: relative;
+}
+
+/* Grid de testimonios */
+.graduates-testimonials-section__grid {
+    margin-bottom: 3rem;
+}
+
+/* Estados de error */
+.graduates-testimonials-section__error {
+    text-align: center;
+    padding: 3rem 2rem;
+    background: rgba(248, 215, 218, 0.9);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(220, 53, 69, 0.3);
+    border-radius: 1rem;
+    color: #721c24;
+    font-family: 'Roboto', sans-serif;
+    box-shadow: 0 10px 30px rgba(220, 53, 69, 0.2);
+}
+
+.graduates-testimonials-section__error-title {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.graduates-testimonials-section__error-button {
+    margin-top: 1rem;
+    padding: 0.8rem 1.5rem;
+    background: var(--anaranjado-fuerte);
+    color: var(--blanco);
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.graduates-testimonials-section__error-button:hover {
+    background: var(--anaranjado-oscuro);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 95, 31, 0.3);
+}
+
+/* Estadísticas o información adicional */
+.graduates-testimonials-section__stats {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 3rem;
+    margin-top: 3rem;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(15px);
+    border-radius: 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.graduates-testimonials-section__stat {
+    text-align: center;
+}
+
+.graduates-testimonials-section__stat-number {
+    font-family: 'Poppins', sans-serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--anaranjado-fuerte);
+    margin: 0 0 0.5rem 0;
+    display: block;
+}
+
+.graduates-testimonials-section__stat-label {
+    font-family: 'Roboto', sans-serif;
+    font-size: 0.95rem;
+    color: var(--gris-oscuro);
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 500;
+}
+
+/* CTA (Call to Action) al final */
+.graduates-testimonials-section__cta {
+    text-align: center;
+    padding: 3rem 2rem;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(15px);
+    border-radius: 2rem;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    margin-top: 3rem;
+}
+
+.graduates-testimonials-section__cta-title {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: var(--Azul-logo);
+    margin: 0 0 1rem 0;
+}
+
+.graduates-testimonials-section__cta-text {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1rem;
+    color: var(--gris-oscuro);
+    margin: 0 0 2rem 0;
+    line-height: 1.6;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.graduates-testimonials-section__cta-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 1rem 2rem;
+    background: linear-gradient(135deg, var(--anaranjado-fuerte), var(--anaranjado-oscuro));
+    color: var(--blanco);
+    border: none;
+    border-radius: 50px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 25px rgba(255, 95, 31, 0.3);
+}
+
+.graduates-testimonials-section__cta-button:hover {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 12px 35px rgba(255, 95, 31, 0.4);
+}
+
+/* RESPONSIVE DESIGN */
+
+/* 1200px */
+@media (max-width: 1200px) {
+    .graduates-testimonials-section {
+        padding: 3.5rem 1.5rem;
+    }
+    
+    .graduates-testimonials-section__title {
+        font-size: 2.5rem;
+    }
+    
+    .graduates-testimonials-section__subtitle {
+        font-size: 1.1rem;
+    }
+    
+    .graduates-testimonials-section__stats {
+        gap: 2rem;
+    }
+}
+
+/* 991px */
+@media (max-width: 991px) {
+    .graduates-testimonials-section {
+        padding: 3rem 1.2rem;
+    }
+    
+    .graduates-testimonials-section__header {
+        margin-bottom: 3rem;
+    }
+    
+    .graduates-testimonials-section__title {
+        font-size: 2.3rem;
+    }
+    
+    .graduates-testimonials-section__subtitle {
+        font-size: 1rem;
+    }
+    
+    .graduates-testimonials-section__stats {
+        gap: 1.5rem;
+        flex-wrap: wrap;
+    }
+    
+    .graduates-testimonials-section__stat-number {
+        font-size: 2.2rem;
+    }
+}
+
+/* 768px */
+@media (max-width: 768px) {
+    .graduates-testimonials-section {
+        padding: 2.5rem 1rem;
+    }
+    
+    .graduates-testimonials-section__header {
+        margin-bottom: 2.5rem;
+    }
+    
+    .graduates-testimonials-section__title {
+        font-size: 2rem;
+    }
+    
+    .graduates-testimonials-section__subtitle {
+        font-size: 0.95rem;
+        padding: 0 1rem;
+    }
+    
+    .graduates-testimonials-section__stats {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1.5rem;
+    }
+    
+    .graduates-testimonials-section__cta {
+        padding: 2.5rem 1.5rem;
+    }
+}
+
+/* 550px */
+@media (max-width: 550px) {
+    .graduates-testimonials-section {
+        padding: 2rem 0.8rem;
+    }
+    
+    .graduates-testimonials-section__title {
+        font-size: 1.8rem;
+    }
+    
+    .graduates-testimonials-section__subtitle {
+        font-size: 0.9rem;
+        line-height: 1.5;
+    }
+    
+    .graduates-testimonials-section__cta {
+        padding: 2rem 1.2rem;
+    }
+    
+    .graduates-testimonials-section__cta-title {
+        font-size: 1.4rem;
+    }
+    
+    .graduates-testimonials-section__cta-text {
+        font-size: 0.9rem;
+    }
+    
+    .graduates-testimonials-section__title::after {
+        width: 80px;
+        height: 3px;
+    }
+}
+
+/* 420px */
+@media (max-width: 420px) {
+    .graduates-testimonials-section {
+        padding: 1.5rem 0.5rem;
+    }
+    
+    .graduates-testimonials-section__header {
+        margin-bottom: 2rem;
+    }
+    
+    .graduates-testimonials-section__title {
+        font-size: 1.6rem;
+    }
+    
+    .graduates-testimonials-section__subtitle {
+        font-size: 0.85rem;
+    }
+    
+    .graduates-testimonials-section__stats {
+        padding: 1.2rem;
+    }
+    
+    .graduates-testimonials-section__stat-number {
+        font-size: 2rem;
+    }
+    
+    .graduates-testimonials-section__stat-label {
+        font-size: 0.8rem;
+    }
+    
+    .graduates-testimonials-section__cta {
+        padding: 1.5rem 1rem;
+        margin-top: 2rem;
+    }
+    
+    .graduates-testimonials-section__cta-button {
+        padding: 0.8rem 1.5rem;
+        font-size: 0.9rem;
+    }
+}
+
+/* 320px */
+@media (max-width: 320px) {
+    .graduates-testimonials-section {
+        padding: 1rem 0.3rem;
+    }
+    
+    .graduates-testimonials-section__title {
+        font-size: 1.4rem;
+    }
+    
+    .graduates-testimonials-section__subtitle {
+        font-size: 0.8rem;
+    }
+    
+    .graduates-testimonials-section__title::after {
+        width: 60px;
+        height: 2px;
+    }
+    
+    .graduates-testimonials-section__stat-number {
+        font-size: 1.8rem;
+    }
+    
+    .graduates-testimonials-section__cta-title {
+        font-size: 1.2rem;
+    }
+    
+    .graduates-testimonials-section__cta-text {
+        font-size: 0.85rem;
+    }
+}
+
+/* Estados de accesibilidad */
+@media (prefers-reduced-motion: reduce) {
+    .graduates-testimonials-section::before,
+    .graduates-testimonials-section::after {
+        animation: none;
+        transition: none;
+    }
+}
+
+/* Alto contraste */
+@media (prefers-contrast: high) {
+    .graduates-testimonials-section__title {
+        color: var(--negro);
+    }
+    
+    .graduates-testimonials-section__subtitle {
+        color: var(--negro);
+        opacity: 1;
+    }
+    
+    .graduates-testimonials-section__stat-number {
+        color: var(--negro);
+    }
+}
