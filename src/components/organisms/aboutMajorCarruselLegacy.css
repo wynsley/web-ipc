@@ -1,132 +1,181 @@
-/* Wrapper principal */
 .Mcarousel__wrapper {
-  width: 100%;
+  position: relative;
+  background: linear-gradient(90deg, rgba(5, 41, 56, 0.87), rgba(6, 104, 129, 0.932), rgba(8, 41, 55, 0.87));
+  padding: 4rem 0 2rem;     
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 32rem;
+  margin-bottom: 3rem;
+  max-width: 100%;         
+  overflow: hidden;         
+}
+
+.Mcarousel__container {
+  width: 100%;             
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  margin: 0 auto;           
+}
+
+/* Tarjetas */
+.Mcarousel__item {
+  position: absolute;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: auto;
-  padding-top: 5rem;
-  padding-bottom: 3rem;
-  margin-bottom: 3rem;
-  text-align: center;
-  background: linear-gradient(1200deg, rgba(4, 68, 95, 0.87),  rgba(4, 74, 91, 0.932), rgba(4, 68, 95, 0.87));
-  position: relative;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%) scale(0.9);
+  opacity: 0;
+  transition: all 0.6s ease;
+  z-index: 0;
+  width: 100%;              
+  max-width: 22rem;        
+  margin: auto;            
 }
 
-/* Contenedor */
-.Mcarousel__container {
-  width: 60%;
-  margin: auto;
+/* Tarjeta central */
+.Mcarousel__item.active {
+  transform: translateX(-50%) scale(1.1);
+  opacity: 1;
+  z-index: 3;
 }
 
-/* Items */
-.Mcarousel__item {
-  padding: 0 8px;
-  transition: transform 0.3s ease, opacity 0.3s ease;
+/* Tarjeta a la izquierda */
+.Mcarousel__item.left {
+  transform: translateX(-130%) translateY(7%) scale(0.9);
+  opacity: 0.5;
+  z-index: 2;
 }
 
-.Mcarousel__item:hover {
-  transform: scale(1.05);
+/* Tarjeta a la derecha */
+.Mcarousel__item.right {
+  transform: translateX(30%) translateY(7%) scale(0.9);
+  opacity: 0.5;
+  z-index: 2;
 }
 
-/* Slides */
-.Mcarousel__container .slick-slide {
-  opacity: 0.4;
-  transform: scale(0.9);
+/* Tarjetas ocultas */
+.Mcarousel__item.hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(-50%) scale(0.8);
+  z-index: 0;
+}
+
+/* dots */
+.Mcarousel__dots {
+  display: flex;
+  justify-content: center;
+  gap: 0.6rem;
+  position: absolute;
+  bottom: 1rem;             
+  width: 100%;
+  left: 0;
+  pointer-events: auto;
+  z-index: 5;
+}
+
+.Mcarousel__dot {
+  width: 12px;
+  height: 12px;
+  background: #09f4f47e;
+  border-radius: 50%;
+  cursor: pointer;
   transition: all 0.3s ease;
 }
 
-.Mcarousel__container .slick-center {
-  opacity: 1;
-  transform: scale(1);
+.Mcarousel__dot.active {
+  background: var(--anaranjado);
+  transform: scale(1.3);
 }
 
-.Mcarousel__arrow {
-  position: absolute;
-  bottom: 1rem;         
-  z-index: 3;
-  width: 45px;
-  height: 45px;
-  border-radius: 999px;
-  background: #2a41d2;
-  box-shadow: 0 2px 15px rgba(0,0,0,.3);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 28px;
-  color: #fff;
-  border: none;
-  cursor: pointer;
-}
+/*  RESPONSIVE */
 
-
-/* Botón izquierdo */
-.slick-prev {
-  z-index: 2;
-  left: 50%;
-  transform: translateX(-70px); 
-}
-
-/* Botón derecho */
-.slick-next {
-  left: 50%;
-  transform: translateX(25px); 
-}
-.Mcarousel__wrapper .slick-prev,
-.Mcarousel__wrapper .slick-next {
-  top: auto !important;  
-  bottom: -1em !important;
-}
-
-/* Íconos */
-.Mcarousel__container .slick-prev:before,
-.Mcarousel__container .slick-next:before {
-  font-size: 22px;
-  color: #fff; /* mejor contraste */
-}
-
-/* --------- Responsive --------- */
-@media (max-width: 1200px) {
-  .Mcarousel__container {
-    width: 90%;
+/*
+  1200px =======================================================
+*/
+@media(max-width:1200px){
+  .Mcarousel__item.left {
+    transform: translateX(-135%) translateY(10%) scale(0.85);
+  }
+  .Mcarousel__item.right {
+    transform: translateX(35%) translateY(10%) scale(0.85);
   }
 }
 
-/* ojo: faltaba px en tu media query */
+/*
+  768px ========================================================
+*/
 @media (max-width: 991px) {
-  .Mcarousel__container {
-    width: 70%;
+  .Mcarousel__item.active {
+  transform: translateX(-50%) scale(1);
+}
+  .Mcarousel__item.left {
+    transform: translateX(-130%) translateY(6%) scale(0.85);
+  }
+  .Mcarousel__item.right {
+    transform: translateX(30%) translateY(6%) scale(0.85);
   }
 }
 
+/* 
+  768px ========================================================
+*/
 @media (max-width: 768px) {
-  .Mcarousel__wrapper {
-    padding: 2rem 0;
-  }
-
   .Mcarousel__container {
-    width: 95%;
+    width: 100%;
+    max-width: 35rem;
+    padding: 0;
+  }
+  .Mcarousel__item {
+    width: 100%;       
+    max-width: 320px; 
+  }
+  .Mcarousel__item.active {
+    transform: translateX(-45%) scale(.9);
+  }
+  .Mcarousel__item.left {
+    transform: translateX(-90%) translateY(0%) scale(0.8);
+    opacity: 0.4;
+  }
+  .Mcarousel__item.right {
+    transform: translateX(-4%) translateY(0%) scale(0.8);
+    opacity: 0.4;
+  }
+}
+/*
+  480px ======================================================
+*/
+@media (max-width: 480px) {
+  .Mcarousel__wrapper {
+    margin: 0 auto;
   }
 
   .Mcarousel__item {
-    padding: 0 5px;
+    width: 90%;
+    max-width: 22rem;
+    transform: translateX(-50%) scale(1.1); /* centrada */
+  }
+
+  /* Ocultar las demás tarjetas */
+  .Mcarousel__item.left,
+  .Mcarousel__item.right,
+  .Mcarousel__item.hidden {
+    display: none !important;
   }
 }
 
-/* 👇 De 550px hacia arriba quiero 2 cards visibles */
-@media (max-width: 768px) and (min-width: 551px) {
-  .Mcarousel__container .slick-slide {
-    transform: scale(0.9) translateX(-10%); /* la de atrás se asoma */
-  }
-}
-
-/* 👇 Menos de 550px solo 1 card centrada */
-@media (max-width: 550px) {
-  .Mcarousel__container {
-    width: 100%;
-  }
-
-  .Mcarousel__container .slick-slide {
-    transform: scale(0.95);
+/*
+  320px ======================================================
+*/
+@media (max-width: 320px) {
+  .Mcarousel__item {
+    width: 95%;
+    margin-left: -.5em;
+    transform: translateX(-45%) scale(0.95);
   }
 }

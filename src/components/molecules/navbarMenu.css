@@ -1,5 +1,5 @@
 .navbar__menu { 
-  font-family: 'Roboto';
+  font-family: 'Poppins';
   grid-row: 1;
   display: flex;
   width: 100%;
@@ -13,10 +13,26 @@
 .navbar__item { 
   list-style: none;
   text-decoration: none;
-  font-size: 1.06rem;
+  font-size: 1rem;
   transition: var(--trasicion);
   position: relative;
   display: block;
+  cursor: pointer;
+}
+.active {
+  font-weight: 600;
+  color: rgb(18, 196, 196);
+}
+
+.navbar__item.active::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background-color: var(--anaranjado); 
+  border-radius: 2px;
 }
 
 .navbar__item::after{
@@ -26,14 +42,14 @@
   height: 3px;
   bottom: -3px;
   left: 0;
-  background-color: var(--Azul-claro-2);
+  background-color: var(--anaranjado);
   transition: width .3s ease-in-out;
   border-radius: 3px;
 }
 
 .navbar__item:hover{
-  color: var(--Azul-claro-2);
-  transform: translateY(-3px);
+  color: var(--Azul);
+  transform: translateY(-2px);
 }
 
 .navbar__item:hover::after{
