@@ -11,7 +11,6 @@ import './careersGrid.css'
  */
 const CareersGrid = ({ 
     careers = [], 
-    onCareerClick,
     columns = 'auto',
     className = '' 
 }) => {
@@ -21,12 +20,6 @@ const CareersGrid = ({
                         columns === 'four' ? 'careers-grid--four-columns' : ''
         
         return `${baseClass} ${columnClass} ${className}`.trim()
-    }
-
-    const handleCareerClick = (career) => {
-        if (onCareerClick) {
-            onCareerClick(career)
-        }
     }
 
     if (!careers || careers.length === 0) {
@@ -45,7 +38,7 @@ const CareersGrid = ({
                     title={career.title}
                     description={career.description}
                     backgroundImage={career.backgroundImage}
-                    onClick={() => handleCareerClick(career)}
+                    href={career.href}
                 />
             ))}
         </div>
