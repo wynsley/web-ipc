@@ -1,8 +1,8 @@
 .section--admision {
   display: flex;
   flex-direction: column;
-    text-align: center;
-    padding: 2rem 1rem;
+  text-align: center;
+  padding: 2rem 1rem;
 }
 
 .title__requerimients {
@@ -76,6 +76,9 @@
     991PX 
 ==============================================*/
 @media (max-width: 991px) {
+  .section--admision{
+  padding: 1em;
+ }
   .title__requerimients {
     font-size: 1.3rem;
   }
@@ -115,9 +118,13 @@
     480PX 
 ==============================================*/
 @media (max-width: 480px) {
+  .section--admision{
+    padding: 1em .5em;
+  }
   .admision__img {
-  width: 25rem;
-  height: 18rem;
+    max-width: 320px;
+    height: 18rem;
+    padding-right: 1;
   }
   .title__requerimients{
     font-size: .9rem;
@@ -146,8 +153,8 @@
   }
 
   .admision__img {
-  max-width: 250px;
-  height: 18rem;
+    max-width: 290px;
+    height: 18rem;
   }
   
 }

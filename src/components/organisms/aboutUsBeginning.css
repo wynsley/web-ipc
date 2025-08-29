@@ -2,7 +2,6 @@
 .section-major {
   padding: 3rem 1rem;
   text-align: center;
-  background: #fff; 
   display: flex;
   flex-direction: column;
   gap: 2rem;
@@ -22,6 +21,7 @@
 }
 
 .major__subtitle {
+  margin-top: -1.5em;
   font-family: 'Roboto';
   font-size: 1.1rem;
   color: #bb760d;
@@ -30,22 +30,15 @@
   }
 
 /* Wrappers de pasos */
-.steps-wrapper {
+.stepsA-wrapper {
   display: flex;
   align-items: center;
   justify-content: center;
-  display: flex;
   flex-wrap: wrap;
-  gap: 2rem ; 
+  gap: 1rem ; 
 
 }
 
-
-.arrow--vertical {
-  width: 20px;
-  height: 80px;
-  color: var(--Azul);
-}
 
 /* Tarjeta */
 .step-card {
@@ -54,9 +47,9 @@
   max-width: 300px;
   padding: 1rem;
   background: transparent;
-  border-radius: 50%;
-  transition: .5s ease-in;
+  transition: .3s ease-in;
   margin-top: 1rem;
+  box-shadow:  0 2px 2px black;
 }
 
 .step-card:hover{
@@ -93,7 +86,7 @@
 }
 
 .icon-circle__glyph {
-  font-size: 48px; /* icono grande */
+  font-size: 48px; 
 }
 
 /* ===========================
@@ -108,26 +101,21 @@
 
 /* <= 992px */
 @media (max-width: 992px) {
-  .step-card { 
-    width: 220px;
-    height: 220px;
-   }
   .arrow--horizontal { width: 50px; }
 }
 
 /* <= 768px — cambiamos a columna y flechas verticales */
 @media (max-width: 768px) {
+  .stepsA-wrapper{
+    gap: 1em;
+  }
+  
   .steps-wrapper--mobile {
     display: flex;
     align-items: center;
   }
 
-  .step-card {
-    width: 100%;
-    max-width: 360px;
-    height: 14rem;
-    padding: 0 1rem;
-  }
+  
 
   .arrow--vertical { height: 15px; }
 }

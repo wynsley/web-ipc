@@ -1,7 +1,9 @@
-.careers{
+.titleAdmision{
+    font-family: 'Poppins';
     text-align: center;
     font-size: 1.8rem;
     padding: 2rem;
-    background-color: var(--gris);
+    color: var(--Azul-logo);
+    font-weight: bold;
 }
 

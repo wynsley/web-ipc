@@ -2,6 +2,7 @@
   font-size: 2em;
   padding-top: 50px;
   margin-bottom: 10px;
+  text-shadow: 0 2px 1px var(--negro);
 }
 
 .major__titles h1{
@@ -15,7 +16,7 @@
   font-family: 'Roboto';
   display: inline;
   color: var(--blanco);
-  font-size: 1.5em;
+  font-size: 1.7em;
 }
 
 .majorcar__item h1::after {
@@ -25,3 +26,4 @@
   top: 10px;
   left: 10px;
 }
+

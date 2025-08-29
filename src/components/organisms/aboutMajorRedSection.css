@@ -13,7 +13,7 @@
 .major__titles {
   display: flex;
   flex-direction: column;
-  max-width: 55rem;
+  width: 58vw;
   margin: 0 auto;
 }
 
@@ -22,3 +22,47 @@
   background: linear-gradient(90deg, var(--anaranjado-fuerte), var(--Azul-logo));
   margin-bottom: 1rem;
 }
+
+/*
+    RESPONSIVE DESIGN
+*/
+
+@media(max-width:991px){
+  .majorRed__container{
+    font-size: 99%;
+  }
+  .major__titles h1{
+    font-size: 1.6em;
+  }
+  .major__titles p{
+    font-size: .9em;
+}
+}
+@media(max-width:768px){
+  .majorRed__container{
+    margin: 0;
+  }
+  .major__titles{
+    width: 85vw;
+  }
+  .major__titles h1{
+    font-size: 1.5em;
+  }
+  .major__titles p{
+    font-size: .8em;
+  }
+}
+@media(max-width:480px){
+  .majorRed__container{
+    margin: 0;
+  }
+  .major__titles h1{
+    font-size: 1.2em;
+  }
+  .major__titles p{
+    font-size: .6em;
+  }
+}
+
+
+

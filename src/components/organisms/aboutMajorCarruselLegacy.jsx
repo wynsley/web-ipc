@@ -1,55 +1,81 @@
-import Slider from "react-slick"
+// AboutMajorCarruselLegacy.jsx
+import { useRef } from "react";
+import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import './aboutMajorCarruselLegacy.css'
-import { AboutMajorPriceCard } from '../molecules/aboutMajorPriceCard'
+import "./aboutMajorCarruselLegacy.css";
+import { AboutMajorPriceCard } from "../molecules/aboutMajorPriceCard";
 import { FaBookOpen, FaRoad, FaTrophy, FaLightbulb } from "react-icons/fa";
 
-const AboutMajorCarruselLegacy= () => {
+/* Flechas personalizadas (quedan al pie) */
+const PrevArrow = ({ onClick }) => (
+  <button type="button" className="Mcarousel__arrow prev" onClick={onClick} aria-label="Anterior">
+    ‹
+  </button>
+);
 
-    const Plans = [
-        {
-            icon: FaBookOpen,
-            title:'Historia',
-            valuesIPC :['Honestidad', 'Respeto','Perseverancia']
-        },
-        {
-            icon: FaRoad,
-            title:'Trayectoria',
-            valuesIPC :['Honestidad', 'Respeto','Perseverancia']
-        },
-        {
-            icon: FaTrophy,
-            title:'Logros',
-            valuesIPC :['Honestidad', 'Respeto','Perseverancia']
-        },
-        {
-            icon: FaLightbulb,
-            title:'Consejos',
-            valuesIPC :['Honestidad', 'Respeto','Perseverancia']
-        },
-    ]
+const NextArrow = ({ onClick }) => (
+  <button type="button" className="Mcarousel__arrow next" onClick={onClick} aria-label="Siguiente">
+    ›
+  </button>
+);
 
-    const Settings = {
-    rows: 1,
-    slidesToShow: window.innerWidth < 700 ? 1 : 3,
+const AboutMajorCarruselLegacy = () => {
+  const sliderRef = useRef(null);
+
+  const Plans = [
+    { icon: FaBookOpen, title:"Historia",    valuesIPC:["Honestidad","Respeto","Perseverancia"] },
+    { icon: FaRoad,     title:"Trayectoria", valuesIPC:["Disciplina","Compromiso","Esfuerzo"] },
+    { icon: FaTrophy,   title:"Logros",      valuesIPC:["Excelencia","Superación","Trabajo en equipo"] },
+    { icon: FaLightbulb,title:"Consejos",    valuesIPC:["Innovación","Constancia","Creatividad"] },
+  ];
+
+  const Settings = {
+    infinite: true,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    centerMode: true,
+    centerPadding: "0px",
     arrows: true,
-    prevArrow: <img src="https://raw.githubusercontent.com/rnas/frontend-test/master/assets/caret_left.png" alt="prev" className="slick-prev" />,
-    nextArrow: <img src="https://raw.githubusercontent.com/rnas/frontend-test/master/assets/caret_right.png" alt="next" className="slick-next" />,
+    prevArrow: <PrevArrow />,
+    nextArrow: <NextArrow />,
+    autoplay: true,
+    autoplaySpeed: 4000,
+    pauseOnHover: true,
+    focusOnSelect: true,
+    swipeToSlide: true,
+    adaptiveHeight: true,
+    responsive: [
+      // tablets / medianos: 1 tarjeta centrada y laterales asomadas
+      { breakpoint: 768, settings: { slidesToShow: 1, centerMode: true, centerPadding: "22%" } },
+      // móviles: que se vea aún más la lateral (mitad)
+      { breakpoint: 550, settings: { slidesToShow: 1, centerMode: true, centerPadding: "32%" } },
+      // muy pequeños
+      { breakpoint: 420, settings: { slidesToShow: 1, centerMode: true, centerPadding: "18%" } },
+    ],
   };
-     return(
-        <section id="plans" className="major-carousel">
-            <Slider {...Settings} className="Mcarousel__container">
-                {
-                    Plans.map ((d, s)=>{
-                        return (
-                            <AboutMajorPriceCard key={s} {...d} onClick={()=> alert (`Selected ${d.title}`)}/>
-                        )
-                    })
-                }
-            </Slider>
-        </section>
-     )
-}
 
-export {AboutMajorCarruselLegacy}
+  return (
+    <section id="plans" className="Mcarousel__wrapper">
+      <Slider
+        {...Settings}
+        ref={sliderRef}
+        className="Mcarousel__container"
+      >
+        {Plans.map((d, s) => (
+          <div
+            key={s}
+            className="Mcarousel__item"
+            onClick={() => sliderRef.current?.slickPause()}
+            onMouseEnter={() => sliderRef.current?.slickPause()}
+            onMouseLeave={() => sliderRef.current?.slickPlay()}
+          >
+            <AboutMajorPriceCard {...d} />
+          </div>
+        ))}
+      </Slider>
+    </section>
+  );
+};
+
+export { AboutMajorCarruselLegacy };

@@ -1,49 +1,132 @@
-.major-carousel {
-  padding-top: 40px;
-  text-align: center;
-  background: linear-gradient(90deg, var(--negro), var(--Azul-logo),var(--negro) );
+/* Wrapper principal */
+.Mcarousel__wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  padding-top: 5rem;
   padding-bottom: 3rem;
   margin-bottom: 3rem;
+  text-align: center;
+  background: linear-gradient(1200deg, rgba(4, 68, 95, 0.87),  rgba(4, 74, 91, 0.932), rgba(4, 68, 95, 0.87));
+  position: relative;
 }
 
+/* Contenedor */
 .Mcarousel__container {
-  display: inline-block;
-  max-width: 800px;
-  margin: 0 auto;
+  width: 60%;
+  margin: auto;
 }
 
-.slick-next {
-  position: relative;
-  bottom: -2rem;
-  right: -27rem;
-  box-shadow: 0 2px 30px var(--anaranjado);
+/* Items */
+.Mcarousel__item {
+  padding: 0 8px;
+  transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
+.Mcarousel__item:hover {
+  transform: scale(1.05);
+}
+
+/* Slides */
+.Mcarousel__container .slick-slide {
+  opacity: 0.4;
+  transform: scale(0.9);
+  transition: all 0.3s ease;
+}
+
+.Mcarousel__container .slick-center {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.Mcarousel__arrow {
+  position: absolute;
+  bottom: 1rem;         
+  z-index: 3;
+  width: 45px;
+  height: 45px;
+  border-radius: 999px;
+  background: #2a41d2;
+  box-shadow: 0 2px 15px rgba(0,0,0,.3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 28px;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+
+/* Botón izquierdo */
 .slick-prev {
-  position: relative;
-  bottom: -24.5rem;
-  left: 23rem;
-  box-shadow: 0 3px 30px var(--anaranjado);
+  z-index: 2;
+  left: 50%;
+  transform: translateX(-70px); 
 }
 
-.price-icon {
-  padding: 15px;
-  margin-bottom: 10px;
+/* Botón derecho */
+.slick-next {
+  left: 50%;
+  transform: translateX(25px); 
+}
+.Mcarousel__wrapper .slick-prev,
+.Mcarousel__wrapper .slick-next {
+  top: auto !important;  
+  bottom: -1em !important;
 }
 
-/* Responsive */
-@media only screen and (max-width: 690px) {
-  .slick-next {
-    top: -218px;
-    left: 145px;
+/* Íconos */
+.Mcarousel__container .slick-prev:before,
+.Mcarousel__container .slick-next:before {
+  font-size: 22px;
+  color: #fff; /* mejor contraste */
+}
+
+/* --------- Responsive --------- */
+@media (max-width: 1200px) {
+  .Mcarousel__container {
+    width: 90%;
+  }
+}
+
+/* ojo: faltaba px en tu media query */
+@media (max-width: 991px) {
+  .Mcarousel__container {
+    width: 70%;
+  }
+}
+
+@media (max-width: 768px) {
+  .Mcarousel__wrapper {
+    padding: 2rem 0;
   }
 
-  .slick-prev {
-    top: 192px;
-    left: -150px;
+  .Mcarousel__container {
+    width: 95%;
   }
 
-  .carousel__container {
-    width: 200px;
+  .Mcarousel__item {
+    padding: 0 5px;
+  }
+}
+
+/* 👇 De 550px hacia arriba quiero 2 cards visibles */
+@media (max-width: 768px) and (min-width: 551px) {
+  .Mcarousel__container .slick-slide {
+    transform: scale(0.9) translateX(-10%); /* la de atrás se asoma */
+  }
+}
+
+/* 👇 Menos de 550px solo 1 card centrada */
+@media (max-width: 550px) {
+  .Mcarousel__container {
+    width: 100%;
+  }
+
+  .Mcarousel__container .slick-slide {
+    transform: scale(0.95);
   }
 }

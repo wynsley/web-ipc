@@ -8,8 +8,22 @@
   top: -10px;
 }
 
-.majorcar__item p {
-  padding: 10px;
-  border-top: 1px solid green;
-  border-bottom: 1px solid green;
+@media(max-width: 768px){
+  .major-banner h1{
+  font-size: 1.8em;
 }
+.major-banner p{
+  font-size: .9em;
+}
+}
+@media(max-width: 420px){
+   .major-banner h1{
+  font-size: 1.5em;
+}
+.major-banner p{
+  font-size: .7em;
+}
+}
+
+
+

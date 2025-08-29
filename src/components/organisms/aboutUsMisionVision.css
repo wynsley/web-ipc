@@ -20,18 +20,20 @@
     padding: .5rem 0;
     box-shadow: 0 2px 7px var(--negro);
     margin-top: -5rem;
-    background-color: var(--blanco);
+    background-color: var(--gris);
     margin-left: 2rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: transform .6s ease;
+    transition: transform .6s ease-in-out;
+    z-index: 2;
 }
 
 .container__title:hover{
     transform: scale(1.03);
     .title--mivi{
-    background-color: var(--gris);
+    background-color: var(--celeste);
+    color: var(--anaranjado);
     }
 }
 
@@ -71,9 +73,12 @@
     font-family: 'BebasNeue';
     font-size: 1.5rem;
     letter-spacing: .8px;
+    color: var(--Azul-logo);
+    text-shadow: 0 1px 1px var(--negro);
 }
 .item__concept{
     font-family: 'Roboto';
+    color: rgb(127, 127, 127);
 }
 
 /*RESPONSIVE DESIGN*/
