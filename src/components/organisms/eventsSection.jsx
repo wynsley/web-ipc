@@ -66,7 +66,7 @@ const eventsData = [
 ]
 
 /**
- * Sección de eventos - Organismo
+ * Sección de eventos
  * @param {string} title - Título de la sección
  * @param {string} subtitle - Subtítulo de la sección
  * @param {string} className - Clases CSS adicionales

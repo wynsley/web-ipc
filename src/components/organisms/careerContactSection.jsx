@@ -4,7 +4,6 @@ import Beca1 from '../../assets/img/beca1.png'
 import './careerContactSection.css'
 
 /**
- * Sección de contacto para orientación en carreras - Organismo
  * @param {string} title - Título principal
  * @param {string} subtitle - Subtítulo
  * @param {string} imageSrc - URL de la imagen
