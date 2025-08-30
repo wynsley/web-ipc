@@ -11,7 +11,6 @@ import './eventCard.css'
  */
 const EventCard = ({ 
     event,
-    onClick,
     featured = false,
     className = '' 
 }) => {
@@ -78,13 +77,6 @@ const EventCard = ({
         return text.substring(0, maxLength).trim() + '...'
     }
 
-    // Manejar click con validación
-    const handleClick = () => {
-        if (typeof onClick === 'function') {
-            onClick(event)
-        }
-    }
-
     // Manejar errores de imagen
     const handleImageError = (e) => {
         console.warn('EventCard: Failed to load image:', image)
@@ -92,7 +84,7 @@ const EventCard = ({
         e.target.alt = 'Imagen no disponible'
     }
 
-    // Generar clase CSS dinámica - super chido
+    // Generar clase CSS dinámica
     const cardClasses = [
         'event__card',
         featured && 'event__card--featured',
@@ -103,7 +95,6 @@ const EventCard = ({
     return (
         <article 
             className={cardClasses}
-            onClick={handleClick}
             tabIndex={0}
             role="button"
             aria-label={`Ver detalles del evento: ${title}`}
@@ -177,7 +168,7 @@ const EventCard = ({
                     className="event__card__cta"
                     aria-hidden="true"
                 >
-                    Ver más →
+                    IPC
                 </span>
             </div>
         </article>

@@ -1,45 +1,14 @@
 .career-contact {
     padding: 5rem 2rem;
-    background-image: url(https://img.freepik.com/vector-gratis/fondo-futurista-azul-degradado_23-2149117430.jpg?w=360);
-    background-size: 150% 150%;
-    animation: career-gradient-flow 12s ease infinite;
+    background: linear-gradient(130deg, var(--Azul-claro), var(--anaranjado-fuerte));
+    opacity: 1;
     position: relative;
     overflow: hidden;
     margin: 3rem 0;
 }
 
-@keyframes career-gradient-flow {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
 
-/* Partículas académicas */
-.career-contact::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: 
-        radial-gradient(2px 2px at 30px 40px, rgba(255, 255, 255, 0.6), transparent),
-        radial-gradient(1px 1px at 80px 20px, rgba(255, 255, 255, 0.4), transparent),
-        radial-gradient(2px 2px at 120px 90px, rgba(255, 255, 255, 0.5), transparent),
-        radial-gradient(1px 1px at 170px 50px, rgba(255, 255, 255, 0.3), transparent);
-    background-repeat: repeat;
-    background-size: 220px 120px;
-    animation: career-sparkle 10s linear infinite;
-    pointer-events: none;
-    opacity: 0.7;
-}
-
-@keyframes career-sparkle {
-    0% { transform: translateY(0px) translateX(0px); }
-    100% { transform: translateY(-120px) translateX(20px); }
-}
-
-/* Contenedor principal con glassmorphism único */
+/* Contenedor principal con glassmorphism */
 .career-contact__container {
     max-width: 1400px;
     margin: 0 auto;
@@ -68,9 +37,9 @@
     font-weight: 800;
     margin: 0 0 1.5rem 0;
     background: linear-gradient(135deg, 
-        rgba(255, 255, 255, 0.95) 0%, 
-        rgba(255, 255, 255, 0.8) 50%, 
-        rgba(255, 255, 255, 0.95) 100%
+        rgba(230, 142, 10, 0.95) 0%, 
+        var(--anaranjado-fuerte) 50%, 
+        rgba(230, 142, 10, 0.95) 100%
     );
     -webkit-background-clip: text;
     background-clip: text;
@@ -80,23 +49,6 @@
     display: inline-block;
 }
 
-/* Efecto de glow diferente para carreras */
-.career-contact__title::before {
-    content: '¿Necesitas orientación?';
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: -1;
-    color: rgba(255, 255, 255, 0.6);
-    filter: blur(6px);
-    opacity: 0.8;
-    animation: career-glow-pulse 3s ease-in-out infinite;
-}
-
-@keyframes career-glow-pulse {
-    0%, 100% { opacity: 0.8; filter: blur(6px); }
-    50% { opacity: 1; filter: blur(10px); }
-}
 
 .career-contact__subtitle {
     font-family: 'Roboto', sans-serif;
@@ -109,20 +61,20 @@
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
-/* Línea decorativa única */
+/* Línea decorativa */
 .career-contact__title::after {
     content: '';
     position: absolute;
-    bottom: -25px;
+    bottom: -10px;
     left: 50%;
     transform: translateX(-50%);
     width: 150px;
     height: 6px;
     background: linear-gradient(90deg, 
         transparent 0%, 
-        rgba(255, 255, 255, 0.8) 25%, 
-        rgba(255, 255, 255, 1) 50%,
-        rgba(255, 255, 255, 0.8) 75%, 
+        var(--anaranjado-fuerte) 25%, 
+        var(--anaranjado) 50%,
+        var(--anaranjado-fuerte) 75%, 
         transparent 100%
     );
     border-radius: 3px;
