@@ -1,16 +1,27 @@
-.section--admision{
-  margin: 3rem 0 0 0;
-  margin-bottom: 2rem;
+.sectn-Admision{
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(180deg, rgb(255, 255, 255), rgba(9, 109, 134, 0.336), rgba(6, 104, 129, 0.571));
 }
 
+.admision{
+  margin:1em 1em;
+  font-size: 2.5rem;
+  text-align: center;
+  background-color: var(--blanco);
+  box-shadow: 0 2px 5px var(--negro);
+  padding: 2rem 0 2rem 0;
+  color: var(--Azul-logo);
+  text-shadow: 0 2px 2px black;
+}
 .container__admisionS{
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 2rem;
   padding: 2rem 0;
-  margin: 0 2em ;
-  background: linear-gradient(135deg, #0e337899, #41222237);
+  margin: 0 2rem;
 
 }
 
@@ -18,15 +29,6 @@
   width: 45vw;
   height: 53vh;      
   border-radius: 10px;
-}
-.admision{
-  margin:1em 1em 0  1em ;
-  font-size: 2.5rem;
-  text-align: center;
-  background-color: grey;
-  padding: 2rem 0 2rem 0;
-  color: var(--blanco);
-  text-shadow: 0 2px 2px black;
 }
 
 

@@ -35,12 +35,11 @@
 }
 
 .description{
-    font-family: 'Roboto';
+    font-family: 'poppins';
     font-size: 2rem;
     width: 35%;
     text-align: center;
-    color: var(--anaranjado);
-    text-shadow: 0 0 3px var(--negro);
+    color: var(--Azul-logo);
     font-weight: bold;
 }
 .container{

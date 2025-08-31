@@ -5,7 +5,7 @@ import { MapControls } from '../molecules/contactMapControls'
 import './contactGoogleMaps.css'
 
  function ContactGoogleMap({
-  address = "Jirón dos de mayo 1390, Celendín, Cajamarca, Perú",
+  address = "Dos de Mayo 1330, Celendín 06225",
   zoom = 17,
   height = "450px",
   className = "",
