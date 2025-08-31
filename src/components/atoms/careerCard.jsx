@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types'
 import { FaExternalLinkAlt } from 'react-icons/fa'
 import './careerCard.css'
+import { Link } from 'react-router-dom'
 
 /**
  * Tarjeta de carrera - Átomo
@@ -14,28 +15,14 @@ const CareerCard = ({
     title, 
     description, 
     backgroundImage, 
-    onClick,
-    className = '' 
+    className = '',
+    href 
 }) => {
-    const handleClick = () => {
-        if (onClick) {
-            onClick()
-        }
-    }
-
-    const handleKeyDown = (e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-            e.preventDefault()
-            handleClick()
-        }
-    }
 
     return (
-        <article 
+        <Link to={href}
             className={`career-card ${className}`}
             style={{ backgroundImage: `url(${backgroundImage})` }}
-            onClick={handleClick}
-            onKeyDown={handleKeyDown}
             tabIndex={0}
             role="button"
             aria-label={`Ver más información sobre ${title}`}
@@ -53,7 +40,7 @@ const CareerCard = ({
                     {description}
                 </p>
             </div>
-        </article>
+        </Link>
     )
 }
 

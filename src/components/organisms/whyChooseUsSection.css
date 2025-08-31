@@ -1,17 +1,9 @@
 .why-choose-section {
-    background-image: url(https://img.freepik.com/vector-gratis/tecnologia-gradiente-fondo-futurista_23-2149122416.jpg);
-    background-size: 150% 150%;
+    background: linear-gradient(130deg, var(--Azul-claro), var(--anaranjado-fuerte));
     padding: 5rem 0;
-    animation: gradient-flow 15s ease infinite;
     position: relative;
     overflow: hidden;
     margin-bottom: 3rem;
-}
-
-@keyframes gradient-flow {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
 }
 
 
@@ -72,16 +64,12 @@
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
-    animation: gradient-text 3s ease-in-out infinite;
     text-shadow: none;
     position: relative;
     display: inline-block;
 }
 
-@keyframes gradient-text {
-    0%, 100% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-}
+
 
 .why-choose-section__title::before {
     content: '¿POR QUÉ ELEGIRNOS?';
@@ -158,19 +146,6 @@
         opacity: 1;
         transform: translateY(0);
     }
-}
-
-/* Estado de error */
-.why-choose-section__error {
-    text-align: center;
-    padding: 3rem;
-    background: rgba(248, 215, 218, 0.9);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(220, 53, 69, 0.3);
-    border-radius: 1rem;
-    color: #721c24;
-    font-family: 'Roboto', sans-serif;
-    box-shadow: 0 10px 30px rgba(220, 53, 69, 0.2);
 }
 
 /* RESPONSIVE DESIGN */

@@ -11,7 +11,7 @@ function FooterDecoration () {
                     <div className="particle"></div>
                 </div>
                 <div className="footer__decoration-text">
-                    Instituto Privado Celendín
+                    Instituto de Educaión Superior Tecnológico Privado Celendín
                 </div>
         </div>
     )

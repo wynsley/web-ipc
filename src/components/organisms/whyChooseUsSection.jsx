@@ -1,10 +1,9 @@
-import { useState } from 'react'
 import { WhyChooseUsFeature } from '../molecules/whyChooseUsFeature'
 import { FaCalendarCheck, FaStar, FaChalkboardTeacher, FaGraduationCap } from 'react-icons/fa'
 import './whyChooseUsSection.css'
 
 /**
- * Sección "Por qué elegirnos" - Organismo
+ * Sección "Por qué elegirnos"
  * @param {Array} features - Array de características personalizado (opcional)
  * @param {string} className - Clases CSS adicionales
  */
@@ -12,7 +11,6 @@ const WhyChooseUsSection = ({
     features = null,
     className = '' 
 }) => {
-    const [error, setError] = useState(null)
 
     // Datos por defecto de las características con navegación
     const defaultFeatures = [
@@ -57,33 +55,6 @@ const WhyChooseUsSection = ({
         why-choose-section 
         ${className}
     `.trim()
-
-    if (error) {
-        return (
-            <section className={sectionClassName}>
-                <div className="why-choose-section__container">
-                    <div className="why-choose-section__error">
-                        <h3>Error</h3>
-                        <p>{error}</p>
-                        <button 
-                            onClick={() => setError(null)}
-                            style={{
-                                marginTop: '1rem',
-                                padding: '0.5rem 1rem',
-                                backgroundColor: 'var(--anaranjado-fuerte)',
-                                color: 'white',
-                                border: 'none',
-                                borderRadius: '0.25rem',
-                                cursor: 'pointer'
-                            }}
-                        >
-                            Intentar de nuevo
-                        </button>
-                    </div>
-                </div>
-            </section>
-        )
-    }
 
     return (
         <section className={sectionClassName}>
