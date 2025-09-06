@@ -11,23 +11,13 @@
 }
 
 .servicesTitle{
-    top: 3%;
     font-family: 'Poppins';
     text-align: center;
-    font-size: 2rem;
-    color: var(--anaranjado);
-    font-weight: 900;
-    text-shadow: 0 0px 3px var(--negro);
+    font-size: 2.4rem;
+    color: var(--Azul-logo);
+    font-weight: bold;
+    text-shadow: 0 2px 3px var(--negro);
 }
-
-.admision--section{
-    position: relative;
-}
-.admision{
-    text-align: left;
-    padding: 5% 0 2% 6%;
-}
-
 .sectionBecas{
     display: flex;
     flex-direction: column;
