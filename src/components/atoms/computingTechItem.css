@@ -1,0 +1,18 @@
+.computing-tech-item {
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.8rem;
+  padding: 0.4rem 0.8rem;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  color: var(--blanco);
+  border: 1px solid rgba(255, 152, 0, 0.3);
+  transition: var(--transicion);
+  display: inline-block;
+  cursor: context-menu;
+}
+
+.computing-tech-item:hover {
+  background: var(--anaranjado);
+  border-color: var(--anaranjado);
+  transform: translateY(-2px);
+}

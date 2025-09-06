@@ -1,0 +1,36 @@
+.computing-floating-item {
+  position: absolute;
+  
+  color: var(--blanco);
+  padding: 0.5rem 1rem;
+  opacity: 0.2;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  animation: computingFloat 3s ease-in-out infinite;
+  text-shadow: 0 4px 15px rgba(255, 152, 0, 0.3);
+}
+
+.computing-floating-item--1 {
+  top: -10%;
+  right: 1%;
+}
+
+.computing-floating-item--2 {
+  bottom: 20%;
+  right: -5%;
+}
+
+.computing-floating-item--3 {
+  top: 60%;
+  left: -5%;
+}
+
+@keyframes computingFloat {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}

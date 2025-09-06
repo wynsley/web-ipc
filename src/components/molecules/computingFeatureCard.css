@@ -1,0 +1,64 @@
+.computing-feature-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.8rem;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: var(--transicion);
+}
+
+.computing-feature-card:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateX(5px);
+}
+
+.computing-feature-card__icon {
+  width: 50px;
+  height: 50px;
+  background: linear-gradient(45deg, var(--anaranjado), var(--anaranjado-fuerte));
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.computing-feature-card__symbol {
+  font-size: 1.5rem;
+}
+
+.computing-feature-card__content {
+  flex-grow: 1;
+}
+
+.computing-feature-card__title {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.2rem;
+  color: var(--blanco);
+}
+
+.computing-feature-card__text {
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* RESPONSIVE DESIGN */
+@media (max-width: 768px) {
+  .computing-feature-card {
+    padding: 0.6rem;
+  }
+  
+  .computing-feature-card__title {
+    font-size: 1rem;
+  }
+  
+  .computing-feature-card__text {
+    font-size: 0.85rem;
+  }
+}
