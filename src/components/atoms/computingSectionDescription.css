@@ -1,0 +1,22 @@
+.computing-section-description{
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--gris-oscuro);
+  margin: 0;
+  text-align: center;
+}
+
+/* RESPONSIVE DESIGN */
+@media (max-width: 768px) {
+  .computing-section-description {
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+}
+
+@media (max-width: 420px) {
+  .computing-section-description {
+    font-size: 0.85rem;
+  }
+}

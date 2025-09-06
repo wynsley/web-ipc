@@ -1,0 +1,26 @@
+.computing-tech-list {
+  margin-top: 2rem;
+}
+
+.computing-tech-list__label {
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.computing-tech-list__items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+/* RESPONSIVE DESIGN */
+@media (max-width: 550px) {
+  .computing-tech-list__items {
+    justify-content: center;
+  }
+}
