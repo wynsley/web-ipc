@@ -1,0 +1,22 @@
+.business-subtitle{
+  font-family: 'Roboto',sans-serif;
+  font-size: 1.2rem;
+  line-height: 1.6;
+  margin-bottom: 2.5rem;
+  color: rgba(255, 255, 255, 0.9);
+  max-width: 90%;
+}
+
+/* RESPONSIVE DESIGN */
+@media (max-width: 768px) {
+  .business-subtitle {
+    font-size: 1.1rem;
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 550px) {
+  .business-subtitle {
+    font-size: 1rem;
+  }
+}
