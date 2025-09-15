@@ -1,0 +1,8 @@
+.business-area-card__description {
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--gris-oscuro);
+  margin: 0;
+  text-align: center;
+}

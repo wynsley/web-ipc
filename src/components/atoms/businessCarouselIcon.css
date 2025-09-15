@@ -1,0 +1,19 @@
+/*=== Icono de Area ===*/
+.business-area-card__icon {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.business-area-card__icon-wrapper {
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, #2d7d32, #4caf50);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.2rem;
+  color: var(--blanco);
+  box-shadow: 0 8px 25px rgba(76, 175, 80, 0.3);
+}

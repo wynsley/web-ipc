@@ -1,0 +1,9 @@
+.business-carousel__subtitle {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.2rem;
+  color: var(--gris-oscuro);
+  margin: 0 auto;
+  max-width: 600px;
+  line-height: 1.6;
+  opacity: 0.9;
+}

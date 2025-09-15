@@ -1,6 +1,12 @@
+import { BusinessCarousel } from "../organisms/businessCarousel"
+import { BusinessHeroSection } from "../organisms/businessHeroSection"
+
 function BusinessAdministrationPage(){
   return(
-    <h1>Administración de empresas</h1>
+    <>
+      <BusinessHeroSection />
+      <BusinessCarousel />
+    </>
   )
 }
 

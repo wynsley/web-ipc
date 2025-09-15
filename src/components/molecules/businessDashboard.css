@@ -1,0 +1,141 @@
+.business-dashboard{
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 12px;
+  padding: 0;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  max-width: 350px;
+  width: 100%;
+}
+
+.business-dashboard__header{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.business-dashboard__dots{
+  display: flex;
+  gap: 0.5rem;
+}
+
+.business-dashboard__dot{
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+.business-dashboard__dot--red{
+  background: #ff5f57;
+}
+
+.business-dashboard__dot--yellow{
+  background: #ffbd2e;
+}
+
+.business-dashboard__dot--green {
+  background: #28ca42;
+}
+
+.business-dashboard__title{
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.business-dashboard__content{
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.business-dashboard__section-title{
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.9rem;
+  color: #4caf50;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.business-dashboard__chart{
+  display: flex;
+  align-items: end;
+  justify-content: center;
+  gap: 0.8rem;
+  height: 80px;
+}
+
+.business-dashboard__bar{
+  width: 25px;
+  background: linear-gradient(180deg, #4caf50, #2d7d32);
+  border-radius: 4px 4px 0 0;
+  position: relative;
+  transition: all 0.3s ease;
+  min-height: 20px;
+}
+
+.business-dashboard__bar:hover{
+  transform: scaleY(1.1);
+}
+
+.business-dashboard__value{
+  position: absolute;
+  top: -25px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.business-dashboard__metrics{
+  display: flex;
+  justify-content: space-around;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 1rem;
+}
+
+.business-dashboard__metric{
+  text-align: center;
+}
+
+.business-dashboard__metric-label{
+  display: block;
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.6);
+  margin-bottom: 0.3rem;
+}
+
+.business-dashboard__metric-value{
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #4caf50;
+}
+
+/* RESPONSIVE DESIGN */
+@media (max-width: 768px) {
+  .business-dashboard {
+    max-width: 300px;
+  }
+}
+
+@media (max-width: 320px) {
+  .business-dashboard__content {
+    padding: 1rem;
+    font-size: 0.8rem;
+  }
+  
+  .business-dashboard__chart {
+    height: 60px;
+  }
+  
+  .business-dashboard__bar {
+    width: 20px;
+  }
+}
