@@ -1,6 +1,8 @@
+import { AccountingHeroSection } from "../organisms/accountingHeroSection"
+
 function AccountingPage(){
   return(
-    <h1>Contabilidad</h1>
+    <AccountingHeroSection />
   )
 }
 
