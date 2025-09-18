@@ -1,0 +1,27 @@
+.business-semester-title{
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--Azul-logo);
+  margin-bottom: 1rem;
+  text-align: center;
+  padding: 0.8rem;
+  background: linear-gradient(135deg, #e8f5e8 0%, #f1f8e9 100%);
+  border-radius: 8px;
+  border-left: 4px solid #4caf50;
+}
+
+/* RESPONSIVE DESIGN */
+@media (max-width: 768px) {
+  .business-semester-title {
+    font-size: 1.1rem;
+    padding: 0.6rem;
+  }
+}
+
+@media (max-width: 420px) {
+  .business-semester-title {
+    font-size: 1rem;
+    padding: 0.5rem;
+  }
+}
