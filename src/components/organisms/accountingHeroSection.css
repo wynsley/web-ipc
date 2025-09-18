@@ -1,0 +1,90 @@
+.accounting-hero {
+  position: relative;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 50%, #3b82f6 100%);
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.accounting-hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    radial-gradient(circle at 20% 80%, rgba(16, 185, 129, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(30, 58, 138, 0.1) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.accounting-hero__container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+
+/* === CONTENIDO PRINCIPAL === */
+.accounting-hero__content {
+  color: var(--blanco);
+}
+
+.accounting-hero__badge-wrapper {
+  margin-bottom: 1.5rem;
+}
+
+/* === ELEMENTO VISUAL === */
+.accounting-hero__visual {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.accounting-hero__floating-elements {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+}
+
+/* === RESPONSIVE DESIGN === */
+@media (max-width: 991px) {
+  .accounting-hero__container {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    text-align: center;
+  }
+  
+  .accounting-hero__visual {
+    order: -1;
+  }
+}
+
+@media (max-width: 768px) {
+  .accounting-hero__container {
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 550px) {
+  .accounting-hero {
+    min-height: 90vh;
+  }
+}
+
+@media (max-width: 320px) {
+  .accounting-hero__container {
+    padding: 0.8rem;
+  }
+}
