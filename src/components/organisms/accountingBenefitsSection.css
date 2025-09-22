@@ -1,0 +1,319 @@
+.accounting-benefits {
+  padding: 6rem 0;
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.accounting-benefits::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background-image: 
+    radial-gradient(circle at 25% 25%, rgba(16, 185, 129, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 75% 75%, rgba(30, 58, 138, 0.05) 0%, transparent 50%);
+  animation: benefits-bg-float 20s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes benefits-bg-float {
+  0%, 100% { transform: rotate(0deg) scale(1); }
+  50% { transform: rotate(180deg) scale(1.1); }
+}
+
+.accounting-benefits__container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  position: relative;
+  z-index: 2;
+}
+
+/* === HEADER DE LA SECCIÓN === */
+.accounting-benefits__header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.accounting-benefits__title {
+  font-family: 'Poppins', sans-serif;
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 1.5rem;
+  color: var(--Azul-logo);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.accounting-benefits__title--highlight {
+  background: linear-gradient(45deg, #10B981, #059669);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.accounting-benefits__subtitle {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.2rem;
+  line-height: 1.6;
+  color: var(--gris-oscuro);
+  max-width: 600px;
+  margin: 0 auto;
+  opacity: 0.9;
+}
+
+/* === GRID DE BENEFICIOS === */
+.accounting-benefits__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-bottom: 4rem;
+}
+
+/* === ESTADÍSTICAS === */
+.accounting-benefits__stats {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3rem;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  padding: 2.5rem;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.accounting-benefits__stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+}
+
+.accounting-benefits__stat::after {
+  content: '';
+  position: absolute;
+  right: -1.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1px;
+  height: 60px;
+  background: linear-gradient(to bottom, transparent, #10B981, transparent);
+}
+
+.accounting-benefits__stat:last-child::after {
+  display: none;
+}
+
+.accounting-benefits__stat-number {
+  font-family: 'Poppins', sans-serif;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #10B981;
+  line-height: 1;
+  margin-bottom: 0.5rem;
+  text-shadow: 0 2px 4px rgba(16, 185, 129, 0.2);
+}
+
+.accounting-benefits__stat-label {
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--Azul-logo);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* === RESPONSIVE DESIGN === */
+
+/* 1200px */
+@media (max-width: 1200px) {
+  .accounting-benefits {
+    padding: 5rem 0;
+  }
+  
+  .accounting-benefits__container {
+    padding: 0 1.5rem;
+  }
+  
+  .accounting-benefits__title {
+    font-size: 2.5rem;
+  }
+  
+  .accounting-benefits__grid {
+    gap: 1.8rem;
+  }
+  
+  .accounting-benefits__stats {
+    gap: 2.5rem;
+    padding: 2rem;
+  }
+  
+  .accounting-benefits__stat-number {
+    font-size: 2.2rem;
+  }
+}
+
+/* 991px */
+@media (max-width: 991px) {
+  .accounting-benefits {
+    padding: 4rem 0;
+  }
+  
+  .accounting-benefits__header {
+    margin-bottom: 3rem;
+  }
+  
+  .accounting-benefits__title {
+    font-size: 2.2rem;
+  }
+  
+  .accounting-benefits__subtitle {
+    font-size: 1.1rem;
+  }
+  
+  .accounting-benefits__grid {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+  }
+  
+  .accounting-benefits__stats {
+    gap: 2rem;
+    padding: 1.8rem;
+  }
+}
+
+/* 768px */
+@media (max-width: 768px) {
+  .accounting-benefits__container {
+    padding: 0 1rem;
+  }
+  
+  .accounting-benefits__title {
+    font-size: 2rem;
+  }
+  
+  .accounting-benefits__subtitle {
+    font-size: 1rem;
+  }
+  
+  .accounting-benefits__grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.2rem;
+  }
+  
+  .accounting-benefits__stats {
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    padding: 1.5rem;
+  }
+  
+  .accounting-benefits__stat::after {
+    display: none;
+  }
+  
+  .accounting-benefits__stat-number {
+    font-size: 2rem;
+  }
+  
+  .accounting-benefits__stat-label {
+    font-size: 0.8rem;
+  }
+}
+
+/* 550px */
+@media (max-width: 550px) {
+  .accounting-benefits {
+    padding: 3rem 0;
+  }
+  
+  .accounting-benefits__header {
+    margin-bottom: 2.5rem;
+  }
+  
+  .accounting-benefits__title {
+    font-size: 1.8rem;
+    line-height: 1.3;
+  }
+  
+  .accounting-benefits__grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    margin-bottom: 2.5rem;
+  }
+  
+  .accounting-benefits__stats {
+    flex-direction: column;
+    gap: 2rem;
+    padding: 2rem 1rem;
+  }
+  
+  .accounting-benefits__stat-number {
+    font-size: 2.5rem;
+  }
+}
+
+/* 420px */
+@media (max-width: 420px) {
+  .accounting-benefits__container {
+    padding: 0 0.8rem;
+  }
+  
+  .accounting-benefits__title {
+    font-size: 1.6rem;
+  }
+  
+  .accounting-benefits__subtitle {
+    font-size: 0.9rem;
+  }
+  
+  .accounting-benefits__grid {
+    gap: 1.2rem;
+  }
+  
+  .accounting-benefits__stats {
+    padding: 1.5rem 0.8rem;
+    gap: 1.5rem;
+  }
+  
+  .accounting-benefits__stat-number {
+    font-size: 2.2rem;
+  }
+  
+  .accounting-benefits__stat-label {
+    font-size: 0.75rem;
+  }
+}
+
+/* 320px */
+@media (max-width: 320px) {
+  .accounting-benefits {
+    padding: 2.5rem 0;
+  }
+  
+  .accounting-benefits__container {
+    padding: 0 0.5rem;
+  }
+  
+  .accounting-benefits__title {
+    font-size: 1.4rem;
+  }
+  
+  .accounting-benefits__subtitle {
+    font-size: 0.85rem;
+  }
+  
+  .accounting-benefits__stats {
+    padding: 1.2rem 0.5rem;
+  }
+  
+  .accounting-benefits__stat-number {
+    font-size: 2rem;
+  }
+}

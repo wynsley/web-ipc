@@ -1,0 +1,117 @@
+.accounting-dashboard {
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 12px;
+  padding: 0;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  max-width: 350px;
+  width: 100%;
+}
+
+.accounting-dashboard__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.accounting-dashboard__dots {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.accounting-dashboard__dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+.accounting-dashboard__dot--red {
+  background: #ff5f57;
+}
+
+.accounting-dashboard__dot--yellow {
+  background: #ffbd2e;
+}
+
+.accounting-dashboard__dot--green {
+  background: #28ca42;
+}
+
+.accounting-dashboard__title {
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.accounting-dashboard__content {
+  padding: 1.5rem;
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.85rem;
+}
+
+.accounting-dashboard__section {
+  margin-bottom: 1.5rem;
+}
+
+.accounting-dashboard__section:last-child {
+  margin-bottom: 0;
+}
+
+.accounting-dashboard__section-title {
+  color: #10B981;
+  font-weight: 600;
+  margin-bottom: 0.8rem;
+  font-size: 0.9rem;
+  border-bottom: 1px solid rgba(16, 185, 129, 0.3);
+  padding-bottom: 0.3rem;
+}
+
+.accounting-dashboard__item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.accounting-dashboard__label {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.accounting-dashboard__value {
+  color: var(--blanco);
+  font-weight: 600;
+}
+
+.accounting-dashboard__value--positive {
+  color: #10B981;
+}
+
+.accounting-dashboard__value--negative {
+  color: #ef4444;
+}
+
+.accounting-dashboard__total {
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  padding-top: 0.5rem;
+  margin-top: 0.5rem;
+  font-weight: 700;
+  color: var(--blanco);
+}
+
+/* RESPONSIVE DESIGN */
+@media (max-width: 768px) {
+  .accounting-dashboard {
+    max-width: 300px;
+  }
+}
+
+@media (max-width: 320px) {
+  .accounting-dashboard__content {
+    padding: 1rem;
+    font-size: 0.8rem;
+  }
+}

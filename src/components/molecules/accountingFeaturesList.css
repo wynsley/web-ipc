@@ -1,0 +1,13 @@
+.accounting-features-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+/* RESPONSIVE DESIGN */
+@media (max-width: 768px) {
+  .accounting-features-list {
+    gap: 0.8rem;
+  }
+}

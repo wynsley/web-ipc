@@ -1,0 +1,18 @@
+.accounting-badge {
+  display: inline-block;
+  border-bottom: 1px solid #10B981;
+  box-shadow: 0 6px 0 0 #059669;
+  padding: 0.5rem 1.2rem;
+  border-radius: 25px;
+}
+
+.accounting-badge__text {
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  opacity: 0.5;
+  color: var(--blanco);
+  text-shadow: 0 4px 2px #D6D3D1;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
