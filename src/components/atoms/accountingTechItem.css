@@ -1,0 +1,18 @@
+.accounting-tech-item {
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.8rem;
+  padding: 0.4rem 0.8rem;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  color: var(--blanco);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  transition: var(--transicion);
+  display: inline-block;
+  cursor: context-menu;
+}
+
+.accounting-tech-item:hover {
+  background: #10B981;
+  border-color: #10B981;
+  transform: translateY(-2px);
+}
