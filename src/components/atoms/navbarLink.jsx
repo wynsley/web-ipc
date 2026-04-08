@@ -14,6 +14,7 @@ function NavbarLink({ href, text, onClick }) {
         font-medium no-underline
         transition-colors duration-200
         md:rounded-none
+        md:text-[.8em] lg:text-[.9em] xl:text-[1em]
 
         ${isActive ? 'text-orange-400' : 'text-[#2073AA]'}
         hover:text-orange-400

@@ -1,9 +1,10 @@
 import { MyTemplate } from "../templates/myTemplate";
+import { HomeBanner } from "../components/organisms/home/banner";
 
 function HomePage() {
   return (
     <MyTemplate>
-      <h1> Inicio </h1>
+      <HomeBanner/>
     </MyTemplate>
     )
 }
