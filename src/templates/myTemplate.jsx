@@ -1,6 +1,6 @@
 function MyTemplate ({children, classmame = ''}) {
     return(
-        <div className={classmame}>
+        <div className={`${classmame} overflow-x-hidden`}>
             {children}
         </div>
     )

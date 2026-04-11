@@ -12,8 +12,8 @@ function Paragraph ({
   const variants ={
     default: 'text-black',
     primary: 'text-white',
-    secondary: 'text-[#A66A06]',
-    danger: 'text-gray-600'
+    secondary: 'text-gray-500 ',
+    danger: ''
   };
 
   const alignments = {
@@ -23,9 +23,10 @@ function Paragraph ({
   };
 
   const sizes = {
+    base : "text-base",
     small:  "text-[0.6em] sm:text-[.7em] md:text-[.9em]",
-    medium: "text-[.6em] sm:text-[.9em] md:text-[1em]",
-    large:  "text-[.9em] sm:text-[1em] md:text-[1.1em] lg:text-[1.2em]",
+    medium: "text-[.4em] xs:text-[.7em] sm:text-[.7em] md:text-[.9em] lg:text-[1em]" ,
+    large:  "text-[.5em] xs:text-[.7em] sm:text-[.9em] md:text-[1em] lg:text-[1.2em] xl:text-[1.4em]",
   };
 
   const weights = {
