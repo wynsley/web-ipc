@@ -10,7 +10,7 @@ function AboutSection({ images = [] }) {
     <section className="
       w-full max-w-[88vw] mx-auto h-auto
       px-6 sm:px-10 lg:px-16
-      py-16 md:py-[18vh]
+      py-16 md:pt-[18vh] md:pb-15
       grid
       grid-cols-1
       md:grid-cols-2

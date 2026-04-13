@@ -13,7 +13,7 @@ function Paragraph ({
     default: 'text-black',
     primary: 'text-white',
     secondary: 'text-gray-500 ',
-    danger: ''
+    danger: 'text-blue-dark'
   };
 
   const alignments = {
@@ -26,12 +26,14 @@ function Paragraph ({
     base : "text-base",
     small:  "text-[0.6em] sm:text-[.7em] md:text-[.9em]",
     medium: "text-[.4em] xs:text-[.7em] sm:text-[.7em] md:text-[.9em] lg:text-[1em]" ,
-    large:  "text-[.5em] xs:text-[.7em] sm:text-[.9em] md:text-[1em] lg:text-[1.2em] xl:text-[1.4em]",
+    large:  "text-[.7em] sm:text-[.9em] lg:text-[1.2em] xl:text-[1.3em]",
+    slogan : "text-[.9em] sm:text-[1.2em] lg:text-[1.2em] xl:text-[1.3em]",
   };
 
   const weights = {
     light: 'font-light',
     normal: 'font-normal',
+    semi: 'font-semibold',
     bold: 'font-bold',
   };
 

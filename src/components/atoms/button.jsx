@@ -24,7 +24,14 @@ function Button({
       transition-all duration-200 cursor-pointer
       font-hani
 `,
-    secondary: '',
+    secondary: `
+      w-full bg-blue text-white font-bold text-[1.1em]
+      rounded-md py-1 transition-all duration-300 ease-in-out
+      hover:bg-blue-dark
+      hover:shadow-lg
+      hover:-translate-y-0.5
+      active:scale-95
+    `,
   }
 
   return (

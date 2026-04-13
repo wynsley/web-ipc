@@ -155,7 +155,7 @@ function HomeBanner() {
         <div className="
           absolute bottom-4 sm:bottom-6
           left-1/2 -translate-x-1/2
-          z-30 flex items-center gap-3
+          z-100 flex items-center gap-3
           pointer-events-none
         ">
           {SLIDES.map((_, i) => {

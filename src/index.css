@@ -1,6 +1,8 @@
 @import "tailwindcss";
 
-/* Poppins */
+/* =========================
+   FUENTES
+========================= */
 @font-face {
   font-family: 'Poppins';
   src: url('/src/assets/fonts/Poppins-Regular.woff2') format('woff2');
@@ -14,7 +16,6 @@
   font-display: swap;
 }
 
-/* Rajdhani */
 @font-face {
   font-family: 'Hani';
   src: url('/src/assets/fonts/Rajdhani-Regular.woff2') format('woff2');
@@ -28,16 +29,21 @@
   font-display: swap;
 }
 
-
+/* =========================
+   THEME (Tailwind v4)
+========================= */
 @theme {
   /* Colores */
   --color-blue: #2073AA;
   --color-blue-light: #4FA3D1;
   --color-blue-dark: #1A3983;
   --color-blue-deep: #1B3A83;
+
   --color-sky: #2F74A8;
+
   --color-orange: #E08433;
   --color-orange-soft: #BC9E67;
+
   --color-neutral-white: #FBFCFC;
   --color-neutral-light: #F5F5F5;
   --color-neutral-dark: #332C25;
@@ -47,27 +53,45 @@
   --font-poppins: "Poppins", sans-serif;
   --font-hani: "Hani", sans-serif;
 
-  /* Breakpoints */
+  /* Breakpoint */
   --breakpoint-xs: 375px;
 
-  /* Espacios */
+  /* Espaciado */
   --spacing-18: 4.5rem;
   --spacing-22: 5.5rem;
 
   /* Sombras */
-  --shadow-soft: 0 4px 10px rgba(0,0,0,0.1);
-  --shadow-medium: 0 6px 16px rgba(0,0,0,0.15);
-  --shadow-strong: 0 10px 25px rgba(0,0,0,0.2);
+  --shadow-soft: 0 4px 10px rgba(0,0,0,0.3);
+  --shadow-medium: 0 6px 16px rgba(0,0,0,0.5);
+  --shadow-strong: 0 10px 25px rgba(0,0,0,0.9);
 
-  /* Border radius */
+  /* Bordes */
   --radius-xl2: 1.5rem;
   --radius-xl3: 2rem;
 
   /* Animaciones */
-  --animate-float: float 3s ease-in-out infinite;
+  --animate-float: float 2s ease-in-out infinite;
+  --animate-scrollLeft: scrollLeft 30s linear infinite;
+}
 
-  @keyframes float {
-    0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-5px); }
+/* =========================
+  KEYFRAMES (FUERA de @theme)
+========================= */
+
+@keyframes float {
+  0%, 100% {
+    transform: translateX(0px);
+  }
+  50% {
+    transform: translateX(-10px);
+  }
+}
+
+@keyframes scrollLeft {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
   }
 }

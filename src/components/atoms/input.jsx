@@ -18,7 +18,8 @@ function Input({
                 focus:border-blue-500 focus:ring-2 focus:ring-blue-200
                 outline-none transition-all duration-200`,
     primary : `w-full border-b border-[#a1a1a1] py-0 px-[1em] `,
-    secondary:`bg-transparent border-0 border-b border-gray-400 px-2 pt-2 pb-0 w-full focus:outline-none focus:border-[#FFBB00] transition`
+    secondary:`bg-transparent border-0 border-b border-blue
+      px-2 pt-2 pb-0 w-full focus:outline-none focus:border-[#FFBB00] transition`
   }
 
   const sizes ={

@@ -54,12 +54,12 @@ export default {
 
       /* Sombras */
       boxShadow: {
-        soft: "0 4px 10px rgba(0,0,0,0.1)",
-        medium: "0 6px 16px rgba(0,0,0,0.15)",
-        strong: "0 10px 25px rgba(0,0,0,0.2)",
+        soft: "0 4px 10px rgba(0,0,0,0.3)",
+        medium: "0 6px 16px rgba(0,0,0,0.5)",
+        strong: "0 10px 25px rgba(0,0,0,0.9)",
       },
 
-      textShadow :{
+      textShadow: {
         primary: "text-shadow-[0px_6px_5px_black]"
       },
 
@@ -72,15 +72,19 @@ export default {
       /* Animaciones */
       keyframes: {
         float: {
-          "0%, 100%": { transform: "translateY(0px)" },
-          "50%": { transform: "translateY(-5px)" },
+          "0%, 100%": { transform: "translateX(0px)" },
+          "50%": { transform: "translateX(-20px)" },
+        },
+        scrollLeft: {
+          "0%": { transform: "translateX(0)" },
+          "100%": { transform: "translateX(-50%)" },
         },
       },
 
       animation: {
-        float: "float 3s ease-in-out infinite",
+        float: "float 1s ease-in-out infinite",
+        scrollLeft: "scrollLeft 28s linear infinite",
       },
-
     },
   },
 

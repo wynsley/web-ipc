@@ -14,7 +14,7 @@ function Select({
 
   const variants = {
     default :`w-full text-center
-      border-b border-[#a1a1a1] py-o px-1
+      border-b border-blue py-o px-1 text-black/50 
     `
   }
 
