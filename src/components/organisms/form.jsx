@@ -5,7 +5,7 @@ import { FormItem } from "../molecules/formItem"
 import { UserValidator } from "../../validations/validationCredentials"
 import { apiFetch } from "../../helpers/apiFetch"
 
-function Form () {
+function Form ({className= ''}) {
 
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
@@ -142,8 +142,8 @@ function Form () {
   return (
   
       <form
-        className={`top-20 right-6 w-90 md:w-110 flex flex-col mx-auto md:mx-0
-        gap-6   py-4 px-5`}
+        className={`top-20 right-6 w-90 md:w-100 flex flex-col mx-auto md:mx-0
+        gap-6   py-4 px-5 ${className}`}
         onClick={handleModalClick}
         onSubmit={handleSubmit}
       >
@@ -152,7 +152,7 @@ function Form () {
           text="Envíanos tus datos" 
           align="center" 
           weight="bold" 
-          className="font-poppins text-blue pb-10"
+          className="font-poppins text-blue  md:pb-10"
           />
 
         {error && <span className="text-red-500 text-sm">{error}</span>}
