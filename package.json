@@ -1,34 +1,32 @@
 {
   "name": "web-ipc",
-  "private": true,
-  "version": "0.0.0",
-  "type": "module",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "lint": "eslint .",
-    "preview": "vite preview"
+    "dev": "concurrently --names \"BACKEND,FRONTEND\" --prefix-colors \"cyan,magenta\" \"pnpm --filter backend run dev\" \"pnpm --filter frontend run dev\"",
+    "dev:backend": "pnpm --filter backend run dev",
+    "dev:frontend": "pnpm --filter frontend run dev",
+    "setup:backend": "pnpm --filter backend run setup",
+    "setup:frontend": "",
+    "build:backend": "pnpm --filter backend run build",
+    "build:frontend": "pnpm --filter frontend run build",
+    "setup": "pnpm run setup:backend",
+    "build": "pnpm run build:backend && pnpm run build:frontend"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wynsley/web-IPC-C.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/wynsley/web-IPC-C/issues"
+  },
+  "homepage": "https://github.com/wynsley/web-IPC-C#readme",
   "dependencies": {
-    "@tailwindcss/vite": "^4.2.2",
-    "joi": "18.1.2",
-    "react": "^19.2.4",
-    "react-dom": "^19.2.4",
-    "react-icons": "5.6.0",
-    "react-router-dom": "7.14.0"
-  },
-  "devDependencies": {
-    "@eslint/js": "^9.39.4",
-    "@types/react": "^19.2.14",
-    "@types/react-dom": "^19.2.3",
-    "@vitejs/plugin-react": "^6.0.1",
-    "autoprefixer": "^10.4.27",
-    "eslint": "^9.39.4",
-    "eslint-plugin-react-hooks": "^7.0.1",
-    "eslint-plugin-react-refresh": "^0.5.2",
-    "globals": "^17.4.0",
-    "postcss": "^8.5.8",
-    "tailwindcss": "^4.2.2",
-    "vite": "^8.0.4"
+    "concurrently": "^10.0.5"
   }
 }
