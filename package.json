@@ -4,11 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "concurrently --names \"BACKEND,FRONTEND\" --prefix-colors \"cyan,magenta\" \"pnpm --filter backend run dev\" \"pnpm --filter frontend run dev\"",
+    "dev": "concurrently --names 'BACKEND,FRONTEND' --prefix-colors 'cyan,magenta' \"pnpm --filter backend run dev\" \"pnpm --filter frontend run dev\"",
     "dev:backend": "pnpm --filter backend run dev",
     "dev:frontend": "pnpm --filter frontend run dev",
     "setup:backend": "pnpm --filter backend run setup",
-    "setup:frontend": "",
+    "setup:frontend": "pnpm --filter frontend run setup",
     "build:backend": "pnpm --filter backend run build",
     "build:frontend": "pnpm --filter frontend run build",
     "setup": "pnpm run setup:backend",
