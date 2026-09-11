@@ -1,4 +1,4 @@
-cat <<'EOF' > README.md
+
 # web-ipc
 
 Monorepo fullstack para la plataforma del Instituto Privado Celendín, integrando servicios de backend y frontend organizados mediante **pnpm workspaces**.
