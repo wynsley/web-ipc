@@ -62,7 +62,7 @@ function NavbarMenu() {
       {/* Botón hamburguesa */}
       <button
         ref={hamburgerRef}
-        className="md:hidden text-white text-2xl z-[200]"
+        className="md:hidden text-white text-2xl z-200"
         onClick={(e) => {
           e.stopPropagation()
           setMobileOpen(prev => !prev)

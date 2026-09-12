@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 /* =========================
-   FUENTES
+    FUENTES
 ========================= */
 @font-face {
   font-family: 'Poppins';
@@ -30,7 +30,7 @@
 }
 
 /* =========================
-   THEME (Tailwind v4)
+    THEME (Tailwind v4)
 ========================= */
 @theme {
   /* Colores */
