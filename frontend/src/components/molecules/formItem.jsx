@@ -1,7 +1,7 @@
 import { Input } from "../atoms/input";
 import { Label } from "../atoms/label";
 import { Select } from "../atoms/select";
-import { Textarea } from "../atoms/tetxtarea";
+import { Textarea } from "../atoms/textarea";
 
 function FormItem({ 
   formFields,

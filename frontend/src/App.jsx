@@ -15,7 +15,7 @@ import { ContactPage } from "./pages/contactPage"
 import { AdministrationPage } from "./pages/careers/businessAdministrationPage"
 import { AccountingPage } from "./pages/careers/accountingPage"
 import { ComputerSciencePage } from "./pages/careers/computerSciencePage"
-import { LanguageTraslationPage } from "./pages/careers/languageTraslationPage"
+import { LanguageTraslationPage } from "./pages/careers/languageTranslationPage"
 
 function App() {
   const pages = [

@@ -16,7 +16,7 @@ const MobileMenu = forwardRef(function MobileMenu({
       onClick={(e) => e.stopPropagation()} // 🔥 IMPORTANTE
       className={`
         md:hidden absolute top-[4em] left-0 w-full
-        bg-white shadow-md z-[150] px-6 py-4
+        bg-white shadow-md z-150 px-6 py-4
         flex flex-col gap-2
         transition-all duration-300
         ${mobileOpen

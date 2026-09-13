@@ -1,6 +1,6 @@
 import { CareerCard } from "../../molecules/home/homeCareerCards"
-import { CareersCarousel } from "./careerCaroussel"
-import { careers } from "../../../data/carees"
+import { CareersCarousel } from "./careersCarousel"
+import { careers } from "../../../data/careers"
 import { Title } from "../../atoms/titles"
 import { Paragraph } from "../../atoms/paragraph"
 

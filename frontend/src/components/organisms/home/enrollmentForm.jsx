@@ -4,19 +4,19 @@ import { CardsForm } from "../../molecules/home/imgForm"
 function EnrollmentForm() {
   const whyList = [
     { 
-      img: "/images/carreras.jpg", 
+      img: "../../../../public/BECA_EXCELENCIA.webp", 
       text: "Beca de Excelencia Académica" 
     },
     { 
-      img: "/images/informacion.jpg", 
+      img: "../../../../public/BECA_FAMILIAR.webp", 
       text: "Beca de Apoyo Familiar " 
     },
     { 
-      img: "/images/inscripcion.jpg", 
+      img: "../../../../public/BECA_MERITO.webp", 
       text: "Beca de Mérito Académico" 
     },
     { 
-      img: "/images/futuro.jpg", 
+      img: "../../../../public/DESCUENTO_PAGO_ANTICIPADO.webp", 
       text: "Descuento por Pago Anticipado" 
     },
   ];

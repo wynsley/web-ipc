@@ -1,8 +1,8 @@
 // molecules/careersCarousel.jsx
 import { useState, useEffect, useRef, useCallback } from "react"
 import { CareerCard } from "../../molecules/home/homeCareerCards"
-import { CarouselDots } from "../../molecules/home/careerDostCaroussel"
-import { careers } from "../../../data/carees"
+import { CarouselDots } from "../../molecules/home/carouselDots"
+import { careers } from "../../../data/careers"
 function CareersCarousel() {
   const [current, setCurrent] = useState(0)
   const timerRef              = useRef(null)
