@@ -33,7 +33,7 @@ const MobileMenu = forwardRef(function MobileMenu({
               <>
                 <button
                   onClick={() => handleToggle(item.text)}
-                  className="flex items-center justify-between w-full text-blue font-medium py-2 border-b border-gray-100"
+                  className="flex items-center justify-between w-full text-[#193F81] font-medium py-2 border-b border-gray-100"
                 >
                   {item.text}
                   <IoIosArrowDown

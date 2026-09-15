@@ -85,7 +85,8 @@ function NavbarMenu() {
                 <div>
                   <Button
                     onClick={() => handleToggle(item.text)}
-                    className="flex items-center text-[.8em] lg:text-[.9em] xl:text-[1em] gap-1 text-blue font-medium hover:text-orange-400"
+                    className="flex items-center text-[.8em] lg:text-[.9em] xl:text-[1em] 
+                    gap-1 text-[#193F81] font-medium hover:text-orange-400"
                   >
                     {item.text}
                     <IoIosArrowDown
@@ -94,7 +95,8 @@ function NavbarMenu() {
                   </Button>
 
                   {isOpen && (
-                    <ul className="absolute z-50 top-full left-0 mt-2 bg-white shadow-lg rounded-lg p-2 min-w-55">
+                    <ul className="absolute flex flex-col gap-3 z-50 top-full left-7 mt-2 bg-white shadow-lg 
+                    p-2 w-[18em] ">
                       {item.submenu.map((subItem) => (
                         <li key={subItem.href}>
                           <NavbarLink

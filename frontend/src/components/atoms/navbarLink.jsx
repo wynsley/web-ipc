@@ -16,7 +16,7 @@ function NavbarLink({ href, text, onClick }) {
         md:rounded-none
         md:text-[.8em] lg:text-[.9em] xl:text-[1em]
 
-        ${isActive ? 'text-orange-400' : 'text-[#2073AA]'}
+        ${isActive ? 'text-orange-400' : 'text-[#193F81]'}
         hover:text-orange-400
 
         ${isActive 
