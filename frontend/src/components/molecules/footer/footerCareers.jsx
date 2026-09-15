@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-import { Title } from "../atoms/titles";
-import { careers } from "../../data/careers";
+import { Title } from "../../atoms/titles";
+import { careers } from "../../../data/careers";
 
 function FooterCareers() {
   const footerCareers = [...careers].sort(

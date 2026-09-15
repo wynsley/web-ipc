@@ -1,9 +1,9 @@
 import { useState } from "react"
-import { Title } from "../atoms/titles"
-import { Button } from "../atoms/button"
-import { FormItem } from "../molecules/formItem"
-import { UserValidator } from "../../validations/validationCredentials"
-import { apiFetch } from "../../helpers/apiFetch"
+import { Title } from "../../atoms/titles"
+import { Button } from "../../atoms/button"
+import { FormItem } from "../../molecules/shared/formItem"
+import { UserValidator } from "../../../validations/validationCredentials"
+import { apiFetch } from "../../../helpers/apiFetch"
 
 function Form ({className= ''}) {
 

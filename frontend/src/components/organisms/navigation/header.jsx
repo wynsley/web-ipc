@@ -1,5 +1,5 @@
-import { Location } from "../molecules/headerLocation";
-import { Schedule } from "../molecules/headerSchedule";
+import { Location } from "../../molecules/navigation/headerLocation"
+import { Schedule } from "../../molecules/navigation/headerSchedule"
 
 function Header() {
   return (

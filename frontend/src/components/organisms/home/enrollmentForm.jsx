@@ -1,4 +1,4 @@
-import { Form } from "../form"
+import { Form } from "../shared/form";
 import { CardsForm } from "../../molecules/home/imgForm"
 
 function EnrollmentForm() {

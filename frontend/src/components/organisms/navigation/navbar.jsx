@@ -1,7 +1,7 @@
-import { NavbarMenu } from "../molecules/desktopMenu";
-import { Logo } from "../molecules/logo";
-import { Button } from "../atoms/button";
-import { NavbarCurve } from "../molecules/navbarCurve";
+import { NavbarMenu } from "../../molecules/navigation/desktopMenu";
+import { Logo } from "../../molecules/navigation/logo";
+import { Button } from "../../atoms/button";
+import { NavbarCurve } from "../../molecules/navigation/navbarCurve";
 
 function Navbar() {
   return (

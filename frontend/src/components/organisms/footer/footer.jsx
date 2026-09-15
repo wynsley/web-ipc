@@ -1,7 +1,7 @@
-import { Paragraph } from "../atoms/paragraph";
-import { FooterBrand } from "../molecules/footerBrand";
-import { FooterCareers } from "../molecules/footerCareers";
-import { FooterSchedule } from "../molecules/footerSchedule";
+import { Paragraph } from "../../atoms/paragraph";
+import { FooterBrand } from "../../molecules/footer/footerBrand";
+import { FooterCareers } from "../../molecules/footer/footerCareers";
+import { FooterSchedule } from "../../molecules/footer/footerSchedule";
 
 function Footer() {
   return (

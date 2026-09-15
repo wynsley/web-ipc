@@ -1,6 +1,6 @@
 import { forwardRef } from "react"
 import { IoIosArrowDown } from "react-icons/io"
-import { NavbarLink } from "../atoms/navbarLink"
+import { NavbarLink } from "../../atoms/navbarLink"
 
 const MobileMenu = forwardRef(function MobileMenu({
   menu,

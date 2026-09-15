@@ -1,5 +1,5 @@
-import { Button } from "../atoms/button"
-import { NavbarLink } from "../atoms/navbarLink"
+import { Button } from "../../atoms/button"
+import { NavbarLink } from "../../atoms/navbarLink"
 import { RiMenu3Line, RiCloseLine } from "react-icons/ri"
 import { useState, useRef, useEffect } from "react"
 import { MobileMenu } from "./mobileMenu"

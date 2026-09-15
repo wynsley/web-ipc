@@ -1,6 +1,6 @@
-import { Navbar } from "./components/organisms/navbar"
-import { Header } from "./components/organisms/header"
-import { Footer } from "./components/organisms/footer"
+import { Navbar } from "./components/organisms/navigation/navbar"
+import { Footer } from "./components/organisms/footer/footer"
+import { Header } from "./components/organisms/navigation/header"
 import { Route, Routes } from "react-router-dom"
 
 /* Páginas */
