@@ -28,7 +28,7 @@ function Navbar() {
           type="button"
           text="¡Inscríbete aquí!"
           className="
-            bg-[#e08433] py-1 px-3 md:px-6 text-[0.6rem] sm:text-[.9em] md:text-[1em]
+            bg-orange py-1 px-3 md:px-6 text-[0.6rem] sm:text-[.9em] md:text-[1em]
             font-bold text-white 
             shadow-[0_4px_8px_rgba(224,132,51,0.5)]
             hover:bg-[#c97420] 

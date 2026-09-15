@@ -95,7 +95,7 @@ function NavbarMenu() {
                   </Button>
 
                   {isOpen && (
-                    <ul className="absolute flex flex-col gap-3 z-50 top-full left-7 mt-2 bg-white shadow-lg 
+                    <ul className="absolute flex flex-col gap-3 z-50 top-full left-7 mt-2 bg-neutral-white shadow-lg 
                     p-2 w-[18em] ">
                       {item.submenu.map((subItem) => (
                         <li key={subItem.href}>
