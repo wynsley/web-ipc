@@ -1,38 +1,40 @@
+import { IoIosArrowRoundForward } from "react-icons/io"
+import { Button } from "../../atoms/button"
 import { Title } from "../../atoms/titles"
-import { Paragraph } from "../../atoms/paragraph"
 
-function BannerDescription({title, description,text2}) {
+
+function BannerDescription({ title, cta }) {
   return (
     <article
       className="
-          absolute inset-0 
-          flex flex-col 
-          justify-center        
-          items-start 
-          px-4 sm:px-8 md:px-10 lg:px-15 xl:px-20 
-          text-white 
-          z-10 
-          overflow-hidden
-          mt-[5vh] sm:mt-[4vh] lg:mt-0
+          flex flex-col gap-2 md:gap-5 lg:gap-15 justify-center items-start
+          px-4 sm:px-8 md:px-10 lg:px-15 xl:px-20 z-10 w-[70%]
         "
     >
-      <Title
-        text={title}
-        level="h1"
-        weight="bold"
+      <div className="flex flex-col items-flex-start justify-center" >
+        <p className="text-blue-light 
+        text-[.7em] xs:text-[1em] sm:text-[1.3em] xl:text-[3em] 
+          font-hani font-bold"
+        >
+          {cta}
+        </p>
+        <Title
+          text={title}
+          level="h1"
+          weight="bold"
+          variant="primary"
+          className=" font-poppins leading-tight
+        text-shadow-[0px_2px_3px_black]"
+        />
+      </div>
+      <Button
+        type="button"
         variant="primary"
-        className=" font-poppins mb-2 md:mb-5  text-shadow-[0px_6px_5px_black]"
-      />
-      <Paragraph
-        variant="primary"
-        size="medium"
-        className=" text-shadow-[1px_5px_4px_black] w-[50%] font-poppins"
-      >{description} 
-        <span
-          className="hidden sm:block font-poppins"
-          >{text2}
-        </span>   
-      </Paragraph>
+        className="group flex items-center gap-1"
+      >
+        ¡Inscríbete aquí!
+        <IoIosArrowRoundForward className="size-6 transition-transform group-hover:translate-x-1" />
+      </Button>
     </article>
   )
 }

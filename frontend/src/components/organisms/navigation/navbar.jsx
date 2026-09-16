@@ -1,6 +1,5 @@
 import { NavbarMenu } from "../../molecules/navigation/desktopMenu";
 import { Logo } from "../../molecules/navigation/logo";
-import { Button } from "../../atoms/button";
 import { NavbarCurve } from "../../molecules/navigation/navbarCurve";
 
 function Navbar() {
@@ -17,27 +16,6 @@ function Navbar() {
       <Logo />
       <NavbarMenu/>
       <NavbarCurve/>
-      <Button 
-        type="button"
-        text="¡Inscríbete aquí!"
-        variant="primary"
-      />
-      {/*Boton móvil */}
-      <div className="md:hidden absolute bottom-1 left-0 w-full flex justify-center">
-        <Button 
-          type="button"
-          text="¡Inscríbete aquí!"
-          className="
-            bg-orange py-1 px-3 md:px-6 text-[0.6rem] sm:text-[.9em] md:text-[1em]
-            font-bold text-white 
-            shadow-[0_4px_8px_rgba(224,132,51,0.5)]
-            hover:bg-[#c97420] 
-            hover:shadow-[0_6px_16px_rgba(224,132,51,0.6)] 
-            hover:scale-105
-            transition-all duration-200 cursor-pointer
-          "
-        />
-      </div>
     </nav>
   );
 }
