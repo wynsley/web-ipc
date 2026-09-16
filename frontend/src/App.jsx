@@ -1,7 +1,8 @@
-import { Navbar } from "./components/organisms/navigation/navbar"
-import { Footer } from "./components/organisms/footer/footer"
-import { Header } from "./components/organisms/navigation/header"
+import { AnimatePresence } from "motion/react"
 import { Route, Routes } from "react-router-dom"
+
+//Animacion y trancicion
+import { MainLayout } from "./components/layouts/mainLayout"
 
 /* Páginas */
 import { HomePage } from "./components/pages/homePage"
@@ -34,22 +35,21 @@ function App() {
   ]
 
   return (
-    <>
-      <Header />
-      <Navbar />
+    <AnimatePresence mode="whait" initial={false}>
 
       <Routes>
-        {pages.map((page) => (
+        <Route element={<MainLayout/>}>
+          {pages.map((page) => (
           <Route
             key={page.path}
             path={page.path}
             element={page.element}
           />
         ))}
+        </Route>
       </Routes>
 
-      <Footer />
-    </>
+    </AnimatePresence>
   )
 }
 export default App
