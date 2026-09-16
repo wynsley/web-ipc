@@ -1,3 +1,6 @@
+import { motion } from "motion/react"
+import { paragraphReveal } from "../animations/animation"
+
 function Button({
   text,
   onClick,
@@ -5,7 +8,8 @@ function Button({
   type,
   disabled = false,
   children,
-  variant = 'default'
+  variant = 'default',
+  ...motionProps
 }) {
 
   const variants = {
@@ -34,7 +38,9 @@ function Button({
   }
 
   return (
-    <button
+    <motion.button
+      {...motionProps}
+      variants={paragraphReveal}
       className={`
         ${className}
         ${variants[variant] || variants.default}
@@ -44,7 +50,7 @@ function Button({
       disabled={disabled}
     >
       {text || children}
-    </button>
+    </motion.button>
   )
 }
 

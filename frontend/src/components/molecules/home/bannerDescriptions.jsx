@@ -1,6 +1,8 @@
 import { IoIosArrowRoundForward } from "react-icons/io"
+import { staggerContainer, paragraphReveal } from "../../animations/animation"
 import { Button } from "../../atoms/button"
 import { Title } from "../../atoms/titles"
+import { motion } from "motion/react"
 
 
 function BannerDescription({ title, cta }) {
@@ -11,13 +13,20 @@ function BannerDescription({ title, cta }) {
           px-4 sm:px-8 md:px-10 lg:px-15 xl:px-20 z-10 w-[70%]
         "
     >
-      <div className="flex flex-col items-flex-start justify-center" >
-        <p className="text-blue-light 
-        text-[.7em] xs:text-[1em] sm:text-[1.3em] xl:text-[3em] 
+      <motion.div
+        variants={staggerContainer}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.2 }}
+        className="flex flex-col items-flex-start justify-center" >
+        <motion.p 
+          variants={paragraphReveal}
+          className="text-blue-light 
+          text-[.7em] xs:text-[1em] sm:text-[1.3em] xl:text-[3em] 
           font-hani font-bold"
         >
           {cta}
-        </p>
+        </motion.p>
         <Title
           text={title}
           level="h1"
@@ -26,7 +35,7 @@ function BannerDescription({ title, cta }) {
           className=" font-poppins leading-tight
         text-shadow-[0px_2px_3px_black]"
         />
-      </div>
+      </motion.div>
       <Button
         type="button"
         variant="primary"
