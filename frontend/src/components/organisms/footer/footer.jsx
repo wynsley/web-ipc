@@ -5,7 +5,7 @@ import { FooterSchedule } from "../../molecules/footer/footerSchedule";
 
 function Footer() {
   return (
-    <footer className="relative isolate overflow-hidden bg-sky/80 text-white">
+    <footer className="relative isolate overflow-hidden bg-blue-dark text-white">
       <svg
         aria-hidden="true"
         focusable="false"
