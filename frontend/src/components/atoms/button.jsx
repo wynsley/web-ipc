@@ -11,16 +11,15 @@ function Button({
   const variants = {
     default: ``,
     primary: `
-      hidden md:block absolute
-      md:right-9 lg:right-9  xl:right-8 bottom-[-2em]
-      bg-[#e08433] 
-      py-1 px-4 lg:px-5
-      text-[.8em] lg:text-[.9em] xl:text-[1em]
-      font-semibold text-white 
+      bg-[#c97420] 
+      w-[9em]  md:w-[10em] py-1 sm:py-2 px-2  md:px-4 lg:px-5
+      rounded-xl
+      text-[.6em] sm:text-[.9em]  xl:text-[1.3em]
+      font-bold text-white 
       shadow-[0_4px_8px_rgba(255,255,255,0.5)]
       hover:bg-[#c97420] 
       hover:shadow-[2px_10px_10px_rgba(224,132,51,0.6)] 
-      hover:scale-105 
+      hover:-translate-y-1 
       transition-all duration-200 cursor-pointer
       font-hani
 `,
