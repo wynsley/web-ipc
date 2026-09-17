@@ -5,36 +5,44 @@ function FooterSchedule() {
   return (
     <section
       aria-labelledby="footer-schedule-title"
-      className="min-w-0 text-center font-hani lg:self-start lg:pt-[1.2vw]"
+      className="min-w-0 text-center lg:self-start lg:pt-[1.2vw]"
     >
       <Title
         id="footer-schedule-title"
         level="h2"
+        size="compact"
         variant="primary"
         align="center"
         text="HORARIOS"
-        className="mb-5 lg:mb-7 lg:text-[clamp(1.5rem,2vw,2.5rem)]!"
+        className="mb-5 font-hani lg:mb-7"
       />
       <Paragraph
         variant="primary"
         align="center"
-        size="base"
-        text="Lunes a Viernes"
-        className="text-xl! italic sm:text-2xl! lg:text-[clamp(1.1rem,1.65vw,2.1rem)]!"
-      />
+        size="compact"
+        className="font-poppins leading-snug"
+      >
+        Lunes a Viernes
+        <span className="mt-1 block">
+          <time dateTime="08:30">8:30 a. m.</time>
+          {" – "}
+          <time dateTime="22:30">10:30 p. m.</time>
+        </span>
+      </Paragraph>
       <Title
         level="h2"
+        size="compact"
         variant="primary"
         align="center"
         text="TURNOS"
-        className="mb-3 mt-6 lg:mt-5 lg:text-[clamp(1.5rem,2vw,2.5rem)]!"
+        className="mb-3 mt-6 font-hani lg:mt-5"
       />
       <Paragraph
         variant="primary"
         align="center"
-        size="base"
+        size="compact"
         text="Mañana, Tarde y Noche"
-        className="text-xl! italic sm:text-2xl! lg:text-[clamp(1.1rem,1.65vw,2.1rem)]!"
+        className="font-poppins leading-snug"
       />
     </section>
   );

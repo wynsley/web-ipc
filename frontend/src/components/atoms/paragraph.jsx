@@ -23,6 +23,8 @@ function Paragraph ({
   };
 
   const sizes = {
+    compact: 'text-[clamp(0.875rem,0.75rem+0.3vw,1.0625rem)]',
+    comfortable: 'text-[clamp(1rem,0.8rem+0.5vw,1.375rem)]',
     base : "text-base",
     small:  "text-[0.6em] sm:text-[.7em] md:text-[.9em]",
     medium: "text-[.4em] xs:text-[.7em] sm:text-[.7em] md:text-[.9em] lg:text-[1em]" ,

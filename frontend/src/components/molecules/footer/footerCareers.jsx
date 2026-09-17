@@ -17,12 +17,13 @@ function FooterCareers() {
       <Title
         id="footer-careers-title"
         level="h2"
+        size="compact"
         variant="primary"
         align="center"
         text="CARRERAS:"
-        className="mb-5 font-hani lg:mb-7 lg:text-[clamp(1.5rem,2vw,2.5rem)]!"
+        className="mb-5 font-hani lg:mb-7"
       />
-      <ul className="space-y-2 font-poppins text-xl leading-snug sm:text-2xl lg:text-[clamp(1.1rem,1.65vw,2.1rem)]">
+      <ul className="space-y-2 font-poppins text-[clamp(0.875rem,0.75rem+0.3vw,1.0625rem)] leading-snug">
         {footerCareers.map((career) => (
           <li key={career.href}>
             <Link

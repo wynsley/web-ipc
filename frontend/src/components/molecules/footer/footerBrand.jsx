@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { Link as ExternalLink } from "../../atoms/links";
 
 function FooterBrand() {
   return (
@@ -18,12 +19,13 @@ function FooterBrand() {
           />
         </Link>
 
-        <a
+        <ExternalLink
+          variant="media"
           href="https://site2.q10.com/login?ReturnUrl=%2F&aplentId=14592cc7-5820-4c56-a61c-35fdc90579ed"
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Acceder a Q10 (abre en una pestaña nueva)"
-          className="relative min-w-0 flex-1 overflow-hidden rounded-md ring-1 ring-inset ring-sky/20 transition-colors duration-150 hover:ring-sky/50 after:pointer-events-none after:absolute after:inset-0 after:bg-sky/0 after:transition-colors after:duration-150 hover:after:bg-sky/10 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-blue-dark"
+          className="w-[28%] max-w-20 shrink-0"
         >
           <img
             src="/LOGO_Q10.webp"
@@ -32,7 +34,7 @@ function FooterBrand() {
             height="400"
             className="h-auto w-full"
           />
-        </a>
+        </ExternalLink>
       </div>
       <div
         aria-hidden="true"

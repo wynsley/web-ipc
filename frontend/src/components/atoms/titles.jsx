@@ -1,5 +1,6 @@
 function Title({
   level = 'h1',
+  size = 'default',
   children,
   text,
   className = '',
@@ -33,6 +34,11 @@ function Title({
 };
 
 
+  const sizes = {
+    default: defaultByLevel[level] || defaultByLevel.h1,
+    compact: 'text-[clamp(1.25rem,1rem+0.55vw,1.625rem)]',
+  };
+
   const weights = {
     light: 'font-light',
     normal: 'font-normal',
@@ -42,7 +48,7 @@ function Title({
   return (
     <Tag
       className={`
-        ${defaultByLevel[level] || defaultByLevel.h1}
+        ${sizes[size] || sizes.default}
         ${weights[weight] || weights.normal}
         ${variants[variant] || variants.default}
         ${alignments[align] || alignments.left}
