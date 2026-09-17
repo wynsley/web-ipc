@@ -1,4 +1,4 @@
-import { motion } from "motion/react"
+import { motion as Motion } from "motion/react"
 import { paragraphReveal } from "../animations/animation"
 
 function Button({
@@ -38,7 +38,7 @@ function Button({
   }
 
   return (
-    <motion.button
+    <Motion.button
       {...motionProps}
       variants={paragraphReveal}
       className={`
@@ -50,7 +50,7 @@ function Button({
       disabled={disabled}
     >
       {text || children}
-    </motion.button>
+    </Motion.button>
   )
 }
 

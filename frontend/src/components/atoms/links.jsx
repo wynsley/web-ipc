@@ -4,11 +4,18 @@ function Link({
   className = '', 
   variant = 'default',
   text,
-  target, 
+  target,
+  rel,
+  "aria-label": ariaLabel,
   children
 }) {
 
   const variants = {
+    media: `relative block rounded-md ring-1 ring-inset ring-sky/20
+      transition-colors duration-150 hover:ring-sky/50
+      after:pointer-events-none after:absolute after:inset-0 after:rounded-[inherit]
+      after:bg-sky/0 after:transition-colors after:duration-150 hover:after:bg-sky/10
+      focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-blue-dark`,
     default: `
       hover:text-blue-800 
       hover:underline 
@@ -49,7 +56,9 @@ function Link({
 
   return (
     <a
-    target={target}
+      target={target}
+      rel={rel}
+      aria-label={ariaLabel}
       href={href}
       onClick={onClick}
       className={`

@@ -1,8 +1,8 @@
-import { motion } from "motion/react";
+import { motion as Motion } from "motion/react";
 
 function TransitionPage({ children }) {
   return (
-    <motion.div
+    <Motion.div
       initial={{ opacity: 0, y: 8 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -8 }}
@@ -12,7 +12,7 @@ function TransitionPage({ children }) {
       }}
     >
       {children}
-    </motion.div>
+    </Motion.div>
   );
 }
 
