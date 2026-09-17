@@ -35,7 +35,7 @@ function App() {
   ]
 
   return (
-    <AnimatePresence mode="whait" initial={false}>
+    <AnimatePresence mode="wait" initial={false}>
 
       <Routes>
         <Route element={<MainLayout/>}>

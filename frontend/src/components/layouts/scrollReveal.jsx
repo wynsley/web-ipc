@@ -1,8 +1,8 @@
-import { motion } from "motion/react";
+import { motion as Motion } from "motion/react";
 
 function ScrollReveal({ children, className = "", delay = 0, y = 24 }) {
   return (
-    <motion.div
+    <Motion.div
       className={className}
       initial={{ opacity: 0, y }}
       whileInView={{ opacity: 1, y: 0 }}
@@ -14,7 +14,7 @@ function ScrollReveal({ children, className = "", delay = 0, y = 24 }) {
       }}
     >
       {children}
-    </motion.div>
+    </Motion.div>
   );
 }
 
