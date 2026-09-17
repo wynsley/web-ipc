@@ -1,3 +1,6 @@
+import { motion } from "motion/react";
+import { titleReveal } from "../animations/animation";
+
 function Title({
   level = 'h1',
   size = 'default',
@@ -9,7 +12,7 @@ function Title({
   weight = 'normal',
   ...props
 }) {
-  const Tag = level;
+  const Tag = motion[level];
 
   const variants = {
     default: 'text-black',
@@ -25,7 +28,7 @@ function Title({
   };
 
   const defaultByLevel = {
-  h1: 'text-[.7em] xs:text-[.8em] sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl',
+  h1: 'text-[1.1em] xs:text-[1.6em] sm:text-[1.9em] md:text-[2.8em] xl:text-6xl',
   h2: 'text-[1.7em] xs:text-[2.5] sm:text-[2.2em] md:text-[2.4em]',
   h3: 'text-[1.3em] sm:text-[1.2em] md:text-[1.2em] xl:text-[1.9em]',
   h4: 'text-sm sm:text-base md:text-lg',
@@ -47,6 +50,7 @@ function Title({
 
   return (
     <Tag
+      variants={titleReveal}
       className={`
         ${sizes[size] || sizes.default}
         ${weights[weight] || weights.normal}

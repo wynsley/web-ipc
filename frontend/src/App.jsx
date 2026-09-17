@@ -1,21 +1,22 @@
-import { Navbar } from "./components/organisms/navigation/navbar"
-import { Footer } from "./components/organisms/footer/footer"
-import { Header } from "./components/organisms/navigation/header"
+import { AnimatePresence } from "motion/react"
 import { Route, Routes } from "react-router-dom"
 
+//Animacion y trancicion
+import { MainLayout } from "./components/layouts/mainLayout"
+
 /* Páginas */
-import { HomePage } from "./pages/homePage"
-import { AlumniPage } from "./pages/alumniPage"
-import { AboutUsPage } from "./pages/aboutUsPage"
-import { EventsPage } from "./pages/eventsPage"
-import { AdmissionPage } from "./pages/admissionsPage"
-import { ContactPage } from "./pages/contactPage"
+import { HomePage } from "./components/pages/homePage"
+import { AlumniPage } from "./components/pages/alumniPage"
+import { AboutUsPage } from "./components/pages/aboutUsPage"
+import { EventsPage } from "./components/pages/eventsPage"
+import { AdmissionPage } from "./components/pages/admissionsPage"
+import { ContactPage } from "./components/pages/contactPage"
 
 /* Carreras */
-import { AdministrationPage } from "./pages/careers/businessAdministrationPage"
-import { AccountingPage } from "./pages/careers/accountingPage"
-import { ComputerSciencePage } from "./pages/careers/computerSciencePage"
-import { LanguageTraslationPage } from "./pages/careers/languageTranslationPage"
+import { AdministrationPage } from "./components/pages/careers/businessAdministrationPage"
+import { AccountingPage } from "./components/pages/careers/accountingPage"
+import { ComputerSciencePage } from "./components/pages/careers/computerSciencePage"
+import { LanguageTraslationPage } from "./components/pages/careers/languageTranslationPage"
 
 function App() {
   const pages = [
@@ -34,22 +35,21 @@ function App() {
   ]
 
   return (
-    <>
-      <Header />
-      <Navbar />
+    <AnimatePresence mode="whait" initial={false}>
 
       <Routes>
-        {pages.map((page) => (
+        <Route element={<MainLayout/>}>
+          {pages.map((page) => (
           <Route
             key={page.path}
             path={page.path}
             element={page.element}
           />
         ))}
+        </Route>
       </Routes>
 
-      <Footer />
-    </>
+    </AnimatePresence>
   )
 }
 export default App
