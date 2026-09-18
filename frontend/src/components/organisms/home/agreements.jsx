@@ -1,4 +1,5 @@
 import { Title } from "../../atoms/titles"
+import { ContinuousCarousel } from "../../molecules/shared/continuousCarousel"
 import { ConvCard } from "../../molecules/home/convCard"
 import {
   PiBuildings,
@@ -57,16 +58,11 @@ function Agreements() {
         className="font-hani"
       />
 
-      <div className="relative overflow-hidden w-full py-8
-        before:absolute before:left-0 before:top-0 before:bottom-0 before:w-20 before:bg-linear-to-r before:from-white before:to-transparent before:z-10
-        after:absolute after:right-0 after:top-0 after:bottom-0 after:w-20 after:bg-linear-to-l after:from-white after:to-transparent after:z-10"
-      >
-        <div className="flex gap-5 w-max animate-scrollLeft hover:[animation-play-state:paused]">
-          {[...cards, ...cards].map((card, i) => (
-            <ConvCard key={i} {...card} />
-          ))}
-        </div>
-      </div>
+      <ContinuousCarousel
+        items={cards}
+        label="Convenios institucionales"
+        renderItem={(card) => <ConvCard {...card} />}
+      />
     </section>
   )
 }

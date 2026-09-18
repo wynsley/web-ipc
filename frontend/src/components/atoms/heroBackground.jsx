@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function HeroBackground({ src }) {
+function HeroBackground({ src, priority = "high" }) {
   const [loadedSrc, setLoadedSrc] = useState(null);
   const [failedSrc, setFailedSrc] = useState(null);
   const hasImage = Boolean(src) && failedSrc !== src;
@@ -16,7 +16,7 @@ function HeroBackground({ src }) {
           key={src}
           src={src}
           alt=""
-          fetchPriority="high"
+          fetchPriority={priority}
           className={`h-full w-full object-cover object-center ${isLoaded ? "opacity-100" : "opacity-0"}`}
           onLoad={() => setLoadedSrc(src)}
           onError={() => setFailedSrc(src)}

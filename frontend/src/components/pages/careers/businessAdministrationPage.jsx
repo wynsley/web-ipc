@@ -1,5 +1,7 @@
 import { MyTemplate } from "../../templates/myTemplate";
 import { CareerHero } from "../../organisms/careers/careerHero";
+import { CareerLearning } from "../../organisms/careers/careerLearning";
+import { administrationLearning } from "../../../data/administrationLearning";
 import { careers } from "../../../data/careers";
 
 const administration = careers.find(({ href }) => href === "/career/administration");
@@ -15,6 +17,7 @@ function AdministrationPage() {
           highlights={administration.hero.highlights}
         />
       </div>
+      <CareerLearning topics={administrationLearning} />
     </MyTemplate>
   );
 }
