@@ -41,7 +41,7 @@ function CareerWorkplaces({ workplaces }) {
             aria-controls={galleryId}
             onClick={() => setExpanded((value) => !value)}
             className="mt-6 inline-flex min-h-12 items-center justify-center rounded-full bg-blue-dark px-7 py-3 font-poppins text-sm text-white transition-colors hover:bg-blue focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-blue-dark cursor-pointer"
-            text={expanded ? "Ver menos" : "Ver toda la galería"}
+            text={expanded ? "Ver menos" : "Ver más"}
           />
         )}
       </div>
