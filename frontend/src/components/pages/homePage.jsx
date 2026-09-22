@@ -4,6 +4,7 @@ import { AboutSection } from "../organisms/home/aboutSection";
 import { CareersSection } from "../organisms/home/homeCareers";
 import { Agreements } from "../organisms/home/agreements";
 import { EnrollmentForm } from "../organisms/home/enrollmentForm";
+import { SocialFloatings } from "../molecules/shared/SocialsFloatings";
 function HomePage() {
   return (
     <MyTemplate>
@@ -12,6 +13,7 @@ function HomePage() {
       <CareersSection/>
       <Agreements/>
       <EnrollmentForm/>
+      <SocialFloatings/>
     </MyTemplate>
     )
 }
