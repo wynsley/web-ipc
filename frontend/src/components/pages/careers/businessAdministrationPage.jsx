@@ -2,6 +2,8 @@ import { MyTemplate } from "../../templates/myTemplate";
 import { CareerHero } from "../../organisms/careers/careerHero";
 import { CareerLearning } from "../../organisms/careers/careerLearning";
 import { administrationLearning } from "../../../data/administrationLearning";
+import { CareerWorkplaces } from "../../organisms/careers/careerWorkplaces";
+import { administrationWorkplaces } from "../../../data/administrationWorkplaces";
 import { careers } from "../../../data/careers";
 
 const administration = careers.find(({ href }) => href === "/career/administration");
@@ -18,6 +20,7 @@ function AdministrationPage() {
         />
       </div>
       <CareerLearning topics={administrationLearning} />
+      <CareerWorkplaces workplaces={administrationWorkplaces} />
     </MyTemplate>
   );
 }
