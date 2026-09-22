@@ -217,55 +217,23 @@ section[aria-labelledby="career-learning-title"] .continuous-carousel::after {
   user-select: none;
 }
 
-/* Campo laboral: siete imágenes, sin modificar los carruseles compartidos. */
+/* Campo laboral: vista compacta con imágenes de proporciones uniformes. */
 .workplace-gallery {
   display: grid;
   gap: 0.75rem;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  grid-template-rows: repeat(3, 10rem) 9rem 14rem;
-  grid-template-areas:
-    "enterprise commercial"
-    "enterprise finance"
-    "people operations"
-    "services services"
-    "entrepreneurship entrepreneurship";
 }
 
-.workplace-tile--enterprise { grid-area: enterprise; }
-.workplace-tile--commercial { grid-area: commercial; }
-.workplace-tile--finance { grid-area: finance; }
-.workplace-tile--people { grid-area: people; }
-.workplace-tile--operations { grid-area: operations; }
-.workplace-tile--services { grid-area: services; }
-.workplace-tile--entrepreneurship { grid-area: entrepreneurship; }
+.workplace-tile {
+  aspect-ratio: 4 / 5;
+}
 
-@media (min-width: 40rem) {
+@media (min-width: 48rem) {
   .workplace-gallery {
     gap: 1rem;
     grid-template-columns: repeat(4, minmax(0, 1fr));
-    grid-template-rows: repeat(2, 12rem) 14rem;
-    grid-template-areas:
-      "enterprise commercial people operations"
-      "enterprise finance services services"
-      "entrepreneurship entrepreneurship entrepreneurship entrepreneurship";
   }
 }
-
-@media (min-width: 64rem) {
-  .workplace-gallery {
-    grid-template-columns: 1.1fr 1fr 0.9fr 0.9fr 1.1fr;
-    grid-template-rows: repeat(6, minmax(0, 1fr));
-    height: clamp(26rem, 38vw, 32rem);
-    grid-template-areas:
-      "enterprise commercial people operations entrepreneurship"
-      "enterprise commercial people operations entrepreneurship"
-      "enterprise commercial people operations entrepreneurship"
-      "enterprise finance people operations entrepreneurship"
-      "enterprise finance services services entrepreneurship"
-      "enterprise finance services services entrepreneurship";
-  }
-}
-
 /* En pantallas táctiles las fotografías permanecen nítidas. */
 @media (hover: hover) and (pointer: fine) {
   .workplace-tile__image {
