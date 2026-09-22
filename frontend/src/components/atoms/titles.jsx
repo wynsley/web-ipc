@@ -40,6 +40,7 @@ function Title({
   const sizes = {
     default: defaultByLevel[level] || defaultByLevel.h1,
     compact: 'text-[clamp(1.25rem,1rem+0.55vw,1.625rem)]',
+    hero: 'text-[clamp(1.875rem,3.8vw,3.25rem)]',
   };
 
   const weights = {

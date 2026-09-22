@@ -95,3 +95,189 @@
     transform: translateX(-50%);
   }
 }
+/* Carrusel continuo compartido con convenios. Cada copia incluye su espacio final
+   para que el desplazamiento del 50% cierre el ciclo sin saltos. */
+.continuous-carousel {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  padding-block: 2rem;
+}
+
+.continuous-carousel::before,
+.continuous-carousel::after {
+  content: "";
+  position: absolute;
+  inset-block: 0;
+  width: clamp(1rem, 5vw, 5rem);
+  z-index: 30;
+  pointer-events: none;
+}
+
+.continuous-carousel::before {
+  left: 0;
+  background: linear-gradient(to right, var(--color-neutral-white), transparent);
+}
+
+.continuous-carousel::after {
+  right: 0;
+  background: linear-gradient(to left, var(--color-neutral-white), transparent);
+}
+
+.continuous-carousel__track,
+.continuous-carousel__group {
+  display: flex;
+  width: max-content;
+}
+
+.continuous-carousel__group {
+  gap: 1.25rem;
+  padding-right: 1.25rem;
+}
+
+.continuous-carousel__slot {
+  flex-shrink: 0;
+}
+
+.continuous-carousel:is(:hover, :focus-within) .continuous-carousel__track {
+  animation-play-state: paused;
+}
+
+.continuous-carousel--center .continuous-carousel__slot {
+  width: clamp(16rem, 30vw, 21rem);
+}
+
+.continuous-carousel--center .continuous-carousel__card {
+  transform: scale(var(--card-scale, 0.85));
+  transform-origin: center bottom;
+}
+
+/* El teclado y el tacto pueden recorrer la lista sin controles adicionales. */
+.continuous-carousel:has(:focus-visible) {
+  overflow-x: auto;
+}
+
+.continuous-carousel:has(:focus-visible) .continuous-carousel__track {
+  animation: none;
+}
+
+.learning-card__description {
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  transform: translateY(1.5rem);
+  transition: grid-template-rows 350ms ease, opacity 350ms ease, transform 350ms ease;
+}
+
+.learning-card[data-expanded="true"] .learning-card__description {
+  grid-template-rows: 1fr;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .continuous-carousel { overflow-x: auto; }
+  .continuous-carousel__track { animation: none; }
+  .continuous-carousel__group[aria-hidden="true"] { display: none; }
+
+  .learning-card__description {
+    transition: none;
+  }
+}
+
+/* Las tarjetas de aprendizaje se muestran sin difuminado en los bordes. */
+section[aria-labelledby="career-learning-title"] .continuous-carousel::before,
+section[aria-labelledby="career-learning-title"] .continuous-carousel::after {
+  display: none;
+}
+
+/* Gestos opcionales: se activan únicamente en el carrusel de aprendizaje. */
+.continuous-carousel[data-draggable] {
+  touch-action: pan-y;
+}
+
+.continuous-carousel[data-draggable] .continuous-carousel__card,
+.continuous-carousel[data-draggable] button {
+  cursor: grab;
+}
+
+@media (hover: none) {
+  .continuous-carousel[data-draggable]:not(:focus-within) .continuous-carousel__track {
+    animation-play-state: running;
+  }
+}
+
+.continuous-carousel[data-draggable][data-dragging="true"] .continuous-carousel__track {
+  animation-play-state: paused;
+}
+
+.continuous-carousel[data-dragging="true"],
+.continuous-carousel[data-dragging="true"] * {
+  cursor: grabbing;
+  user-select: none;
+}
+
+/* Campo laboral: siete imágenes, sin modificar los carruseles compartidos. */
+.workplace-gallery {
+  display: grid;
+  gap: 0.75rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: repeat(3, 10rem) 9rem 14rem;
+  grid-template-areas:
+    "enterprise commercial"
+    "enterprise finance"
+    "people operations"
+    "services services"
+    "entrepreneurship entrepreneurship";
+}
+
+.workplace-tile--enterprise { grid-area: enterprise; }
+.workplace-tile--commercial { grid-area: commercial; }
+.workplace-tile--finance { grid-area: finance; }
+.workplace-tile--people { grid-area: people; }
+.workplace-tile--operations { grid-area: operations; }
+.workplace-tile--services { grid-area: services; }
+.workplace-tile--entrepreneurship { grid-area: entrepreneurship; }
+
+@media (min-width: 40rem) {
+  .workplace-gallery {
+    gap: 1rem;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-rows: repeat(2, 12rem) 14rem;
+    grid-template-areas:
+      "enterprise commercial people operations"
+      "enterprise finance services services"
+      "entrepreneurship entrepreneurship entrepreneurship entrepreneurship";
+  }
+}
+
+@media (min-width: 64rem) {
+  .workplace-gallery {
+    grid-template-columns: 1.1fr 1fr 0.9fr 0.9fr 1.1fr;
+    grid-template-rows: repeat(6, minmax(0, 1fr));
+    height: clamp(26rem, 38vw, 32rem);
+    grid-template-areas:
+      "enterprise commercial people operations entrepreneurship"
+      "enterprise commercial people operations entrepreneurship"
+      "enterprise commercial people operations entrepreneurship"
+      "enterprise finance people operations entrepreneurship"
+      "enterprise finance services services entrepreneurship"
+      "enterprise finance services services entrepreneurship";
+  }
+}
+
+/* En pantallas táctiles las fotografías permanecen nítidas. */
+@media (hover: hover) and (pointer: fine) {
+  .workplace-tile__image {
+    filter: blur(0.65px) brightness(0.7);
+    transition: filter 250ms ease;
+  }
+
+  .workplace-tile:hover .workplace-tile__image {
+    filter: blur(0) brightness(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .workplace-tile__image { transition: none; }
+}
