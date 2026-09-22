@@ -35,6 +35,12 @@ function Button({
       hover:-translate-y-0.5
       active:scale-95
     `,
+    ternary : `py-2 px-3 border-2 border-blue text-blue font-bold rounded-md
+      shadow-sm shadow-blue
+      transition-all duration-300 hover:-translate-y-1 
+      hover:shadow-md hover:shadow-orange hover:border-orange 
+      hover:text-orange
+    `
   }
 
   return (
