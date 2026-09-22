@@ -1,7 +1,8 @@
+import { Button } from "../../atoms/button"
 import { Paragraph } from "../../atoms/paragraph"
-import { OurPlatform } from "./ourPlatform"
+import { Title } from "../../atoms/titles"
 
-function AboutContent() {
+function AboutContent({title}) {
   const paragraphs = [
     `Formamos profesionales altamente capacitados para enfrentar
     los desafíos del mundo laboral. Nuestro enfoque integral
@@ -12,26 +13,31 @@ function AboutContent() {
 
   return (
     <div className="
-      col-span-1
-      md:col-start-2 md:row-start-2
-      flex flex-col
-      justify-start
-      gap-6
+      flex flex-col gap-8 justify-start items-start
     ">
-      
-      <div className="flex flex-col gap-4 mt-2 md:mt-16">
+      <Title 
+          text={title}
+          level="h2"
+          weight="extrabold"
+          className="
+            font-hani font-bold
+            hidden md:block lg:text-6xl
+      "/>
+
+      <div className="flex flex-col gap-4 ">
         {paragraphs.map((text, index) => (
           <Paragraph
             key={index}
             text={text}
             variant="secondary"
-            size="base"
+            size="medium"
           />
         ))}
       </div>
-
-      <OurPlatform />
-
+      <Button
+        text='Mas información'
+        variant="ternary"
+      />
     </div>
   )
 }

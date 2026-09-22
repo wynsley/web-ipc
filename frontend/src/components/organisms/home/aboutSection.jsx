@@ -2,8 +2,7 @@ import { ImageStack } from "../../molecules/home/imageStack"
 import { AboutContent } from "../../molecules/home/aboutContent"
 import { Title } from "../../atoms/titles"
 
-function AboutSection({ images = [] }) {
-  const [imgTop, imgBottom] = images
+function AboutSection() {
   const title = `TU TAMBIÉN PUEDES ALCANZAR TUS SUEÑOS`
 
   return (
@@ -29,16 +28,16 @@ function AboutSection({ images = [] }) {
         flex flex-col gap-4
         md:pt-2
       ">
-        <div className="w-20 h-0.75 bg-blue-dark rounded-full" />
+        <div className="w-20 h-0.75 bg-blue rounded-full" />
 
         <Title 
           text={title}
           level="h2"
-          weight="bold"
+          weight="extrabold"
           className="
             font-hani font-bold
-            text-3xl sm:text-4xl lg:text-5xl
-          text-gray-900
+            text-3xl sm:text-5xl block md:hidden
+
         "/>
 
       </div>
@@ -52,11 +51,14 @@ function AboutSection({ images = [] }) {
         md:col-start-1 md:row-start-1 md:row-span-2
         md:self-stretch
       ">
-        <ImageStack imgTop={imgTop} imgBottom={imgBottom} />
+        <ImageStack 
+        />
       </div>
 
       {/* ── TEXTO / CTA*/}
-      <AboutContent/>
+      <AboutContent
+        title={title}
+      />
 
     </section>
   )
