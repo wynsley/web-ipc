@@ -16,9 +16,9 @@ function Button({
     default: ``,
     primary: `
       bg-[#c97420] 
-      w-[9em]  md:w-[10em] py-1 sm:py-2 px-2  md:px-4 lg:px-5
+      w-[9em] py-1 sm:py-2 px-2  md:px-4 lg:px-5
       rounded-xl
-      text-[.6em] sm:text-[.9em]  xl:text-[1.3em]
+      text-[.6em] sm:text-[.9em] md:text-[1em] xl:text-[1.3em]
       font-bold text-white 
       shadow-[0_4px_8px_rgba(255,255,255,0.5)]
       hover:bg-[#c97420] 
