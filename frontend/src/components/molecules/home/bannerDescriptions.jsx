@@ -39,10 +39,10 @@ function BannerDescription({ title, cta }) {
       <Button
         type="button"
         variant="primary"
-        className="group flex items-center gap-1"
+        className="group flex items-center gap-4 justify-center"
       >
-        ¡Inscríbete aquí!
-        <IoIosArrowRoundForward className="size-6 transition-transform group-hover:translate-x-1" />
+        ¡Inscríbete!
+        <IoIosArrowRoundForward className="size-3 sm:size-6 transition-transform group-hover:translate-x-1" />
       </Button>
     </article>
   )
