@@ -48,6 +48,7 @@ function Title({
     light: 'font-light',
     normal: 'font-normal',
     bold: 'font-bold',
+    extrabold : 'font-extrabold'
   };
 
   return (

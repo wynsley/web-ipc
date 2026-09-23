@@ -27,8 +27,8 @@ function Paragraph ({
     comfortable: 'text-[clamp(1rem,0.8rem+0.5vw,1.375rem)]',
     base : "text-base",
     small:  "text-[0.6em] sm:text-[.7em] md:text-[.9em]",
-    medium: "text-[.4em] xs:text-[.7em] sm:text-[.7em] md:text-[.9em] lg:text-[1em]" ,
-    large:  "text-[.7em] sm:text-[.9em] lg:text-[1.1em] xl:text-[1.2em]",
+    medium: "text-[.4em] xs:text-[.7em] sm:text-[1em] md:text-[1.1em] " ,
+    large:  "text-[.7em] sm:text-[.9em] lg:text-[1.2em] xl:text-[1.3em]",
     slogan : "text-[.9em] sm:text-[1.2em] lg:text-[1.2em] xl:text-[1.3em]",
   };
 
