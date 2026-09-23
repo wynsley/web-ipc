@@ -1,3 +1,4 @@
+import { ScrollReveal } from "../../layouts/scrollReveal";
 import { Title } from "../../atoms/titles";
 import { Paragraph } from "../../atoms/paragraph";
 import { Image } from "../../atoms/image";
@@ -10,7 +11,7 @@ function CareerBenefits({ benefits, image }) {
       className="bg-neutral-white px-4 py-12 sm:px-8 sm:py-16 lg:px-12"
     >
       <div className="mx-auto grid max-w-6xl gap-8 md:grid-cols-[minmax(0,0.85fr)_minmax(0,1.4fr)] lg:gap-12">
-        <div className="flex min-w-0 flex-col">
+        <ScrollReveal x={-28} y={0} className="flex min-w-0 flex-col">
           <Title
             id="career-benefits-title"
             level="h2"
@@ -33,10 +34,14 @@ function CareerBenefits({ benefits, image }) {
               decoding="async"
             />
           </div>
-        </div>
+        </ScrollReveal>
         <ul className="grid auto-rows-fr gap-3 sm:gap-4">
-          {benefits.map((benefit) => (
-            <BenefitCard key={benefit.title} {...benefit} />
+          {benefits.map((benefit, index) => (
+            <BenefitCard
+              delay={index * 0.09}
+              key={benefit.title}
+              {...benefit}
+            />
           ))}
         </ul>
       </div>

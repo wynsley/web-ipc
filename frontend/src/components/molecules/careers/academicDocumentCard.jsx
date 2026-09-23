@@ -1,13 +1,17 @@
+import { motion as Motion, useReducedMotion } from "motion/react";
+import { useRevealMotion } from "../../animations/useRevealMotion";
 import { Image } from "../../atoms/image";
 import { Title } from "../../atoms/titles";
 import { Paragraph } from "../../atoms/paragraph";
 import { Button } from "../../atoms/button";
 
-function AcademicDocumentCard({ document, onView }) {
+function AcademicDocumentCard({ document, onView, delay = 0 }) {
+  const reveal = useRevealMotion({ delay, y: 40, scale: 0.97 });
+  const reducedMotion = useReducedMotion();
   const light = document.tone === "light";
 
   return (
-    <article className="relative isolate flex min-h-72 overflow-hidden rounded-xl2 p-6 sm:p-8 lg:min-h-80">
+    <Motion.article {...reveal} className="relative isolate flex min-h-72 overflow-hidden rounded-xl2 p-6 sm:p-8 lg:min-h-80">
       <Image src={document.image} fill />
       <div
         aria-hidden="true"
@@ -29,6 +33,8 @@ function AcademicDocumentCard({ document, onView }) {
           className="mt-3 mb-6 max-w-72 font-poppins leading-relaxed"
         />
         <Button
+          whileHover={reducedMotion ? undefined : { scale: 1.04 }}
+          whileTap={reducedMotion ? undefined : { scale: 0.97 }}
           type="button"
           text="Ver más"
           aria-label={`Ver más sobre ${document.title.toLowerCase()}`}
@@ -37,7 +43,7 @@ function AcademicDocumentCard({ document, onView }) {
           className={`mt-auto min-h-11 cursor-pointer rounded-full px-6 py-3 font-poppins text-sm transition-colors focus-visible:outline-2 focus-visible:outline-offset-4 ${light ? "bg-blue-dark text-white hover:bg-blue focus-visible:outline-blue-dark" : "bg-neutral-white text-blue-dark hover:bg-neutral-light focus-visible:outline-white"}`}
         />
       </div>
-    </article>
+    </Motion.article>
   );
 }
 

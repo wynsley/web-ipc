@@ -1,3 +1,5 @@
+import { motion as Motion, useReducedMotion } from "motion/react";
+import { revealEase } from "../../animations/useRevealMotion";
 import { useEffect, useId, useRef, useState } from "react";
 import { PiDownloadSimple, PiX } from "react-icons/pi";
 import { Image } from "../../atoms/image";
@@ -7,6 +9,7 @@ import { Button } from "../../atoms/button";
 import { Link } from "../../atoms/links";
 
 function DocumentModal({ document, onClose }) {
+  const reducedMotion = useReducedMotion();
   const dialogRef = useRef(null);
   const titleId = useId();
   const [resource, setResource] = useState({ status: "loading", url: "" });
@@ -71,7 +74,10 @@ function DocumentModal({ document, onClose }) {
   };
 
   return (
-    <dialog
+    <Motion.dialog
+      initial={reducedMotion ? false : { opacity: 0, y: 20, scale: 0.97 }}
+      animate={{ opacity: 1, y: 0, scale: 1 }}
+      transition={{ duration: reducedMotion ? 0 : 0.3, ease: revealEase }}
       ref={dialogRef}
       aria-labelledby={titleId}
       onClose={(event) => {
@@ -178,7 +184,7 @@ function DocumentModal({ document, onClose }) {
           />
         )}
       </div>
-    </dialog>
+    </Motion.dialog>
   );
 }
 

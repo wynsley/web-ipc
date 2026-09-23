@@ -1,3 +1,4 @@
+import { ScrollReveal } from "../../layouts/scrollReveal";
 import { useId, useState } from "react";
 import { Title } from "../../atoms/titles";
 import { AcademicDocumentCard } from "../../molecules/careers/academicDocumentCard";
@@ -13,17 +14,20 @@ function CareerDocuments({ documents, title = "Conoce tu formación" }) {
       className="bg-neutral-light px-4 py-12 sm:px-8 sm:py-16 lg:px-12"
     >
       <div className="mx-auto max-w-6xl">
-        <Title
-          id={titleId}
-          level="h2"
-          variant="institutional"
-          weight="bold"
-          text={title}
-          className="mb-6 font-hani sm:mb-8"
-        />
+        <ScrollReveal>
+          <Title
+            id={titleId}
+            level="h2"
+            variant="institutional"
+            weight="bold"
+            text={title}
+            className="mb-6 font-hani sm:mb-8"
+          />
+        </ScrollReveal>
         <div className="grid gap-5 md:grid-cols-2">
-          {documents.map((document) => (
+          {documents.map((document, index) => (
             <AcademicDocumentCard
+              delay={index * 0.12}
               key={document.id}
               document={document}
               onView={setActiveDocument}
