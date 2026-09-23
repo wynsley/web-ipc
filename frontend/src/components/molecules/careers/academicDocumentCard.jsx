@@ -11,7 +11,7 @@ function AcademicDocumentCard({ document, onView, delay = 0 }) {
   const light = document.tone === "light";
 
   return (
-    <Motion.article {...reveal} className="relative isolate flex min-h-72 overflow-hidden rounded-xl2 p-6 sm:p-8 lg:min-h-80">
+    <Motion.article {...reveal} className="relative isolate flex min-h-72 overflow-hidden rounded-r-xl p-6 sm:p-8 lg:min-h-80">
       <Image src={document.image} fill />
       <div
         aria-hidden="true"
@@ -40,7 +40,7 @@ function AcademicDocumentCard({ document, onView, delay = 0 }) {
           aria-label={`Ver más sobre ${document.title.toLowerCase()}`}
           aria-haspopup="dialog"
           onClick={() => onView(document)}
-          className={`mt-auto min-h-11 cursor-pointer rounded-full px-6 py-3 font-poppins text-sm transition-colors focus-visible:outline-2 focus-visible:outline-offset-4 ${light ? "bg-blue-dark text-white hover:bg-blue focus-visible:outline-blue-dark" : "bg-neutral-white text-blue-dark hover:bg-neutral-light focus-visible:outline-white"}`}
+          className={`mt-auto min-h-11 cursor-pointer rounded-tl-xl rounded-br-xl px-6 py-3 font-poppins text-sm transition-colors focus-visible:outline-2 focus-visible:outline-offset-4 ${light ? "bg-blue-dark text-white hover:bg-orange focus-visible:outline-blue-dark" : "bg-orange text-neutral-white hover:bg-neutral-light hover:text-blue-dark focus-visible:outline-white"}`}
         />
       </div>
     </Motion.article>

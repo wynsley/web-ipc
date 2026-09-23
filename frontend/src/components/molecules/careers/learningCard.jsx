@@ -10,7 +10,7 @@ function LearningCard({ title, description, image, duplicate = false }) {
 
   return (
     <article
-      className="learning-card relative isolate h-72 overflow-hidden rounded-xl2 border border-blue-light/30 bg-blue-dark shadow-soft sm:h-80"
+      className="learning-card relative isolate h-72 overflow-hidden rounded-sm border border-orange/30 bg-blue-dark shadow-soft sm:h-80"
       data-expanded={expanded}
       onMouseEnter={() => setExpanded(true)}
       onMouseLeave={() => setExpanded(false)}

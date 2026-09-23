@@ -26,7 +26,7 @@ function CareerBenefits({ benefits, image }) {
             text="Accede a una formación práctica con beneficios que impulsan tu desarrollo profesional."
             className="mt-3 max-w-md font-poppins leading-relaxed"
           />
-          <div className="relative mt-6 aspect-4/3 overflow-hidden rounded-xl2 bg-blue-dark sm:aspect-video md:aspect-auto md:min-h-64 md:flex-1">
+          <div className="relative mt-6 aspect-4/3 overflow-hidden rounded-xl bg-blue-dark sm:aspect-video md:aspect-auto md:min-h-64 md:flex-1">
             <Image
               src={image}
               alt="Presentación de gestión empresarial en un entorno de trabajo"

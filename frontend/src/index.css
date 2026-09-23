@@ -139,7 +139,9 @@
   flex-shrink: 0;
 }
 
-.continuous-carousel:is(:hover, :focus-within) .continuous-carousel__track {
+.continuous-carousel:not(:has(.learning-card)):hover .continuous-carousel__track,
+.continuous-carousel:has(.learning-card:hover) .continuous-carousel__track,
+.continuous-carousel:focus-within .continuous-carousel__track {
   animation-play-state: paused;
 }
 

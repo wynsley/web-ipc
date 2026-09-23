@@ -15,7 +15,7 @@ function CareerLearning({ topics }) {
           level="h2"
           weight="bold"
           align="center"
-          variant="danger"
+          variant="institutional"
           className="px-6 font-hani"
           text="¿Qué aprenderás?"
         />

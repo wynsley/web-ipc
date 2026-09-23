@@ -1,4 +1,8 @@
-import { AnimatePresence, motion as Motion, useReducedMotion } from "motion/react";
+import {
+  AnimatePresence,
+  motion as Motion,
+  useReducedMotion,
+} from "motion/react";
 import { ScrollReveal } from "../../layouts/scrollReveal";
 import { revealEase } from "../../animations/useRevealMotion";
 import { useId, useState } from "react";
@@ -37,19 +41,33 @@ function CareerWorkplaces({ workplaces }) {
         <div id={galleryId} className="mt-6 sm:mt-8">
           <div className="workplace-gallery">
             {workplaces.slice(0, 4).map((workplace, index) => (
-              <WorkplaceTile key={workplace.layout} {...workplace} delay={index * 0.08} />
+              <WorkplaceTile
+                key={workplace.layout}
+                {...workplace}
+                delay={index * 0.08}
+              />
             ))}
           </div>
           <AnimatePresence initial={false}>
             {expanded && (
-              <Motion.div key="more-workplaces" className="overflow-hidden"
+              <Motion.div
+                key="more-workplaces"
+                className="overflow-hidden"
                 initial={{ height: 0, opacity: 0 }}
                 animate={{ height: "auto", opacity: 1 }}
                 exit={{ height: 0, opacity: 0 }}
-                transition={{ duration: reducedMotion ? 0 : 0.5, ease: revealEase }}>
+                transition={{
+                  duration: reducedMotion ? 0 : 0.5,
+                  ease: revealEase,
+                }}
+              >
                 <div className="workplace-gallery pt-3 md:pt-4">
                   {workplaces.slice(4).map((workplace, index) => (
-                    <WorkplaceTile key={workplace.layout} {...workplace} delay={index * 0.06} />
+                    <WorkplaceTile
+                      key={workplace.layout}
+                      {...workplace}
+                      delay={index * 0.06}
+                    />
                   ))}
                 </div>
               </Motion.div>
@@ -64,7 +82,7 @@ function CareerWorkplaces({ workplaces }) {
             aria-expanded={expanded}
             aria-controls={galleryId}
             onClick={() => setExpanded((value) => !value)}
-            className="mt-6 inline-flex min-h-12 items-center justify-center rounded-full bg-blue-dark px-7 py-3 font-poppins text-sm text-white transition-colors hover:bg-blue focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-blue-dark cursor-pointer"
+            className="mt-6 inline-flex min-h-12 items-center justify-center rounded-tr-full rounded-bl-full bg-blue-dark px-7 py-3 font-poppins text-sm text-white transition-colors hover:bg-orange focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-blue-dark cursor-pointer"
             text={expanded ? "Ver menos" : "Ver más"}
           />
         )}
