@@ -6,18 +6,21 @@ export const  stats = [
       id : 1,
       value: 500,
       icon : FaGraduationCap,
-      description : "Estudiantes"
+      description : "Estudiantes",
+      position : "top"
     },
     {
       id : 2,
       value: 4,
       icon : MdSchool,
-      description : "Carreras Profesionales"
+      description : "Carreras Profesionales",
+      position : "middle"
     },
     {
       id : 3,
       value: "Ubícanos en:",
       icon : FaMapMarkerAlt,
-      description : "Jr. dos de mayo 1390 - Celendín"
+      description : "Jr. dos de mayo 1390 - Celendín",
+      position : "bottom"
     },
     ]
