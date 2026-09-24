@@ -19,6 +19,7 @@ function Title({
     primary: 'text-white',
     secondary: 'text-orange',
     danger: 'text-blue',
+    institutional: 'text-blue-dark',
   };
 
   const alignments = {
