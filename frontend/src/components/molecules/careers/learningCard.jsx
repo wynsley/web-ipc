@@ -2,7 +2,7 @@ import { useId, useState } from "react";
 import { Button } from "../../atoms/button";
 import { Title } from "../../atoms/titles";
 import { Paragraph } from "../../atoms/paragraph";
-import { HeroBackground } from "../../atoms/heroBackground";
+import { Image } from "../../atoms/image";
 
 function LearningCard({ title, description, image, duplicate = false }) {
   const [expanded, setExpanded] = useState(false);
@@ -10,12 +10,17 @@ function LearningCard({ title, description, image, duplicate = false }) {
 
   return (
     <article
-      className="learning-card relative isolate h-72 overflow-hidden rounded-xl2 border border-blue-light/30 bg-blue-dark shadow-soft sm:h-80"
+      className="learning-card relative isolate h-72 overflow-hidden rounded-sm border border-orange/30 bg-blue-dark shadow-soft sm:h-80"
       data-expanded={expanded}
       onMouseEnter={() => setExpanded(true)}
       onMouseLeave={() => setExpanded(false)}
     >
-      <HeroBackground src={image} priority="auto" />
+      <Image
+          src={image}
+          fill
+          fallbackClassName="bg-linear-to-br from-blue-dark to-blue"
+          overlayClassName="bg-linear-to-r from-neutral-black/80 via-neutral-black/50 to-neutral-black/25"
+        />
       <div
         aria-hidden="true"
         className="absolute inset-0 bg-linear-to-t  via-blue-dark/40 to-transparent"

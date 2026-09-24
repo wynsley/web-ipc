@@ -35,6 +35,11 @@ const administrationWorkplaces = [
     image: "/EMPRENDIMIENTO.webp",
     layout: "entrepreneurship",
   },
+  {
+    title: "Herramientas digitales de gestión",
+    image: "/COMPUTACION.webp",
+    layout: "digital-management",
+  },
 ];
 
 export { administrationWorkplaces };
