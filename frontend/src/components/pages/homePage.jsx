@@ -5,10 +5,13 @@ import { CareersSection } from "../organisms/home/homeCareers";
 import { Agreements } from "../organisms/home/agreements";
 import { EnrollmentForm } from "../organisms/home/enrollmentForm";
 import { SocialFloatings } from "../molecules/shared/SocialsFloatings";
+import { BannerCalled } from "../molecules/home/bannerCalled";
+
 function HomePage() {
   return (
     <MyTemplate>
       <HomeBanner/>
+      <BannerCalled />
       <AboutSection/>
       <CareersSection/>
       <Agreements/>

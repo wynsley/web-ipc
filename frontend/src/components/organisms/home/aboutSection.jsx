@@ -1,67 +1,45 @@
-import { ImageStack } from "../../molecules/home/imageStack"
-import { AboutContent } from "../../molecules/home/aboutContent"
-import { Title } from "../../atoms/titles"
+import { ImageStack } from "../../molecules/home/imageStack";
+import { AboutContent } from "../../molecules/home/aboutContent";
+import { Title } from "../../atoms/titles";
+import { motion as Motion } from "motion/react";
+import { paragraphReveal } from "../../animations/animation";
 
 function AboutSection() {
-  const title = `TU TAMBIÉN PUEDES ALCANZAR TUS SUEÑOS`
+  const title = "TU TAMBIÉN PUEDES ALCANZAR TUS SUEÑOS";
 
   return (
-    <section className="
-      w-full max-w-[88vw] mx-auto h-auto
-      px-6 sm:px-10 lg:px-16
-      py-16 md:pt-[18vh] md:pb-15
-      grid
-      grid-cols-1
-      md:grid-cols-2
-      md:grid-rows-[auto_1fr]
-      gap-x-12 lg:gap-x-25
-      gap-y-8 md:gap-y-0
-    ">
-
-      {/* ── TÍTULO ─────────────────────────────────────────
-          Mobile/tablet : fila 1, ocupa ambas columnas
-          Desktop       : fila 1, columna 2
-      ──────────────────────────────────────────────────── */}
-      <div className="
-        col-span-1
-        md:col-start-2 md:row-start-1
-        flex flex-col gap-4
-        md:pt-2
-      ">
-        <div className="w-20 h-0.75 bg-blue rounded-full" />
-
-        <Title 
+    <section
+      className="
+        flex flex-col gap-10 md:flex-row md:items-center
+        mx-auto my-3 md:my-20
+        w-[90%] md:w-[90%] md:max-w-7xl py-6
+      "
+    >
+      {/* TÍTULO (solo mobile) */}
+      <Motion.div
+        values={paragraphReveal}
+        initial = 'hidden'  
+        whileInView="visible"
+        viewport={{once: true, amount: 0.2}}      
+        className="flex flex-col gap-4 md:hidden">
+        <div className="h-0.75 w-20 rounded-full bg-blue" />
+        <Title
           text={title}
           level="h2"
           weight="extrabold"
-          className="
-            font-hani font-bold
-            text-3xl sm:text-5xl block md:hidden
-
-        "/>
-
-      </div>
-
-      {/* ── IMÁGENES ───────────────────────────────────────
-          Mobile/tablet : fila 2, ocupa ambas columnas → grid interno 2 cols
-          Desktop       : filas 1+2, columna 1          → stack con overlap
-      ──────────────────────────────────────────────────── */}
-      <div className="
-        col-span-1
-        md:col-start-1 md:row-start-1 md:row-span-2
-        md:self-stretch
-      ">
-        <ImageStack 
+          className="font-hani font-bold"
         />
+      </Motion.div>
+
+      {/* IMAGEN + CARDS — sin mx-auto, pegada a la izquierda */}
+      <div className="w-full md:w-1/2 md:shrink-0">
+        <ImageStack />
       </div>
 
-      {/* ── TEXTO / CTA*/}
-      <AboutContent
-        title={title}
-      />
-
+      {/* TEXTO */}
+      <AboutContent title={title} />
     </section>
-  )
+  );
 }
 
-export { AboutSection }
+export { AboutSection };
