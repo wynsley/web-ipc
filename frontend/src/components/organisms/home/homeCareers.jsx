@@ -3,58 +3,73 @@ import { CareersCarousel } from "./careersCarousel"
 import { careers } from "../../../data/careers"
 import { Title } from "../../atoms/titles"
 import { Paragraph } from "../../atoms/paragraph"
+import { Button } from "../../atoms/button"
+import { ScrollReveal } from "../../layouts/scrollReveal"
 
 function CareersSection() {
   const title = 'CARRERAS'
-  const slogan = 'Elige hoy tu furuto profecinal técnico'
+  const slogan = 'Elige hoy tu futuro profesional técnico'
+
   return (
-    <>
-      <section className="w-ful py-10 px-4
-      bg-[linear-gradient(to_bottom,rgba(217,217,217,0.32)_65%,#BC9F67_35%)]
-    
-    ">
+    <section className="mx-auto bg-[#F0F2F3] rounded-xl w-[96%] md:max-w-8xl">
+      <div className="w-[90%] md:w-[90%] md:max-w-7xl mx-auto py-10">
 
-      <div className="text-center mb-8">
-        <Title
-          variant="danger"
-          align="center"
-          level="h2"
-          weight="bold"
-          text={title}
-          className="font-hani"
-        />
-        <Title
-          align="center"
-          level="h3"
-          weight="bold"
-          text={slogan}
-          className="font-poppins"
-        />
+        {/* HEADER: título a la izquierda, texto descriptivo a la derecha */}
+        <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
+          <div>
+            <Title
+              level="h2"
+              weight="bold"
+              text={title}
+              className="font-hani"
+            />
+            <Paragraph
+              size="large"
+              text={slogan}
+              className="font-euro"
+            />
+          </div>
+
+          <div className="md:text-right md:max-w-xs">
+            <Paragraph
+              size="small"
+              variant="secondary"
+              text="Formación técnica de calidad, pensada para insertarte rápido al mundo laboral."
+            />
+          </div>
+        </div>
+
+        {/* Desktop */}
+        <div className="hidden md:grid grid-cols-4 gap-6 mt-10">
+          {careers.map((career, i) => (
+            <ScrollReveal key={i} delay={0.2 * i} y={60}>
+              <CareerCard career={career} />
+            </ScrollReveal>
+          ))}
+        </div>
+
+        {/* Mobile */}
+        <div className="md:hidden max-w-sm mx-auto mt-10">
+          <CareersCarousel />
+        </div>
+
+        {/* FOOTER: botón de acción a la izquierda */}
+        <div className="flex items-center justify-between mt-10">
+          <Button
+            text="Admisión"
+            variant="primary"
+          />
+
+          <Paragraph
+            variant="danger"
+            weight="semi"
+            size="slogan"
+            text="¡El lugar donde estudias transforma tu camino!"
+            className="hidden sm:block italic"
+          />
+        </div>
       </div>
-
-      {/* Desktop */}
-      <div className="hidden md:grid grid-cols-4 gap-6 max-w-5xl mx-auto mt-10">
-        {careers.map((career, i) => (
-          <CareerCard key={i} career={career} />
-        ))}
-      </div>
-
-      {/* Mobile */}
-      <div className="md:hidden max-w-sm mx-auto">
-        <CareersCarousel />
-      </div>
-
-      <Paragraph
-        variant="danger"
-        weight="semi"
-        align="center"
-        size="slogan"
-        text={'¡El lugar donde estudias transforma tu camino!'}
-        className="mt-8 italic"
-      />
     </section>
-
-    </>
   )
 }
 

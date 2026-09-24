@@ -2,7 +2,7 @@ function CareerCard({ career }) {
   return (
     <a
       href={career.href}
-      className="group relative overflow-hidden aspect-3/4 
+      className="group relative overflow-hidden aspect-3/4 rounded-xl
       bg-gray-300 block w-full shrink-0
         shadow-[0_20px_30px_rgba(0,0,0,0.5)]
       "

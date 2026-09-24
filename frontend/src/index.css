@@ -29,6 +29,13 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: 'Eurostar';
+  src: url('/src/assets/fonts/Eurostar-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-display: swap;
+}
+
 /* =========================
     THEME (Tailwind v4)
 ========================= */
@@ -52,6 +59,7 @@
   /* Fuentes */
   --font-poppins: "Poppins", sans-serif;
   --font-hani: "Hani", sans-serif;
+  --font-euro: "Eurostar", sans-serif;
 
   /* Breakpoint */
   --breakpoint-xs: 375px;
