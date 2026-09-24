@@ -9,8 +9,6 @@ function BannerCalled() {
   return (
     <div className="flex text-center
       items-center justify-center
-      absolute left-1/2
-      -translate-x-1/2 
     ">
       <Paragraph 
         variant="primary"
