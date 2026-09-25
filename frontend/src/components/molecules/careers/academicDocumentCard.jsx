@@ -40,7 +40,12 @@ function AcademicDocumentCard({ document, onView, delay = 0 }) {
           aria-label={`Ver más sobre ${document.title.toLowerCase()}`}
           aria-haspopup="dialog"
           onClick={() => onView(document)}
-          className={`mt-auto min-h-11 cursor-pointer rounded-tl-xl rounded-br-xl px-6 py-3 font-poppins text-sm transition-colors focus-visible:outline-2 focus-visible:outline-offset-4 ${light ? "bg-blue-dark text-white hover:bg-orange focus-visible:outline-blue-dark" : "bg-orange text-neutral-white hover:bg-neutral-light hover:text-blue-dark focus-visible:outline-white"}`}
+          className={`mt-auto min-h-11 cursor-pointer rounded-tl-xl 
+            rounded-br-xl px-6 py-3 font-poppins text-sm transition-colors 
+            focus-visible:outline-2 focus-visible:outline-offset-4 
+            ${light ? "bg-blue-dark text-white hover:bg-orange focus-visible:outline-blue-dark" 
+              : "bg-orange text-neutral-white hover:bg-neutral-light hover:text-blue-dark focus-visible:outline-white"}
+          `}
         />
       </div>
     </Motion.article>

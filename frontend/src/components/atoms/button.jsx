@@ -40,7 +40,13 @@ function Button({
       transition-all duration-300 hover:-translate-y-1 
       hover:shadow-md hover:shadow-orange hover:border-orange 
       hover:text-orange
-    `
+    `,
+    danger: `mt-auto min-h-11 cursor-pointer rounded-tl-xl 
+            rounded-br-xl px-6 py-2 font-poppins
+            focus-visible:outline-2 focus-visible:outline-offset-4 
+            bg-blue flex items-center transition-all duration-300
+            hover:bg-blue text-white
+            `
   }
 
   return (
