@@ -116,7 +116,6 @@ function Form ({className= ''}) {
       })
 
       // 2. Hacer petición 
-      console.log('Enviando petición...')
       const response = await apiFetch('/register', 'POST', {
         firstName,
         lastName,
