@@ -11,8 +11,7 @@ function ModalMessage({ toggleModal }) {
   const [loading, setLoagind] = useState(false)
   const [error, setError] = useState("")
   const [success, setSuccess] = useState("")
-  const [firstName, setFirstName] = useState('')
-  const [lastName, setLastName] = useState('')
+  const [fullname, setFullName] = useState('')
   const [email, setEmail] = useState('')
   const [phone, setPhone] = useState('')
   const [address, setAddress] = useState('')
@@ -22,22 +21,14 @@ function ModalMessage({ toggleModal }) {
 
   const modalRef = useClickOutside(toggleModal)
 
-   const formFields = [
+    const formFields = [
     {
       htmlFor: 'firstName',
       type: 'text',
       name: 'firstName',
-      value: firstName,
-      placeholder: 'Nombre',
-      onChange: (e) => setFirstName(e.target.value)
-    },
-    {
-      htmlFor: 'lastName',
-      type: 'text',
-      name: 'lastName',
-      value: lastName,
-      placeholder: 'Apellidos',
-      onChange: (e) => setLastName(e.target.value)
+      value: fullname,
+      placeholder: 'Nombre completo',
+      onChange: (e) => setFullName(e.target.value)
     },
     {
       htmlFor: 'email',
@@ -116,15 +107,13 @@ function ModalMessage({ toggleModal }) {
       setLoagind(true)
 
       await UserValidator.validateAsync({
-        firstName,
-        lastName,
+        fullname,
         phone,
         address,
       })
 
       const response = await apiFetch('/register', 'POST', {
-        firstName,
-        lastName,
+        fullname,
         phone,
         address,
       })
@@ -168,7 +157,7 @@ function ModalMessage({ toggleModal }) {
             className="size-7 absolute right-2 top-2 text-gray-400 transition-all duration-300 hover:text-blue"
           />
         </div>
-        <hr className="text-orange" />
+        <hr className="text-orange mt-4" />
 
         {/* ── Mensaje de éxito: reemplaza el formulario cuando se envía bien ── */}
         {success ? (
