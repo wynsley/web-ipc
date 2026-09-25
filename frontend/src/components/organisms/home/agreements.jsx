@@ -1,66 +1,26 @@
 import { Title } from "../../atoms/titles"
 import { ContinuousCarousel } from "../../molecules/shared/continuousCarousel"
 import { ConvCard } from "../../molecules/home/convCard"
-import {
-  PiBuildings,
-  PiStudent,
-  PiChalkboardTeacher,
-  PiUsersThree,
-  PiMonitorPlay,
-  PiLaptop
-} from "react-icons/pi"
-
-const cards = [
-  {
-    title: "UPN",
-    desc: "Universidad Privada del Norte — formación profesional de calidad.",
-    icon: <PiBuildings size={36} />,
-  },
-  {
-    title: "Coronel Cortegana",
-    desc: "Institución educativa con historia y compromiso académico.",
-    icon: <PiStudent size={36} />,
-  },
-  {
-    title: "Pedro Paula",
-    desc: "Centro educativo enfocado en el desarrollo integral del estudiante.",
-    icon: <PiChalkboardTeacher size={36} />,
-  },
-  {
-    title: "AMM",
-    desc: "Asociación comprometida con la excelencia y la innovación educativa.",
-    icon: <PiUsersThree size={36} />,
-  },
-  {
-    title: "IDAT",
-    desc: "Instituto de diseño y tecnología con enfoque aplicado y práctico.",
-    icon: <PiMonitorPlay size={36} />,
-  },
-  {
-    title: "Cibertec",
-    desc: "Instituto tecnológico líder en carreras técnicas y digitales.",
-    icon: <PiLaptop size={36} />,
-  },
-]
-
+import { agreements } from "../../../data/home/ agreements"
 
 function Agreements() {
   return (
-    <section className=" mt-[3em] pt-[1em] md:pt-20 flex flex-col md:gap-10  
-      
+    <section className="
+      flex flex-col justify-center 
+      mx-auto my-3 md:my-20 
+      w-[90%] md:w-[90%] md:max-w-7xl py-6
     ">
       <Title
         level="h2"
         text="CONVENIOS"
-        align="center"
         weight="bold"
-        variant="danger"
-        className="font-hani"
+        className="font-hani mb-8"
       />
 
       <ContinuousCarousel
-        items={cards}
+        items={agreements}
         label="Convenios institucionales"
+        draggable
         renderItem={(card) => <ConvCard {...card} />}
       />
     </section>

@@ -2,7 +2,7 @@ function CareerCard({ career }) {
   return (
     <a
       href={career.href}
-      className="group relative overflow-hidden aspect-3/4 rounded-xl
+      className="group relative overflow-hidden aspect-3/4 rounded-lg
       bg-gray-300 block w-full shrink-0
         shadow-[0_20px_30px_rgba(0,0,0,0.5)]
       "
@@ -26,7 +26,7 @@ function CareerCard({ career }) {
       <div className="absolute bottom-5 left-0 right-0 
         flex items-center justify-center 
       ">
-        <span className="text-white font-bold text-[1em ]sm:text-[1.1em] md:text-[1.2em] text-center leading-tight">
+        <span className="text-white font-bold text-[1em ]sm:text-[1.1em] md:text-[1.2em] text-center leading-tight font-hani">
           {career.title}
         </span>
       </div>
