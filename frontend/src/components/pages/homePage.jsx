@@ -4,7 +4,6 @@ import { AboutSection } from "../organisms/home/aboutSection";
 import { CareersSection } from "../organisms/home/homeCareers";
 import { Agreements } from "../organisms/home/agreements";
 import { HomeAdmissions } from "../organisms/home/homeAdmissions";
-import { SocialFloatings } from "../molecules/shared/SocialsFloatings";
 import { BannerCalled } from "../molecules/home/bannerCalled";
 import { useModal } from "../../hooks/modal/useModal";
 import { ModalMessage } from "../modals/modalMessage";
@@ -26,7 +25,6 @@ function HomePage() {
       <HomeAdmissions
         toggleModal = {toggleModal}
       />
-      <SocialFloatings/>
       <HomeMessage/>
 
       {
