@@ -40,7 +40,7 @@ function CareersSection() {
         </div>
 
         {/* Desktop */}
-        <div className="hidden md:grid grid-cols-4 gap-6 mt-10">
+        <div className="hidden lg:grid grid-cols-4 gap-6 mt-10">
           {careers.map((career, i) => (
             <ScrollReveal key={i} delay={0.2 * i} y={60}>
               <CareerCard career={career} />
@@ -49,7 +49,7 @@ function CareersSection() {
         </div>
 
         {/* Mobile */}
-        <div className="md:hidden max-w-sm mx-auto mt-10">
+        <div className="lg:hidden min-w-md sm:min-w-lg md:max-w-4xl mx-auto mt-10">
           <CareersCarousel />
         </div>
 

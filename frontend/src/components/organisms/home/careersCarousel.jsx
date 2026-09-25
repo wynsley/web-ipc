@@ -1,9 +1,11 @@
-// molecules/careersCarousel.jsx
 import { useState, useEffect, useRef, useCallback } from "react"
 import { CareerCard } from "../../molecules/home/homeCareerCards"
 import { CarouselDots } from "../../molecules/home/carouselDots"
 import { careers } from "../../../data/careers"
+import { useCardsPerView } from "../../../hooks/globals/useCardPowerView"
+
 function CareersCarousel() {
+  const cardsPerView = useCardsPerView()
   const [current, setCurrent] = useState(0)
   const timerRef              = useRef(null)
   const touchStartX           = useRef(null)
@@ -23,6 +25,11 @@ function CareersCarousel() {
     startTimer()
     return () => clearInterval(timerRef.current)
   }, [startTimer])
+
+  // Si cambia cardsPerView (resize) y el índice actual queda fuera de rango, lo corrige
+  useEffect(() => {
+    setCurrent(prev => prev % total)
+  }, [cardsPerView, total])
 
   const pauseAndResume = () => {
     paused.current = true
@@ -60,12 +67,16 @@ function CareersCarousel() {
     }, 5000)
   }
 
-  const visibleIndexes = [current, (current + 1) % total]
+  // Genera N índices consecutivos (con wrap), N = cardsPerView
+  const visibleIndexes = Array.from(
+    { length: Math.min(cardsPerView, total) },
+    (_, i) => (current + i) % total
+  )
 
   return (
     <div className="w-full">
       <div
-        className="grid grid-cols-2 gap-3"
+        className={`grid gap-3 ${cardsPerView === 3 ? "grid-cols-3" : "grid-cols-2"}`}
         onTouchStart={handleTouchStart}
         onTouchEnd={handleTouchEnd}
       >
