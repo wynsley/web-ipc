@@ -7,7 +7,7 @@ export const useModal = (initialValue = false) => {
   const closeModal = () => setIsOpen(false)
 
   const toggleModal = () => {
-    isOpen ? closeModal : openModal 
+    isOpen ? closeModal() : openModal() 
   }
 
   return {
