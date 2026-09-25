@@ -3,7 +3,7 @@ import { HomeBanner } from "../organisms/home/banner";
 import { AboutSection } from "../organisms/home/aboutSection";
 import { CareersSection } from "../organisms/home/homeCareers";
 import { Agreements } from "../organisms/home/agreements";
-import { EnrollmentForm } from "../organisms/home/enrollmentForm";
+import { HomeAdmissions } from "../organisms/home/homeAdmissions";
 import { SocialFloatings } from "../molecules/shared/SocialsFloatings";
 import { BannerCalled } from "../molecules/home/bannerCalled";
 
@@ -15,7 +15,7 @@ function HomePage() {
       <AboutSection/>
       <CareersSection/>
       <Agreements/>
-      <EnrollmentForm/>
+      <HomeAdmissions/>
       <SocialFloatings/>
     </MyTemplate>
     )
