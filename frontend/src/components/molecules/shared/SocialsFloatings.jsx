@@ -13,7 +13,7 @@ function SocialFloatings() {
         className="
           group relative
           flex items-center justify-center
-          w-14 h-14 sm:w-16 sm:h-16
+          w-12 h-12 sm:w-14 sm:h-14
           rounded-full bg-white
           shadow-lg shadow-black/30
           transition-all duration-300
@@ -53,7 +53,7 @@ function SocialFloatings() {
         className="
           group relative
           flex items-center justify-center
-          w-14 h-14 sm:w-16 sm:h-16
+          w-12 h-12 sm:w-14 sm:h-14
           rounded-full
           bg-[#25D366] text-white
           shadow-lg shadow-black/30
