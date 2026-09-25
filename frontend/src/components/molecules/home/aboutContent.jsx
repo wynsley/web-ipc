@@ -40,7 +40,11 @@ function AboutContent({ title }) {
       </div>
 
       <Motion.div variants={paragraphReveal}>
-        <Button text='Mas información' variant="ternary" />
+        <Button 
+          text='Mas información' 
+          variant="ternary" 
+          className="animate-float"
+        />
       </Motion.div>
     </Motion.div>
   )

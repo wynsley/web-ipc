@@ -8,10 +8,10 @@ function ConvCard({ title, desc, icon, buttonText = "Visítalos" }) {
     <div
       className="
         continuous-carousel__card
-        group relative w-[15em] md:w-[18em] shrink-0
-        bg-[#F0F2F3]/30 border border-blue/10  rounded-md
+        group relative w-[14em] h-[18em] md:w-[18em] shrink-0
+        bg-[#F0F2F3]/30 border border-blue/10 
         shadow-lg
-        p-6
+        pl-6 pt-6
         flex flex-col items-start text-left gap-6
         transition-all duration-300
         hover:-translate-y-1.5 hover:shadow-lg hover:border-blue/30
@@ -34,11 +34,11 @@ function ConvCard({ title, desc, icon, buttonText = "Visítalos" }) {
       <div className="relative flex flex-col gap-1.5">
         <Title
           text={title}
-          level="h4"
+          level="h3"
           weight="bold"
           className="font-hani"
         />
-        <p className="text-[13px] leading-relaxed text-neutral-dark/60">
+        <p className="text-[14px] leading-relaxed text-neutral-dark/60">
           {desc}
         </p>
       </div>
@@ -47,17 +47,17 @@ function ConvCard({ title, desc, icon, buttonText = "Visítalos" }) {
       <a
         type="button"
         className="
-          relative mt-auto group/btn
-          flex items-center gap-2
-          bg-blue text-white
+          relative mt-auto group/btn w-full
+          flex items-center justify-between gap-2
+          bg-black text-white
           text-[13px] font-medium
-          px-4 py-2.5 rounded-lg
+          px-4 py-2.5
           transition-all duration-300
           hover:-translate-y-1
         "
       >
         {buttonText}
-        <IoIosArrowRoundForward className="size-4 transition-transform group-hover/btn:translate-x-1" />
+        <IoIosArrowRoundForward className="size-6 transition-transform group-hover/btn:translate-x-1" />
       </a>
     </div>
   )

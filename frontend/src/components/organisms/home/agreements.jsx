@@ -7,14 +7,14 @@ function Agreements() {
   return (
     <section className="
       flex flex-col justify-center 
-      mx-auto my-3 md:my-20 
+      mx-auto my-10 md:my-20 
       w-[90%] md:w-[90%] md:max-w-7xl py-6
     ">
       <Title
         level="h2"
         text="CONVENIOS"
         weight="bold"
-        className="font-hani mb-8"
+        className="font-hani mb-3 md:mb-8"
       />
 
       <ContinuousCarousel
