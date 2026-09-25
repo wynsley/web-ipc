@@ -28,12 +28,11 @@ function Button({
       font-hani
 `,
     secondary: `
-      w-full bg-blue text-white font-bold text-[1.1em]
-      rounded-md py-1 transition-all duration-300 ease-in-out
-      hover:bg-blue-dark
-      hover:shadow-lg
-      hover:-translate-y-0.5
-      active:scale-95
+      mt-auto min-h-11 cursor-pointer rounded-tl-xl 
+            rounded-br-xl px-6 py-1 font-poppins
+            focus-visible:outline-2 focus-visible:outline-offset-4 
+            border-3 border-blue flex items-center transition-all duration-300
+            hover:border-orange text-blue
     `,
     ternary : `py-2 px-3 border-2 border-blue text-blue font-bold rounded-md
       shadow-sm shadow-blue
@@ -45,7 +44,7 @@ function Button({
             rounded-br-xl px-6 py-2 font-poppins
             focus-visible:outline-2 focus-visible:outline-offset-4 
             bg-blue flex items-center transition-all duration-300
-            hover:bg-blue text-white
+            hover:bg-orange text-white
             `
   }
 

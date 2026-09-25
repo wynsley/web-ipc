@@ -15,7 +15,11 @@ function Select({
   const variants = {
     default :`w-full text-center
       border-b border-blue py-o px-1 text-black/50 
-    `
+    `,
+    primary : `bg-gray-200 rounded-lg h-10 px-3
+                border border-transparent
+                focus:border-blue-500 focus:ring-2 focus:ring-blue-200
+                outline-none transition-all duration-200`
   }
 
   const sizes ={
