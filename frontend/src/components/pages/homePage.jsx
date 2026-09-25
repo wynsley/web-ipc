@@ -6,17 +6,34 @@ import { Agreements } from "../organisms/home/agreements";
 import { HomeAdmissions } from "../organisms/home/homeAdmissions";
 import { SocialFloatings } from "../molecules/shared/SocialsFloatings";
 import { BannerCalled } from "../molecules/home/bannerCalled";
+import { useModal } from "../../hooks/modal/useModal";
+import { ModalMessage } from "../modals/modalMessage";
 
 function HomePage() {
+
+  const {isOpen, toggleModal} = useModal()
+
   return (
     <MyTemplate>
-      <HomeBanner/>
+      <HomeBanner
+        toggleModal = {toggleModal}
+      />
       <BannerCalled />
       <AboutSection/>
       <CareersSection/>
       <Agreements/>
-      <HomeAdmissions/>
+      <HomeAdmissions
+        toggleModal = {toggleModal}
+      />
       <SocialFloatings/>
+
+      {
+        isOpen && (
+          <ModalMessage
+            toggleModal={toggleModal}
+          />
+        )
+      }
     </MyTemplate>
     )
 }

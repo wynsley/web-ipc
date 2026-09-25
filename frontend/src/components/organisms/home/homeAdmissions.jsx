@@ -5,7 +5,7 @@ import { ScrollReveal } from "../../layouts/scrollReveal"
 import { FaStar, FaCheck } from "react-icons/fa"
 import { IoIosArrowRoundForward } from "react-icons/io"
 
-function HomeAdmissions() {
+function HomeAdmissions({toggleModal}) {
   const skills = ["Asesoría", "Consultoría", "Marketing", "Investigación"]
 
   return (
@@ -93,6 +93,7 @@ function HomeAdmissions() {
           />
 
           <Button
+            onClick={toggleModal}
             type="button"
             variant="primary"
             className="group flex items-center gap-4 justify-center"
