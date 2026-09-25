@@ -8,6 +8,7 @@ import { SocialFloatings } from "../molecules/shared/SocialsFloatings";
 import { BannerCalled } from "../molecules/home/bannerCalled";
 import { useModal } from "../../hooks/modal/useModal";
 import { ModalMessage } from "../modals/modalMessage";
+import { HomeMessage } from "../organisms/home/HomeMessage";
 
 function HomePage() {
 
@@ -26,6 +27,7 @@ function HomePage() {
         toggleModal = {toggleModal}
       />
       <SocialFloatings/>
+      <HomeMessage/>
 
       {
         isOpen && (
