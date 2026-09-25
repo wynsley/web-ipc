@@ -2,16 +2,18 @@ import { Title } from "../../atoms/titles"
 import { Paragraph } from "../../atoms/paragraph"
 import { Button } from "../../atoms/button"
 import { ScrollReveal } from "../../layouts/scrollReveal"
-import { FaStar, FaCheck } from "react-icons/fa"
+import { FaCheck } from "react-icons/fa"
 import { IoIosArrowRoundForward } from "react-icons/io"
+import { careers } from "../../../data/careers"
+import { services } from "../../../data/ServicesAcademic"
 
 function HomeAdmissions({toggleModal}) {
-  const skills = ["Asesoría", "Consultoría", "Marketing", "Investigación"]
+
 
   return (
     <section
       className="
-        flex flex-col gap-10 md:gap-10
+        flex flex-col
         my-10 md:my-20 
         mx-auto w-[96%] md:w-[90%] md:max-w-7xl py-6
       "
@@ -104,28 +106,40 @@ function HomeAdmissions({toggleModal}) {
 
           {/* Cards de rating + skills */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-2">
-            <div className="rounded-2xl border border-neutral-light bg-neutral-white p-4 shadow-soft">
-              <div className="flex gap-0.5 text-orange">
-                {Array.from({ length: 5 }).map((_, i) => (
-                  <FaStar key={i} className="size-3.5" />
-                ))}
-              </div>
-              <p className="mt-2 text-xl font-bold font-hani text-neutral-black">
-                4.9 <span className="text-sm font-normal text-neutral-dark/60">/5.0</span>
-              </p>
-              <small className="text-xs text-neutral-dark/60">
-                Satisfacción de estudiantes
-              </small>
+            <div className="rounded-xl border border-neutral-light bg-neutral-white p-4 shadow-soft">
+              <Title
+                text='Nuestras Servicios'
+                level="h4"
+                weight="bold"
+                className="font-hani"
+              />
+              <ul className="flex flex-col gap-1">
+                {
+                  services.map((service, s) =>{
+                    return (
+                      <li
+                        key={s}
+                        className="text-sm md:text-md text-neutral-dark flex items-center justify-between"
+                      >
+                        <span>{service.text}:</span> <span className="text-[1em] md:text-[1.2em] text-blue font-poppins font-bold">S/{service.value}</span>
+                      </li>
+                    )
+                  })
+                }
+              </ul>
             </div>
 
-            <div className="rounded-2xl border border-neutral-light bg-neutral-white p-4 shadow-soft">
-              <p className="text-xs font-semibold text-neutral-black mb-2">
-                Carreras destacadas
-              </p>
+            <div className="rounded-xl border border-neutral-light bg-neutral-white p-4 shadow-soft">
+              <Title
+                text='Nuestras Carreras'
+                level="h4"
+                weight="bold"
+                className="font-hani"
+              />
               <ul className="flex flex-col gap-1">
-                {skills.map((skill) => (
-                  <li key={skill} className="text-xs text-neutral-dark/60">
-                    {skill}
+                {careers.map((item, i) => (
+                  <li key={i} className="text-sm md:text-md text-neutral-dark/60">
+                    {item.title}
                   </li>
                 ))}
               </ul>
