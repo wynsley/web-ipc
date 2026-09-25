@@ -11,7 +11,7 @@ const SLIDES = [
 
 const TRANSITION_MS = 700;
 
-function HomeBanner() {
+function HomeBanner({toggleModal}) {
   const cta = "¡Tú futuro comienza Aquí!";
   const title = "DESCRUBRE NUESTRAS CARRERAS";
 
@@ -66,7 +66,11 @@ function HomeBanner() {
       </div>
 
       <div className="absolute inset-0 z-10 flex items-center">
-        <BannerDescription title={title} cta={cta} />
+        <BannerDescription 
+          toggleModal= {toggleModal} 
+          title={title} 
+          cta={cta} 
+        />
       </div>
       <Dost
         dots={SLIDES}
