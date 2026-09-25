@@ -5,7 +5,7 @@ import { Title } from "../../atoms/titles"
 import { motion as Motion } from "motion/react"
 
 
-function BannerDescription({ title, cta }) {
+function BannerDescription({toggleModal, title, cta }) {
   return (
     <article
       className="
@@ -37,7 +37,7 @@ function BannerDescription({ title, cta }) {
         />
       </Motion.div>
       <Button
-        type="button"
+        onClick={toggleModal}
         variant="primary"
         className="group flex items-center gap-4 justify-center"
       >

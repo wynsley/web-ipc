@@ -60,12 +60,12 @@ function FormItem({
   };
 
   return (
-    <div className="flex flex-col gap-6 w-full">
+    <div className="flex flex-col gap-3 w-full">
       {formFields.map((item, i) => {
 
         if (Array.isArray(item)) {
           return (
-            <div key={i} className="grid grid-cols-1 md:grid-cols-2 gap-10 w-full">
+            <div key={i} className="grid grid-cols-2 gap-5 w-full">
               {item.map((field, j) => (
                 <div key={j} className="flex flex-col gap-2 w-full">
                   <Label text={field.text} htmlFor={field.htmlFor} className="text-sm sm:text-base" />
