@@ -1,28 +1,58 @@
-function Dost ({dots, next, current}) {
-  return(
-    <div className="
-          absolute bottom-4 sm:bottom-6
-          left-1/2 -translate-x-1/2
-          z-100 flex items-center gap-3
-          pointer-events-none
-        ">
-          {dots.map((_, i) => {
-            const active = i === (next !== null ? next : current)
-            return (
-              <div
-                key={i}
-                style={{
-                  width: active ? '2.5rem' : '0.75rem',
-                  height: '0.75rem',
-                  background: active ? '#f97316' : 'rgba(255,255,255,0.45)',
-                  borderRadius: '9999px',
-                  transition: 'width 300ms ease, background 300ms ease',
-                }}
-              />
-            )
-          })}
-        </div>
-  )
+function Dost({
+  dots,
+  next,
+  current,
+  goTo,
+  onAbsolute = false,
+  variant = "light",
+}) {
+  const inactiveColor =
+    variant === "dark"
+      ? "rgba(255,255,255,0.45)"
+      : "#2222";
+
+  return (
+    <div
+      className={`
+        ${onAbsolute
+          ? "absolute bottom-4 sm:bottom-6 left-1/2 -translate-x-1/2"
+          : ""
+        }
+        z-100 flex items-center justify-center gap-3
+      `}
+    >
+      {dots.map((_, i) => {
+        const active =
+          i === (next !== null ? next : current);
+
+        return (
+          <button
+            key={i}
+            type="button"
+            onClick={() => goTo(i)}
+            aria-label={`Ir al slide ${i + 1}`}
+            className="p-1"
+          >
+            <span
+              className={`
+                block rounded-full
+                transition-all duration-300
+                ${active
+                  ? "w-8 h-2 sm:w-10 sm:h-3"
+                  : "w-2 h-2 sm:w-3 sm:h-3"
+                }
+              `}
+              style={{
+                background: active
+                  ? "#f97316"
+                  : inactiveColor,
+              }}
+            />
+          </button>
+        );
+      })}
+    </div>
+  );
 }
 
-export {Dost}
+export { Dost };
