@@ -76,6 +76,8 @@ function HomeBanner({toggleModal}) {
         dots={SLIDES}
         next={next}
         current={current}
+        onAbsolute = {true}
+        variant="dark"
       />
     </section>
   );
