@@ -18,7 +18,7 @@ function Footer() {
         aria-label="Volver al inicio"
         className="
           absolute top-4 right-4 z-10
-          flex items-center justify-center size-15
+          flex items-center justify-center size-12 md:size-15
           rounded-full border border-white/30
           text-white/80
           transition-all duration-200
@@ -26,12 +26,12 @@ function Footer() {
           focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white
         "
       >
-        <GiSlicingArrow className="size-9 -rotate-139 animate-float" />
+        <GiSlicingArrow className="size-6 md:size-9 -rotate-139 animate-float" />
       </button>
 
       <div className="relative grid gap-10 px-5 py-12 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8 lg:px-[3%] lg:py-16">
         <div className="sm:col-span-2 lg:col-span-1">
-          <FooterBrand />
+        <FooterBrand />
         </div>
         <FooterCareers />
         <FooterSchedule />

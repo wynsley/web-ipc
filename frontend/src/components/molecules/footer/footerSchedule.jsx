@@ -5,19 +5,19 @@ function FooterSchedule() {
   return (
     <section
       aria-labelledby="footer-schedule-title"
-      className="min-w-0 text-center md:text-left lg:self-start lg:pt-[1.2vw] flex flex-col items-center md:items-start gap-5"
+      className="flex min-w-0 flex-col items-center gap-5 text-center sm:items-start sm:text-left lg:self-start lg:pt-[1.2vw]"
     >
-      <div>
+      <div className="flex flex-col items-center text-center sm:items-start sm:text-left">
         <Title
           level="h3"
           size="compact"
           text="HORARIOS:"
-          className="mb-5 text-gray-400 font-hani lg:mb-7 text-center sm:text-left"
+          className="mb-5 text-gray-400 font-hani lg:mb-7"
         />
         <Paragraph
           variant="primary"
           size="compact"
-          className="font-poppins leading-snug text-center sm:text-left"
+          className="font-poppins leading-snug"
         >
           Lunes a Viernes
           <span className="mt-1 block">
@@ -27,18 +27,18 @@ function FooterSchedule() {
           </span>
         </Paragraph>
       </div>
-      <div>
+
+      <div className="flex flex-col items-center text-center sm:items-start sm:text-left">
         <Title
           level="h3"
-          align="center sm:left"
           size="compact"
           text="TURNOS:"
-          className="mb-5 text-gray-400 font-hani text-center sm:text-left"
+          className="mb-5 text-gray-400 font-hani"
         />
         <Paragraph
           size="compact"
           text="Mañana, Tarde y Noche"
-          className="font-poppins leading-snug text-gray-400 text-center sm:text-left"
+          className="font-poppins leading-snug text-gray-400"
         />
       </div>
     </section>
