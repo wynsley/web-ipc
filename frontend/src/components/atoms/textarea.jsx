@@ -20,7 +20,7 @@ function Textarea({
       aria-invalid={error}
       className={`
         bg-neutral-white text-black px-3 outline-none w-full
-        min-h-[5em] sm:min-h-[9em]
+        min-h-[5em] sm:min-h-[8em]
         transition-all duration-200 border
         ${error ? "border-red-500" : "border-transparent hover:border-orange"}
         ${className}

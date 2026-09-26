@@ -29,7 +29,7 @@ function Button({
 `,
     secondary: `
       mt-auto min-h-11 cursor-pointer rounded-tl-xl 
-            rounded-br-xl px-6 py-1 font-poppins
+            rounded-br-xl px-6 py-1 font-poppins text-white
             focus-visible:outline-2 focus-visible:outline-offset-4 
             border-3 border-blue flex items-center transition-all duration-300
             hover:border-orange text-blue
