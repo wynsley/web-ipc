@@ -21,16 +21,25 @@ const TOOLTIP_LAYOUT = {
     "left-1/2 -translate-x-1/2 -top-9 md:left-full md:-top-1/2 md:translate-x-0 md:top-1/2 md:-translate-y-1/2 md:ml-3",
 };
 
+  const ALIGNMENTS = {
+  start: "items-start",
+  center: "items-center",
+  end: "items-end",
+};
+
 function ContactSteps({
   activeStep = 1,
   errorStep = null,
   orientation = "responsive",
   title = "Contáctanos",
+  align = 'start'
 }) {
   const [hovered, setHovered] = useState(null);
 
   return (
-    <div>
+    <div className={`flex flex-col 
+      ${ALIGNMENTS[align] || ALIGNMENTS.start}`
+    }>
       {title && (
         <Title
           level="h3"
