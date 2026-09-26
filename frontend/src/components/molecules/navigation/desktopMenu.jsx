@@ -24,7 +24,7 @@ function NavbarMenu() {
       ]
     },
     { text: 'Egresados', href: '/alumni' },
-    { text: 'Sobre Nosotros', href: '/about-us' },
+    { text: 'Nosotros', href: '/about-us' },
     { text: 'Eventos', href: '/events' },
     { text: 'Admisión', href: '/admissions' },
     { text: 'Contacto', href: '/contact' },
@@ -85,7 +85,7 @@ function NavbarMenu() {
                 <div>
                   <Button
                     onClick={() => handleToggle(item.text)}
-                    className="flex items-center text-[.8em] lg:text-[.9em] xl:text-[1em] 
+                    className="flex items-center text-[1em]  
                     gap-1 text-[#193F81] font-medium hover:text-orange-400"
                   >
                     {item.text}
