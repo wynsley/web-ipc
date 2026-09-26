@@ -1,35 +1,15 @@
-function Label({
-  children,
-  className,
-  htmlFor,
-  text,
-  size = 'medium',
-  align = 'left',
-  ...props }) {
-  const sizeClass = {
-    small : 'text-[.9em]',
-    medium : 'text-sm',
-    large : 'text-[1.5em]'
-  }
-  const alignClass = {
-    left : 'text-left',
-    center : 'text-center',
-    right : 'text-right',
-  }
+function Label({ children, className = "", htmlFor, text, ...props }) {
+  if (!text && !children) return null;
 
   return (
     <label
       htmlFor={htmlFor}
-      className={`
-        ${className || ""}
-        ${sizeClass[size] || sizeClass.medium}
-        ${alignClass[align] || alignClass.left}
-        `}
+      className={`text-white font-hani text-[1.1em] font-bold ${className}`}
       {...props}
     >
       {children || text}
     </label>
-  )
+  );
 }
 
-export { Label }
+export { Label };

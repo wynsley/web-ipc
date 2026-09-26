@@ -1,57 +1,40 @@
-import { SlExclamation } from "react-icons/sl"
-
 function Select({
-  options, 
+  options,
   name,
   value,
   onChange,
   required,
-  className,
-  variant = 'default',
-  size = 'medium',
+  className = "",
+  error = false,
   ...props
 }) {
-
-  const variants = {
-    default :`w-full text-center
-      border-b border-blue py-o px-1 text-black/50 
-    `,
-    primary : `bg-gray-200 rounded-lg h-10 px-3
-                border border-transparent
-                focus:border-blue-500 focus:ring-2 focus:ring-blue-200
-                outline-none transition-all duration-200`
-  }
-
-  const sizes ={
-    small : 'text-[.9em]',
-    medium : 'text-[1.2em]',
-    large : 'text-[1.5em]'
-  } 
-
   return (
-    <select  
-      name= {name}
+    <select
+      name={name}
       value={value}
       onChange={onChange}
-      required ={required}
-      className= {`
+      required={required}
+      aria-invalid={error}
+      className={`
+        h-10 bg-neutral-white text-black px-3 outline-none
+        transition-all duration-200 border
+        ${error ? "border-red-500" : "border-transparent hover:border-orange"}
         ${className}
-        ${variants[variant] || variants.default}
-        ${sizes[size] || sizes.medium}
-        `}
-        {...props}
+      `}
+      {...props}
     >
-      {
-        options.map((opt, o) =>{
-          return(
-            <option key={o} value={opt.value} className="text-left">
-              {opt.text}
-            </option>
-          )
-        })
-      }
+      {options.map((opt, o) => (
+        <option
+          key={o}
+          value={opt.value}
+          disabled={opt.value === "0"}
+          className="text-black font-hani font-bold bg-white"
+        >
+          {opt.text}
+        </option>
+      ))}
     </select>
-    )
+  );
 }
 
-export { Select }
+export { Select };
