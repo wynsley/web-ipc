@@ -13,7 +13,7 @@ function HomeAdmissions({toggleModal}) {
   return (
     <section
       className="
-        flex flex-col
+        flex flex-col gap-8
         my-10 md:my-20 
         mx-auto w-[96%] md:w-[90%] md:max-w-7xl py-6
       "
@@ -106,7 +106,7 @@ function HomeAdmissions({toggleModal}) {
 
           {/* Cards de rating + skills */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-2">
-            <div className="rounded-xl border border-neutral-light bg-neutral-white p-4 shadow-soft">
+            <div className="bg-neutral-white p-4 shadow-md border border-blue/30">
               <Title
                 text='Nuestras Servicios'
                 level="h4"
@@ -129,7 +129,7 @@ function HomeAdmissions({toggleModal}) {
               </ul>
             </div>
 
-            <div className="rounded-xl border border-neutral-light bg-neutral-white p-4 shadow-soft">
+            <div className=" bg-neutral-white p-4 shadow-md border border-blue/30">
               <Title
                 text='Nuestras Carreras'
                 level="h4"

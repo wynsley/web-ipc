@@ -19,21 +19,21 @@ function HomeMessage() {
               htmlFor="name" className="text-white font-hani text-[1.1em] font-bold">Nombre completo</label>
             <input 
               type="text" 
-              className="h-10 bg-blue-light/30 text-white px-3 outline-none  transition-all duration-200 border border-transparent hover:border-orange"  
+              className="h-10 bg-neutral-white text-black px-3 outline-none  transition-all duration-200 border border-transparent hover:border-orange"  
             />
           </div>
           <div className="flex flex-col gap-2">
             <label htmlFor="lastname" className="text-white font-hani text-[1.1em] font-bold">Email</label>
             <input
               type="email"
-              className="h-10 bg-blue-light/30 text-white px-3 outline-none transition-all duration-200 border border-transparent hover:border-orange" 
+              className="h-10 bg-neutral-white text-black  px-3 outline-none transition-all duration-200 border border-transparent hover:border-orange" 
             />
           </div>
           <div className="flex flex-col gap-2">
             <label htmlFor="lastname" className="text-white font-hani text-[1.1em] font-bold">Teléfono</label>
             <input
               type="tel"
-              className="h-10 bg-blue-light/30 text-white px-3 outline-none transition-all duration-200 border border-transparent hover:border-orange" 
+              className="h-10 bg-neutral-white text-black  px-3 outline-none transition-all duration-200 border border-transparent hover:border-orange" 
             />
           </div>
         </div>
@@ -44,12 +44,12 @@ function HomeMessage() {
               htmlFor="name" className="text-white font-hani text-[1.1em] font-bold">Dirección</label>
             <input 
               type="text" 
-              className="h-10 bg-blue-light/30 text-white px-3 outline-none  transition-all duration-200 border border-transparent hover:border-orange"  
+              className="h-10 bg-neutral-white text-black  px-3 outline-none  transition-all duration-200 border border-transparent hover:border-orange"  
             />
           </div>
           <div className="flex flex-col gap-2">
             <label htmlFor="lastname" className="text-white font-hani text-[1.1em] font-bold">Carreras</label>
-            <select name="careers" className="h-10 bg-blue-light/30 text-white px-3 outline-none  transition-all duration-200 border border-transparent hover:border-orange">
+            <select name="careers" className="h-10 bg-neutral-white text-black  px-3 outline-none  transition-all duration-200 border border-transparent hover:border-orange">
               <option value="0" disabled className=" font-bold font-hani bg-white">Carrera de interés</option>
               <option value="" className="text-black font-hani font-bold bg-white">Administración</option>
               <option value="" className="text-black font-hani font-bold bg-white">Contabilidad</option>
@@ -59,7 +59,7 @@ function HomeMessage() {
           </div>
           <div className="flex flex-col gap-2">
             <label htmlFor="lastname" className="text-white font-hani text-[1.1em] font-bold">Turno</label>
-            <select name="careers" className="h-10 bg-blue-light/30 text-white px-3 outline-none  transition-all duration-200 border border-transparent hover:border-orange">
+            <select name="careers" className="h-10 bg-neutral-white text-black  px-3 outline-none  transition-all duration-200 border border-transparent hover:border-orange">
               <option value="0" disabled className=" font-bold font-hani bg-white">Seleccione el turno</option>
               <option value="" className="text-black font-hani font-bold bg-white">Mañana</option>
               <option value="" className="text-black font-hani font-bold bg-white">Tarde</option>
@@ -73,7 +73,7 @@ function HomeMessage() {
             <textarea 
             name=""
             placeholder="Mensaje..."
-            className="h-10 bg-blue-light/30 text-white px-3 outline-none  w-full min-h-[5em] sm:min-h-[9em]
+            className="h-10 bg-neutral-white text-black  px-3 outline-none  w-full min-h-[5em] sm:min-h-[9em]
             transition-all duration-200 border border-transparent hover:border-orange"
           />
           </div>
