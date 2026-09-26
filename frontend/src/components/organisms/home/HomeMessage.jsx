@@ -4,6 +4,8 @@ import { FormField } from "../../molecules/shared/formField";
 import { CONTACT_FORM_GROUPS } from "../../../data/contactFormFields";
 import { useContactForm } from "../../../hooks/globals/useContactForm";
 import { Toast } from "../../molecules/shared/toast";
+import { motion as Motion } from "motion/react";
+import { fadeUp } from "../../animations/animation";
 
 function HomeMessage() {
   const {
@@ -19,7 +21,11 @@ function HomeMessage() {
   } = useContactForm();
 
   return (
-    <section
+    <Motion.section
+      variants={fadeUp}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.2 }}
       className=" relative
         my-10 md:my-20 p-4 grid grid-cols-1 md:grid-cols-[9em_1fr] lg:grid-cols-[12em_1fr] gap-5
         mx-auto w-[96%] md:w-[90%] md:max-w-7xl py-6
@@ -81,7 +87,7 @@ function HomeMessage() {
           />
         </div>
       </form>
-    </section>
+    </Motion.section>
   );
 }
 
