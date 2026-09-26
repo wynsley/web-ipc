@@ -2,6 +2,10 @@ import { Title } from "../../atoms/titles";
 import { Paragraph } from "../../atoms/paragraph";
 import { FeatureCard } from "../../molecules/alumni/featureCard";
 import { TITULATION_STEPS } from "../../../data/alumni/titulationSteps";
+import { AlumniCap } from "../../molecules/alumni/aluminCap";
+import { ScrollReveal } from "../../layouts/scrollReveal";
+import { motion as Motion } from "motion/react";
+import { staggerContainer } from "../../animations/animation";
 
 function TitulationSection() {
   return (
@@ -13,34 +17,15 @@ function TitulationSection() {
         pb-16 sm:pb-20 md:pb-24
       "
     >
-      <div
-        className="
-          absolute top-0 right-0
-          -translate-y-24 sm:-translate-y-32 md:-translate-y-35
-          w-40 sm:w-52 md:w-60
-          pointer-events-none select-none
-        "
-      >
-        <div className="relative flex justify-center">
-          <div
-            className="
-              absolute bottom-2 left-1/2 -translate-x-1/2
-              h-6 w-[70%] sm:h-8 sm:w-[75%]
-              rounded-full bg-blue-deep/30
-              blur-md
-            "
-            aria-hidden="true"
-          />
+      
+    <AlumniCap/>
 
-          <img
-            src="/CUP.webp"
-            alt="Birrete institucional"
-            className="relative w-full drop-shadow-lg"
-          />
-        </div>
-      </div>
-
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-end mt-20">
+      <Motion.div
+        variants={staggerContainer}
+        initial = "hidden"
+        whileInView='visible'
+        viewport={{once: true , amount: 0.2}}
+        className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-end mt-20">
         <div>
           <span
             className="
@@ -70,7 +55,7 @@ function TitulationSection() {
           y con el acompañamiento de nuestro equipo académico especializado.
           Los requisitos, guías del proceso y cronogramas están aquí.
         </Paragraph>
-      </div>
+      </Motion.div>
 
       {/* Cards */}
       <div
@@ -80,8 +65,10 @@ function TitulationSection() {
           gap-6 lg:gap-8
         "
       >
-        {TITULATION_STEPS.map((step) => (
-          <FeatureCard key={step.title} {...step} />
+        {TITULATION_STEPS.map((step, i) => (
+          <ScrollReveal key={i} delay={0.2 * i} y={60}>
+            <FeatureCard key={step.title} {...step} />
+          </ScrollReveal>
         ))}
       </div>
     </section>

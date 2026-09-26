@@ -3,20 +3,16 @@ import { HiArrowRight } from "react-icons/hi2";
 
 const VARIANTS = {
   white: {
-    card: "bg-white text-neutral-black border border-neutral-200",
+    card: "bg-blue-light/30 text-neutral-black",
     iconWrap: "bg-blue-deep/10 text-blue-deep",
-    link: "text-blue-deep hover:text-orange",
+    link: "bg-blue-light/30 text-blue-deep hover:bg-blue-deep hover:text-white",
   },
   "blue-deep": {
     card: "bg-blue-deep text-white",
     iconWrap: "bg-white/10 text-white",
-    link: "text-white hover:text-orange",
+    link: "bg-blue-deep text-white hover:bg-orange hover:text-white",
   },
-  "blue-dark": {
-    card: "bg-blue-dark text-white",
-    iconWrap: "bg-white/10 text-white",
-    link: "text-white hover:text-orange",
-  },
+
 };
 
 function FeatureCard({
@@ -34,8 +30,8 @@ function FeatureCard({
   return (
     <div
       className={`
-        flex flex-col justify-between gap-8
-        rounded-2xl p-6 sm:p-7
+        relative flex flex-col justify-between gap-8
+        rounded-2xl p-6 sm:p-7 pb-16 sm:pb-18
         transition-transform duration-300
         ${styles.card}
         ${raised ? "lg:-translate-y-6" : ""}
@@ -62,18 +58,32 @@ function FeatureCard({
         </p>
       </div>
 
-      <Link
-        to={href}
-        className={`
-          inline-flex items-center gap-1.5 w-fit
-          font-hani text-sm font-bold
-          transition-colors duration-200
-          ${styles.link}
-        `}
+      {/* Parche del color de fondo de la página, con curva cóncava hacia la card */}
+      <div
+        className="
+          absolute bottom-0 left-0
+          h-12 sm:h-14 w-32 sm:w-36
+          rounded-tr-[28px] sm:rounded-tr-[32px] rounded-bl-xl
+          bg-white
+        "
       >
-        {linkText}
-        <HiArrowRight className="size-4" />
-      </Link>
+        <div className="absolute flex items-end pt-4 pr-2">
+          <Link
+            to={href}
+            className={`
+              inline-flex items-center gap-1.5 w-fit
+              rounded-tr-2xl  px-4 py-2
+              font-hani text-xs sm:text-sm font-bold
+              transition-colors duration-200
+              animate-float
+              ${styles.link}
+            `}
+          >
+            {linkText}
+            <HiArrowRight className="size-3.5 sm:size-4" />
+          </Link>
+        </div>
+      </div>
     </div>
   );
 }
