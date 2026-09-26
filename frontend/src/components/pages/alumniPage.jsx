@@ -1,9 +1,12 @@
+import { Hero } from "../organisms/alumni/alumniHero";
+import { TitulationSection } from "../organisms/alumni/titulationSection";
 import { MyTemplate } from "../templates/myTemplate";
 
 function AlumniPage() {
   return (
     <MyTemplate>
-      <h1> Egresados </h1>
+      <Hero/>
+      <TitulationSection/>
     </MyTemplate>
   )
 }
