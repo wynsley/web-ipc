@@ -3,88 +3,47 @@ import { Label } from "../../atoms/label";
 import { Select } from "../../atoms/select";
 import { Textarea } from "../../atoms/textarea";
 
-function FormItem({ 
-  formFields,
-  inputVariant = 'default',
-  inputAlign = 'left',
-  inputSize = 'small',
-  selectVariant = 'default',
-  selectSize = 'small',
-  textareaVariant = 'default',  
-  textareaSize = 'small',       
-  textareaAlign = 'left',      
-}) {
-
-  // Helper para renderizar el campo correcto
-  const renderField = (field) => {
-    if (field.type === 'select') {
-      return (
-        <Select
-          name={field.name}
-          value={field.value}
-          options={field.options}
-          onChange={field.onChange}
-          variant={selectVariant}
-          size={selectSize}
-        />
-      );
-    }
-
-    if (field.type === 'textarea') {   
-      return (
-        <Textarea
-          name={field.name}
-          value={field.value}
-          placeholder={field.placeholder}
-          onChange={field.onChange}
-          rows={field.rows}
-          variant={textareaVariant}
-          align={textareaAlign}
-          size={textareaSize}
-        />
-      );
-    }
-
-    return (
-      <Input
-        type={field.type}
-        name={field.name}
-        value={field.value}
-        placeholder={field.placeholder}
-        onChange={field.onChange}
-        variant={inputVariant}
-        align={inputAlign}
-        size={inputSize}
-      />
-    );
-  };
+function FormField({ field, value, onChange, error }) {
+  const { name, label, type, options, placeholder, required = true } = field;
 
   return (
-    <div className="flex flex-col gap-3 w-full">
-      {formFields.map((item, i) => {
+    <div className="flex flex-col gap-2">
+      <Label htmlFor={name} text={label} />
 
-        if (Array.isArray(item)) {
-          return (
-            <div key={i} className="grid grid-cols-2 gap-5 w-full">
-              {item.map((field, j) => (
-                <div key={j} className="flex flex-col gap-2 w-full">
-                  <Label text={field.text} htmlFor={field.htmlFor} className="text-sm sm:text-base" />
-                  {renderField(field)}
-                </div>
-              ))}
-            </div>
-          );
-        }
+      {type === "select" && (
+        <Select
+          name={name}
+          value={value}
+          onChange={onChange}
+          required={required}
+          options={options}
+          error={error}
+        />
+      )}
 
-        return (
-          <div key={i} className="flex flex-col gap-2 w-full">
-            <Label text={item.text} htmlFor={item.htmlFor} className="text-sm sm:text-[.9em] text-black poppins" />
-            {renderField(item)}
-          </div>
-        );
-      })}
+      {type === "textarea" && (
+        <Textarea
+          name={name}
+          value={value}
+          placeholder={placeholder}
+          onChange={onChange}
+          required={required}
+          error={error}
+        />
+      )}
+
+      {type !== "select" && type !== "textarea" && (
+        <Input
+          type={type}
+          name={name}
+          value={value}
+          onChange={onChange}
+          required={required}
+          error={error}
+        />
+      )}
     </div>
   );
 }
 
-export { FormItem }
+export { FormField };
