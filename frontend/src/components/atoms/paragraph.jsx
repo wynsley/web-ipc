@@ -1,3 +1,6 @@
+import { motion as Motion } from "motion/react";
+import { paragraphReveal } from "../animations/animation";
+
 function Paragraph ({ 
   children,
   text, 
@@ -6,7 +9,7 @@ function Paragraph ({
   variant = 'default',
   align = 'left',
   weight = 'normal',
-  ...props 
+  ...motionProps
 }) {
 
   const variants ={
@@ -41,7 +44,9 @@ function Paragraph ({
   };
 
   return (
-    <p 
+    <Motion.p
+      {...motionProps}
+      variants={paragraphReveal}
       className={`
         ${variants[variant] || variants.default}
         ${sizes[size] || sizes.medium}
@@ -49,10 +54,9 @@ function Paragraph ({
         ${weights[weight] || weights.normal}
         ${className}
       `}
-      {...props}
     >
       {children || text}
-    </p>
+    </Motion.p>
   );
 };
 

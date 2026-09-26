@@ -1,5 +1,4 @@
-import { motion as Motion } from "motion/react"
-import { paragraphReveal } from "../animations/animation"
+import { twMerge } from "tailwind-merge";
 
 function Button({
   text,
@@ -9,7 +8,7 @@ function Button({
   disabled = false,
   children,
   variant = 'default',
-  ...motionProps
+  ...props
 }) {
 
   const variants = {
@@ -32,7 +31,7 @@ function Button({
             rounded-br-xl px-6 py-1 font-poppins text-white
             focus-visible:outline-2 focus-visible:outline-offset-4 
             border-3 border-blue flex items-center transition-all duration-300
-            hover:border-orange text-blue
+            hover:border-orange text-white
     `,
     ternary : `py-2 px-3 border-2 border-blue text-blue font-bold rounded-md
       shadow-sm shadow-blue
@@ -49,19 +48,18 @@ function Button({
   }
 
   return (
-    <Motion.button
-      {...motionProps}
-      variants={paragraphReveal}
-      className={`
-        ${className}
-        ${variants[variant] || variants.default}
-      `}
+    <button
+      className={twMerge(
+        variants[variant] || variants.default,
+        className
+      )}
       onClick={onClick}
       type={type}
       disabled={disabled}
+      {...props}
     >
       {text || children}
-    </Motion.button>
+    </button>
   )
 }
 
