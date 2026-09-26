@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { CONTACT_FORM_GROUPS } from "../../data/contactFormFields";
 import { apiFetch } from "../../helpers/apiFetch";
+import { ContactFormValidator } from "../../validations/validationCredentials";
 
 const ALL_FIELDS = CONTACT_FORM_GROUPS.flat();
 
@@ -10,29 +11,49 @@ const buildInitialValues = () =>
     return acc;
   }, {});
 
+const initialToast = { visible: false, type: "error", message: "" };
+
 function useContactForm() {
   const [values, setValues] = useState(buildInitialValues);
   const [activeStep, setActiveStep] = useState(1);
   const [errorStep, setErrorStep] = useState(null);
   const [fieldErrors, setFieldErrors] = useState({});
+  const [toast, setToast] = useState(initialToast);
   const [submitting, setSubmitting] = useState(false);
 
+  const closeToast = () => setToast(initialToast);
+
   const setValue = (name) => (e) => {
-    const val = e.target.value;
+    let val = e.target.value;
+
+  if (name === "phone") {
+    // Solo dígitos y un '+' opcional al inicio
+    val = val.replace(/[^\d+]/g, "");
+    // Si hay más de un '+', deja solo el primero (y solo al inicio)
+    val = val.replace(/(?!^)\+/g, "");
+  }
     setValues((prev) => ({ ...prev, [name]: val }));
     setFieldErrors((prev) => (prev[name] ? { ...prev, [name]: false } : prev));
     setErrorStep((prev) => (prev ? null : prev));
     setActiveStep((prev) => (prev < 2 ? 2 : prev));
   };
 
-  const getMissingFields = () => {
-    const missing = {};
-    ALL_FIELDS.forEach((field) => {
-      const val = values[field.name];
-      const isEmpty = val === "" || val === "0";
-      if (isEmpty) missing[field.name] = true;
-    });
-    return missing;
+  const validate = async () => {
+    try {
+      await ContactFormValidator.validateAsync(values, { abortEarly: false });
+      return { valid: true, errors: {}, firstMessage: "" };
+    } catch (err) {
+      const errors = {};
+      err.details.forEach((detail) => {
+        const key = detail.path[0];
+        if (!errors[key]) errors[key] = detail.message;
+      });
+      return {
+        valid: false,
+        errors,
+        firstMessage: err.details[0]?.message || "Revisa los campos del formulario.",
+      };
+    }
   };
 
   const reset = () => {
@@ -46,11 +67,16 @@ function useContactForm() {
     e.preventDefault();
     if (submitting) return;
 
-    const missing = getMissingFields();
-    if (Object.keys(missing).length > 0) {
-      setFieldErrors(missing);
+    const { valid, errors, firstMessage } = await validate();
+
+    if (!valid) {
+      const markedErrors = Object.keys(errors).reduce((acc, key) => {
+        acc[key] = true;
+        return acc;
+      }, {});
+      setFieldErrors(markedErrors);
       setErrorStep(activeStep);
-      alert("Por favor, complete todos los campos.");
+      setToast({ visible: true, type: "error", message: firstMessage });
       return;
     }
 
@@ -64,11 +90,21 @@ function useContactForm() {
       if (!response) throw new Error("Error en el envío");
 
       setActiveStep(4);
-      setTimeout(reset, 2500);
+      setToast({
+        visible: true,
+        type: "success",
+        message: "Hemos recibido tu solicitud, pronto nos pondremos en contacto contigo.",
+      });
+      setTimeout(reset, 3000);
     } catch (err) {
       console.error("Error al enviar el formulario de contacto:", err);
       setErrorStep(4);
-      setTimeout(reset, 2500);
+      setToast({
+        visible: true,
+        type: "error",
+        message: err.message || "Ocurrió un error al enviar. Intenta de nuevo.",
+      });
+      setTimeout(reset, 3000);
     } finally {
       setSubmitting(false);
     }
@@ -79,6 +115,8 @@ function useContactForm() {
     activeStep,
     errorStep,
     fieldErrors,
+    toast,
+    closeToast,
     submitting,
     setValue,
     handleSubmit,
