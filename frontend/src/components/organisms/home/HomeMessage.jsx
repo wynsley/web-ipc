@@ -1,8 +1,20 @@
-import { Button } from "../../atoms/button"
-import { Title } from "../../atoms/titles"
-import { ContactSteps } from "../../molecules/shared/contactSteps"
+import { Button } from "../../atoms/button";
+import { ContactSteps } from "../../molecules/shared/contactSteps";
+import { FormField } from "../../molecules/shared/formItem";
+import { CONTACT_FORM_GROUPS } from "../../../data/contactFormFields";
+import { useContactForm } from "../../../hooks/globals/useContactForm";
 
 function HomeMessage() {
+  const {
+    values,
+    activeStep,
+    errorStep,
+    fieldErrors,
+    submitting,
+    setValue,
+    handleSubmit,
+  } = useContactForm();
+
   return (
     <section
       className="
@@ -11,82 +23,57 @@ function HomeMessage() {
         bg-blue-deep
       "
     >
-      <ContactSteps />
-      <form className="grid grid-cols-2 grid-rows-2 sm:grid-rows-1 sm:grid-cols-3 gap-5">
+      <ContactSteps activeStep={activeStep} errorStep={errorStep} orientation="responsive" />
+
+      <form
+        onSubmit={handleSubmit}
+        className="grid grid-cols-2 grid-rows-2 sm:grid-rows-1 sm:grid-cols-3 gap-5"
+      >
         <div className="flex flex-col justify-around">
-          <div className="flex flex-col gap-2">
-            <label 
-              htmlFor="name" className="text-white font-hani text-[1.1em] font-bold">Nombre completo</label>
-            <input 
-              type="text" 
-              className="h-10 bg-neutral-white text-black px-3 outline-none  transition-all duration-200 border border-transparent hover:border-orange"  
+          {CONTACT_FORM_GROUPS[0].map((field) => (
+            <FormField
+              key={field.name}
+              field={field}
+              value={values[field.name]}
+              onChange={setValue(field.name)}
+              error={!!fieldErrors[field.name]}
             />
-          </div>
-          <div className="flex flex-col gap-2">
-            <label htmlFor="lastname" className="text-white font-hani text-[1.1em] font-bold">Email</label>
-            <input
-              type="email"
-              className="h-10 bg-neutral-white text-black  px-3 outline-none transition-all duration-200 border border-transparent hover:border-orange" 
-            />
-          </div>
-          <div className="flex flex-col gap-2">
-            <label htmlFor="lastname" className="text-white font-hani text-[1.1em] font-bold">Teléfono</label>
-            <input
-              type="tel"
-              className="h-10 bg-neutral-white text-black  px-3 outline-none transition-all duration-200 border border-transparent hover:border-orange" 
-            />
-          </div>
+          ))}
         </div>
 
         <div className="flex flex-col justify-around">
-          <div className="flex flex-col gap-2">
-            <label 
-              htmlFor="name" className="text-white font-hani text-[1.1em] font-bold">Dirección</label>
-            <input 
-              type="text" 
-              className="h-10 bg-neutral-white text-black  px-3 outline-none  transition-all duration-200 border border-transparent hover:border-orange"  
+          {CONTACT_FORM_GROUPS[1].map((field) => (
+            <FormField
+              key={field.name}
+              field={field}
+              value={values[field.name]}
+              onChange={setValue(field.name)}
+              error={!!fieldErrors[field.name]}
             />
-          </div>
-          <div className="flex flex-col gap-2">
-            <label htmlFor="lastname" className="text-white font-hani text-[1.1em] font-bold">Carreras</label>
-            <select name="careers" className="h-10 bg-neutral-white text-black  px-3 outline-none  transition-all duration-200 border border-transparent hover:border-orange">
-              <option value="0" disabled className=" font-bold font-hani bg-white">Carrera de interés</option>
-              <option value="" className="text-black font-hani font-bold bg-white">Administración</option>
-              <option value="" className="text-black font-hani font-bold bg-white">Contabilidad</option>
-              <option value="" className="text-black font-hani font-bold bg-white">Informática</option>
-              <option value="" className="text-black font-hani font-bold bg-white">Idiomas</option>
-            </select>
-          </div>
-          <div className="flex flex-col gap-2">
-            <label htmlFor="lastname" className="text-white font-hani text-[1.1em] font-bold">Turno</label>
-            <select name="careers" className="h-10 bg-neutral-white text-black  px-3 outline-none  transition-all duration-200 border border-transparent hover:border-orange">
-              <option value="0" disabled className=" font-bold font-hani bg-white">Seleccione el turno</option>
-              <option value="" className="text-black font-hani font-bold bg-white">Mañana</option>
-              <option value="" className="text-black font-hani font-bold bg-white">Tarde</option>
-              <option value="" className="text-black font-hani font-bold bg-white">Noche</option>
-            </select>
-          </div>
+          ))}
         </div>
+
         <div className="col-span-2 sm:col-span-1 sm:row-span-1 flex flex-col sm:justify-around">
-          <div className="flex flex-col gap-2">
-            <label htmlFor="message" className="text-white font-hani text-[1.1em] font-bold"> Mensaje</label>
-            <textarea 
-            name=""
-            placeholder="Mensaje..."
-            className="h-10 bg-neutral-white text-black  px-3 outline-none  w-full min-h-[5em] sm:min-h-[9em]
-            transition-all duration-200 border border-transparent hover:border-orange"
-          />
-          </div>
+          {CONTACT_FORM_GROUPS[2].map((field) => (
+            <FormField
+              key={field.name}
+              field={field}
+              value={values[field.name]}
+              onChange={setValue(field.name)}
+              error={!!fieldErrors[field.name]}
+            />
+          ))}
           <Button
-            text='Enviar'
+            type="submit"
+            text={submitting ? "Enviando..." : "Enviar"}
             variant="danger"
             className="mx-auto"
+            disabled={submitting}
           />
-
         </div>
       </form>
     </section>
-  )
+  );
 }
 
-export { HomeMessage }
+export { HomeMessage };
