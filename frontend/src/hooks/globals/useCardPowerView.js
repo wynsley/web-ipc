@@ -1,12 +1,13 @@
 import { useState, useEffect } from "react";
 
-// Debe calzar con tus breakpoints reales de Tailwind (sm: 640px, md: 768px, lg: 1024px)
 function useCardsPerView() {
   const getCount = () => {
-    if (typeof window === "undefined") return 2;
+    if (typeof window === "undefined") return 1.3;
     const width = window.innerWidth;
-    if (width >= 640 && width < 1024) return 3; // sm hasta antes de lg
-    return 2; // < sm, o >= lg (desktop usa el grid de 4 fijo, no este carrusel)
+    if (width >= 1024) return 4;
+    if (width >= 768) return 3;
+    if (width >= 640) return 2.3;
+    return 1.3;
   };
 
   const [cardsPerView, setCardsPerView] = useState(getCount);
