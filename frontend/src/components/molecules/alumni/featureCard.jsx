@@ -1,5 +1,5 @@
-import { Link } from "react-router-dom";
 import { HiArrowRight } from "react-icons/hi2";
+import { usePdfViewer } from "../../../context/pdfViewer/usePdfViewer";
 
 const VARIANTS = {
   white: {
@@ -12,7 +12,6 @@ const VARIANTS = {
     iconWrap: "bg-white/10 text-white",
     link: "bg-blue-deep text-white hover:bg-orange hover:text-white",
   },
-
 };
 
 function FeatureCard({
@@ -20,12 +19,14 @@ function FeatureCard({
   title,
   description,
   linkText = "Ver más",
-  href = "#",
+  pdfUrl = "#",
   variant = "white",
   raised = false,
   className = "",
 }) {
+  
   const styles = VARIANTS[variant] || VARIANTS.white;
+  const { openPdf } = usePdfViewer();
 
   return (
     <div
@@ -68,11 +69,12 @@ function FeatureCard({
         "
       >
         <div className="absolute flex items-end pt-4 pr-2">
-          <Link
-            to={href}
+          <button
+            type="button"
+            onClick={() => openPdf(pdfUrl, title)}
             className={`
               inline-flex items-center gap-1.5 w-fit
-              rounded-tr-2xl  px-4 py-2
+              rounded-tr-2xl px-4 py-2
               font-hani text-xs sm:text-sm font-bold
               transition-colors duration-200
               animate-float
@@ -81,7 +83,7 @@ function FeatureCard({
           >
             {linkText}
             <HiArrowRight className="size-3.5 sm:size-4" />
-          </Link>
+          </button>
         </div>
       </div>
     </div>

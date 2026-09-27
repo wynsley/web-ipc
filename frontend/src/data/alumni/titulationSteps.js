@@ -7,7 +7,7 @@ export const TITULATION_STEPS = [
     description:
       "Conoce los documentos y condiciones necesarias para iniciar tu proceso de titulación sin contratiempos.",
     linkText: "Ver Aquí",
-    href: "/titulacion/requisitos",
+    pdfUrl: "/pdfs/taller.pdf",
     variant: "white",
   },
   {
@@ -16,7 +16,7 @@ export const TITULATION_STEPS = [
     description:
       "Sigue paso a paso el procedimiento oficial, acompañado en todo momento por nuestro equipo académico especializado.",
     linkText: "Ver Aquí",
-    href: "/titulacion/guia",
+    pdfUrl: "/pdfs/taller.pdf",
     variant: "blue-deep",
     raised: true,
   },
@@ -26,7 +26,7 @@ export const TITULATION_STEPS = [
     description:
       "Consulta las fechas, plazos y cronogramas vigentes para cada etapa del proceso de titulación.",
     linkText: "Ver Aquí",
-    href: "/titulacion/cronograma",
+    pdfUrl: "/pdfs/cronograma.pdf",
     variant: "blue-dark",
   },
 ];
