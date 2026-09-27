@@ -37,7 +37,10 @@ function AdministrationPage() {
         benefits={administrationBenefits}
         image={administration.img}
       />
-      <CareerDocuments documents={administrationDocuments} />
+      <CareerDocuments
+        documents={administrationDocuments}
+        title="Conoce tu formación en Administración"
+      />
     </MyTemplate>
   );
 }
