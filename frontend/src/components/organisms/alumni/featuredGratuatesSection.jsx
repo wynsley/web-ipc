@@ -4,6 +4,10 @@ import { GraduateCard } from "../../molecules/alumni/graduateCard";
 import { Dost } from "../../molecules/shared/dots";
 import { useCardsPerView } from "../../../hooks/globals/useCardPowerView";
 import { useCarousel } from "../../../hooks/globals/useCarrusel";
+import { motion as Motion } from "motion/react";
+import { Title } from "../../atoms/titles";
+import { staggerContainer } from "../../animations/animation";
+import { Paragraph } from "../../atoms/paragraph";
 
 function FeaturedGraduatesSection() {
 
@@ -23,15 +27,27 @@ function FeaturedGraduatesSection() {
   });
 
   return (
-    <section className="mx-auto w-[92%] md:w-[90%] max-w-7xl py-0 md:py-10">
+    <Motion.section 
+      variants={staggerContainer}
+      initial = "hidden"
+      whileInView='visible'
+      viewport={{once: true , amount: 0.2}}
+      className="mx-auto w-[92%] md:w-[90%] max-w-7xl py-0 md:py-10">
       <div className="text-center mb-10 md:mb-15">
-        <h2 className="font-hani text-3xl sm:text-4xl md:text-5xl font-bold text-neutral-black">
-          Egresados Destacados
-        </h2>
-        <p className="mt-3 font-poppins text-neutral-dark/70 max-w-xl mx-auto">
-          Conoce a quienes hoy destacan en el mundo laboral gracias a la
-          formación que recibieron con nosotros.
-        </p>
+        <Title 
+          text={"Egresados Destacados"}
+          level="h2"
+          className="font-hani"
+          weight="bold"
+          align="center"
+        />
+      
+        <Paragraph
+          text="Conoce a quienes hoy destacan en el mundo laboral gracias a la
+          formación que recibieron con nosotros."
+          variant="secondary"
+          align="center"
+        />
       </div>
 
       <div
@@ -73,7 +89,7 @@ function FeaturedGraduatesSection() {
         />
         </div>
       </div>
-    </section>
+    </Motion.section>
   );
 }
 

@@ -1,5 +1,6 @@
 import { Hero } from "../organisms/alumni/alumniHero";
 import { FeaturedGraduatesSection } from "../organisms/alumni/featuredGratuatesSection";
+import { StatisticsGradautes } from "../organisms/alumni/statisticsGraduates";
 import { TitulationSection } from "../organisms/alumni/titulationSection";
 import { MyTemplate } from "../templates/myTemplate";
 
@@ -9,6 +10,7 @@ function AlumniPage() {
       <Hero/>
       <TitulationSection/>
       <FeaturedGraduatesSection/>
+      <StatisticsGradautes/>
     </MyTemplate>
   )
 }
