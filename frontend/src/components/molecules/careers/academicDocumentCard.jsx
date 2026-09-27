@@ -4,11 +4,14 @@ import { Image } from "../../atoms/image";
 import { Title } from "../../atoms/titles";
 import { Paragraph } from "../../atoms/paragraph";
 import { Button } from "../../atoms/button";
+import { usePdfViewer } from "../../../context/pdfViewer/usePdfViewer";
 
-function AcademicDocumentCard({ document, onView, delay = 0 }) {
+function AcademicDocumentCard({pdfUrl = "#", document, delay = 0 }) {
+
   const reveal = useRevealMotion({ delay, y: 40, scale: 0.97 });
   const reducedMotion = useReducedMotion();
   const light = document.tone === "light";
+  const { openPdf } = usePdfViewer();
 
   return (
     <Motion.article {...reveal} className="relative isolate flex min-h-72 overflow-hidden rounded-r-xl p-6 sm:p-8 lg:min-h-80">
@@ -39,7 +42,7 @@ function AcademicDocumentCard({ document, onView, delay = 0 }) {
           text="Ver más"
           aria-label={`Ver más sobre ${document.title.toLowerCase()}`}
           aria-haspopup="dialog"
-          onClick={() => onView(document)}
+          onClick={() => openPdf(pdfUrl, document.title)}
           className={`mt-auto min-h-11 cursor-pointer rounded-tl-xl 
             rounded-br-xl px-6 py-3 font-poppins text-sm transition-colors 
             focus-visible:outline-2 focus-visible:outline-offset-4 
