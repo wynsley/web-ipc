@@ -1,9 +1,10 @@
 import { MyTemplate } from "../templates/myTemplate";
+import { AboutHero } from "../organisms/aboutUs/aboutHero";
 
 function AboutUsPage() {
   return (
     <MyTemplate>
-      <h1> Sobre nosotros </h1>
+      <AboutHero/>
     </MyTemplate>
   )
 }
