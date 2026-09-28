@@ -19,6 +19,7 @@ function Title({
     primary: 'text-white',
     secondary: 'text-orange',
     danger: 'text-blue',
+    institutional: 'text-blue-dark',
   };
 
   const alignments = {
@@ -29,8 +30,8 @@ function Title({
 
   const defaultByLevel = {
   h1: 'text-[1.1em] xs:text-[1.6em] sm:text-[1.9em] md:text-[2.8em] xl:text-6xl',
-  h2: 'text-[1.7em] xs:text-[2.5] sm:text-[2.2em] md:text-[2.4em]',
-  h3: 'text-[1.3em] sm:text-[1.2em] md:text-[1.2em] xl:text-[1.9em]',
+  h2: 'text-[1.7em] xs:text-[2.5] sm:text-[2.2em] md: text-4xl xl:text-5xl',
+  h3: 'text-[1.3em] sm:text-[1.3em] xl:text-[1.6em]',
   h4: 'text-sm sm:text-base md:text-lg',
   h5: 'text-xs sm:text-sm md:text-base',
   h6: 'text-[10px] sm:text-xs md:text-sm',
@@ -40,12 +41,14 @@ function Title({
   const sizes = {
     default: defaultByLevel[level] || defaultByLevel.h1,
     compact: 'text-[clamp(1.25rem,1rem+0.55vw,1.625rem)]',
+    hero: 'text-[clamp(1.875rem,3.8vw,3.25rem)]',
   };
 
   const weights = {
     light: 'font-light',
     normal: 'font-normal',
     bold: 'font-bold',
+    extrabold : 'font-extrabold'
   };
 
   return (

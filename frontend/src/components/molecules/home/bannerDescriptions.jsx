@@ -5,7 +5,7 @@ import { Title } from "../../atoms/titles"
 import { motion as Motion } from "motion/react"
 
 
-function BannerDescription({ title, cta }) {
+function BannerDescription({toggleModal, title, cta }) {
   return (
     <article
       className="
@@ -37,12 +37,12 @@ function BannerDescription({ title, cta }) {
         />
       </Motion.div>
       <Button
-        type="button"
+        onClick={toggleModal}
         variant="primary"
-        className="group flex items-center gap-1"
+        className="group flex items-center gap-4 justify-center"
       >
-        ¡Inscríbete aquí!
-        <IoIosArrowRoundForward className="size-6 transition-transform group-hover:translate-x-1" />
+        ¡Inscríbete!
+        <IoIosArrowRoundForward className="size-3 sm:size-6 transition-transform group-hover:translate-x-1" />
       </Button>
     </article>
   )

@@ -11,24 +11,24 @@ function FooterCareers() {
 
   return (
     <nav
-      aria-labelledby="footer-careers-title"
-      className="min-w-0 text-center lg:self-start lg:pt-[1.2vw]"
+      className="flex flex-col items-center sm:items-start justify-start min-w-0 lg:self-start lg:pt-[1.2vw]"
     >
       <Title
-        id="footer-careers-title"
-        level="h2"
+        level="h3"
         size="compact"
-        variant="primary"
         align="center"
         text="CARRERAS:"
-        className="mb-5 font-hani lg:mb-7"
+        className="mb-5 text-gray-400 font-hani lg:mb-7 text-center md:text-left"
       />
-      <ul className="space-y-2 font-poppins text-[clamp(0.875rem,0.75rem+0.3vw,1.0625rem)] leading-snug">
+      <ul className="space-y-2 font-poppins flex flex-col items-center sm:items-start w-full">
         {footerCareers.map((career) => (
-          <li key={career.href}>
+          <li key={career.href} className="w-full text-center sm:text-left">
             <Link
               to={career.href}
-              className="inline-block rounded-md border border-transparent px-2 py-0.5 transition-colors duration-150 hover:border-white/30 hover:bg-white/10 focus-visible:border-white/30 focus-visible:bg-white/10 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
+              className="inline-block w-full text-gray-400 md:w-auto
+              border border-transparent px-2 py-0.5 transition-colors 
+              duration-150 hover:border-white/30 focus-visible:outline-2
+              focus-visible:outline-white"
             >
               {career.title}
             </Link>

@@ -17,6 +17,7 @@ import { AdministrationPage } from "./components/pages/careers/businessAdministr
 import { AccountingPage } from "./components/pages/careers/accountingPage"
 import { ComputerSciencePage } from "./components/pages/careers/computerSciencePage"
 import { LanguageTraslationPage } from "./components/pages/careers/languageTranslationPage"
+import { SocialFloatings } from "./components/molecules/shared/SocialsFloatings"
 
 function App() {
   const pages = [
@@ -36,7 +37,7 @@ function App() {
 
   return (
     <AnimatePresence mode="wait" initial={false}>
-
+    <SocialFloatings/>
       <Routes>
         <Route element={<MainLayout/>}>
           {pages.map((page) => (

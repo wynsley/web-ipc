@@ -1,0 +1,58 @@
+export const FEATURED_GRADUATES = [
+  {
+    id: 1,
+    name: "Ana Torres",
+    description: "Contadora en Estudio Contable Andina",
+    year: "2022",
+    photo: "https://i.pravatar.cc/300?img=1",
+  },
+  {
+    id: 2,
+    name: "Carlos Ruiz",
+    description: "Administrador en Grupo Comercial del Norte",
+    year: "2021",
+    photo: "https://i.pravatar.cc/300?img=12",
+  },
+  {
+    id: 3,
+    name: "Lucía Vargas",
+    description: "Desarrolladora de software en Tecnova SAC",
+    year: "2023",
+    photo: "https://i.pravatar.cc/300?img=5",
+  },
+  {
+    id: 4,
+    name: "Diego Flores",
+    description: "Traductor certificado, trabajo independiente",
+    year: "2020",
+    photo: "https://i.pravatar.cc/300?img=13",
+  },
+  {
+    id: 5,
+    name: "María Paredes",
+    description: "Contadora en Municipalidad de Celendín",
+    year: "2022",
+    photo: "https://i.pravatar.cc/300?img=9",
+  },
+  {
+    id: 6,
+    name: "Jorge Salazar",
+    description: "Jefe de administración en Corporación Vega",
+    year: "2019",
+    photo: "https://i.pravatar.cc/300?img=11",
+  },
+  {
+    id: 7,
+    name: "Karen Rojas",
+    description: "Analista de sistemas en Softline Perú",
+    year: "2023",
+    photo: "https://i.pravatar.cc/300?img=47",
+  },
+  {
+    id: 8,
+    name: "Pedro Núñez",
+    description: "Intérprete de inglés en agencia de turismo",
+    year: "2021",
+    photo: "https://i.pravatar.cc/300?img=14",
+  },
+];
