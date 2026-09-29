@@ -1,14 +1,13 @@
 import { Title } from "@/components/atoms/titles";
 import { HeroPerson } from "@/components/molecules/aboutUs/heroPerson";
-import personImageDefault from "@assets/images/aboutUs/about_hero.png";
+import personImage from "@assets/images/aboutUs/about-hero-person.png";
 import { staggerContainer } from "@/components/animations/animation";
 import { motion as Motion } from "motion/react";
 
 
 function AboutHero({
   title = "SOBRE NOSOTROS",
-  bgImage = "/HERO_GRADUATES.webp",
-  personImage = personImageDefault,
+  bgImage = "/BANNER_HOME.webp",
 }) {
   return (
     <section className="relative z-0 select-none pb-10 sm:pb-14">
@@ -57,7 +56,7 @@ function AboutHero({
           className="
             absolute left-0 top-1/2 -translate-y-1/2
             h-[55%] w-[92%] sm:w-[68%]
-            bg-linear-to-r from-blue-deep to-blue/20
+            bg-linear-to-r from-blue-deep to-blue/40
             [clip-path:polygon(0_0,100%_0,88%_100%,0_100%)]
           "
         />
