@@ -24,7 +24,7 @@ function CardMissionVission({ list }) {
                 weight="bold"
                 className="font-hani"
               />
-              <ScrollReveal className={`${item.bgCard} p-5 `}>
+              <ScrollReveal className={`${item.bgCard} p-5 bg-slate-100`}>
                 <Paragraph
                   text={item.description}
                   className="font-poppins "

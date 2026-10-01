@@ -4,9 +4,8 @@ import { MISSION_VISSION } from "@/data/aboutUs/missionVission"
 function MissionAndVission () {
   return(
     <section
-      className=" flex items-center gap-10
-      mx-auto py-8 mt-8 w-[92%] max-w-7xl md:w-[90%] 
-      md:py-10"
+      className=" flex flex-col sm:flex-row  items-center gap-5 sm:gap-10
+      mx-auto py-8 lg:mt-8 w-[92%] max-w-6xl md:w-[90%] "
     >
     
     <CardMissionVission

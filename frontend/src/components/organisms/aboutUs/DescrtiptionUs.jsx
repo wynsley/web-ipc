@@ -23,7 +23,7 @@ function DescriptionUs ( ) {
   return( 
     <section
       className="mx-auto flex  flex-col items-start
-      gap-8 py-8 mt-10 w-[92%] max-w-7xl md:w-[90%] 
+      gap-8 md:mt-10 w-[92%] max-w-6xl md:w-[90%] 
       md:py-10 lg:flex-row lg:items-center lg:justify-between 
       "x
     >
