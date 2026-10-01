@@ -5,7 +5,7 @@ import { careers } from "../../../data/careers"
 import { useCardsPerView } from "../../../hooks/globals/useCardPowerView"
 
 function CareersCarousel() {
-  const cardsPerView = useCardsPerView()
+  const cardsPerView = useCardsPerView("compact")
   const [current, setCurrent] = useState(0)
   const timerRef              = useRef(null)
   const touchStartX           = useRef(null)
@@ -37,7 +37,7 @@ function CareersCarousel() {
     setTimeout(() => {
       paused.current = false
       startTimer()
-    }, 5000)
+    }, 4000)
   }
 
   const handleDotClick = (i) => {
