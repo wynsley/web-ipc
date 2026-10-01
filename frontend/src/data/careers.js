@@ -3,7 +3,7 @@ const careers = [
   {
     title: "Administración de Empresas",
     href: "/career/administration",
-    img: "/ADMINISTRACION.webp",
+    img: "/business_admin/ADMINISTRACION.webp",
     hero: {
       description: "Lidera el futuro empresarial. Conviértete en un profesional integral capaz de dirigir organizaciones, tomar decisiones estratégicas y generar valor en un entorno de negocios dinámico y competitivo.",
       highlights: [
@@ -25,12 +25,12 @@ const careers = [
   {
     title: "Contabilidad",
     href: "/career/accounting",
-    img: "/CONTABILIDAD.webp",
+    img: "/business_admin/CONTABILIDAD.webp",
   },
   {
     title: "Computación e Informática",
     href: "/career/computer-science",
-    img: "/COMPUTACION.webp",
+    img: "/business_admin/COMPUTACION.webp",
   },
   {
     title: "Traducción de Idiomas",
