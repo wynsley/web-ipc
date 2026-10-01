@@ -24,8 +24,8 @@ function DescriptionUs ( ) {
     <section
       className="mx-auto flex  flex-col items-start
       gap-8 py-8 mt-10 w-[92%] max-w-7xl md:w-[90%] 
-      md:py-10 lg:flex-row lg:items-center lg:justify-between lg:gap-8
-      "
+      md:py-10 lg:flex-row lg:items-center lg:justify-between 
+      "x
     >
       <Motion.div
         variants={staggerContainer}
@@ -65,7 +65,7 @@ function DescriptionUs ( ) {
           <img 
           src={ipcStudents} 
           alt="infraestructura ipc" 
-          className="block z- h-auto w-full object-cover "
+          className="block z- h-auto w-full object-cover drop-shadow-lg drop-shadow-blue-deep"
         />
       </ScrollReveal>
       <div
