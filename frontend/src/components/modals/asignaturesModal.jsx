@@ -77,7 +77,7 @@ function AsignaturesModal({
             bottom: pos.bottom,
             width: MODAL_WIDTH,
           }}
-          className="z-50 rounded-xl border border-blue-deep/10 bg-white p-5 shadow-xl"
+          className="z-50 border border-blue-deep/10 bg-white p-5 shadow-xl"
         >
           <div className="flex items-start justify-between gap-3">
             <div>
