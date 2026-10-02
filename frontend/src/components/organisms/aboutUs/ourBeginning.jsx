@@ -1,39 +1,70 @@
+import { staggerContainer } from "@/components/animations/animation";
+import { Paragraph } from "@/components/atoms/paragraph";
+import { Title } from "@/components/atoms/titles";
+import { ScrollReveal } from "@/components/layouts/scrollReveal";
 import { Beginning } from "@/components/molecules/aboutUs/beginning";
+import { beginning } from "@/data/aboutUs/beginning";
+import { motion as Motion } from "motion/react";
 
 function OurBeginning() {
-  return (
-    <section className="w-full bg-white px-6 py-16 lg:px-16">
-      <div className="mx-auto grid max-w-6xl items-center gap-10 lg:grid-cols-2">
-        {/* Columna izquierda */}
-        <div className="max-w-md ">
-          <h2 className="font-hani text-5xl font-light leading-tight text-neutral-800 md:text-6xl">
-            Nuestro <span className="font-semibold text-blue-deep">inicio</span>
 
-          </h2>
-
-          <p className="mt-8 font-poppins text-sm leading-relaxed text-neutral-600">
-            Desde sus inicios, el Instituto Privado Celendín se ha caracterizado por su
+  const desciption = `Desde sus inicios, el Instituto Privado Celendín se ha caracterizado por su
             compromiso con la formación integral de sus estudiantes y con las necesidades
-            educativas y laborales de la región.
-          </p>
+            educativas y laborales de la región.`
 
-          <button
-            type="button"
-            className="mt-8 inline-flex items-center gap-3 rounded-md bg-blue-deep px-5 py-3 font-poppins text-xs font-medium text-white transition hover:bg-blue focus:outline-none focus-visible:ring-2 focus-visible:ring-blue focus-visible:ring-offset-2"
+  return (
+    <section className="w-full bg-white px-6 py-10 lg:px-16  mb-10 md:mb-20">
+      <div className="mx-auto max-w-6xl">
+        <Motion.div 
+          variants={staggerContainer}
+          initial ="hidden"
+          whileInView="visible"
+          viewport={{once: true, amount: 0.3}}
+          className="relative mx-auto  text-center">
+          <span
+            aria-hidden="true"
+            className="pointer-events-none absolute left-1/2 top-1/2 
+            -translate-x-1/2 -translate-y-1/2 select-none whitespace-nowrap font-hani 
+            text-7xl font-extrabold leading-none text-blue-deep/3 md:text-[20em]"
           >
-            Conoce más sobre nosotros
-            <span aria-hidden="true">→</span>
-          </button>
-        </div>
+            Historia
+          </span>
 
-        {/* Columna derecha */}
-        <div className="relative rounded-sm bg-slate-100 p-8 md:p-5">
+          <Title
+            align="left"
+            level="h2"
+            weight="bold"
+            className="font-hani"
+          >
+            NUESTRO <span className="text-blue">INICIO</span>
+          </Title>
 
-          <Beginning/>
-        </div>
+          <Paragraph
+            text={desciption}
+            variant="secondary"
+            size="base"
+            className="font-poppins max-w-2xl"
+          />
+        </Motion.div>
+
+        <ol className="mt-14 grid gap-x-6 gap-y-12 sm:grid-cols-2 lg:grid-cols-4">
+        {
+          beginning.map((item, i) => {
+            const isLast = i === beginning.length - 1;
+            return (
+              <ScrollReveal key={i} delay={0.3 * i} y={60}>
+              <Beginning 
+                item={item}
+                isLast={isLast}
+              />
+            </ScrollReveal>
+            )
+          })
+        }
+        </ol>
       </div>
     </section>
   );
 }
 
-export {OurBeginning}
+export { OurBeginning };
