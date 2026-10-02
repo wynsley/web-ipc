@@ -1,0 +1,14 @@
+# Imagen del hero de Computación e Informática
+
+Generada el 1 de octubre de 2026 con la herramienta integrada image_gen. Imagen ilustrativa generada por IA; no es una fotografía de alumnado real del IPC. Archivo: computing-student.png. Fondo transparente conservado.
+
+## Prompt final
+
+Create a premium photorealistic website hero cutout for a Peruvian institute's Computing and Informatics career. One young adult Latina woman technology student with natural dark hair, wearing a smart institutional royal navy-blue overshirt over a light neutral tee, holding an open modern silver laptop in a believable comfortable pose, one hand on keyboard and other supporting its base. Three-quarter waist-up composition, warm confident natural expression looking slightly toward the laptop, face fully visible, body slightly turned to viewer's left. Clean professional studio lighting with subtle cool blue rim light. Modern approachable technical education aesthetic, realistic hands and laptop geometry. Subject centered toward the right within the image, head in upper right half; leave some transparent space upper left for a floating UI card. Complete hair, elbows and laptop within frame; torso can end at bottom edge. Transparent background with genuine alpha; no room, no solid backdrop, no shadows outside the subject, no floating UI, no text, no logos, no watermark. Portrait 4:5-ish composition. Asset will overlay an institutional blue background and extend into a white section.
+## Fondo del hero
+
+Archivo: computing-lab-background.png. Generado con la herramienta integrada image_gen. Laboratorio ilustrativo generado por IA; no representa instalaciones reales del instituto.
+
+### Prompt final del fondo
+
+Generate a premium photographic website hero BACKGROUND for a Computing and Informatics degree at a Peruvian educational institute. Wide panoramic 3:1 landscape composition. A sophisticated contemporary computer lab with a few workstation monitors, subtle server racks and glass partitions in the far background, clean realistic architectural photography, soft depth of field, no people. Institutional deep royal blue #1A3983 and restrained lighter blue illumination dominate; tiny warm orange #E08433 accents on equipment indicators only. Left 55 percent should be dark calm blue negative space with very low detail so a large white headline can be overlaid clearly. Concentrate recognizable softly focused computer hardware and lab detail on the right half and lower right, with understated perspective and cinematic professional lighting. Designed behind a separate foreground student cutout on the right. Attractive visible photographic depth, not a flat gradient, not a neon sci-fi scene. No text, no lettering, no logos, no watermarks, no diagrams, no circuit line overlays, no HUD or floating UI cards, no SVG-looking graphics, no people. Full bleed opaque background.

@@ -176,3 +176,11 @@ Pendientes o contenido por confirmar:
 Cambios locales todavía sin integrar:
 ```
 
+
+## 8. Curvas compartidas y hero de Computación
+
+Para separadores curvos, reutilizar BannerBgCurve de components/molecules/shared/curbePath.jsx. Conserva design (1–5), color, height, position y className. El diseño 6 añade la curva con banda del hero de Computación: pasar color="var(--color-neutral-white)", accentColor="var(--color-orange)" y height="h-16 sm:h-22". accentColor es opcional y solo tiene efecto en diseños con banda. El padre debe estar posicionado; el componente es decorativo y no captura eventos. className permite ajustar la posición (por ejemplo, -bottom-px) mediante twMerge.
+
+ComputerScienceHero recibe title y content desde su página. Los textos, recursos y enlace están en data/computerScienceHero.js; las moléculas Heading, Visual e Intro en components/molecules/careers/ separan responsabilidades. Mantener el título en el catálogo careers y las imágenes en public/computation-informatic. Esta composición conserva el diseño específico de Computación; no sustituye CareerHero de Administración.
+
+El hero de Computación usa exclusivamente utilidades Tailwind para sus estilos locales; computerScienceHero.css fue eliminado. La máscara y transparencia de la figura se activan con has-[img.opacity-100], conservando el respaldo de Image durante carga/error. El contenedor dentro de MyTemplate ajusta el espacio superior por breakpoint sin sobrescribir los estilos de la plantilla.

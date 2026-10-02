@@ -198,3 +198,35 @@ Al revisar nuevas incorporaciones, registrar fecha y commit, comparar con esta b
 
 Consultar la [guía para nuevas páginas](GUIA_NUEVAS_PAGINAS.md) antes de crear una rama de implementación. Estos documentos deben formar parte del historial compartido para aparecer en otras ramas; un archivo local sin commit no se transmite a otros checkouts. No hay seguimiento automático configurado.
 
+
+## 8. Hero de Computación e Informática — 1 de octubre de 2026
+
+- Implementado en `/career/computer-science`: la página compone `ComputerScienceHero`, con título del catálogo, escenario azul institucional, curva naranja, figura superpuesta, tarjetas decorativas y descripción. Reutiliza Title, Paragraph e Image; no cambia contratos compartidos.
+- Archivos nuevos: `components/organisms/careers/computerScienceHero.jsx` y su CSS de geometría responsive. Los colores proceden de index.css.
+- Reutiliza la imagen institucional existente `about-hero-person.png`; no representa una fotografía confirmada de alumnado de esta carrera. Los textos son una propuesta editorial sin cifras, duración ni promesas de empleabilidad.
+- El enlace “Conoce admisión” abre la ruta existente /admissions; esa página sigue pendiente de contenido.
+- Verificación: build correcto; lint mantiene únicamente los dos errores preexistentes en Toast y CareersCarousel. Inspección con Edge en 1440, 768 y 390 px, sin desbordamiento horizontal; enlace de admisión y error de imagen comprobados. El respaldo de Image conserva dimensiones, fondo blue-dark y etiqueta accesible, sin img roto.
+- Pendiente: desarrollar las demás secciones de la carrera y confirmar el contenido institucional. No se añadieron dependencias.
+
+
+### Actualización visual del hero — 1 de octubre de 2026
+
+Se sustituye la imagen reutilizada de Sobre nosotros por computing-student.png, generada con image_gen y con transparencia. La imagen es ilustrativa, no alumnado real; el prompt y su procedencia están en frontend/public/computation-informatic/README.md. El hero ocupa el 100 % del ancho, sin márgenes ni esquinas superiores redondeadas, alineado bajo la navegación fija mediante la clase local computing-page. Se conserva el ajuste de la tarjeta móvil para despejar el rostro y el respaldo institucional de Image. Verificado en 320, 390, 640, 768 y 1440 px, sin desborde horizontal. Build correcto; lint conserva los dos errores preexistentes. No se modifican contratos compartidos.
+
+### Fondo y organización de Computación — 1 de octubre de 2026
+
+Ambas imágenes del hero se guardan en frontend/public/computation-informatic: computing-student.png y computing-lab-background.png. Se elimina el patrón SVG decorativo del fondo y se integra el laboratorio generado con image_gen mediante Image, alt vacío y overlay institucional. Solo se mantiene el SVG de la curva inferior y los iconos pequeños existentes. Prompts y procedencia en el README de esa carpeta; el laboratorio es ilustrativo, no instalaciones reales del IPC. Verificado responsive de 320 a 1440 px y fallo de carga del fondo con respaldo blue-dark; build correcto y los mismos dos errores previos de lint.
+
+### Modularización de Computación — 1 de octubre de 2026
+
+ComputerSciencePage obtiene el título del catálogo y pasa el contenido de data/computerScienceHero.js a ComputerScienceHero({ title, content }). El organismo compone tres moléculas de careers: ComputerScienceHeroHeading (título y lema), ComputerScienceHeroVisual (imagen y tarjetas) y ComputerScienceHeroIntro (descripción y enlace). Image sigue centralizando carga/error; los estilos responsive se conservan.
+
+Se reutiliza BannerBgCurve de molecules/shared/curbePath.jsx. Se añade design=6 con la geometría aprobada y accentColor opcional; los diseños 1–5, color, height, position y sus valores por defecto se conservan. El diseño 6 admite una banda posterior; sin accentColor solo se dibuja la curva principal. Usa tokens CSS para sus colores, aria-hidden y pointer-events-none como decoración; className se combina con twMerge para permitir ajustar la posición sin clases contradictorias. Antes de este cambio el componente compartido no tenía consumidores activos; Egresados conserva un SVG propio y no se modifica en este alcance.
+
+Verificado: build correcto, lint con los dos errores preexistentes, responsive en 320/390/640/768/1440 px sin desbordes y respaldo azul ante fallo del fondo. La apariencia del hero se conserva. No se añaden dependencias ni cambios de backend.
+
+### Estilos de Computación en Tailwind — 1 de octubre de 2026
+
+Se elimina computerScienceHero.css y su import. El organismo y sus moléculas expresan el layout, responsive y máscara de imagen con utilidades Tailwind. La transparencia y el difuminado solo se aplican cuando Image termina de cargar; los errores conservan el fondo institucional. El espacio bajo la navegación se compone con un contenedor pt-3.5 sm:pt-5.5 md:pt-0 dentro de MyTemplate, sin cambiar su contrato compartido. Se retiran las clases computing-hero y computing-page que dependían del CSS eliminado.
+
+Verificación: geometría y estilos equivalentes a la versión previa en 320, 390, 640, 768 y 1440 px; inspección visual en móvil/escritorio, respaldo de ambas imágenes y enlace de admisión correctos. Build pasa; lint conserva los dos errores preexistentes.
