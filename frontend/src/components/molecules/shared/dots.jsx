@@ -18,7 +18,7 @@ function Dost({
           ? "absolute bottom-4 sm:bottom-6 left-1/2 -translate-x-1/2"
           : ""
         }
-        z-100 flex items-center justify-center gap-3
+        z-100 flex items-center justify-center gap-1 md:gap-3
       `}
     >
       {dots.map((_, i) => {
