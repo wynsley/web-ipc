@@ -5,7 +5,7 @@ import { Dost } from "../../molecules/shared/dots";
 import { useCardsPerView } from "../../../hooks/globals/useCardPowerView";
 import { useCarousel } from "../../../hooks/globals/useCarrusel";
 import { motion as Motion } from "motion/react";
-import { Title } from "../../atoms/titles";
+import { Title } from "@/components/atoms/titles";
 import { staggerContainer } from "../../animations/animation";
 import { Paragraph } from "../../atoms/paragraph";
 
