@@ -1,10 +1,11 @@
+import { ScrollReveal } from "../../layouts/scrollReveal";
 import { FiArrowUpRight } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import { Paragraph } from "../../atoms/paragraph";
 
 function ComputerScienceHeroIntro({ title, description, action }) {
   return (
-    <div className="relative px-6 pt-8 sm:px-10 md:min-h-60 md:w-[54%] lg:px-14">
+    <ScrollReveal className="relative px-6 pt-8 sm:px-10 md:min-h-60 md:w-[54%] lg:px-14">
       <Paragraph size="compact" className="max-w-lg leading-8">
         {description} <strong>{title}.</strong>
       </Paragraph>
@@ -14,7 +15,7 @@ function ComputerScienceHeroIntro({ title, description, action }) {
       >
         {action.label} <FiArrowUpRight aria-hidden="true" className="text-lg" />
       </Link>
-    </div>
+    </ScrollReveal>
   );
 }
 

@@ -230,3 +230,62 @@ Verificado: build correcto, lint con los dos errores preexistentes, responsive e
 Se elimina computerScienceHero.css y su import. El organismo y sus moléculas expresan el layout, responsive y máscara de imagen con utilidades Tailwind. La transparencia y el difuminado solo se aplican cuando Image termina de cargar; los errores conservan el fondo institucional. El espacio bajo la navegación se compone con un contenedor pt-3.5 sm:pt-5.5 md:pt-0 dentro de MyTemplate, sin cambiar su contrato compartido. Se retiran las clases computing-hero y computing-page que dependían del CSS eliminado.
 
 Verificación: geometría y estilos equivalentes a la versión previa en 320, 390, 640, 768 y 1440 px; inspección visual en móvil/escritorio, respaldo de ambas imágenes y enlace de admisión correctos. Build pasa; lint conserva los dos errores preexistentes.
+
+## 9. Página de Computación ampliada — 2 de octubre de 2026
+
+Implementado en /career/computer-science: entrada escalonada del hero, seis áreas de aprendizaje en el carrusel compartido, sección narrativa con panel sticky e indicador ligado al scroll, seis ámbitos laborales (cuatro iniciales y dos desplegables), habilidades y dos tarjetas de documentación pendiente. El contenido editorial está en data/computerScienceSections.js; es orientativo y requiere validación institucional. No se afirman duración, modalidad, empleabilidad ni beneficios exclusivos del IPC. Plan y malla no tienen PDF oficial y muestran su estado pendiente sin botones ficticios. Las imágenes existentes siguen siendo ilustrativas.
+
+Contratos reutilizados y ampliados:
+
+- CareerLearning: label, description y digital opcionales; conserva la presentación predeterminada de Administración. ContinuousCarousel y useCarouselDrag mantienen su lógica; LearningCard añade Icon, code y digital para la variante tecnológica.
+- CareerWorkplaces / WorkplaceTile: digital opcional; reutiliza expansión, animaciones y estado. La variante tecnológica muestra título, descripción e icono, sin fingir fotografías.
+- CareerBenefits: title, description, imageAlt y eyebrow opcionales con los valores anteriores por defecto. Reutiliza BenefitCard.
+- AcademicDocumentCard: sin pdfUrl válido muestra document.status; con URL conserva el visor global. isReference se muestra de forma visible. Se eliminan props Motion que se enviaban a Button HTML.
+- MyTemplate: admite className con twMerge y conserva classmame como alias compatible. Computación usa overflow-x-clip para no crear un contenedor de scroll que impida sticky. Las demás páginas conservan overflow-x-hidden.
+- useCarouselDrag: pointerleave de un descendiente ya no cancela el inicio del arrastre; solo salir del viewport lo cancela.
+- ComputerScienceJourney utiliza ScrollReveal, useScroll y useTransform, con indicador estático al solicitar movimiento reducido. No se añade CSS local ni dependencias.
+
+Verificaciones: build correcto y lint con los mismos dos errores previos de Toast/CareersCarousel; sin errores de render en navegador. Revisados 320/390/768/1440 px, carrusel con teclado y duplicados fuera del tabulado, expansión 4→6→4, arrastre activo y liberación, sticky a 128 px, modo de movimiento reducido, respaldo de imágenes fallidas, estado de documentos pendientes y apertura del visor desde Administración. Sigue el aviso de tamaño del bundle existente.
+
+Pendiente de contenido: confirmar áreas formativas, beneficios institucionales y facilitar los PDF oficiales de Computación. No se implementa backend nuevo.
+
+### Animaciones reversibles de Computación — 2 de octubre de 2026
+
+Esta revisión sustituye las entradas de una sola ejecución descritas anteriormente por animaciones vinculadas continuamente al desplazamiento. ComputerSciencePage activa ScrollAnimationContext con value="linked". ScrollMotion (y su fachada ScrollReveal) usa useScroll/useTransform: títulos y tarjetas entran y salen según su posición y recuperan el mismo estado al volver. Al recibir foco mantienen opacidad y escala completas para facilitar el uso con teclado. Fuera del proveedor se conserva el comportamiento de entrada de las otras páginas.
+
+El hero tiene parallax de fondo. ComputerScienceJourney ofrece una escena de 280vh con pantalla sticky bajo la navegación (96 px), tres tarjetas superpuestas, desplazamiento/zoom de fondo y progreso reversible. usePinnedScene solo activa esta composición desde 64rem de ancho y 650px de alto, sin movimiento reducido; en pantallas pequeñas las tres etapas se muestran en flujo con entradas reversibles. ComputingJourneyStep encapsula la transformación de cada etapa. useMotionPreference escucha cambios de preferencia sin recarga y desactiva las animaciones de ScrollMotion y el parallax del hero. Se reutiliza Motion ya instalado, las imágenes y el carrusel existentes, sin nuevas dependencias ni CSS local.
+
+Verificado en navegador: secuencia 1→2→3→2→1 y restauración exacta de estilos de los 18 elementos al recorrer toda la página y regresar; entradas reversibles por posición; anchos 390/768/1440 sin desborde; movimiento reducido dinámico desactiva los elementos vinculados y la escena fija; Administración no recibe el modo linked. Build correcto; lint conserva los dos errores previos en Toast y CareersCarousel y el build mantiene el aviso de tamaño de bundle.
+### Imágenes del carrusel — 2 de octubre de 2026
+
+Se incorporan seis ilustraciones conceptuales generadas con image_gen a public/computation-informatic/learning-*.webp: programación, bases de datos, redes, soporte, desarrollo web y seguridad. Paleta azul/naranja y prompts completos documentados en el README de la carpeta. Los recursos están optimizados a 800px, unos 539 KiB entre los seis. No representan instalaciones ni equipos reales del instituto.
+
+LearningCard admite imageAlt opcional; la variante digital usa tarjetas más altas, overlay inferior y zoom al expandirse mediante puntero, foco o toque, desactivado con movimiento reducido. Image mantiene el respaldo institucional y el arrastre nativo de imágenes está desactivado para conservar el gesto del carrusel. Administración conserva sus dimensiones y overlays. Comprobadas la carga de los seis recursos, expansión con teclado, diseño móvil sin desborde y compilación.
+### Secuencia visual de scroll — 2 de octubre de 2026
+
+Se amplía la animación inspirada en la referencia de Pinterest: CareerLearning con cinematic mantiene la sección fija durante 260svh, vincula el recorrido horizontal del carrusel al desplazamiento vertical y anima su escala/perspectiva y luz de fondo. ContinuousCarousel admite scrollProgress opcional (MotionValue de 0 a 1); useCarouselScroll controla el tiempo de la animación CSS existente, mide anchuras sin transformar y conserva arrastre, duplicados, escala central y navegación por teclado. Al enfocar o arrastrar no sobrescribe la interacción; al volver a desplazarse recupera el recorrido por scroll. Sin scrollProgress conserva el comportamiento anterior.
+
+ComputerScienceJourney sustituye las tarjetas numéricas por tres composiciones con imágenes del catálogo, títulos grandes, cambios de perspectiva, escala y movimiento independiente del texto. Dura 320svh y dispone de luz y tipografía de fondo móviles. ComputingJourneyStep interpola explícitamente las etapas para mantener sus límites en Motion/WAAPI. ScrollPanel añade apertura de marco, escala y desplazamiento a Campo laboral, Habilidades y Documentos; respeta el foco de teclado sin mover las acciones al hacer clic.
+
+usePinnedScene se activa con ancho mínimo de 48rem y altura mínima de 600px, o con altura de 740px en cualquier ancho. Siempre exige ausencia de movimiento reducido. En ventanas pequeñas conserva el carrusel habitual y muestra las etapas en flujo. La preferencia de movimiento reducido desactiva las escenas y transformaciones. No se instalan dependencias en el proyecto ni se incorpora CSS local.
+
+Validación en Edge: carrusel 0→-428→-856→-428→0 px en 1440x1000, etapas 1→2→3→2→1, apertura de panel reversible, arrastre y teclado funcionales, expansión de ámbitos 4→6→4. Inspección en 1440x1000, 390x844, 320x640, 1024x700 y 844x390; sin desborde horizontal. Administración conserva su presentación. Grabación de demostración en la carpeta local de revisión. Build correcto; lint mantiene los dos errores previos de Toast y CareersCarousel. La composición adapta movimientos de la referencia; no es una reproducción exacta ni utiliza el código del sitio original.
+### Carrusel libre y transición entre secciones — 2 de octubre de 2026
+
+Por ajuste del usuario, se retira el recorrido horizontal ligado al scroll. ContinuousCarousel recupera su contrato y autoplay anteriores; se eliminan scrollProgress, useCarouselScroll y la variante scene de LearningCard. El carrusel vuelve a sus dimensiones aprobadas y conserva arrastre, pausa por interacción y teclado.
+
+cinematic en CareerLearning ahora controla la desaparición de toda la sección al salir de la pantalla, sin sticky ni altura artificial. La entrada de ComputerScienceJourney acompaña la transición. Sus etapas desplazan encabezado, imagen y texto como un bloque vertical completo, para simular el paso entre secciones; se conservan imágenes, contenido y composición responsive. El título semántico de la escena se mantiene, y el encabezado visual repetido no se anuncia de nuevo.
+
+Validación: autoplay avanza sin scroll, arrastre cambia su posición y autoplay se reanuda; opacidad/escala de salida y etapas restauran exactamente su estado al subir; movimiento reducido mantiene el carrusel legible; anchos 320/390 sin desborde y navegador sin errores. Build correcto. Esta revisión sustituye el contrato de scrollProgress descrito en la actualización anterior.
+### PDF de muestra de Computación — 2 de octubre de 2026
+
+Se crea public/computation-informatic/computacion-referencia.pdf (dos páginas: plan y malla ficticios), con paleta institucional y avisos visibles de referencia no oficial en ambas páginas. No establece duración, créditos ni certificaciones reales. Las dos entradas de computerScienceDocuments apuntan a este mismo archivo y activan isReference; sus descripciones aclaran su carácter de ejemplo y la ubicación de la malla en la segunda página.
+
+Se reutiliza sin cambios CareerDocuments → AcademicDocumentCard → usePdfViewer → PdfViewerProvider/PdfViewerModal, el mismo flujo de Administración. No se introduce un segundo visor. Verificado el render de ambas páginas, apertura desde las dos tarjetas, navegación a página 2, zoom, descarga, cierre y apertura móvil, sin errores de navegador. Los documentos oficiales siguen pendientes y deberán sustituir la muestra.
+### Limpieza y revisión de Computación — 2 de octubre de 2026
+
+Eliminados «Desplázate para recorrer el proceso» y su barra, conservando las transiciones reversibles. La escena separa composición, fondo, encabezado, etapas y alternativa en flujo; useJourneyMotion/useJourneyStepMotion contienen sus cálculos. El hero separa su fondo. CareerLearning usa useSectionExit; useKeyboardFocusWithin y useMediaQuery centralizan comportamientos repetidos.
+
+Retiradas seis cadenas code del catálogo y su rama obsoleta en LearningCard. Textos agrupados en computerScienceContent. AcademicDocumentCard obtiene document.pdfUrl sin props redundantes. Conservados carrusel libre, átomos, curva, visor global, cambios locales y ScrollReveal. Sin dependencias ni CSS nuevos.
+
+Verificado en Edge: carrusel, reversibilidad, etapas 1→2→3→2→1, ausencia de texto/barra, movimiento reducido dinámico, respaldo de imagen y PDF de ambas carreras. Anchos 320/390/1440 sin desborde; inspección visual móvil/escritorio. Build correcto; lint conserva los dos errores previos de Toast/CareersCarousel y persiste el aviso de bundle. Análisis en REVISION_COMPUTACION.md. Las entradas anteriores son históricas; esta revisión describe la organización vigente.

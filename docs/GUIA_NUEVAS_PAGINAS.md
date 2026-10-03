@@ -184,3 +184,34 @@ Para separadores curvos, reutilizar BannerBgCurve de components/molecules/shared
 ComputerScienceHero recibe title y content desde su página. Los textos, recursos y enlace están en data/computerScienceHero.js; las moléculas Heading, Visual e Intro en components/molecules/careers/ separan responsabilidades. Mantener el título en el catálogo careers y las imágenes en public/computation-informatic. Esta composición conserva el diseño específico de Computación; no sustituye CareerHero de Administración.
 
 El hero de Computación usa exclusivamente utilidades Tailwind para sus estilos locales; computerScienceHero.css fue eliminado. La máscara y transparencia de la figura se activan con has-[img.opacity-100], conservando el respaldo de Image durante carga/error. El contenedor dentro de MyTemplate ajusta el espacio superior por breakpoint sin sobrescribir los estilos de la plantilla.
+
+## 9. Reutilización entre carreras — actualización del 2 de octubre de 2026
+
+CareerLearning acepta label accesible propio, description, eyebrow y digital opcional. LearningCard acepta Icon para su variante digital; se reutilizan ContinuousCarousel, su arrastre y el estado de expansión de las tarjetas. CareerWorkplaces admite digital para representar ámbitos con descripciones e iconos conservando Ver más/Ver menos. CareerBenefits permite title, description, imageAlt y eyebrow sin cambiar los defaults de Administración.
+
+AcademicDocumentCard solo abre el visor si pdfUrl tiene un valor distinto de #; de lo contrario muestra document.status o un mensaje de publicación pendiente. Los documentos de referencia se identifican mediante isReference. No conectar PDF de otra carrera como si fueran oficiales.
+
+MyTemplate admite className y conserva classmame por compatibilidad. Las clases se combinan con twMerge. Para composiciones sticky, Computación usa className="overflow-x-clip"; el valor predeterminado de otras páginas continúa siendo overflow-x-hidden. ComputerScienceJourney muestra una composición narrativa propia; sus datos se mantienen fuera del organismo y sus animaciones respetan movimiento reducido.
+
+## 10. Animación vinculada al scroll
+
+ScrollMotion acepta as, children, className, delay, x, y, scale y duration. ScrollReveal delega en este componente. Por defecto conserva la entrada mediante useRevealMotion. Para una página que deba avanzar y retroceder con el scroll, envolverla en ScrollAnimationContext.Provider value="linked": cada elemento calcula su progreso entre start end y end start. En ese modo delay escalona el punto de entrada, no un temporizador; duration solo corresponde al modo de entrada. Se normalizan amplitud y escala para mantener visible el efecto, y el foco fuerza la presentación completa. useMotionPreference desactiva el movimiento y escucha cambios del sistema.
+
+BenefitCard, WorkplaceTile y AcademicDocumentCard reutilizan ScrollMotion conservando sus etiquetas semánticas. No activar el proveedor globalmente: cada página debe elegir el modo. ComputerScienceJourney usa su propio progreso para la escena por etapas; usePinnedScene combina tamaño mínimo y preferencia de movimiento. Conservar su alternativa en flujo para móvil y accesibilidad, el espacio de la navegación y overflow-x-clip de la plantilla para permitir sticky.
+LearningCard admite imageAlt (vacío por defecto) junto a image. Para imágenes conceptuales informativas, definir ambos en el catálogo; reutilizar Image para carga y errores. En digital, las imágenes ocupan toda la tarjeta y el zoom acompaña a la expansión existente; no requiere otra librería ni cambia ContinuousCarousel. Mantener el alt descriptivo, el respaldo azul y la preferencia de movimiento reducido.
+## 11. Escenas de scroll y paneles
+
+CareerLearning ofrece cinematic opcional, separado de digital. Anima la salida de toda la sección mediante opacidad, escala y desplazamiento al dejar la pantalla. El carrusel mantiene autoplay y arrastre libre: no vincular su posición horizontal al scroll. Se retiraron scrollProgress y useCarouselScroll. No se mantiene fija la sección de aprendizaje ni se agrega espacio de scroll artificial. El foco visible de teclado y el movimiento reducido presentan el contenido completo.
+
+ScrollPanel envuelve secciones en flujo para animar su apertura y escala. No envolver escenas sticky con este componente, pues sus transformaciones y recortes cambiarían el contexto de posicionamiento. tone solo define el fondo del marco. El foco visible de teclado presenta el panel completo; el clic de ratón no cambia el layout.
+
+Las etapas de ComputerScienceJourney reciben image/imageAlt desde los datos y reutilizan Image. usePinnedScene exige espacio vertical suficiente y ausencia de movimiento reducido; mantener el contenido en flujo cuando no se activa. Usar svh para evitar saltos por las barras del navegador móvil y conservar los offsets de navegación de 64px/96px.
+ComputingJourneyStep desplaza como una sola unidad el encabezado visible, imagen y texto de cada etapa; evita animarlos como tarjetas independientes cuando se busca una transición entre secciones. El h2 accesible de la escena se conserva y el encabezado visual repetido se excluye del árbol accesible. La entrada de ComputerScienceJourney acompaña la salida de CareerLearning.
+Para documentos ficticios autorizados, conservar isReference y una identificación visible dentro del PDF. Computación usa computacion-referencia.pdf, con plan de ejemplo en la página 1 y malla en la 2; ambas tarjetas abren el documento completo en el visor global. Sustituir las rutas por los archivos oficiales y retirar isReference solo cuando el contenido esté confirmado.
+## 12. Modularización de Computación — 2 de octubre de 2026
+
+ComputerSciencePage obtiene los textos de computerScienceContent, en data/computerScienceSections.js. ComputerScienceHero delega fondo y parallax en ComputerScienceHeroBackground. ComputerScienceJourney coordina useJourneyMotion y compone ComputingJourneyBackground, Heading, Step y Card. Step usa useJourneyStepMotion para interpolar el capítulo; Card presenta la alternativa en flujo. El encabezado repetido es decorativo y el título semántico permanece accesible. Se retiraron la indicación de desplazamiento y su barra.
+
+CareerLearning delega la salida en useSectionExit. useKeyboardFocusWithin centraliza el foco visible de teclado en este hook, ScrollMotion y ScrollPanel. useMediaQuery centraliza las suscripciones y su limpieza; useMotionPreference y usePinnedScene lo reutilizan sin cambiar los umbrales.
+
+AcademicDocumentCard recibe document y delay; la URL procede exclusivamente de document.pdfUrl. CareerDocuments no duplica pdfUrl ni transmite un id ignorado. LearningCard ya no acepta code: las ilustraciones sustituyeron esa decoración y Image mantiene el respaldo institucional. ScrollReveal permanece como fachada con consumidores activos.

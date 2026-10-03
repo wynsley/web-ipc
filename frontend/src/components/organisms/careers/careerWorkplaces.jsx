@@ -11,7 +11,7 @@ import { Paragraph } from "../../atoms/paragraph";
 import { Button } from "../../atoms/button";
 import { WorkplaceTile } from "../../molecules/careers/workplaceTile";
 
-function CareerWorkplaces({ workplaces }) {
+function CareerWorkplaces({ workplaces, digital = false }) {
   const [expanded, setExpanded] = useState(false);
   const galleryId = useId();
   const reducedMotion = useReducedMotion();
@@ -19,10 +19,15 @@ function CareerWorkplaces({ workplaces }) {
   return (
     <section
       aria-labelledby="career-workplaces-title"
-      className="bg-neutral-light px-4 py-12 sm:px-8 sm:py-16 lg:px-12"
+      className={`bg-neutral-light px-4 sm:px-8 lg:px-12 ${digital ? "py-16 sm:py-24" : "py-12 sm:py-16"}`}
     >
       <div className="mx-auto max-w-6xl">
         <ScrollReveal>
+          {digital && (
+            <span className="mb-4 block font-poppins text-xs tracking-[0.2em] text-blue-dark uppercase">
+              02 / Tu próximo escenario
+            </span>
+          )}
           <Title
             id="career-workplaces-title"
             level="h2"
@@ -39,11 +44,16 @@ function CareerWorkplaces({ workplaces }) {
           />
         </ScrollReveal>
         <div id={galleryId} className="mt-6 sm:mt-8">
-          <div className="workplace-gallery">
+          <div
+            className={
+              digital ? "grid gap-4 md:grid-cols-2" : "workplace-gallery"
+            }
+          >
             {workplaces.slice(0, 4).map((workplace, index) => (
               <WorkplaceTile
                 key={workplace.layout}
                 {...workplace}
+                digital={digital}
                 delay={index * 0.08}
               />
             ))}
@@ -61,11 +71,18 @@ function CareerWorkplaces({ workplaces }) {
                   ease: revealEase,
                 }}
               >
-                <div className="workplace-gallery pt-3 md:pt-4">
+                <div
+                  className={
+                    digital
+                      ? "grid gap-4 pt-4 md:grid-cols-2"
+                      : "workplace-gallery pt-3 md:pt-4"
+                  }
+                >
                   {workplaces.slice(4).map((workplace, index) => (
                     <WorkplaceTile
                       key={workplace.layout}
                       {...workplace}
+                      digital={digital}
                       delay={index * 0.06}
                     />
                   ))}
@@ -76,8 +93,6 @@ function CareerWorkplaces({ workplaces }) {
         </div>
         {workplaces.length > 4 && (
           <Button
-            whileHover={reducedMotion ? undefined : { scale: 1.04 }}
-            whileTap={reducedMotion ? undefined : { scale: 0.97 }}
             type="button"
             aria-expanded={expanded}
             aria-controls={galleryId}

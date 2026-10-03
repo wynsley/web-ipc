@@ -1,20 +1,24 @@
-import { motion as Motion, useReducedMotion } from "motion/react";
-import { useRevealMotion } from "../../animations/useRevealMotion";
+import { ScrollMotion } from "../../layouts/scrollMotion";
 import { Image } from "../../atoms/image";
 import { Title } from "../../atoms/titles";
 import { Paragraph } from "../../atoms/paragraph";
 import { Button } from "../../atoms/button";
 import { usePdfViewer } from "../../../context/pdfViewer/usePdfViewer";
 
-function AcademicDocumentCard({pdfUrl = "#", document, delay = 0 }) {
-
-  const reveal = useRevealMotion({ delay, y: 40, scale: 0.97 });
-  const reducedMotion = useReducedMotion();
+function AcademicDocumentCard({ document, delay = 0 }) {
+  const { pdfUrl } = document;
+  const available = Boolean(pdfUrl) && pdfUrl !== "#";
   const light = document.tone === "light";
   const { openPdf } = usePdfViewer();
 
   return (
-    <Motion.article {...reveal} className="relative isolate flex min-h-72 overflow-hidden rounded-r-xl p-6 sm:p-8 lg:min-h-80">
+    <ScrollMotion
+      as="article"
+      delay={delay}
+      y={40}
+      scale={0.97}
+      className="relative isolate flex min-h-72 overflow-hidden rounded-r-xl p-6 sm:p-8 lg:min-h-80"
+    >
       <Image src={document.image} fill />
       <div
         aria-hidden="true"
@@ -35,23 +39,41 @@ function AcademicDocumentCard({pdfUrl = "#", document, delay = 0 }) {
           text={document.description}
           className="mt-3 mb-6 max-w-72 font-poppins leading-relaxed"
         />
-        <Button
-          whileHover={reducedMotion ? undefined : { scale: 1.04 }}
-          whileTap={reducedMotion ? undefined : { scale: 0.97 }}
-          type="button"
-          text="Ver más"
-          aria-label={`Ver más sobre ${document.title.toLowerCase()}`}
-          aria-haspopup="dialog"
-          onClick={() => openPdf(pdfUrl, document.title)}
-          className={`mt-auto min-h-11 cursor-pointer rounded-tl-xl 
+        {document.isReference && (
+          <Paragraph
+            size="compact"
+            variant={light ? "danger" : "primary"}
+            className="mb-4 font-poppins"
+            text="Documento de referencia"
+          />
+        )}
+        {available ? (
+          <Button
+            type="button"
+            text="Ver más"
+            aria-label={`Ver más sobre ${document.title.toLowerCase()}`}
+            aria-haspopup="dialog"
+            onClick={() => openPdf(pdfUrl, document.title)}
+            className={`mt-auto min-h-11 cursor-pointer rounded-tl-xl 
             rounded-br-xl px-6 py-3 font-poppins text-sm transition-colors 
             focus-visible:outline-2 focus-visible:outline-offset-4 
-            ${light ? "bg-blue-dark text-white hover:bg-orange focus-visible:outline-blue-dark" 
-              : "bg-orange text-neutral-white hover:bg-neutral-light hover:text-blue-dark focus-visible:outline-white"}
+            ${
+              light
+                ? "bg-blue-dark text-white hover:bg-orange focus-visible:outline-blue-dark"
+                : "bg-orange text-neutral-white hover:bg-neutral-light hover:text-blue-dark focus-visible:outline-white"
+            }
           `}
-        />
+          />
+        ) : (
+          <Paragraph
+            size="compact"
+            variant={light ? "danger" : "primary"}
+            className="mt-auto border-t border-current/20 pt-4 font-poppins"
+            text={document.status || "Documento pendiente de publicación"}
+          />
+        )}
       </div>
-    </Motion.article>
+    </ScrollMotion>
   );
 }
 

@@ -20,8 +20,6 @@ function CareerDocuments({ documents, title = "Conoce tu formación" }) {
             <AcademicDocumentCard
               delay={index * 0.12}
               key={document.id}
-              id={document.id}
-              pdfUrl={document.pdfUrl}
               document={document}
             />
           ))}
