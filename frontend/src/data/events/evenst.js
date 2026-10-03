@@ -2,10 +2,7 @@ export const EVENTS = [
   {
     id: "congreso-2026",
     category: "Congreso",
-    title: "Congreso de",
     highlight: "Innovación",
-    description:
-      "Tres días de talleres y charlas con los mejores speakers del país.",
     longDescription:
       "Durante tres días reuniremos a especialistas, docentes y profesionales para compartir las últimas tendencias en innovación educativa y tecnológica. Habrá talleres prácticos en grupos reducidos, ponencias magistrales y espacios de networking pensados para que te lleves ideas aplicables desde el primer día. Al finalizar recibirás un certificado de asistencia y acceso al material de cada sesión.",
     highlights: [
@@ -22,10 +19,7 @@ export const EVENTS = [
   {
     id: "taller-2026",
     category: "Taller",
-    title: "Taller de",
     highlight: "Liderazgo",
-    description:
-      "Una jornada práctica para fortalecer tus habilidades de gestión.",
     longDescription:
       "Una jornada intensiva donde trabajarás con casos reales de gestión y liderazgo de equipos. A través de dinámicas guiadas aprenderás a comunicar con claridad, tomar decisiones bajo presión y motivar a las personas a tu cargo. El cupo es limitado para garantizar atención personalizada, e incluye material de trabajo y certificado.",
     highlights: [
@@ -42,9 +36,7 @@ export const EVENTS = [
   {
     id: "foro-2027",
     category: "Foro",
-    title: "Foro de",
     highlight: "Tecnología",
-    description: "Conversatorio con referentes de la industria tecnológica.",
     longDescription:
       "Un espacio de diálogo abierto con referentes de la industria para analizar cómo la inteligencia artificial, la automatización y la transformación digital están cambiando el mercado laboral. Habrá paneles de expertos, preguntas en vivo del público y un cierre con networking. Todos los asistentes recibirán la memoria del evento con las conclusiones principales.",
     highlights: [
