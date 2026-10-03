@@ -24,7 +24,7 @@ function EventsShowcase() {
     >
       <EventsCountdownBand event={event} direction={direction} />
 
-      <div className="bg-blue-deep/20 pb-10 md:pb-14">
+      <div className="bg-blue-deep/20 pb-10">
         <div
           className="
             mx-auto mt-14 grid max-w-6xl items-stretch gap-10 px-5 py-5
@@ -91,9 +91,10 @@ function EventsShowcase() {
                 </Reveal>
 
                 <Reveal direction={direction} delay={0.32} className="mt-8">
-                  <div className="flex flex-wrap gap-3">
-                    <Button text="Más información" variant="ternary" />
-                  </div>
+                  <Button 
+                    text="Más información" 
+                    variant="base" 
+                  />
                 </Reveal>
               </div>
             </AnimatePresence>
