@@ -33,11 +33,8 @@ function Button({
             border-3 border-blue flex items-center transition-all duration-300
             hover:border-orange text-white
     `,
-    ternary : `py-2 px-3 border-2 border-blue text-blue font-bold rounded-md
-      shadow-sm shadow-blue
-      transition-all duration-300 hover:-translate-y-1 
-      hover:shadow-md hover:shadow-orange hover:border-orange 
-      hover:text-orange
+    ternary : `flex h-10 items-center justify-center gap-2 rounded-full 
+    border border-blue-deep px-3 font-hani text-sm font-bold text-blue-deep transition hover:bg-blue-deep hover:text-white sm:px-5
     `,
     danger: `mt-auto min-h-11 cursor-pointer rounded-tl-xl 
             rounded-br-xl px-6 py-2 font-poppins
