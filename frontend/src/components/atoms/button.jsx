@@ -28,20 +28,22 @@ function Button({
 `,
     secondary: `
       mt-auto min-h-11 cursor-pointer rounded-tl-xl 
-            rounded-br-xl px-6 py-1 font-poppins text-white
-            focus-visible:outline-2 focus-visible:outline-offset-4 
-            border-3 border-blue flex items-center transition-all duration-300
-            hover:border-orange text-white
+      rounded-br-xl px-6 py-1 font-poppins text-white
+      focus-visible:outline-2 focus-visible:outline-offset-4 
+      border-3 border-blue flex items-center transition-all duration-300
+      hover:border-orange text-white
     `,
     ternary : `flex h-10 items-center justify-center gap-2 rounded-full 
-    border border-blue-deep px-3 font-hani text-sm font-bold text-blue-deep transition hover:bg-blue-deep hover:text-white sm:px-5
+    border border-blue-deep px-3 font-hani text-sm font-bold text-blue-deep transition 
+    hover:bg-blue-deep hover:text-white sm:px-5
     `,
     danger: `mt-auto min-h-11 cursor-pointer rounded-tl-xl 
-            rounded-br-xl px-6 py-2 font-poppins
-            focus-visible:outline-2 focus-visible:outline-offset-4 
-            bg-blue flex items-center transition-all duration-300
-            hover:bg-orange text-white
-            `
+      rounded-br-xl px-6 py-2 font-poppins
+      focus-visible:outline-2 focus-visible:outline-offset-4 
+      bg-blue flex items-center transition-all duration-300
+      hover:bg-orange text-white`,
+    base: `rounded-full bg-blue-deep px-7 py-3 font-hani text-sm 
+    font-bold text-white transition hover:brightness-125`
   }
 
   return (
