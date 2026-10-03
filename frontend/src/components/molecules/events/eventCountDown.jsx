@@ -16,11 +16,11 @@ function EventsCountdownBand({ event, direction }) {
   const timeLeft = useCountdown(event.date);
 
   return (
-    <div className="flex flex-col sm:flex-row items-center justify-between  px-5 lg:px-6 py-3 text-center sm:py-8 w-full bg-blue-deep
-    [clip-path:polygon(0_28px,28px_0,100%_0,100%_calc(100%_-_28px),calc(100%_-_28px)_100%,0_100%)]
-    sm:[clip-path:polygon(0_48px,48px_0,100%_0,100%_calc(100%_-_48px),calc(100%_-_48px)_100%,0_100%)]
-    md:w-[75%] lg:w-[62%] xl:w-[52%]
-    ">
+    <div className="ml-auto flex w-full flex-col items-center justify-between bg-blue-deep px-5 py-3 text-center
+      [clip-path:polygon(0_28px,28px_0,100%_0,100%_calc(100%_-_28px),calc(100%_-_28px)_100%,0_100%)]
+      sm:flex-row sm:py-8
+      sm:[clip-path:polygon(0_48px,48px_0,100%_0,100%_calc(100%_-_48px),calc(100%_-_48px)_100%,0_100%)]
+      md:w-[75%] lg:w-[62%] lg:px-6 xl:w-[52%]">
       <div>
         <p className="font-poppins text-xs text-white/70">
           Próximo evento:

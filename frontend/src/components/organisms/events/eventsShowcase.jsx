@@ -6,47 +6,58 @@ import { EventsControls } from "./eventsControls";
 import { useEventsCarousel } from "@/hooks/events/useEventCarousel";
 import { formatEventDate } from "@/data/events/evenst";
 import { EventsCountdownBand } from "@/components/molecules/events/eventCountDown";
+import { Button } from "@/components/atoms/button";
+import { Title } from "@/components/atoms/titles";
+import { Paragraph } from "@/components/atoms/paragraph";
 
-function EventsShowcase({ onRegister, onMore }) {
+function EventsShowcase() {
   const {
     events, event, direction, current, next,
-    goTo, goNext, goPrev, dragHandlers, hoverHandlers,
+    goTo, goNext, goPrev, hoverHandlers,
   } = useEventsCarousel();
 
+  const title = `${event.category} de ${event.highlight}`
   return (
-    // Fondo gris a todo el ancho
     <section
-      aria-roledescription="carousel"
-      aria-label="Próximos eventos"
       {...hoverHandlers}
-      className="relative w-full overflow-hidden  pb-14 sm:px-6 md:pb-20 lg:px-16"
+      className="relative w-full overflow-hidden pb-14 sm:px-6 md:pb-20 lg:px-16"
     >
       <EventsCountdownBand event={event} direction={direction} />
-      <div className=" bg-blue-deep/20 ">
 
-        <div className="mx-auto max-w-6xl mt-14 grid items-center gap-10 md:mt-20 md:grid-cols-[1.4fr_1fr] md:gap-14
-          py-10
-        ">
-          <div>
+      <div className="bg-blue-deep/20 pb-10 md:pb-14">
+        <div
+          className="
+            mx-auto mt-14 grid max-w-6xl items-stretch gap-10 px-5 py-5
+            md:mt-20 md:grid-cols-[1.4fr_1fr] md:gap-14 md:py-10
+            md:min-h-[26rem] lg:min-h-[30rem]
+          "
+        >
+          {/* Texto */}
+          <div className="flex flex-col justify-center">
             <AnimatePresence mode="wait" custom={direction}>
               <div key={event.id}>
                 <Reveal direction={direction}>
-                  <span className="font-poppins text-sm text-orange">
+                  <span className="text-base text-orange font-euro font-bold">
                     [{event.category}]
                   </span>
                 </Reveal>
 
                 <Reveal direction={direction} delay={0.08} className="mt-2">
-                  <h2 className="font-hani text-3xl font-bold leading-tight text-neutral-900 sm:text-4xl">
-                    {event.title}{" "}
-                    <span className="text-blue">{event.highlight}</span>
-                  </h2>
+                  <Title
+                    text={title}
+                    level="h2"
+                    weight="bold"
+                    className="font-hani"
+                  />
                 </Reveal>
 
                 <Reveal direction={direction} delay={0.16} className="mt-4">
-                  <p className="font-poppins text-sm leading-relaxed text-neutral-600 sm:text-base">
-                    {event.longDescription}
-                  </p>
+                  <Paragraph
+                    text={event.longDescription}
+                    variant="secondary"
+                    className="font-poppins"
+                    size="base"
+                  />
                 </Reveal>
 
                 <Reveal direction={direction} delay={0.2} className="mt-5">
@@ -81,42 +92,15 @@ function EventsShowcase({ onRegister, onMore }) {
 
                 <Reveal direction={direction} delay={0.32} className="mt-8">
                   <div className="flex flex-wrap gap-3">
-                    <button
-                      type="button"
-                      onClick={() => onRegister?.(event)}
-                      className="rounded-full bg-blue-deep px-7 py-3 font-hani text-sm font-bold text-white transition hover:brightness-125"
-                    >
-                      Inscríbete
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => onMore?.(event)}
-                      className="rounded-full border border-blue-deep px-7 py-3 font-hani text-sm font-bold text-blue-deep transition hover:bg-blue-deep hover:text-white"
-                    >
-                      Más información
-                    </button>
+                    <Button text="Más información" variant="ternary" />
                   </div>
                 </Reveal>
               </div>
             </AnimatePresence>
-
-            {/* Anterior · puntos · Siguiente evento */}
-            <div className="mt-8 [&>div]:justify-start">
-              <EventsControls
-                events={events}
-                current={current}
-                next={next}
-                goTo={goTo}
-                goNext={goNext}
-                goPrev={goPrev}
-              />
-            </div>
           </div>
 
-          <div
-            {...dragHandlers}
-            className="relative mx-auto  h-full w-full  "
-          >
+          {/* Imagen: altura fija en móvil, ocupa toda la fila desde md */}
+          <div className="relative mx-auto h-64 w-full overflow-hidden sm:h-80 md:h-full">
             <AnimatePresence mode="popLayout" custom={direction} initial={false}>
               <Motion.img
                 key={event.id}
@@ -133,6 +117,18 @@ function EventsShowcase({ onRegister, onMore }) {
               />
             </AnimatePresence>
           </div>
+        </div>
+
+        {/* Controles */}
+        <div className="mt-6 md:mt-10">
+          <EventsControls
+            events={events}
+            current={current}
+            next={next}
+            goTo={goTo}
+            goNext={goNext}
+            goPrev={goPrev}
+          />
         </div>
       </div>
     </section>

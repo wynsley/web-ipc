@@ -38,7 +38,7 @@ function DescriptionUs ( ) {
           text={title}
           level="h2"
           weight="bold"
-          className="font-hani"
+          className="font-hani leading-12"
         />
         
           <Paragraph

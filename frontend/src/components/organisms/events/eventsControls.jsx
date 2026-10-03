@@ -1,17 +1,19 @@
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { Dost } from "@/components/molecules/shared/dots";
+import { Button } from "@/components/atoms/button";
 
 function EventsControls({ events, current, next, goTo, goNext, goPrev }) {
   return (
     <div className="mt-8 flex items-center justify-center gap-3 sm:gap-6">
-      <button
+      <Button
         type="button"
         onClick={() => goPrev()}
         aria-label="Evento anterior"
-        className="flex h-10 w-10 items-center justify-center rounded-full border border-blue-deep text-blue-deep transition hover:bg-blue-deep hover:text-white"
+        variant="ternary"
+        className="rounded-full"
       >
         <FaChevronLeft className="h-3.5 w-3.5" aria-hidden="true" />
-      </button>
+      </Button>
 
       <Dost
         dots={events}
@@ -20,15 +22,15 @@ function EventsControls({ events, current, next, goTo, goNext, goPrev }) {
         goTo={(i) => goTo(i, true)}
       />
 
-      <button
+      <Button
         type="button"
         onClick={() => goNext(true)}
         aria-label="Siguiente evento"
-        className="flex h-10 items-center justify-center gap-2 rounded-full border border-blue-deep px-3 font-hani text-sm font-bold text-blue-deep transition hover:bg-blue-deep hover:text-white sm:px-5"
+        variant="ternary"
       >
         <span className="hidden sm:inline">Siguiente evento</span>
         <FaChevronRight className="h-3.5 w-3.5" aria-hidden="true" />
-      </button>
+      </Button>
     </div>
   );
 }
