@@ -16,6 +16,7 @@ function Paragraph ({
     default: 'text-black',
     primary: 'text-white',
     secondary: 'text-gray-500 ',
+    ternary : `text-gray-400`,
     danger: 'text-blue'
   };
 
