@@ -1,5 +1,7 @@
-
 # WEb-IPC
+
+> Revisión del 29/09/2026: el checkout actual contiene la implementación del frontend; no incluye fuentes ni package.json del backend. Las instrucciones fullstack que siguen son históricas y no están verificadas para esta base. Consulta el [estado del proyecto](docs/ESTADO_PROYECTO.md) y la [guía para nuevas páginas](docs/GUIA_NUEVAS_PAGINAS.md). Para el frontend están disponibles `pnpm --filter frontend run dev`, `pnpm --filter frontend run lint` y `pnpm --filter frontend run build`.
+
 Monorepo fullstack con **Express** + **Prisma** (backend) y **React + Vite** (frontend) para la plataforma del Instituto Privado Celendín, organizados mediante **pnpm workspaces**.
 ---
 

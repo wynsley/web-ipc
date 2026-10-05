@@ -1,0 +1,296 @@
+# Estado y evolución de IPC Platform
+
+Fecha de revisión: 29 de septiembre de 2026.
+Base: rama `main`, commit `ce116cc9d6b07fd6f2ef2f2e3c54f343d736ac11`, más los cambios locales descritos abajo.
+
+Esta es una fotografía del checkout, no una certificación de producción. Se revisaron la estructura, las rutas, los contratos compartidos, los flujos principales, el historial reciente y el diff local; se ejecutaron lint y build. No se probó la interfaz en navegador, el envío a una API ni el contenido de los PDF. La presencia de una sección en código no demuestra que su contenido institucional esté aprobado.
+
+## 1. Arquitectura real
+
+El repositorio conserva la organización de un monorepo pnpm con `frontend` y `backend`. En este checkout solo el frontend tiene implementación: `backend/` contiene `node_modules/`, pero no tiene `package.json`, fuentes ni archivos registrados por Git. No se pueden dar por implementados Express, Prisma, PostgreSQL o endpoints por lo que dice el README histórico.
+
+Flujo principal:
+
+```text
+main.jsx
+  StrictMode
+    PdfViewerProvider
+      BrowserRouter
+        App
+          SocialFloatings
+          Routes
+            MainLayout
+              Header + Navbar
+              TransitionPage + Outlet (página actual)
+              Footer
+      PdfViewerModal (instancia global del proveedor)
+
+Página → MyTemplate → organismos → moléculas → átomos
+Datos estáticos → data/
+Estado e interacción reutilizable → hooks/
+Validación → validations/
+Acceso HTTP → helpers/apiFetch.js
+```
+
+`MainLayout` comparte la navegación y el pie, anima el cambio de ruta e invoca `useScrollTop`. Las páginas no deben volver a montar esas piezas. `App.jsx` registra diez rutas; no hay ruta comodín de página no encontrada.
+
+Las páginas y plantillas están en `frontend/src/components/pages/` y `frontend/src/components/templates/`, no directamente en `src/pages/` y `src/templates/`.
+
+### Stack comprobado
+
+Las versiones siguientes son las instaladas, consultadas con `pnpm --filter frontend list --depth 0`; algunos rangos del manifiesto empiezan en versiones anteriores.
+
+| Tecnología | Versión instalada | Función |
+|---|---|---|
+| React / React DOM | 19.3.0 | Interfaz y estado |
+| Vite | 8.3.0 | Desarrollo y compilación |
+| Tailwind CSS / plugin Vite | 4.3.3 | Utilidades y tema CSS |
+| React Router DOM | 7.14.0 | Rutas de la SPA |
+| Motion | 13.3.0 | Transiciones y aparición de contenido |
+| Joi | 18.1.2 | Validación del formulario de contacto |
+| React Icons | 5.6.0 | Iconos |
+| React PDF / pdfjs-dist | 11.0.0 / 6.3.289 | Visor de documentos y worker |
+| tailwind-merge | 3.7.0 | Resolución de clases en Button |
+| ESLint | 9.39.5 | Análisis estático |
+
+Se mantiene JavaScript/JSX con módulos ESM. No hay scripts de pruebas automatizadas declarados en los manifiestos revisados.
+
+## 2. Estado de las páginas
+
+Rutas obtenidas de [App.jsx](../frontend/src/App.jsx); contenido comprobado en [pages](../frontend/src/components/pages).
+
+| Ruta | Estado observado | Referencia o siguiente necesidad |
+|---|---|---|
+| `/` | Inicio compuesto: banner, llamada, presentación, carreras, convenios, admisión, formulario y modal | La UI de contacto existe; su API no está disponible en este checkout |
+| `/career/administration` | Hero, aprendizaje, campo laboral, beneficios y documentos | Principal referencia de composición para las demás carreras |
+| `/alumni` | Hero, titulación, graduados destacados y estadísticas | Verificar datos institucionales y fotografías antes de publicarlos como reales |
+| `/about-us` | Hero con persona superpuesta y descripción institucional | Desarrollo parcial; el segundo contenedor de DescriptionUs está vacío |
+| `/events` | Solo título | Falta contenido y funcionalidad |
+| `/admissions` | Solo título | No confundir con la sección de admisión del inicio |
+| `/contact` | Solo título | No confundir con el formulario ya implementado en inicio/modal |
+| `/career/accounting` | Solo título | Preparar contenido propio y reutilizar secciones |
+| `/career/computer-science` | Edición local con sección y Title sin texto; Image importado sin uso | Trabajo en curso, no plantilla terminada |
+| `/career/language-translation` | Solo título, con errata | Preparar contenido y conservar el slug existente |
+
+## 3. Novedades que ya podemos aprovechar
+
+No había una revisión anterior guardada: este primer inventario usa como referencia el código actual y commits recientes. Las fechas corresponden al historial local.
+
+| Capacidad | Evidencia del historial | Qué reutilizar |
+|---|---|---|
+| Secciones de Administración | 17–23 septiembre; `402b957`, `c5a5976`, `aa072c9`, `1bd2e89`, `6d9e2e2`, `476d1a2` | Cinco organismos alimentados con datos separados |
+| Imágenes con respaldo institucional | 22 septiembre, `cf7e655` | Átomo Image con carga/error y fondo azul |
+| Animaciones de carreras | 22 septiembre, `abca53a` | ScrollReveal, useRevealMotion y respeto de movimiento reducido |
+| Formulario compartido | 25–26 septiembre; `d2f66a4`, `b1251df`, `73d08f5`, `04b5fe8` | useContactForm + FormField + configuración + Joi + Toast |
+| Ampliación de Egresados | 26 septiembre; `110df03`, `b266ff1`, `27db930` | Titulación, tarjetas de graduados y estadísticas |
+| Carrusel con varias tarjetas | 26 septiembre; `4f69001`, `ab6033b` | useCarousel + useCardsPerView |
+| Button y tailwind-merge | 26 septiembre, `77076c2` | Variantes, clases combinadas y atributos adicionales |
+| PDF global | 26–27 septiembre; `79ab45c`, `3faf2a7`, `f2b1286`, `8927b61` | Un proveedor global; abrir documentos desde cualquier sección |
+| Alias de imports | 28 septiembre, `8252abb` | `@/` para src y `@assets/` para src/assets |
+| Sobre nosotros | 28–29 septiembre; `99ac640`, `2b88062`, `ce116cc` | AboutHero, HeroPerson y DescriptionUs |
+
+### Componentes y contratos actuales
+
+Las rutas de esta tabla parten de `frontend/src/`.
+
+| Pieza | Contrato observado | Precaución al reutilizar |
+|---|---|---|
+| `components/atoms/image.jsx` → Image | src, alt, fill, className, imageClassName, fallbackClassName, overlayClassName, loading, fetchPriority y callbacks | El contenedor necesita dimensiones; fill requiere un padre posicionado. El overlay opcional aparece después de cargar |
+| `components/atoms/titles.jsx` → Title | level, size, variant, align, weight, text/children y props adicionales | Usa Motion; definir nivel semántico. Variante institutional disponible |
+| `components/atoms/paragraph.jsx` → Paragraph | size, variant, align, weight, text/children y props adicionales | Usa Motion; elegir tamaño según contexto |
+| `components/atoms/button.jsx` → Button | type, disabled, variant, onClick, text/children, className y props adicionales | Usa twMerge, pero devuelve un botón HTML normal: whileHover/whileTap no lo convierten en Motion |
+| Input, Select, Textarea, Label | Controles y etiquetas compartidos; campos aceptan error y props adicionales | Verificar id/htmlFor y mensajes asociados en la composición |
+| `components/atoms/navbarLink.jsx` → NavbarLink | href, text, onClick | Enlace del router para navegación |
+| `components/atoms/links.jsx` → Link | href, target, rel, download, aria-label, variantes | Es un anchor; para navegación SPA usar React Router |
+| `components/templates/myTemplate.jsx` → MyTemplate | children y `classmame` | La prop contiene una errata; className no se aplica. Añade espacio superior y overflow-x-hidden |
+| `components/layouts/scrollReveal.jsx` → ScrollReveal | children, className, delay, x, y, scale | Delega a useRevealMotion, que contempla movimiento reducido |
+| `context/pdfViewer/usePdfViewer.js` → usePdfViewer | openPdf(pdfUrl, title), closePdf() | No duplicar proveedores o modales por página |
+
+### Carreras
+
+[Administración](../frontend/src/components/pages/careers/businessAdministrationPage.jsx) compone:
+
+- `CareerHero({ title, image, description, highlights })`: highlights es una lista de objetos con title y description.
+- `CareerLearning({ topics })`: cada tema usa title, description e image.
+- `CareerWorkplaces({ workplaces })`: cada elemento usa title, image y layout; layout se utiliza como clave. Muestra cuatro elementos y permite desplegar el resto.
+- `CareerBenefits({ benefits, image })`: beneficios con title y description.
+- `CareerDocuments({ documents, title })`: documentos con id, title, description, image, tone y pdfUrl.
+
+La reutilización todavía requiere ajustes puntuales: CareerLearning tiene una etiqueta accesible fija de Administración y CareerBenefits un alt específico de gestión empresarial. Solo Administración dispone de `hero` en `data/careers.js`. No acceder a `career.hero.description` para otra carrera sin preparar sus datos.
+
+### Formularios
+
+[useContactForm](../frontend/src/hooks/globals/useContactForm.js) centraliza valores, errores, pasos, envío y avisos. Lo consumen HomeMessage y ModalMessage. Los campos están en `data/contactFormFields.js`; `ContactFormValidator` se exporta desde `validations/validationCredentials.js`.
+
+Payload: `{ name, email, phone, address, career, shift, message }`.
+Envío: `POST http://localhost:3000/contact`, mediante apiFetch y con credenciales.
+
+El helper devuelve JSON, `[]` si la respuesta exitosa está vacía y `null` ante fallo. La validación actual limita correos a gmail.com, hotmail.com y yahoo.com. Es una restricción existente que debe revisarse según el requisito, no una convención universal para futuros formularios.
+
+### PDF, carruseles y animaciones
+
+- PdfViewerProvider se monta una vez en main.jsx. AcademicDocumentCard y FeatureCard abren el visor mediante usePdfViewer.
+- PdfViewerModal incluye carga/error, todas las páginas, zoom, navegación por página y enlace de descarga. El worker se importa como asset con `?url`.
+- ContinuousCarousel sirve para convenios y aprendizaje: recibe items y renderItem, y opciones emphasizeCenter y draggable. El segundo argumento de renderItem identifica la copia decorativa; evitar que sus controles dupliquen el recorrido del teclado.
+- useCarousel, exportado desde `useCarrusel.js`, se usa para banner y graduados. useCardsPerView se exporta desde `useCardPowerView.js`.
+- CareersCarousel del inicio conserva una implementación propia: los tres mecanismos no están unificados.
+- animation.js contiene variantes compartidas; no todas las animaciones existentes contemplan movimiento reducido. ScrollReveal/useRevealMotion sí lo hacen.
+
+### Identidad visual
+
+[index.css](../frontend/src/index.css) sigue siendo la fuente de verdad: Tailwind 4, tokens, fuentes y estilos compartidos. Azul institucional: `blue-dark` (`#1A3983`). Poppins para lectura; Hani corresponde a Rajdhani; también existe Eurostar como `font-euro`. Reutilizar tokens en lugar de copiar colores hexadecimales.
+
+Los alias están configurados tanto en vite.config.js como en jsconfig.json. Conviven con imports relativos válidos. Las instrucciones históricas que indicaban que no había alias o Context ya no describen el checkout actual.
+
+## 4. Cambios locales que deben conservarse
+
+Al comenzar esta revisión había ocho WebP eliminados de la raíz de public y los ocho presentes en `public/business_admin/`, carpeta todavía sin seguimiento. Se actualizaron referencias en careers, administrationLearning, administrationWorkplaces, administrationDocuments y homeAdmissions.
+
+También había una edición incompleta de ComputerSciencePage. Ninguno de estos cambios se modificó durante el análisis.
+
+Al consolidar esta reorganización, incluir los archivos nuevos junto con las eliminaciones y las referencias. De lo contrario, otro checkout no tendrá las imágenes. El catálogo de Contabilidad e Informática también apunta a business_admin: actualmente la carpeta contiene recursos usados por varias carreras.
+
+## 5. Pendientes priorizados
+
+Son hallazgos de análisis, no correcciones aplicadas.
+
+| Prioridad | Hallazgo y evidencia | Acción recomendada |
+|---|---|---|
+| Alta | Backend ausente; apiFetch apunta a localhost:3000 | Determinar dónde vive la API e implementar/verificar POST /contact antes de declarar operativo el envío |
+| Alta | Lint falla en toast.jsx:13 y careersCarousel.jsx:31 | Corregir el estado sincronizado desde efectos y volver a ejecutar lint |
+| Alta | AboutHero, HeroPerson, HomeAdmissions, GraduateCard y otras piezas usan img directo; banner usa backgroundImage | Al intervenir estas piezas, aplicar Image y probar fuente vacía/fallida conforme a AGENTS.md |
+| Alta | FormField crea Label htmlFor=name, pero no pasa id a los controles; tampoco lo generan los átomos | Asociar label/campo y permitir ids únicos cuando conviven el formulario de inicio y el modal |
+| Alta | PDF y modal de contacto carecen de gestión de foco, Escape y semántica completa de diálogo | Completar apertura/cierre por teclado, foco inicial y restitución del foco; revisar superposición con navegación |
+| Alta | Menú móvil oculto solo mediante opacidad y pointer-events; submenús por altura/opacidad | Excluir controles cerrados del foco y reflejar expansión con atributos accesibles |
+| Alta | Documentos de Administración marcados isReference; la tarjeta no muestra esa distinción | Confirmar documentos oficiales o identificar visiblemente el carácter de referencia |
+| Media | Graduados usan pravatar; estadísticas y afirmaciones institucionales sin fuente documentada | Confirmar nombres, fotografías, cifras, antigüedad, empleabilidad y datos de contacto antes de publicarlos |
+| Media | MyTemplate usa classmame; Title h2 contiene `xs:text-[2.5]` y `md: text-4xl` | Corregir contratos y clases al abordar la base visual; comprobar consumidores |
+| Media | Button es HTML, pero recibe whileHover/whileTap en organismos de carreras | Elegir una integración Motion real o conservar interacción CSS; no copiar esas props como si funcionaran |
+| Media | useCardsPerView devuelve 1.3/2.3/3/4; CareersCarousel crea una cantidad entera y solo selecciona grid de 2 o 3 columnas | Revisar el contrato entre hook y carrusel antes de reutilizarlo allí |
+| Media | useContactForm reinicia datos también tras fallar y programa reset sin limpiar el timeout | Conservar datos para reintentar y controlar el ciclo de vida del temporizador |
+| Media | Bundle principal grande y rutas importadas estáticamente | Medir y valorar carga diferida de rutas/visor; no añadir dependencias sin necesidad |
+| Media | PDF renderiza todas las páginas; el contador solo cambia con sus controles | Probar documentos largos, scroll manual, zoom y valores no enteros antes de extender el visor |
+| Baja | Dos previewImage apuntan a PNG inexistentes, pero no tienen consumidores actuales | Limpiar metadatos obsoletos o aportar previews si se vuelven a utilizar |
+| Baja | FeatureCard recibe variant blue-dark desde titulationSteps, pero solo define white y blue-deep | Alinear variantes; hoy cae en white |
+| Baja | Sin ruta 404; tarjetas de carreras del inicio usan anchors; INGLES.webp es ruta relativa | Completar navegación y usar rutas de assets desde la raíz |
+| Baja | Erratas en nombres: DescrtiptionUs, featuredGratuatesSection, LanguageTraslationPage, Dost, entre otras | Conservar imports exactos; renombrar de forma coordinada si se aborda esa limpieza |
+| Baja | README describe scripts y backend que el checkout no tiene | Usar esta revisión y los manifiestos como referencia de ejecución; actualizar el onboarding histórico |
+
+## 6. Verificaciones realizadas
+
+Entorno disponible en WSL: Node 24.21.0 y pnpm 12.4.2. La shell interactiva carga el entorno necesario; la shell no interactiva inicial no encontraba Node. No se instalaron dependencias.
+
+| Comprobación | Resultado |
+|---|---|
+| git status, log y diff | Revisados commit base y cambios locales |
+| pnpm --filter frontend list --depth 0 | Versiones instaladas registradas |
+| pnpm --filter frontend run lint | Falla: 2 errores de react-hooks/set-state-in-effect en Toast y CareersCarousel |
+| pnpm --filter frontend run build | Pasa: 638 módulos; advertencia por chunks mayores de 500 kB |
+| Tamaño de salida | JS principal 1.341,97 kB, gzip 413,36 kB; worker PDF 1.265,41 kB; imagen about_hero 1.412,21 kB |
+| Referencias literales absolutas a imágenes/PDF en src | Solo faltan los dos previews obsoletos; los ocho WebP reorganizados y los PDF referenciados existen |
+| UI, responsive, teclado, PDF y envío real | No verificados en navegador ni contra una API |
+
+La búsqueda de assets cubre literales que empiezan por /, no URLs externas, valores calculados o todas las rutas relativas. Un build exitoso tampoco valida esos recursos ni la interacción.
+
+## 7. Cómo mantener este análisis
+
+Al revisar nuevas incorporaciones, registrar fecha y commit, comparar con esta base, identificar contratos y consumidores modificados y actualizar el estado de cada página. Separar siempre lo integrado, los cambios locales y lo propuesto.
+
+Consultar la [guía para nuevas páginas](GUIA_NUEVAS_PAGINAS.md) antes de crear una rama de implementación. Estos documentos deben formar parte del historial compartido para aparecer en otras ramas; un archivo local sin commit no se transmite a otros checkouts. No hay seguimiento automático configurado.
+
+
+## 8. Hero de Computación e Informática — 1 de octubre de 2026
+
+- Implementado en `/career/computer-science`: la página compone `ComputerScienceHero`, con título del catálogo, escenario azul institucional, curva naranja, figura superpuesta, tarjetas decorativas y descripción. Reutiliza Title, Paragraph e Image; no cambia contratos compartidos.
+- Archivos nuevos: `components/organisms/careers/computerScienceHero.jsx` y su CSS de geometría responsive. Los colores proceden de index.css.
+- Reutiliza la imagen institucional existente `about-hero-person.png`; no representa una fotografía confirmada de alumnado de esta carrera. Los textos son una propuesta editorial sin cifras, duración ni promesas de empleabilidad.
+- El enlace “Conoce admisión” abre la ruta existente /admissions; esa página sigue pendiente de contenido.
+- Verificación: build correcto; lint mantiene únicamente los dos errores preexistentes en Toast y CareersCarousel. Inspección con Edge en 1440, 768 y 390 px, sin desbordamiento horizontal; enlace de admisión y error de imagen comprobados. El respaldo de Image conserva dimensiones, fondo blue-dark y etiqueta accesible, sin img roto.
+- Pendiente: desarrollar las demás secciones de la carrera y confirmar el contenido institucional. No se añadieron dependencias.
+
+
+### Actualización visual del hero — 1 de octubre de 2026
+
+Se sustituye la imagen reutilizada de Sobre nosotros por computing-student.png, generada con image_gen y con transparencia. La imagen es ilustrativa, no alumnado real; el prompt y su procedencia están en frontend/public/computation-informatic/README.md. El hero ocupa el 100 % del ancho, sin márgenes ni esquinas superiores redondeadas, alineado bajo la navegación fija mediante la clase local computing-page. Se conserva el ajuste de la tarjeta móvil para despejar el rostro y el respaldo institucional de Image. Verificado en 320, 390, 640, 768 y 1440 px, sin desborde horizontal. Build correcto; lint conserva los dos errores preexistentes. No se modifican contratos compartidos.
+
+### Fondo y organización de Computación — 1 de octubre de 2026
+
+Ambas imágenes del hero se guardan en frontend/public/computation-informatic: computing-student.png y computing-lab-background.png. Se elimina el patrón SVG decorativo del fondo y se integra el laboratorio generado con image_gen mediante Image, alt vacío y overlay institucional. Solo se mantiene el SVG de la curva inferior y los iconos pequeños existentes. Prompts y procedencia en el README de esa carpeta; el laboratorio es ilustrativo, no instalaciones reales del IPC. Verificado responsive de 320 a 1440 px y fallo de carga del fondo con respaldo blue-dark; build correcto y los mismos dos errores previos de lint.
+
+### Modularización de Computación — 1 de octubre de 2026
+
+ComputerSciencePage obtiene el título del catálogo y pasa el contenido de data/computerScienceHero.js a ComputerScienceHero({ title, content }). El organismo compone tres moléculas de careers: ComputerScienceHeroHeading (título y lema), ComputerScienceHeroVisual (imagen y tarjetas) y ComputerScienceHeroIntro (descripción y enlace). Image sigue centralizando carga/error; los estilos responsive se conservan.
+
+Se reutiliza BannerBgCurve de molecules/shared/curbePath.jsx. Se añade design=6 con la geometría aprobada y accentColor opcional; los diseños 1–5, color, height, position y sus valores por defecto se conservan. El diseño 6 admite una banda posterior; sin accentColor solo se dibuja la curva principal. Usa tokens CSS para sus colores, aria-hidden y pointer-events-none como decoración; className se combina con twMerge para permitir ajustar la posición sin clases contradictorias. Antes de este cambio el componente compartido no tenía consumidores activos; Egresados conserva un SVG propio y no se modifica en este alcance.
+
+Verificado: build correcto, lint con los dos errores preexistentes, responsive en 320/390/640/768/1440 px sin desbordes y respaldo azul ante fallo del fondo. La apariencia del hero se conserva. No se añaden dependencias ni cambios de backend.
+
+### Estilos de Computación en Tailwind — 1 de octubre de 2026
+
+Se elimina computerScienceHero.css y su import. El organismo y sus moléculas expresan el layout, responsive y máscara de imagen con utilidades Tailwind. La transparencia y el difuminado solo se aplican cuando Image termina de cargar; los errores conservan el fondo institucional. El espacio bajo la navegación se compone con un contenedor pt-3.5 sm:pt-5.5 md:pt-0 dentro de MyTemplate, sin cambiar su contrato compartido. Se retiran las clases computing-hero y computing-page que dependían del CSS eliminado.
+
+Verificación: geometría y estilos equivalentes a la versión previa en 320, 390, 640, 768 y 1440 px; inspección visual en móvil/escritorio, respaldo de ambas imágenes y enlace de admisión correctos. Build pasa; lint conserva los dos errores preexistentes.
+
+## 9. Página de Computación ampliada — 2 de octubre de 2026
+
+Implementado en /career/computer-science: entrada escalonada del hero, seis áreas de aprendizaje en el carrusel compartido, sección narrativa con panel sticky e indicador ligado al scroll, seis ámbitos laborales (cuatro iniciales y dos desplegables), habilidades y dos tarjetas de documentación pendiente. El contenido editorial está en data/computerScienceSections.js; es orientativo y requiere validación institucional. No se afirman duración, modalidad, empleabilidad ni beneficios exclusivos del IPC. Plan y malla no tienen PDF oficial y muestran su estado pendiente sin botones ficticios. Las imágenes existentes siguen siendo ilustrativas.
+
+Contratos reutilizados y ampliados:
+
+- CareerLearning: label, description y digital opcionales; conserva la presentación predeterminada de Administración. ContinuousCarousel y useCarouselDrag mantienen su lógica; LearningCard añade Icon, code y digital para la variante tecnológica.
+- CareerWorkplaces / WorkplaceTile: digital opcional; reutiliza expansión, animaciones y estado. La variante tecnológica muestra título, descripción e icono, sin fingir fotografías.
+- CareerBenefits: title, description, imageAlt y eyebrow opcionales con los valores anteriores por defecto. Reutiliza BenefitCard.
+- AcademicDocumentCard: sin pdfUrl válido muestra document.status; con URL conserva el visor global. isReference se muestra de forma visible. Se eliminan props Motion que se enviaban a Button HTML.
+- MyTemplate: admite className con twMerge y conserva classmame como alias compatible. Computación usa overflow-x-clip para no crear un contenedor de scroll que impida sticky. Las demás páginas conservan overflow-x-hidden.
+- useCarouselDrag: pointerleave de un descendiente ya no cancela el inicio del arrastre; solo salir del viewport lo cancela.
+- ComputerScienceJourney utiliza ScrollReveal, useScroll y useTransform, con indicador estático al solicitar movimiento reducido. No se añade CSS local ni dependencias.
+
+Verificaciones: build correcto y lint con los mismos dos errores previos de Toast/CareersCarousel; sin errores de render en navegador. Revisados 320/390/768/1440 px, carrusel con teclado y duplicados fuera del tabulado, expansión 4→6→4, arrastre activo y liberación, sticky a 128 px, modo de movimiento reducido, respaldo de imágenes fallidas, estado de documentos pendientes y apertura del visor desde Administración. Sigue el aviso de tamaño del bundle existente.
+
+Pendiente de contenido: confirmar áreas formativas, beneficios institucionales y facilitar los PDF oficiales de Computación. No se implementa backend nuevo.
+
+### Animaciones reversibles de Computación — 2 de octubre de 2026
+
+Esta revisión sustituye las entradas de una sola ejecución descritas anteriormente por animaciones vinculadas continuamente al desplazamiento. ComputerSciencePage activa ScrollAnimationContext con value="linked". ScrollMotion (y su fachada ScrollReveal) usa useScroll/useTransform: títulos y tarjetas entran y salen según su posición y recuperan el mismo estado al volver. Al recibir foco mantienen opacidad y escala completas para facilitar el uso con teclado. Fuera del proveedor se conserva el comportamiento de entrada de las otras páginas.
+
+El hero tiene parallax de fondo. ComputerScienceJourney ofrece una escena de 280vh con pantalla sticky bajo la navegación (96 px), tres tarjetas superpuestas, desplazamiento/zoom de fondo y progreso reversible. usePinnedScene solo activa esta composición desde 64rem de ancho y 650px de alto, sin movimiento reducido; en pantallas pequeñas las tres etapas se muestran en flujo con entradas reversibles. ComputingJourneyStep encapsula la transformación de cada etapa. useMotionPreference escucha cambios de preferencia sin recarga y desactiva las animaciones de ScrollMotion y el parallax del hero. Se reutiliza Motion ya instalado, las imágenes y el carrusel existentes, sin nuevas dependencias ni CSS local.
+
+Verificado en navegador: secuencia 1→2→3→2→1 y restauración exacta de estilos de los 18 elementos al recorrer toda la página y regresar; entradas reversibles por posición; anchos 390/768/1440 sin desborde; movimiento reducido dinámico desactiva los elementos vinculados y la escena fija; Administración no recibe el modo linked. Build correcto; lint conserva los dos errores previos en Toast y CareersCarousel y el build mantiene el aviso de tamaño de bundle.
+### Imágenes del carrusel — 2 de octubre de 2026
+
+Se incorporan seis ilustraciones conceptuales generadas con image_gen a public/computation-informatic/learning-*.webp: programación, bases de datos, redes, soporte, desarrollo web y seguridad. Paleta azul/naranja y prompts completos documentados en el README de la carpeta. Los recursos están optimizados a 800px, unos 539 KiB entre los seis. No representan instalaciones ni equipos reales del instituto.
+
+LearningCard admite imageAlt opcional; la variante digital usa tarjetas más altas, overlay inferior y zoom al expandirse mediante puntero, foco o toque, desactivado con movimiento reducido. Image mantiene el respaldo institucional y el arrastre nativo de imágenes está desactivado para conservar el gesto del carrusel. Administración conserva sus dimensiones y overlays. Comprobadas la carga de los seis recursos, expansión con teclado, diseño móvil sin desborde y compilación.
+### Secuencia visual de scroll — 2 de octubre de 2026
+
+Se amplía la animación inspirada en la referencia de Pinterest: CareerLearning con cinematic mantiene la sección fija durante 260svh, vincula el recorrido horizontal del carrusel al desplazamiento vertical y anima su escala/perspectiva y luz de fondo. ContinuousCarousel admite scrollProgress opcional (MotionValue de 0 a 1); useCarouselScroll controla el tiempo de la animación CSS existente, mide anchuras sin transformar y conserva arrastre, duplicados, escala central y navegación por teclado. Al enfocar o arrastrar no sobrescribe la interacción; al volver a desplazarse recupera el recorrido por scroll. Sin scrollProgress conserva el comportamiento anterior.
+
+ComputerScienceJourney sustituye las tarjetas numéricas por tres composiciones con imágenes del catálogo, títulos grandes, cambios de perspectiva, escala y movimiento independiente del texto. Dura 320svh y dispone de luz y tipografía de fondo móviles. ComputingJourneyStep interpola explícitamente las etapas para mantener sus límites en Motion/WAAPI. ScrollPanel añade apertura de marco, escala y desplazamiento a Campo laboral, Habilidades y Documentos; respeta el foco de teclado sin mover las acciones al hacer clic.
+
+usePinnedScene se activa con ancho mínimo de 48rem y altura mínima de 600px, o con altura de 740px en cualquier ancho. Siempre exige ausencia de movimiento reducido. En ventanas pequeñas conserva el carrusel habitual y muestra las etapas en flujo. La preferencia de movimiento reducido desactiva las escenas y transformaciones. No se instalan dependencias en el proyecto ni se incorpora CSS local.
+
+Validación en Edge: carrusel 0→-428→-856→-428→0 px en 1440x1000, etapas 1→2→3→2→1, apertura de panel reversible, arrastre y teclado funcionales, expansión de ámbitos 4→6→4. Inspección en 1440x1000, 390x844, 320x640, 1024x700 y 844x390; sin desborde horizontal. Administración conserva su presentación. Grabación de demostración en la carpeta local de revisión. Build correcto; lint mantiene los dos errores previos de Toast y CareersCarousel. La composición adapta movimientos de la referencia; no es una reproducción exacta ni utiliza el código del sitio original.
+### Carrusel libre y transición entre secciones — 2 de octubre de 2026
+
+Por ajuste del usuario, se retira el recorrido horizontal ligado al scroll. ContinuousCarousel recupera su contrato y autoplay anteriores; se eliminan scrollProgress, useCarouselScroll y la variante scene de LearningCard. El carrusel vuelve a sus dimensiones aprobadas y conserva arrastre, pausa por interacción y teclado.
+
+cinematic en CareerLearning ahora controla la desaparición de toda la sección al salir de la pantalla, sin sticky ni altura artificial. La entrada de ComputerScienceJourney acompaña la transición. Sus etapas desplazan encabezado, imagen y texto como un bloque vertical completo, para simular el paso entre secciones; se conservan imágenes, contenido y composición responsive. El título semántico de la escena se mantiene, y el encabezado visual repetido no se anuncia de nuevo.
+
+Validación: autoplay avanza sin scroll, arrastre cambia su posición y autoplay se reanuda; opacidad/escala de salida y etapas restauran exactamente su estado al subir; movimiento reducido mantiene el carrusel legible; anchos 320/390 sin desborde y navegador sin errores. Build correcto. Esta revisión sustituye el contrato de scrollProgress descrito en la actualización anterior.
+### PDF de muestra de Computación — 2 de octubre de 2026
+
+Se crea public/computation-informatic/computacion-referencia.pdf (dos páginas: plan y malla ficticios), con paleta institucional y avisos visibles de referencia no oficial en ambas páginas. No establece duración, créditos ni certificaciones reales. Las dos entradas de computerScienceDocuments apuntan a este mismo archivo y activan isReference; sus descripciones aclaran su carácter de ejemplo y la ubicación de la malla en la segunda página.
+
+Se reutiliza sin cambios CareerDocuments → AcademicDocumentCard → usePdfViewer → PdfViewerProvider/PdfViewerModal, el mismo flujo de Administración. No se introduce un segundo visor. Verificado el render de ambas páginas, apertura desde las dos tarjetas, navegación a página 2, zoom, descarga, cierre y apertura móvil, sin errores de navegador. Los documentos oficiales siguen pendientes y deberán sustituir la muestra.
+### Limpieza y revisión de Computación — 2 de octubre de 2026
+
+Eliminados «Desplázate para recorrer el proceso» y su barra, conservando las transiciones reversibles. La escena separa composición, fondo, encabezado, etapas y alternativa en flujo; useJourneyMotion/useJourneyStepMotion contienen sus cálculos. El hero separa su fondo. CareerLearning usa useSectionExit; useKeyboardFocusWithin y useMediaQuery centralizan comportamientos repetidos.
+
+Retiradas seis cadenas code del catálogo y su rama obsoleta en LearningCard. Textos agrupados en computerScienceContent. AcademicDocumentCard obtiene document.pdfUrl sin props redundantes. Conservados carrusel libre, átomos, curva, visor global, cambios locales y ScrollReveal. Sin dependencias ni CSS nuevos.
+
+Verificado en Edge: carrusel, reversibilidad, etapas 1→2→3→2→1, ausencia de texto/barra, movimiento reducido dinámico, respaldo de imagen y PDF de ambas carreras. Anchos 320/390/1440 sin desborde; inspección visual móvil/escritorio. Build correcto; lint conserva los dos errores previos de Toast/CareersCarousel y persiste el aviso de bundle. Análisis en REVISION_COMPUTACION.md. Las entradas anteriores son históricas; esta revisión describe la organización vigente.
+
+
+### Integración de la PR #6 — 5 de octubre de 2026
+
+Se integra upstream/main conservando sus cambios de átomos y nuevas secciones. MyTemplate combina el overflow-x-clip de la rama base con twMerge, className y el alias classmame. La curva adopta el nombre corregido curvePath.jsx y mantiene los diseños 1–6, accentColor y accesibilidad; se actualiza el import del hero de Computación. No se selecciona una versión completa por encima de la otra ni se reescribe el historial.

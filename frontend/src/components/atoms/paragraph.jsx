@@ -16,6 +16,7 @@ function Paragraph ({
     default: 'text-black',
     primary: 'text-white',
     secondary: 'text-gray-500 ',
+    ternary : `text-gray-400`,
     danger: 'text-blue'
   };
 
@@ -29,7 +30,7 @@ function Paragraph ({
     compact: 'text-[clamp(0.875rem,0.75rem+0.3vw,1.0625rem)]',
     comfortable: 'text-[clamp(1rem,0.8rem+0.5vw,1.375rem)]',
     base : "text-base",
-    small:  "text-[0.6em] sm:text-[.7em] md:text-[.9em]",
+    small:  "text-[.9em] ",
     medium: "text-[.9em] xs:text-[1em] sm:text-[1.1em]  " ,
     large:  "text-[.7em] sm:text-[.9em] lg:text-[1.2em] xl:text-[1.3em]",
     slogan : "text-[.9em] sm:text-[1.2em] lg:text-[1.2em] xl:text-[1.3em]",

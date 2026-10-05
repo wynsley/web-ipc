@@ -1,29 +1,31 @@
-import { ScrollReveal } from "@/components/layouts/scrollReveal"
+
+import { ScrollReveal } from "@/components/layouts/scrollReveal";
 
 function HeroPerson({ personImage }) {
   return (
-    // Contenedor plano: solo posiciona. Cada pieza anima por separado.
     <div
       className="
         hidden sm:block
-        absolute bottom-0 right-[5%] lg:right-[8%]
-        h-[88%] w-[38%] lg:w-[30%] max-w-md
+    absolute bottom-0 right-[5%] lg:right-[8%]
+    h-[88%] w-[38%] lg:w-[40%] max-w-lg
+    
       "
     >
+      <div >
+        {/* Marco del fondo */}
       <ScrollReveal
         delay={0}
         y={30}
-        className="absolute bottom-[14%] -left-8 right-6 h-[65%] border border-orange"
+        className="absolute bottom-[14%] -left-8 right-6 h-[65%] z-0 border border-orange"
       />
 
+      {/* Persona: aparece lentamente desde abajo */}
       <ScrollReveal
-        delay={0.35}
-        y={40}
-        className="absolute bottom-0 -left-4 -right-4 h-[25%] bg-blue"
-      />
-
-      {/* 3) Imagen de la persona */}
-      <ScrollReveal delay={0.7} y={60} className="relative h-full w-full">
+        delay={0.2}
+        y={120}
+        duration={1.5}
+        className="absolute inset-0 z-10"
+      >
         <img
           src={personImage}
           alt=""
@@ -32,12 +34,21 @@ function HeroPerson({ personImage }) {
         />
       </ScrollReveal>
 
-      {/* 4) Flecha curva, al final */}
+      {/* Bloque azul por delante de la persona */}
+      <ScrollReveal
+        delay={0.35}
+        y={20}
+        duration={0.8}
+        className="absolute bottom-0 -left-4 -right-4 z-5 h-[25%] bg-blue"
+      />
+
+      </div>
+      {/* Flecha */}
       <ScrollReveal
         delay={1.05}
         y={0}
         x={-20}
-        className="absolute -left-24 top-[8%] hidden lg:block w-28"
+        className="absolute -left-24 top-[8%] z-30 hidden w-28 lg:block"
       >
         <svg
           aria-hidden="true"
@@ -62,7 +73,7 @@ function HeroPerson({ personImage }) {
         </svg>
       </ScrollReveal>
     </div>
-  )
+  );
 }
 
-export { HeroPerson }
+export { HeroPerson };

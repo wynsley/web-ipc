@@ -2,42 +2,42 @@
 const administrationWorkplaces = [
   {
     title: "Gestión de empresas",
-    image: "/ADMINISTRACION.webp",
+    image: "/business_admin/ADMINISTRACION.webp",
     layout: "enterprise",
   },
   { 
     title: "Área comercial", 
-    image: "/MARKETING.webp", 
+    image: "/business_admin/MARKETING.webp",
     layout: "commercial" 
   },
   {
     title: "Administración financiera",
-    image: "/FINANZAS.webp",
+    image: "/business_admin/FINANZAS.webp",
     layout: "finance",
   },
   {
     title: "Recursos humanos",
-    image: "/GESTION_TALENTO_HUMANO.webp",
+    image: "/business_admin/GESTION_TALENTO_HUMANO.webp",
     layout: "people",
   },
   {
     title: "Operaciones y logística",
-    image: "/LOGISTICA.webp",
+    image: "/business_admin/LOGISTICA.webp",
     layout: "operations",
   },
   {
     title: "Servicios administrativos",
-    image: "/CONTABILIDAD.webp",
+    image: "/business_admin/CONTABILIDAD.webp",
     layout: "services",
   },
   {
     title: "Emprendimientos",
-    image: "/EMPRENDIMIENTO.webp",
+    image: "/business_admin/EMPRENDIMIENTO.webp",
     layout: "entrepreneurship",
   },
   {
     title: "Herramientas digitales de gestión",
-    image: "/COMPUTACION.webp",
+    image: "/business_admin/COMPUTACION.webp",
     layout: "digital-management",
   },
 ];
