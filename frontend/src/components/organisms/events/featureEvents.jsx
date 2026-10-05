@@ -6,7 +6,6 @@ import { FEATURED_EVENTS } from "@/data/events/featureEvents";
 import { Dost } from "@/components/molecules/shared/dots";
 import { Title } from "@/components/atoms/titles";
 import { Paragraph } from "@/components/atoms/paragraph";
-import { ScrollReveal } from "@/components/layouts/scrollReveal";
 import { motion as Motion } from "motion/react";
 import { staggerContainer } from "@/components/animations/animation";
 
@@ -43,6 +42,7 @@ function FeatureEvents() {
 
   const total = FEATURED_EVENTS.length;
 
+  
   return (
     <section className="mx-auto w-full py-0 md:py-8 sm:w-[96%] md:w-[90%] md:max-w-6xl ">
       {/* Encabezado */}
@@ -50,7 +50,7 @@ function FeatureEvents() {
         variants={staggerContainer}
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, amount: 0.3 }}
+        viewport={{ once: true, amount: 0.2 }}
         className="mb-8 flex flex-col gap-4 px-4 sm:px-0 md:flex-row md:items-start md:justify-between md:gap-10"
       >
         <Title
@@ -105,7 +105,7 @@ function FeatureEvents() {
                   src={item.image}
                   alt={item.title}
                   draggable={false}
-                  loading="lazy"
+                  decoding="async"
                   className="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-105"
                 />
 
@@ -162,14 +162,14 @@ function FeatureEvents() {
         </div>
       </div>
 
-      <ScrollReveal className="mt-6" y={40}>
+      <div className="mt-6" >
         <Dost
           dots={FEATURED_EVENTS}
           current={activeDot}
           next={null}
           goTo={(i) => goTo(i, true)}
         />
-      </ScrollReveal>
+      </div>
     </section>
   );
 }
