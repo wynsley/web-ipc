@@ -4,7 +4,12 @@ import { Paragraph } from "../../atoms/paragraph";
 import { Image } from "../../atoms/image";
 import { BenefitCard } from "../../molecules/careers/benefitCard";
 
-function CareerBenefits({ benefits, image }) {
+function CareerBenefits({
+  benefits,
+  image,
+  description = "Accede a una formación práctica con beneficios que impulsan tu desarrollo profesional.",
+  imageAlt = "Presentación de gestión empresarial en un entorno de trabajo",
+}) {
   return (
     <section
       aria-labelledby="career-benefits-title"
@@ -23,13 +28,13 @@ function CareerBenefits({ benefits, image }) {
           <Paragraph
             size="compact"
             variant="danger"
-            text="Accede a una formación práctica con beneficios que impulsan tu desarrollo profesional."
+            text={description}
             className="mt-3 max-w-md font-poppins leading-relaxed"
           />
           <div className="relative mt-6 aspect-4/3 overflow-hidden rounded-xl bg-blue-dark sm:aspect-video md:aspect-auto md:min-h-64 md:flex-1">
             <Image
               src={image}
-              alt="Presentación de gestión empresarial en un entorno de trabajo"
+              alt={imageAlt}
               fill
               decoding="async"
             />

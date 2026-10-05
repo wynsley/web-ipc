@@ -3,7 +3,7 @@ import { Title } from "../../atoms/titles";
 import { LearningCard } from "../../molecules/careers/learningCard";
 import { ContinuousCarousel } from "../../molecules/shared/continuousCarousel";
 
-function CareerLearning({ topics }) {
+function CareerLearning({ topics, label = "Áreas de aprendizaje de Administración de Empresas" }) {
   return (
     <section
       aria-labelledby="career-learning-title"
@@ -29,7 +29,7 @@ function CareerLearning({ topics }) {
           items={topics}
           emphasizeCenter
           draggable
-          label="Áreas de aprendizaje de Administración de Empresas"
+          label={label}
           renderItem={(topic, duplicate) => (
             <LearningCard {...topic} duplicate={duplicate} />
           )}

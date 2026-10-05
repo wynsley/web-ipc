@@ -10,7 +10,7 @@ function WorkplaceTile({ title, image, delay = 0 }) {
         src={image}
         alt={title}
         fill
-        imageClassName="workplace-tile__image"
+        imageClassName="workplace-tile__image object-contain"
         decoding="async"
       />
     </Motion.figure>
