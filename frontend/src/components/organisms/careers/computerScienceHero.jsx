@@ -1,6 +1,6 @@
 import { useRef } from "react";
 import { ComputerScienceHeroBackground } from "../../molecules/careers/computerScienceHeroBackground";
-import { BannerBgCurve } from "../../molecules/shared/curbePath";
+import { BannerBgCurve } from "../../molecules/shared/curvePath";
 import { ComputerScienceHeroHeading } from "../../molecules/careers/computerScienceHeroHeading";
 import { ComputerScienceHeroVisual } from "../../molecules/careers/computerScienceHeroVisual";
 import { ComputerScienceHeroIntro } from "../../molecules/careers/computerScienceHeroIntro";

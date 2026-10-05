@@ -22,9 +22,9 @@ function DescriptionUs ( ) {
 
   return( 
     <section
-      className="mx-auto flex  flex-col items-start
-      gap-8 py-8 mt-10 w-[92%] max-w-7xl md:w-[90%] 
-      md:py-10 lg:flex-row lg:items-center lg:justify-between 
+      className=" flex  flex-col items-start gap-8
+      mx-auto md:mt-10 w-[92%] md:max-w-6xl md:w-[90%] md:py-10
+      lg:flex-row lg:items-center lg:justify-between 
       "x
     >
       <Motion.div
@@ -38,7 +38,7 @@ function DescriptionUs ( ) {
           text={title}
           level="h2"
           weight="bold"
-          className="font-hani"
+          className="font-hani leading-12"
         />
         
           <Paragraph

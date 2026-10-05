@@ -1,15 +1,14 @@
-
-import { FEATURED_GRADUATES } from "../../../data/alumni/featuredGraduates";
-import { GraduateCard } from "../../molecules/alumni/graduateCard";
-import { Dost } from "../../molecules/shared/dots";
-import { useCardsPerView } from "../../../hooks/globals/useCardPowerView";
-import { useCarousel } from "../../../hooks/globals/useCarrusel";
-import { motion as Motion } from "motion/react";
+import { staggerContainer } from "@/components/animations/animation";
+import { Paragraph } from "@/components/atoms/paragraph";
 import { Title } from "@/components/atoms/titles";
-import { staggerContainer } from "../../animations/animation";
-import { Paragraph } from "../../atoms/paragraph";
+import { motion as Motion } from "motion/react";
+import { OUR_TEAM } from "@/data/aboutUs/ourTeam";
+import { useCardsPerView } from "@/hooks/globals/useCardPowerView";
+import { useCarousel } from "@/hooks/globals/useCarrusel";
+import { CardOurTeam } from "@/components/molecules/aboutUs/cardOurTeam";
+import { Dost } from "@/components/molecules/shared/dots";
 
-function FeaturedGraduatesSection() {
+function OurTeam () {
 
   const cardsPerView = useCardsPerView();
 
@@ -22,40 +21,41 @@ function FeaturedGraduatesSection() {
     setUserPaused,
     withTransition,
   } = useCarousel({
-    slides: FEATURED_GRADUATES,
+    slides: OUR_TEAM,
     cardsPerView,
     getSrc: (grad) => grad.photo,
   });
 
-  return (
-    <Motion.section
-      variants={staggerContainer}
-      initial="hidden"
-      whileInView='visible'
-      viewport={{ once: true, amount: 0.2 }}
-      className="mx-auto w-[92%] md:w-[90%] max-w-7xl py-0 md:py-10">
-      <div className="text-center mb-10 md:mb-15">
+  const description = `Docentes profesionales y apasionados, comprometidos con guiar e inspirar a 
+  cada estudiante hacia su máximo potencial.`
+  return(
+    <section
+      className="mx-auto w-[92%] md:w-[90%] max-w-6xl py-0 md:py-10
+      flex flex-col gap-8
+      "
+    >
+      <Motion.div
+        variants={staggerContainer}
+        initial= "hidden"
+        whileInView="visible"
+        viewport={{once: true, amount: 0.2}}
+      >
         <Title
-          text={"Egresados Destacados"}
           level="h2"
-          className="font-hani"
+          text="Nuestro Equipo"
           weight="bold"
-          align="center"
+          className="font-hani"
         />
-
         <Paragraph
-          text="Conoce a quienes hoy destacan en el mundo laboral gracias a la
-          formación que recibieron con nosotros."
-          variant="secondary"
-          align="center"
+          size="base"
+          text={description}
+          className="w-full md:w-[70%]"
         />
-      </div>
-
+      </Motion.div>
       <div
         onMouseEnter={() => setUserPaused(true)}
         onMouseLeave={() => setUserPaused(false)}
       >
-        {/* padding vertical generoso: evita que overflow-hidden corte las sombras de las cards */}
         <div className="overflow-hidden px-1 py-6 -my-6">
           <div
             className="flex"
@@ -75,7 +75,7 @@ function FeaturedGraduatesSection() {
                   width: `calc(${cardWidthExpr})`,
                 }}
               >
-                <GraduateCard {...grad} />
+                <CardOurTeam {...grad} />
               </div>
             ))}
           </div>
@@ -83,7 +83,7 @@ function FeaturedGraduatesSection() {
 
         <div className="mt-8">
           <Dost
-            dots={FEATURED_GRADUATES}
+            dots={OUR_TEAM}
             next={null}
             current={activeDot}
             goTo={goTo}
@@ -91,8 +91,8 @@ function FeaturedGraduatesSection() {
           />
         </div>
       </div>
-    </Motion.section>
-  );
+    </section>
+  )
 }
 
-export { FeaturedGraduatesSection };
+export {OurTeam}

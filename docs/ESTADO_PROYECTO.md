@@ -289,3 +289,8 @@ Eliminados «Desplázate para recorrer el proceso» y su barra, conservando las 
 Retiradas seis cadenas code del catálogo y su rama obsoleta en LearningCard. Textos agrupados en computerScienceContent. AcademicDocumentCard obtiene document.pdfUrl sin props redundantes. Conservados carrusel libre, átomos, curva, visor global, cambios locales y ScrollReveal. Sin dependencias ni CSS nuevos.
 
 Verificado en Edge: carrusel, reversibilidad, etapas 1→2→3→2→1, ausencia de texto/barra, movimiento reducido dinámico, respaldo de imagen y PDF de ambas carreras. Anchos 320/390/1440 sin desborde; inspección visual móvil/escritorio. Build correcto; lint conserva los dos errores previos de Toast/CareersCarousel y persiste el aviso de bundle. Análisis en REVISION_COMPUTACION.md. Las entradas anteriores son históricas; esta revisión describe la organización vigente.
+
+
+### Integración de la PR #6 — 5 de octubre de 2026
+
+Se integra upstream/main conservando sus cambios de átomos y nuevas secciones. MyTemplate combina el overflow-x-clip de la rama base con twMerge, className y el alias classmame. La curva adopta el nombre corregido curvePath.jsx y mantiene los diseños 1–6, accentColor y accesibilidad; se actualiza el import del hero de Computación. No se selecciona una versión completa por encima de la otra ni se reescribe el historial.

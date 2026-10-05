@@ -36,21 +36,22 @@ function App() {
   ]
 
   return (
-    <AnimatePresence mode="wait" initial={false}>
-    <SocialFloatings/>
-      <Routes>
-        <Route element={<MainLayout/>}>
-          {pages.map((page) => (
-          <Route
-            key={page.path}
-            path={page.path}
-            element={page.element}
-          />
-        ))}
-        </Route>
-      </Routes>
+    <>
+      <SocialFloatings />
+      <AnimatePresence mode="wait" initial={false}>
+        <Routes>
+          <Route element={<MainLayout />}>
+            {pages.map((page, p) => (
+              <Route
+                key={p}
+                path={page.path}
+                element={page.element}
+              />
+            ))}
+          </Route>
+        </Routes>
 
-    </AnimatePresence>
+      </AnimatePresence></>
   )
 }
 export default App

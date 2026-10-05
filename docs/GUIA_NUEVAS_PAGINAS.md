@@ -179,7 +179,7 @@ Cambios locales todavía sin integrar:
 
 ## 8. Curvas compartidas y hero de Computación
 
-Para separadores curvos, reutilizar BannerBgCurve de components/molecules/shared/curbePath.jsx. Conserva design (1–5), color, height, position y className. El diseño 6 añade la curva con banda del hero de Computación: pasar color="var(--color-neutral-white)", accentColor="var(--color-orange)" y height="h-16 sm:h-22". accentColor es opcional y solo tiene efecto en diseños con banda. El padre debe estar posicionado; el componente es decorativo y no captura eventos. className permite ajustar la posición (por ejemplo, -bottom-px) mediante twMerge.
+Para separadores curvos, reutilizar BannerBgCurve de components/molecules/shared/curvePath.jsx. Conserva design (1–5), color, height, position y className. El diseño 6 añade la curva con banda del hero de Computación: pasar color="var(--color-neutral-white)", accentColor="var(--color-orange)" y height="h-16 sm:h-22". accentColor es opcional y solo tiene efecto en diseños con banda. El padre debe estar posicionado; el componente es decorativo y no captura eventos. className permite ajustar la posición (por ejemplo, -bottom-px) mediante twMerge.
 
 ComputerScienceHero recibe title y content desde su página. Los textos, recursos y enlace están en data/computerScienceHero.js; las moléculas Heading, Visual e Intro en components/molecules/careers/ separan responsabilidades. Mantener el título en el catálogo careers y las imágenes en public/computation-informatic. Esta composición conserva el diseño específico de Computación; no sustituye CareerHero de Administración.
 
@@ -191,7 +191,7 @@ CareerLearning acepta label accesible propio, description, eyebrow y digital opc
 
 AcademicDocumentCard solo abre el visor si pdfUrl tiene un valor distinto de #; de lo contrario muestra document.status o un mensaje de publicación pendiente. Los documentos de referencia se identifican mediante isReference. No conectar PDF de otra carrera como si fueran oficiales.
 
-MyTemplate admite className y conserva classmame por compatibilidad. Las clases se combinan con twMerge. Para composiciones sticky, Computación usa className="overflow-x-clip"; el valor predeterminado de otras páginas continúa siendo overflow-x-hidden. ComputerScienceJourney muestra una composición narrativa propia; sus datos se mantienen fuera del organismo y sus animaciones respetan movimiento reducido.
+MyTemplate admite className y conserva classmame por compatibilidad. Las clases se combinan con twMerge. Para composiciones sticky, Computación usa className="overflow-x-clip"; el valor predeterminado compartido es overflow-x-clip desde la integración del 5 de octubre de 2026. ComputerScienceJourney muestra una composición narrativa propia; sus datos se mantienen fuera del organismo y sus animaciones respetan movimiento reducido.
 
 ## 10. Animación vinculada al scroll
 

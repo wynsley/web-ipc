@@ -13,7 +13,7 @@ function Hero() {
       {/* Imagen de fondo */}
       <img
         src={imgHeroGradutes}
-        alt=""
+        alt="Nuestros egresados"
         aria-hidden="true"
         className="absolute inset-0 h-full w-full object-cover"
       />
