@@ -31,7 +31,6 @@ function useCarousel({
   /*
    * En multi-card duplicamos las primeras cards al final.
    * Cuando llegamos a esa zona clonada (que se ve IGUAL que el inicio)
-   * saltamos al índice real SIN animación => loop infinito invisible.
    */
   const duplicateCount = isMultiCard ? Math.ceil(cardsPerView) : 0;
 
@@ -50,18 +49,12 @@ function useCarousel({
   const dragStartX = useRef(null);
   const autoplayRef = useRef(null);
 
-  /*
-   * Preload
-   */
+  /* Preload*/
   useEffect(() => {
     preloadImages(slides, getSrc);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  /*
-   * Ir a una posición específica (dots)
-   * Aquí SÍ queremos el scroll animado normal.
-   */
+  
   const goTo = useCallback(
     (index, byUser = false) => {
       if (isMultiCard) {
@@ -88,9 +81,7 @@ function useCarousel({
     [sliding, current, transitionMs, isMultiCard]
   );
 
-  /*
-   * Siguiente
-   */
+  /*Siguiente*/
   const goNext = useCallback(
     (byUser = false) => {
       if (isMultiCard) {
@@ -106,9 +97,7 @@ function useCarousel({
     [isMultiCard, current, total, goTo]
   );
 
-  /*
-   * Anterior
-   */
+  /*Anterior*/
   const goPrev = useCallback(() => {
     if (isMultiCard) {
       setUserPaused(true);
@@ -134,9 +123,7 @@ function useCarousel({
     goTo((current - 1 + total) % total, true);
   }, [isMultiCard, current, total, goTo]);
 
-  /*
-   * Autoplay
-   */
+  /*Autoplay*/
   useEffect(() => {
     if (!autoplay || userPaused) return;
 
@@ -164,9 +151,7 @@ function useCarousel({
     return () => clearTimeout(timeout);
   }, [current, total, transitionMs, isMultiCard]);
 
-  /*
-   * Drag / Swipe
-   */
+  /*Drag / Swipe*/
   const onDragStart = (clientX) => {
     dragStartX.current = clientX;
   };
@@ -198,9 +183,7 @@ function useCarousel({
     onDragStart: (e) => e.preventDefault(),
   };
 
-  /*
-   * Cálculos para múltiples cards
-   */
+  /*Cálculos para múltiples cards*/
   const cardWidthExpr = isMultiCard
     ? `(100% - ${gapRem * (cardsPerView - 1)}rem) / ${cardsPerView}`
     : "100%";
@@ -209,35 +192,28 @@ function useCarousel({
     ? `calc(-1 * (${cardWidthExpr} + ${gapRem}rem) * ${current})`
     : null;
 
-  /*
-   * Dot activo
-   */
+  /*Dot activo*/
   const activeDot = isMultiCard ? current % total : current;
 
   return {
     // Data
     extendedSlides,
-
     // Estado
     current,
     next,
     sliding,
     userPaused,
-
     // Navegación
     goTo,
     goNext,
     goPrev,
-
     // Drag
     dragHandlers,
-
     // Multi-card
     cardWidthExpr,
     translateX,
     activeDot,
-    withTransition, // NUEVO
-
+    withTransition, 
     // Autoplay
     setUserPaused,
   };
