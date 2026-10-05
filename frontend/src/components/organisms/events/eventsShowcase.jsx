@@ -1,5 +1,5 @@
 import { AnimatePresence, motion as Motion } from "motion/react";
-import { FaCheckCircle, FaCalendarAlt, FaMapMarkerAlt } from "react-icons/fa";
+import { FaCheckCircle, FaMapMarkerAlt } from "react-icons/fa";
 import { SLIDE_EASE, slideVariants } from "@/components/animations/eventsSlides";
 import { Reveal } from "@/components/molecules/events/reveal";
 import { EventsControls } from "./eventsControls";
@@ -17,6 +17,9 @@ function EventsShowcase() {
   } = useEventsCarousel();
 
   const title = `${event.category} de ${event.highlight}`
+  const index = next !== null ? next : current;
+  const order = String(index + 1).padStart(2, "0");
+
   return (
     <section
       {...hoverHandlers}
@@ -24,7 +27,7 @@ function EventsShowcase() {
     >
       <EventsCountdownBand event={event} direction={direction} />
 
-      <div className="bg-blue-deep/20 pb-10">
+      <div className="bg-blue-deep/10 pb-10">
         <div
           className="
             mx-auto mt-14 grid max-w-6xl items-stretch gap-10 px-5 py-5
@@ -37,9 +40,13 @@ function EventsShowcase() {
             <AnimatePresence mode="wait" custom={direction}>
               <div key={event.id}>
                 <Reveal direction={direction}>
-                  <span className="text-base text-orange font-euro font-bold">
-                    [{event.category}]
+
+                  <div className="flex items-center gap-2">
+                    <span className="font-poppins font-extrabold text-2xl h-12 w-12 text-white bg-blue/40 flex items-center justify-center rounded-full">{order}</span>
+                    <span className="font-euro font-extrabold text-xl text-blue">
+                    {formatEventDate(event.date)}
                   </span>
+                  </div>
                 </Reveal>
 
                 <Reveal direction={direction} delay={0.08} className="mt-2">
@@ -62,10 +69,6 @@ function EventsShowcase() {
 
                 <Reveal direction={direction} delay={0.2} className="mt-5">
                   <div className="flex flex-wrap gap-x-6 gap-y-2 font-poppins text-sm text-neutral-700">
-                    <span className="flex items-center gap-2">
-                      <FaCalendarAlt className="text-orange" aria-hidden="true" />
-                      {formatEventDate(event.date)}
-                    </span>
                     <span className="flex items-center gap-2">
                       <FaMapMarkerAlt className="text-orange" aria-hidden="true" />
                       {event.location}
