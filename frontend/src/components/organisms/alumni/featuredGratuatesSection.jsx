@@ -5,7 +5,7 @@ import { Dost } from "../../molecules/shared/dots";
 import { useCardsPerView } from "../../../hooks/globals/useCardPowerView";
 import { useCarousel } from "../../../hooks/globals/useCarrusel";
 import { motion as Motion } from "motion/react";
-import { Title } from "../../atoms/titles";
+import { Title } from "@/components/atoms/titles";
 import { staggerContainer } from "../../animations/animation";
 import { Paragraph } from "../../atoms/paragraph";
 
@@ -20,6 +20,7 @@ function FeaturedGraduatesSection() {
     translateX,
     goTo,
     setUserPaused,
+    withTransition,
   } = useCarousel({
     slides: FEATURED_GRADUATES,
     cardsPerView,
@@ -27,21 +28,21 @@ function FeaturedGraduatesSection() {
   });
 
   return (
-    <Motion.section 
+    <Motion.section
       variants={staggerContainer}
-      initial = "hidden"
+      initial="hidden"
       whileInView='visible'
-      viewport={{once: true , amount: 0.2}}
+      viewport={{ once: true, amount: 0.2 }}
       className="mx-auto w-[92%] md:w-[90%] max-w-7xl py-0 md:py-10">
       <div className="text-center mb-10 md:mb-15">
-        <Title 
+        <Title
           text={"Egresados Destacados"}
           level="h2"
           className="font-hani"
           weight="bold"
           align="center"
         />
-      
+
         <Paragraph
           text="Conoce a quienes hoy destacan en el mundo laboral gracias a la
           formación que recibieron con nosotros."
@@ -61,8 +62,9 @@ function FeaturedGraduatesSection() {
             style={{
               gap: "1.25rem",
               transform: `translateX(${translateX})`,
-              transition:
-                "transform 600ms cubic-bezier(0.22, 1, 0.36, 1)",
+              transition: withTransition
+                ? "transform 600ms cubic-bezier(0.22, 1, 0.36, 1)"
+                : "none",
             }}
           >
             {extendedSlides.map((grad, i) => (
@@ -81,12 +83,12 @@ function FeaturedGraduatesSection() {
 
         <div className="mt-8">
           <Dost
-          dots={FEATURED_GRADUATES}
-          next={null}
-          current={activeDot}
-          goTo={goTo}
-          className="mt-8"
-        />
+            dots={FEATURED_GRADUATES}
+            next={null}
+            current={activeDot}
+            goTo={goTo}
+            className="mt-8"
+          />
         </div>
       </div>
     </Motion.section>

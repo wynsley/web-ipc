@@ -1,4 +1,5 @@
 import { ScrollReveal } from "../../layouts/scrollReveal"
+import graduateCap from "@assets/images/graduates/cap.webp"
 
 function AlumniCap() {
   return (
@@ -22,7 +23,7 @@ function AlumniCap() {
         />
 
         <img
-          src="/CAP.webp"
+          src={graduateCap}
           alt="Birrete institucional"
           className="relative w-full drop-shadow-lg"
         />

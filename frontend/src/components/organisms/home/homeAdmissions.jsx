@@ -65,7 +65,7 @@ function HomeAdmissions({toggleModal}) {
               {/* Foto — ancha, ocupa el resto */}
               <div className="flex-1 h-40 sm:h-48 rounded-xl overflow-hidden aspect-square group">
                 <img
-                  src="/FINANZAS.webp"
+                  src="/business_admin/FINANZAS.webp"
                   alt="Estudiantes en clase"
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:rotate-1 group-hover:scale-[1.03]"
                 />

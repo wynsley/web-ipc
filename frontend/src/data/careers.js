@@ -2,7 +2,7 @@ export const careers = [
   {
     title: "Administración de Empresas",
     href: "/career/administration",
-    img: "/ADMINISTRACION.webp",
+    img: "/business_admin/ADMINISTRACION.webp",
     hero: {
       description:
         "Forma líderes capaces de planificar, organizar y mejorar procesos para impulsar organizaciones con visión estratégica y compromiso social.",
@@ -25,12 +25,12 @@ export const careers = [
   {
     title: "Contabilidad",
     href: "/career/accounting",
-    img: "/CONTABILIDAD.webp",
+    img: "/business_admin/CONTABILIDAD.webp",
   },
   {
     title: "Computación e Informática",
     href: "/career/computer-science",
-    img: "/COMPUTACION.webp",
+    img: "/business_admin/COMPUTACION.webp",
   },
   {
     title: "Traducción de Idiomas",

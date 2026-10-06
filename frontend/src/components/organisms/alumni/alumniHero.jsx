@@ -1,4 +1,5 @@
 import { HeroContent } from "../../molecules/alumni/HeroContent";
+import imgHeroGradutes from "@assets/images/graduates/hero-graduates.webp"
 
 function Hero() {
   return (
@@ -11,8 +12,8 @@ function Hero() {
     >
       {/* Imagen de fondo */}
       <img
-        src="/HERO_GRADUATES.webp"
-        alt=""
+        src={imgHeroGradutes}
+        alt="Nuestros egresados"
         aria-hidden="true"
         className="absolute inset-0 h-full w-full object-cover"
       />
