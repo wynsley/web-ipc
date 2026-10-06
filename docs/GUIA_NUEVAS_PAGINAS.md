@@ -1,6 +1,6 @@
 # Guía para crear páginas y continuar en nuevas ramas
 
-Esta guía se basa en la revisión del 29 de septiembre de 2026. Consultar primero [ESTADO_PROYECTO.md](ESTADO_PROYECTO.md) y [AGENTS.md](../AGENTS.md). El código del checkout tiene prioridad sobre inventarios antiguos.
+Guía actualizada el 5 de octubre de 2026. La revisión inicial del 29 de septiembre se amplía con los contratos actuales. Consultar primero [ESTADO_PROYECTO.md](ESTADO_PROYECTO.md) y [AGENTS.md](../AGENTS.md). El código del checkout tiene prioridad sobre inventarios antiguos.
 
 ## 1. Antes de implementar
 
@@ -66,7 +66,7 @@ export { NuevaPagina };
 
 Registrar la página en App.jsx y conectar las entradas necesarias del menú en desktopMenu.jsx; MobileMenu recibe ese mismo catálogo. Mantener los slugs actuales. Para navegación interna usar NavbarLink o Link de React Router con to.
 
-MyTemplate todavía acepta `classmame`, no className. Hasta corregirlo de manera compatible, aplicar estilos de página a un contenedor hijo.
+MyTemplate acepta className y conserva classmame como alias compatible. Combina las clases con twMerge y usa overflow-x-clip por defecto. Comprobar el efecto sobre sticky y desbordes al cambiarlo.
 
 ## 4. Elegir las piezas existentes
 
@@ -141,7 +141,7 @@ Preparar sus datos propios antes de componer los organismos:
 | Beneficios | [{ title, description }] e imagen adecuada |
 | Documentos | [{ id, title, description, image, tone, pdfUrl }] |
 
-Hoy solo Administración tiene hero en el catálogo. Parametrizar la etiqueta accesible de CareerLearning y el alt de CareerBenefits al usarlos para otra especialidad. No duplicar afirmaciones de duración, titulación, empleabilidad, beneficios o requisitos sin contenido confirmado.
+Administración mantiene hero en el catálogo careers; Computación separa su contenido en computerScienceHero.js y computerScienceSections.js. CareerLearning ya admite label y CareerBenefits admite imageAlt: proporcionar los específicos de cada carrera. No duplicar afirmaciones de duración, titulación, empleabilidad, beneficios o requisitos sin contenido confirmado.
 
 ## 6. Conectar formularios y acciones reales
 
@@ -215,3 +215,56 @@ ComputerSciencePage obtiene los textos de computerScienceContent, en data/comput
 CareerLearning delega la salida en useSectionExit. useKeyboardFocusWithin centraliza el foco visible de teclado en este hook, ScrollMotion y ScrollPanel. useMediaQuery centraliza las suscripciones y su limpieza; useMotionPreference y usePinnedScene lo reutilizan sin cambiar los umbrales.
 
 AcademicDocumentCard recibe document y delay; la URL procede exclusivamente de document.pdfUrl. CareerDocuments no duplica pdfUrl ni transmite un id ignorado. LearningCard ya no acepta code: las ilustraciones sustituyeron esa decoración y Image mantiene el respaldo institucional. ScrollReveal permanece como fachada con consumidores activos.
+
+
+## 13. Eventos y Equipo — revisión del 5 de octubre de 2026
+
+Consultar [REVISION_2026-10-05.md](REVISION_2026-10-05.md). Las nuevas secciones son referencias de composición, pero conservan acciones y accesibilidad pendientes; no copiar esas limitaciones como patrón.
+
+- Eventos se divide en HeroEvents, EventsShowcase y FeatureEvents. EVENTS vive en data/events/evenst.js y FEATURED_EVENTS en data/events/featureEvents.js. El nombre evenst es una errata existente; mantener imports coherentes si se corrige.
+- El contrato de EVENTS usa id, category, highlight, longDescription, highlights, date, location e image. No tiene title. Construir un nombre común con category/highlight para títulos, alt y aria-label.
+- Usar fecha ISO con offset y los formateadores America/Lima. Diferenciar evento seleccionado, próximo evento y evento finalizado; atender finished del contador y la ausencia de eventos.
+- useCardsPerView acepta default (1.3/2.3/3/4), compact (2.2/3/4), grid (2/3/4) o configuración propia. Un grid necesita cantidades enteras y columnas compatibles; no asumir que una variante fraccionaria resuelve ese diseño.
+- En carruseles con clones, consumir withTransition y alinear la duración CSS con transitionMs. Los clones decorativos deben quedar fuera del foco y del árbol accesible.
+- Separar pausa por hover/foco de la pausa temporal tras un gesto. Un temporizador no debe reactivar autoplay mientras alguien lee una tarjeta. Respetar movimiento reducido y ofrecer control de pausa.
+- CardOurTeam recibe name, profession, position, description, photo, subjects y onContact. El consumidor debe proporcionar una acción real para contacto. AsignaturesModal usa portal y anclaje al botón: comprobar teclado, foco, cierre y reposicionamiento; el cierre diferido actual requiere revisión.
+- Mantener Image también en fotos de equipo y eventos. Para transiciones usar Motion sobre el contenedor que contiene Image, sin volver a img directo.
+- Button incorpora base y actualiza ternary; Paragraph incorpora ternary. Son estilos, no acciones: toda llamada visible necesita destino o handler.
+- Los datos de equipo usan avatares y los eventos incluyen contenido institucional no confirmado en la documentación. Identificar las muestras y confirmar datos antes de publicación.
+
+## 14. Traducción de Idiomas — 5 de octubre de 2026
+
+LanguageTranslationPage conserva `/career/language-translation` y el orden de los bloques académicos de Administración y Computación. Sus organismos propios resuelven portada, aprendizaje, proceso narrativo y campo laboral; CareerBenefits y CareerDocuments se reutilizan sin cambiar sus contratos.
+
+El contenido vive en `data/languageTranslation.js`. Cada tema de aprendizaje aporta label, word, title, description, image, imageAlt y example ({ source, target, note }). LanguageTranslationLearning implementa pestañas con navegación por flechas, Inicio y Fin, tabIndex itinerante y paneles etiquetados. TranslationExample es una molécula de presentación: los ejemplos son estáticos, no un servicio de traducción automática. No representan una lista de idiomas impartidos.
+
+LanguageTranslationWorkplaces usa details/summary nativos para ámbitos orientativos. Todos los nuevos recursos visuales usan Image. Los radios pequeños están limitados al contenedor de esta página; no afectan a las otras carreras.
+
+Assets y prompts: `public/careers-editorial/README.md`. Mantener su identificación como imágenes ilustrativas y los documentos como pendientes hasta contar con los oficiales. No inferir duración, certificación o empleabilidad de estos ejemplos.
+
+## Organización de carreras — 5 de octubre de 2026
+
+La estructura vigente está en [ESTRUCTURA_CARRERAS.md](ESTRUCTURA_CARRERAS.md); sustituye las ubicaciones planas citadas en las notas anteriores.
+
+Se separan pages, organisms, molecules y data por carrera, con shared para piezas comunes. Administración usa los organismos genéricos desde shared; no se duplican en una carpeta exclusiva. Computación conserva sus piezas específicas y Traducción separa fondo, encabezado, comparación, introducción, paneles y etapas. Pestañas, encabezado, imagen con leyenda y desplegables quedan disponibles para todas las carreras.
+
+Se mantienen rutas, contenido, imágenes, estilos y comportamiento. Actualizados imports mediante los alias ya configurados. Los datos de Traducción están en data/careers/languageTranslation y se importan por sección. El catálogo compartido data/careers.js conserva su ubicación para evitar cambios en otras páginas.
+
+## Ajustes de carreras, navegación y recursos — 5 de octubre de 2026
+
+- Catálogo confirmado de cuatro carreras: Administración, Contabilidad, Computación y Traducción. Estas mejoras se aplican a las tres páginas desarrolladas.
+- AdministrationHero y AdministrationHighlights se ubican en organisms/careers/administration y molecules/careers/administration: solo Administración los consume. Shared conserva CareerLearning/CareerWorkplaces (Administración y Computación), CareerBenefits/CareerDocuments (las tres) y sus moléculas.
+- CareerBreadcrumbs({ title, className }) aporta Inicio / carrera en los tres héroes. Usa navegación semántica, enlace SPA y aria-current.
+- Traducción: CTA principal «Ver admisión» hacia /admissions; secundario «Explorar la carrera» hacia #aprendizaje. Admisión continúa como página provisional de título; no se implementa su contenido en esta tarea.
+- Paragraph admite as (p por defecto). Con as="span", size/variant/weight/align heredan por defecto y pueden definirse explícitamente. Los consumidores existentes sin as conservan sus valores anteriores. Los textos inline de carreras usan este átomo; los spans decorativos permanecen nativos. Link incorpora la variante plain para enlaces sin estilo de botón.
+- Migradas 21 imágenes de carreras a src/assets/images/careers/{administration,accounting,computerScience,languageTranslation}, mediante imports @assets. Actualizados todos sus consumidores, incluida la foto de FINANZAS de HomeAdmissions; esta sección usa Image para sus fotografías. Conservados los originales y la transparencia de Computación. Los PDF permanecen en public.
+- Traducción abre public/documents/languageTranslation/traduccion-referencia.pdf desde ambas tarjetas usando el visor global. Página 1: plan de referencia. Página 2: malla ficticia por etapas, sin créditos ni duración. Ambas incluyen «DOCUMENTO DE REFERENCIA - NO OFICIAL» y las tarjetas isReference=true. Sustituir por documentos oficiales cuando se disponga de ellos.
+- Verificados los tres breadcrumbs, regreso a inicio, ambos CTA, teclado de pestañas, carga de imágenes y anchos 320/390/768/1440. PDF renderizado e inspeccionado visualmente; apertura desde ambas tarjetas, dos páginas, navegación, zoom y descarga HTTP 200. Sin errores JavaScript. Build y lint del alcance pasan; la advertencia previa del bundle y los dos errores globales conocidos quedan fuera del alcance.
+
+## Imágenes de Traducción — 6 de octubre de 2026
+
+Cada espacio fotográfico de Traducción usa un archivo distinto, incluidas las pestañas de aprendizaje y las dos tarjetas de documentos. Mantener las nueve asignaciones centralizadas en `data/careers/languageTranslation/images.js`. Los WebP y sus prompts están en `src/assets/images/careers/languageTranslation/README.md`. El catálogo puede usar la portada fuera de esta página; dentro de Traducción no se repiten imágenes. Conservar Image para la carga condicional y el respaldo institucional.
+
+## Transición de aprendizaje de Traducción — 6 de octubre de 2026
+
+TranslationLearningPanel coordina fundido, escala sutil de imagen y desplazamiento de texto mediante Motion, sin dependencias nuevas. Los cuatro paneles comparten una celda de grid para conservar la altura; los inactivos usan aria-hidden e inert y no reciben foco ni clics. useMediaQuery respeta cambios dinámicos de prefers-reduced-motion: reduce, con transición inmediata. Se conserva la navegación por flechas, Inicio y Fin. Verificados clics rápidos, teclado, alturas estables y movimiento reducido en 1440/390/320 px; build y lint del alcance pasan.

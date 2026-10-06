@@ -13,10 +13,10 @@ import { AdmissionPage } from "./components/pages/admissionsPage"
 import { ContactPage } from "./components/pages/contactPage"
 
 /* Carreras */
-import { AdministrationPage } from "./components/pages/careers/businessAdministrationPage"
+import { AdministrationPage } from "@/components/pages/careers/administration/businessAdministrationPage"
 import { AccountingPage } from "./components/pages/careers/accountingPage"
-import { ComputerSciencePage } from "./components/pages/careers/computerSciencePage"
-import { LanguageTraslationPage } from "./components/pages/careers/languageTranslationPage"
+import { ComputerSciencePage } from "@/components/pages/careers/computerScience/computerSciencePage"
+import { LanguageTranslationPage } from "@/components/pages/careers/languageTranslation/languageTranslationPage"
 import { SocialFloatings } from "./components/molecules/shared/SocialsFloatings"
 
 function App() {
@@ -32,7 +32,7 @@ function App() {
     { path: '/career/administration', element: <AdministrationPage /> },
     { path: '/career/accounting', element: <AccountingPage /> },
     { path: '/career/computer-science', element: <ComputerSciencePage /> },
-    { path: '/career/language-translation', element: <LanguageTraslationPage /> },
+    { path: '/career/language-translation', element: <LanguageTranslationPage /> },
   ]
 
   return (
