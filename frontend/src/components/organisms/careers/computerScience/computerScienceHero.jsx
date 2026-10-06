@@ -14,7 +14,7 @@ function ComputerScienceHero({ title, content }) {
       aria-labelledby={titleId}
       className="w-full bg-neutral-white pb-12 font-poppins sm:pb-16"
     >
-      <div className="relative isolate bg-blue-dark md:min-h-108 lg:min-h-116">
+      <div className="relative isolate bg-blue-deep md:min-h-108 lg:min-h-116">
         <ComputerScienceHeroBackground
           image={content.background}
           target={ref}

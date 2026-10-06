@@ -29,7 +29,7 @@ function ComputerScienceHeroVisual({ image, cards }) {
           <div className="h-1.5 w-8 rounded-full bg-orange" />
         </div>
       </div>
-      <div className="absolute right-0 bottom-14 flex items-center gap-3 rounded-xl2 border border-neutral-white/20 bg-blue-dark/95 px-4 py-3 text-neutral-white shadow-soft sm:bottom-24">
+      <div className="absolute right-0 bottom-14 flex items-center gap-3 rounded-xl2 border border-neutral-white/20 bg-blue-deep/95 px-4 py-3 text-neutral-white shadow-soft sm:bottom-24">
         <FiCpu className="text-2xl text-orange" aria-hidden="true" />
         <Paragraph as="span" className="text-xs leading-relaxed">
           {cards.technology}

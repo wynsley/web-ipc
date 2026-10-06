@@ -23,7 +23,7 @@ function ComputerScienceHeroBackground({ image, target }) {
           alt=""
           fill
           loading="eager"
-          overlayClassName="bg-linear-to-r from-blue-dark/75 via-blue-dark/40 to-blue-dark/20"
+          overlayClassName="bg-linear-to-r from-blue-deep/75 via-blue-deep/40 to-blue-deep"
         />
       </Motion.div>
     </div>
