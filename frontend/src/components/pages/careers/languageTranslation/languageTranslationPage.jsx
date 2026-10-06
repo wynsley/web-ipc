@@ -5,7 +5,6 @@ import { LanguageTranslationLearning } from "@/components/organisms/careers/lang
 import { LanguageTranslationWorkplaces } from "@/components/organisms/careers/languageTranslation/languageTranslationWorkplaces";
 import { CareerBenefits } from "@/components/organisms/careers/shared/careerBenefits";
 import { CareerDocuments } from "@/components/organisms/careers/shared/careerDocuments";
-import { Paragraph } from "@/components/atoms/paragraph";
 import { careers } from "@/data/careers";
 import { translationImages } from "@/data/careers/languageTranslation/images";
 import { translationLearning } from "@/data/careers/languageTranslation/learning";
@@ -31,12 +30,12 @@ function LanguageTranslationPage() {
       <LanguageTranslationJourney steps={translationSteps} />
       <LanguageTranslationWorkplaces
         workplaces={translationWorkplaces}
-        image={translationImages.culture}
+        image={translationImages.workplaces}
       />
       <CareerBenefits
         benefits={translationBenefits}
-        image={translationImages.workshop}
-        imageAlt="Imagen ilustrativa de revisión lingüística de documentos"
+        image={translationImages.benefits}
+        imageAlt="Escena ilustrativa de dos personas descubriendo literatura y compartiendo perspectivas en una librería"
         eyebrow="03 / Lo que aporta esta disciplina"
         title="Una forma diferente de ver el mundo"
         description="Habilidades que conectan el lenguaje con las personas, dentro y fuera del entorno profesional."

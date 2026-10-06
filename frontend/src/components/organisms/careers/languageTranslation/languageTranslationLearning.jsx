@@ -26,15 +26,17 @@ function LanguageTranslationLearning({ topics }) {
           idPrefix="translation"
           label="Áreas de la traducción"
         />
-        {topics.map((topic, index) => (
-          <TranslationLearningPanel
-            key={topic.title}
-            topic={topic}
-            selected={selected === index}
-            panelId={"translation-panel-" + index}
-            tabId={"translation-tab-" + index}
-          />
-        ))}
+        <div className="grid overflow-clip bg-neutral-white">
+          {topics.map((topic, index) => (
+            <TranslationLearningPanel
+              key={topic.title}
+              topic={topic}
+              selected={selected === index}
+              panelId={"translation-panel-" + index}
+              tabId={"translation-tab-" + index}
+            />
+          ))}
+        </div>
         <Paragraph
           size="compact"
           className="mt-5 font-poppins"

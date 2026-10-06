@@ -7,7 +7,7 @@ const translationLearning = [
     title: "Cada palabra tiene una intención.",
     description:
       "Analiza el significado, el registro y la voz de un texto. Traducir implica investigar y elegir las palabras que mejor conservan su intención.",
-    image: translationImages.workshop,
+    image: translationImages.translation,
     imageAlt:
       "Escena ilustrativa de revisión de documentos y traducción escrita",
     example: {
@@ -22,9 +22,9 @@ const translationLearning = [
     title: "Escuchar también es interpretar.",
     description:
       "La comunicación oral exige atención, comprensión y claridad. Explora cómo la escucha activa y la toma de notas ayudan a transmitir una idea.",
-    image: translationImages.hero,
+    image: translationImages.interpreting,
     imageAlt:
-      "Escena ilustrativa de una intérprete con auriculares en una conferencia",
+      "Escena ilustrativa de un intérprete practicando escucha y toma de notas frente a un micrófono",
     example: {
       source: "The floor is yours.",
       target: "Tiene la palabra.",
@@ -52,9 +52,9 @@ const translationLearning = [
     title: "Haz que un contenido se sienta cercano.",
     description:
       "Adaptar una experiencia digital requiere atender al lenguaje, las convenciones y el contexto de sus usuarios, además de revisar cada detalle.",
-    image: translationImages.workshop,
+    image: translationImages.localization,
     imageAlt:
-      "Escena ilustrativa de revisión lingüística junto a una computadora",
+      "Escena ilustrativa de una profesional revisando la localización de una interfaz en un monitor y un teléfono",
     example: {
       source: "Save your changes",
       target: "Guardar cambios",

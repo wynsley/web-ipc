@@ -350,3 +350,15 @@ Se mantienen rutas, contenido, imágenes, estilos y comportamiento. Actualizados
 - Migradas 21 imágenes de carreras a src/assets/images/careers/{administration,accounting,computerScience,languageTranslation}, mediante imports @assets. Actualizados todos sus consumidores, incluida la foto de FINANZAS de HomeAdmissions; esta sección usa Image para sus fotografías. Conservados los originales y la transparencia de Computación. Los PDF permanecen en public.
 - Traducción abre public/documents/languageTranslation/traduccion-referencia.pdf desde ambas tarjetas usando el visor global. Página 1: plan de referencia. Página 2: malla ficticia por etapas, sin créditos ni duración. Ambas incluyen «DOCUMENTO DE REFERENCIA - NO OFICIAL» y las tarjetas isReference=true. Sustituir por documentos oficiales cuando se disponga de ellos.
 - Verificados los tres breadcrumbs, regreso a inicio, ambos CTA, teclado de pestañas, carga de imágenes y anchos 320/390/768/1440. PDF renderizado e inspeccionado visualmente; apertura desde ambas tarjetas, dos páginas, navegación, zoom y descarga HTTP 200. Sin errores JavaScript. Build y lint del alcance pasan; la advertencia previa del bundle y los dos errores globales conocidos quedan fuera del alcance.
+
+## Imágenes exclusivas de Traducción — 6 de octubre de 2026
+
+La página usa nueve imágenes distintas: portada, cuatro áreas de aprendizaje, campo laboral, beneficios y dos tarjetas de documentos. Se conservan tres recursos existentes y se incorporan seis imágenes generadas con ImageGen y optimizadas a WebP. Ningún archivo se repite dentro de esta página.
+
+Los recursos están en `frontend/src/assets/images/careers/languageTranslation/`; su README documenta asignaciones, procedencia ilustrativa y prompts. `data/careers/languageTranslation/images.js` centraliza los imports. Se mantienen el átomo Image, sus fondos institucionales y los documentos de referencia. No se modifican las otras carreras.
+
+Verificación: nueve fuentes únicas y cargadas en Edge a 1440, 390 y 320 px, incluidas las cuatro pestañas; sin desborde horizontal ni errores JavaScript. Inspección visual de escritorio y móvil. Build y lint del alcance correctos; persiste el aviso previo de tamaño del bundle.
+
+## Transición de aprendizaje de Traducción — 6 de octubre de 2026
+
+TranslationLearningPanel coordina fundido, escala sutil de imagen y desplazamiento de texto mediante Motion, sin dependencias nuevas. Los cuatro paneles comparten una celda de grid para conservar la altura; los inactivos usan aria-hidden e inert y no reciben foco ni clics. useMediaQuery respeta cambios dinámicos de prefers-reduced-motion: reduce, con transición inmediata. Se conserva la navegación por flechas, Inicio y Fin. Verificados clics rápidos, teclado, alturas estables y movimiento reducido en 1440/390/320 px; build y lint del alcance pasan.

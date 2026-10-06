@@ -19,7 +19,7 @@ function LanguageTranslationWorkplaces({ workplaces, image }) {
         <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:gap-14">
           <CareerImageCaption
             image={image}
-            imageAlt="Escena ilustrativa de profesionales dialogando y tomando notas en una biblioteca"
+            imageAlt="Escena ilustrativa de una intérprete facilitando una conversación entre profesionales"
             caption="Tu talento encuentra nuevas voces."
           />
           <div>

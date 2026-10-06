@@ -8,7 +8,7 @@ const translationDocuments = [
     title: "Plan de estudios",
     description:
       "Explora una propuesta ilustrativa de capacidades y experiencias de aprendizaje en la página 1. No es un plan oficial.",
-    image: translationImages.workshop,
+    image: translationImages.studyPlan,
     tone: "light",
     pdfUrl: referencePdf,
     isReference: true,
@@ -18,7 +18,7 @@ const translationDocuments = [
     title: "Malla curricular",
     description:
       "Consulta una organización ficticia por etapas en la página 2. No representa ciclos, créditos ni asignaturas aprobadas.",
-    image: translationImages.hero,
+    image: translationImages.curriculum,
     tone: "dark",
     pdfUrl: referencePdf,
     isReference: true,

@@ -7,9 +7,9 @@ No se reemplazaron los recursos previos de Administración ni Computación.
 
 | Archivo | Uso |
 |---|---|
-| languageTranslation/translation-interpreter.webp | Portada de Traducción, aprendizaje, documentos y catálogo |
-| languageTranslation/translation-workshop.webp | Aprendizaje, proceso de traducción, beneficios y documentos |
-| languageTranslation/translation-culture.webp | Aprendizaje intercultural y campo laboral de Traducción |
+| languageTranslation/translation-interpreter.webp | Portada de Traducción y catálogo de inicio |
+| languageTranslation/translation-workshop.webp | Aprendizaje: traducción escrita |
+| languageTranslation/translation-culture.webp | Aprendizaje: cultura |
 | administration/administration-team.webp | Recurso nuevo disponible para Administración |
 | computerScience/computing-studio.webp | Recurso nuevo disponible para Computación |
 
@@ -31,3 +31,5 @@ Use case: photorealistic-natural. Asset: landscape 3:2 editorial photograph for 
 Use case: photorealistic-natural. Wide 3:2 editorial photograph for a translation and interpreting degree webpage. Three young adult Latin American language professionals around a table in a bright contemporary library, a woman attentively listening to another person speaking while taking notes, open books, laptop and printed papers, subtle navy blue and warm orange colors. Human connection, thoughtful candid expressions, beautifully composed natural daylight, premium higher-education campaign, realistic anatomy. No visible readable text, no logos, no flags, no watermarks. Fictional people and place. This image represents intercultural communication and collaborative translation.
 
 Migración del 5 de octubre de 2026: imágenes en src/assets/images/careers por carrera, importadas mediante @assets. Los PDF se conservan en public.
+
+La asignación vigente de nueve imágenes exclusivas y los seis nuevos prompts están en [languageTranslation/README.md](languageTranslation/README.md).
