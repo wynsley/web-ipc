@@ -12,6 +12,7 @@ function Link({
 }) {
 
   const variants = {
+    plain: "transition-colors",
     download: "bg-blue-dark text-white transition-colors hover:bg-blue focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-blue-dark",
     media: `relative block rounded-md ring-1 ring-inset ring-sky/20
       transition-colors duration-150 hover:ring-sky/50

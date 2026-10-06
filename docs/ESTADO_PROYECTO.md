@@ -1,5 +1,26 @@
 # Estado y evolución de IPC Platform
 
+## Estado vigente — 5 de octubre de 2026
+
+Revisión de main en `dbf2f02`, con el árbol limpio al iniciar. Consulta [REVISION_2026-10-05.md](REVISION_2026-10-05.md) para hallazgos, evidencias y verificaciones actuales. Las secciones fechadas del 29 de septiembre y las notas posteriores se conservan como historial; sus contratos y estados pueden haber sido sustituidos por actualizaciones más recientes.
+
+| Área | Situación actual |
+|---|---|
+| Computación | Página desarrollada, animaciones reversibles, seis temas y PDF de referencia |
+| Nosotros | Hero, descripción, misión/visión, valores, equipo y relato de inicio |
+| Eventos | Hero, selector de tres eventos, contador y seis destacados; acciones pendientes de conexión |
+| Compartidos | MyTemplate acepta className y alias classmame con overflow-x-clip; curva en curvePath.jsx; carrusel con withTransition |
+| PDF | AcademicDocumentCard obtiene document.pdfUrl y muestra isReference o estado pendiente |
+| Traducción de Idiomas | Página desarrollada; áreas orientativas, imágenes generadas y documentos oficiales pendientes |
+| Rutas pendientes | Admisión, Contacto y Contabilidad siguen como páginas de título |
+| Backend | Sigue sin implementación en este checkout |
+| Validación actual | Build pasa, 692 módulos; lint conserva 2 errores; navegador no verificado en esta sesión |
+
+Pendientes principales: conectar acciones de Eventos/Equipo; usar Image en sus nuevas fotos; corregir event.title inexistente; respetar pausa/foco y excluir clones del equipo de la navegación por teclado. JS principal: 1.416,05 kB (434,95 kB gzip), con advertencia de tamaño.
+
+---
+
+
 Fecha de revisión: 29 de septiembre de 2026.
 Base: rama `main`, commit `ce116cc9d6b07fd6f2ef2f2e3c54f343d736ac11`, más los cambios locales descritos abajo.
 
@@ -294,3 +315,38 @@ Verificado en Edge: carrusel, reversibilidad, etapas 1→2→3→2→1, ausencia
 ### Integración de la PR #6 — 5 de octubre de 2026
 
 Se integra upstream/main conservando sus cambios de átomos y nuevas secciones. MyTemplate combina el overflow-x-clip de la rama base con twMerge, className y el alias classmame. La curva adopta el nombre corregido curvePath.jsx y mantiene los diseños 1–6, accentColor y accesibilidad; se actualiza el import del hero de Computación. No se selecciona una versión completa por encima de la otra ni se reescribe el historial.
+
+## Traducción de Idiomas — implementación del 5 de octubre de 2026
+
+- Ruta existente: `/career/language-translation`. LanguageTranslationPage sustituye el título provisional y corrige el import en App.
+- Mantiene la secuencia de Administración/Computación: presentación, aprendizaje, campo laboral, beneficios y documentos.
+- Diseño propio: portada fotográfica con banda diagonal inspirada en Eventos; ejemplo bilingüe superpuesto; aprendizaje mediante cuatro pestañas (traducción, interpretación, cultura y localización); recorrido narrativo con números y palabra de fondo; campo laboral con fotografía y desplegables.
+- Organismos específicos: LanguageTranslationHero, LanguageTranslationLearning, LanguageTranslationJourney y LanguageTranslationWorkplaces. Molécula TranslationExample; contenido separado en `data/languageTranslation.js`.
+- Reutiliza MyTemplate, Title, Paragraph, Button, Image, ScrollReveal, CareerBenefits y CareerDocuments. No cambia contratos de organismos compartidos ni el diseño de las otras carreras.
+- Las pestañas permiten clic/tacto, flechas izquierda/derecha, Inicio y Fin; paneles relacionados mediante aria-controls y aria-labelledby. Campo laboral usa details/summary nativos.
+- Radios pequeños limitados a esta página. Todas sus imágenes usan Image con respaldo institucional.
+- Cinco recursos generados con ImageGen y optimizados a WebP en `public/careers-editorial/`; README con prompts y procedencia. Tres para Traducción; los de Administración y Computación quedan disponibles sin reemplazar los anteriores.
+- Catálogo: corregida la URL relativa de la imagen de Traducción.
+- Áreas y ejemplos orientativos, fotografías sintéticas identificadas. Documentos oficiales pendientes sin URL ficticia. Idiomas impartidos, duración y certificación requieren confirmación institucional.
+- Build correcto (698 módulos), con advertencia de tamaño preexistente. Lint de todos los archivos modificados pasa. Lint global conserva los dos errores conocidos en toast.jsx y careersCarousel.jsx.
+- Edge headless: 1440, 768, 390 y 320 px sin desborde ni imágenes rotas; sin errores JavaScript. Verificados enlace al aprendizaje, pestañas por teclado/clic, ejemplos, desplegables y respaldo con carga abortada (fondo rgb(26,57,131)).
+- Conservados los cambios locales previos de ESTADO_PROYECTO.md, GUIA_NUEVAS_PAGINAS.md y REVISION_2026-10-05.md.
+
+## Organización de carreras — 5 de octubre de 2026
+
+La estructura vigente está en [ESTRUCTURA_CARRERAS.md](ESTRUCTURA_CARRERAS.md); sustituye las ubicaciones planas citadas en las notas anteriores.
+
+Se separan pages, organisms, molecules y data por carrera, con shared para piezas comunes. Administración usa los organismos genéricos desde shared; no se duplican en una carpeta exclusiva. Computación conserva sus piezas específicas y Traducción separa fondo, encabezado, comparación, introducción, paneles y etapas. Pestañas, encabezado, imagen con leyenda y desplegables quedan disponibles para todas las carreras.
+
+Se mantienen rutas, contenido, imágenes, estilos y comportamiento. Actualizados imports mediante los alias ya configurados. Los datos de Traducción están en data/careers/languageTranslation y se importan por sección. El catálogo compartido data/careers.js conserva su ubicación para evitar cambios en otras páginas.
+
+## Ajustes de carreras, navegación y recursos — 5 de octubre de 2026
+
+- Catálogo confirmado de cuatro carreras: Administración, Contabilidad, Computación y Traducción. Estas mejoras se aplican a las tres páginas desarrolladas.
+- AdministrationHero y AdministrationHighlights se ubican en organisms/careers/administration y molecules/careers/administration: solo Administración los consume. Shared conserva CareerLearning/CareerWorkplaces (Administración y Computación), CareerBenefits/CareerDocuments (las tres) y sus moléculas.
+- CareerBreadcrumbs({ title, className }) aporta Inicio / carrera en los tres héroes. Usa navegación semántica, enlace SPA y aria-current.
+- Traducción: CTA principal «Ver admisión» hacia /admissions; secundario «Explorar la carrera» hacia #aprendizaje. Admisión continúa como página provisional de título; no se implementa su contenido en esta tarea.
+- Paragraph admite as (p por defecto). Con as="span", size/variant/weight/align heredan por defecto y pueden definirse explícitamente. Los consumidores existentes sin as conservan sus valores anteriores. Los textos inline de carreras usan este átomo; los spans decorativos permanecen nativos. Link incorpora la variante plain para enlaces sin estilo de botón.
+- Migradas 21 imágenes de carreras a src/assets/images/careers/{administration,accounting,computerScience,languageTranslation}, mediante imports @assets. Actualizados todos sus consumidores, incluida la foto de FINANZAS de HomeAdmissions; esta sección usa Image para sus fotografías. Conservados los originales y la transparencia de Computación. Los PDF permanecen en public.
+- Traducción abre public/documents/languageTranslation/traduccion-referencia.pdf desde ambas tarjetas usando el visor global. Página 1: plan de referencia. Página 2: malla ficticia por etapas, sin créditos ni duración. Ambas incluyen «DOCUMENTO DE REFERENCIA - NO OFICIAL» y las tarjetas isReference=true. Sustituir por documentos oficiales cuando se disponga de ellos.
+- Verificados los tres breadcrumbs, regreso a inicio, ambos CTA, teclado de pestañas, carga de imágenes y anchos 320/390/768/1440. PDF renderizado e inspeccionado visualmente; apertura desde ambas tarjetas, dos páginas, navegación, zoom y descarga HTTP 200. Sin errores JavaScript. Build y lint del alcance pasan; la advertencia previa del bundle y los dos errores globales conocidos quedan fuera del alcance.

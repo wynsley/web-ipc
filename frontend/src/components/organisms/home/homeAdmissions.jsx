@@ -1,3 +1,5 @@
+import { Image } from "@/components/atoms/image";
+import finanzasImage from "@assets/images/careers/administration/FINANZAS.webp";
 import { Title } from "../../atoms/titles"
 import { Paragraph } from "../../atoms/paragraph"
 import { Button } from "../../atoms/button"
@@ -31,10 +33,10 @@ function HomeAdmissions({toggleModal}) {
           <div className="grid grid-cols-2 gap-3 sm:gap-4">
 
             <div className="col-span-2 rounded-xl overflow-hidden aspect-17/10 group">
-              <img
+              <Image
                 src="/INFRAESTRUCTURA.webp"
                 alt="Asesoría personalizada"
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:rotate-1 group-hover:scale-[1.03]"
+                className="w-full h-full" imageClassName="object-cover transition-transform duration-500 group-hover:rotate-1 group-hover:scale-[1.03]"
               />
             </div>
 
@@ -64,10 +66,10 @@ function HomeAdmissions({toggleModal}) {
 
               {/* Foto — ancha, ocupa el resto */}
               <div className="flex-1 h-40 sm:h-48 rounded-xl overflow-hidden aspect-square group">
-                <img
-                  src="/business_admin/FINANZAS.webp"
+                <Image
+                  src={finanzasImage}
                   alt="Estudiantes en clase"
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:rotate-1 group-hover:scale-[1.03]"
+                  className="w-full h-full" imageClassName="object-cover transition-transform duration-500 group-hover:rotate-1 group-hover:scale-[1.03]"
                 />
               </div>
             </div>
