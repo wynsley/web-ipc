@@ -1,5 +1,5 @@
-import {staggerContainer } from "@/components/animations/animation"
-import { motion as Motion } from "motion/react"
+import { staggerContainer } from "@/components/animations/animation";
+import { motion as Motion } from "motion/react";
 import {
   formatEventDay,
   formatEventMonth,
@@ -10,9 +10,8 @@ import { Title } from "@/components/atoms/titles";
 import { Paragraph } from "@/components/atoms/paragraph";
 import { ScrollReveal } from "@/components/layouts/scrollReveal";
 
-function DescrioptionHero({event}) {
-
-  const title = "CONOCE NUESTROS EVENTOS"
+function DescrioptionHero({ event, onOpenCalendar }) {
+  const title = "CONOCE NUESTROS EVENTOS";
 
   return (
     <div>
@@ -20,15 +19,10 @@ function DescrioptionHero({event}) {
         variants={staggerContainer}
         initial="hidden"
         animate="visible"
-        viewport={{once: true, amount: 0.2}}
+        viewport={{ once: true, amount: 0.2 }}
         className="relative py-10 pl-6 pr-[14%] sm:py-12 sm:pl-12 lg:pl-20 xl:pl-[max(5rem,calc((100vw-80rem)/2+2rem))]"
       >
-
-        <Title
-          text={title}
-          variant="primary"
-          weight="bold"
-        />
+        <Title text={title} variant="primary" weight="bold" />
 
         {/* Línea decorativa */}
         <span
@@ -40,7 +34,8 @@ function DescrioptionHero({event}) {
           delay={0.2}
           duration={0.8}
           y={30}
-          className="mt-8 flex w-full max-w-2xl flex-col gap-3  bg-white p-2 pl-5 shadow-xl sm:flex-row sm:items-center sm:justify-between">
+          className="mt-8 flex w-full max-w-2xl flex-col gap-3  bg-white p-2 pl-5 shadow-xl sm:flex-row sm:items-center sm:justify-between"
+        >
           {/* Izquierda: nombre del evento */}
           <div className="flex min-w-0 items-center gap-3 pt-2 sm:pt-0">
             <FaMapMarkerAlt
@@ -49,7 +44,7 @@ function DescrioptionHero({event}) {
             />
             <div className="min-w-0 flex flex-col items-start">
               <Paragraph
-                text={event.highlight}
+                text={event.title}
                 variant="danger"
                 weight="bold"
                 size="large"
@@ -61,11 +56,13 @@ function DescrioptionHero({event}) {
             </div>
           </div>
 
-          {/* Derecha: fecha */}
+          {/* Derecha: fecha. Al hacer clic abre el calendario en este evento */}
           <button
             type="button"
-            aria-label={`Inscribirse a ${event.title} ${event.highlight}`}
-            className="flex shrink-0 items-center justify-center gap-2 bg-orange px-5 py-3 font-hani text-xs font-bold text-white transition hover:brightness-110 sm:text-sm"
+            onClick={() => onOpenCalendar(event.id)}
+            aria-haspopup="dialog"
+            aria-label={`Ver calendario de eventos. Próximo evento: ${event.title}`}
+            className="flex shrink-0 cursor-pointer items-center justify-center gap-2 bg-orange px-5 py-3 font-hani text-xs font-bold text-white transition hover:brightness-110 sm:text-sm"
           >
             <FaCalendarAlt aria-hidden="true" />
             <span className="capitalize">
@@ -76,8 +73,7 @@ function DescrioptionHero({event}) {
         </ScrollReveal>
       </Motion.div>
     </div>
-  )
-
+  );
 }
 
-export { DescrioptionHero }
+export { DescrioptionHero };
