@@ -11,10 +11,26 @@ function LearningCard({
   imageAlt = "",
   Icon,
   digital = false,
+  presentation = "interactive",
   duplicate = false,
 }) {
   const [expanded, setExpanded] = useState(false);
   const descriptionId = useId();
+
+  if (presentation === "static") {
+    return (
+      <article tabIndex={duplicate ? -1 : 0} className="learning-card learning-card-static focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-orange h-full overflow-hidden rounded-xl2 border border-blue-dark/10 bg-neutral-white">
+        <Image src={image} alt={imageAlt} className="aspect-video" />
+        <div className="p-6">
+          <div className="flex items-center gap-3">
+            {Icon && <Icon aria-hidden="true" className="size-5 shrink-0 text-blue-dark" />}
+            <Title level="h3" size="compact" variant="institutional" weight="bold" className="font-hani" text={title} />
+          </div>
+          <Paragraph size="compact" className="mt-4 leading-relaxed" text={description} />
+        </div>
+      </article>
+    );
+  }
 
   return (
     <article

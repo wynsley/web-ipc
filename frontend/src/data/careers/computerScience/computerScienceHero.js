@@ -7,8 +7,6 @@ const computerScienceHero = {
     text: "Transforma tus ideas en",
     emphasis: "soluciones digitales.",
   },
-  description:
-    "El siguiente gran cambio puede comenzar contigo. Explora el mundo de la computación, conecta tu creatividad con la tecnología y da el primer paso hacia tu futuro en",
   background: computingLabBackgroundImage,
   image: {
     src: computingStudentImage,
@@ -20,7 +18,7 @@ const computerScienceHero = {
     emphasis: "conecta ideas",
   },
   action: {
-    label: "Conoce admisión",
+    label: "Cómo postular",
     to: "/admissions",
   },
 };

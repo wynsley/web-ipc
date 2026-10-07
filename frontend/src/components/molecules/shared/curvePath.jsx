@@ -11,12 +11,19 @@ const curveDesigns = {
     path: "M0 56C300 155 780 -58 1200 70V100H0Z",
     accentPath: "M0 42C300 145 780 -75 1200 55V100H0Z",
   },
+  7: {
+    viewBox: "0 0 1200 120",
+    secondaryAccentPath: "M0 38C360 118 800 -32 1200 38V120H0Z",
+    accentPath: "M0 48C360 128 800 -22 1200 48V120H0Z",
+    path: "M0 58C360 138 800 -12 1200 58V120H0Z",
+  },
 };
 
 function BannerBgCurve({
   design = 1,
   color = "#ffffff",
   accentColor = "",
+  secondaryAccentColor = "",
   height = "h-24 sm:h-28 md:h-32 lg:h-40 xl:h-48",
   position = "bottom",
   className = "",
@@ -40,6 +47,9 @@ function BannerBgCurve({
         focusable="false"
         fill={color}
       >
+        {secondaryAccentColor && curve.secondaryAccentPath && (
+          <path d={curve.secondaryAccentPath} fill={secondaryAccentColor} />
+        )}
         {accentColor && curve.accentPath && (
           <path d={curve.accentPath} fill={accentColor} />
         )}

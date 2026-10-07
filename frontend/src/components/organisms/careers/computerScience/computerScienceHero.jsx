@@ -1,46 +1,35 @@
-import { useRef } from "react";
-import { ComputerScienceHeroBackground } from "@/components/molecules/careers/computerScience/computerScienceHeroBackground";
 import { BannerBgCurve } from "@/components/molecules/shared/curvePath";
+import { ComputerScienceHeroBackground } from "@/components/molecules/careers/computerScience/computerScienceHeroBackground";
 import { ComputerScienceHeroHeading } from "@/components/molecules/careers/computerScience/computerScienceHeroHeading";
 import { ComputerScienceHeroVisual } from "@/components/molecules/careers/computerScience/computerScienceHeroVisual";
-import { ComputerScienceHeroIntro } from "@/components/molecules/careers/computerScience/computerScienceHeroIntro";
 
 function ComputerScienceHero({ title, content }) {
-  const titleId = "computer-science-title";
-  const ref = useRef(null);
   return (
     <section
-      ref={ref}
-      aria-labelledby={titleId}
-      className="w-full bg-neutral-white pb-12 font-poppins sm:pb-16"
+      aria-labelledby="computer-science-title"
+      className="relative isolate overflow-hidden bg-blue-deep font-poppins"
     >
-      <div className="relative isolate bg-blue-deep md:min-h-108 lg:min-h-116">
-        <ComputerScienceHeroBackground
-          image={content.background}
-          target={ref}
-        />
+      <ComputerScienceHeroBackground image={content.background} />
+      <div className="relative mx-auto grid max-w-7xl items-center gap-8 px-6 pt-6 pb-18 sm:px-10 sm:pt-8 sm:pb-24 lg:grid-cols-2 lg:gap-12">
         <ComputerScienceHeroHeading
-          titleId={titleId}
+          titleId="computer-science-title"
           title={title}
           eyebrow={content.eyebrow}
           tagline={content.tagline}
+          action={content.action}
         />
         <ComputerScienceHeroVisual
           image={content.image}
           cards={content.cards}
         />
-        <BannerBgCurve
-          design={6}
-          color="var(--color-neutral-white)"
-          accentColor="var(--color-orange)"
-          height="h-16 sm:h-22"
-          className="-bottom-px"
-        />
       </div>
-      <ComputerScienceHeroIntro
-        title={title}
-        description={content.description}
-        action={content.action}
+      <BannerBgCurve
+        design={7}
+        color="var(--color-blue-dark)"
+        accentColor="var(--color-orange)"
+        secondaryAccentColor="var(--color-neutral-white)"
+        height="h-20 sm:h-28"
+        className="-bottom-px z-10"
       />
     </section>
   );

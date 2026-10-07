@@ -1,6 +1,3 @@
-import { useRef } from "react";
-import { motion as Motion } from "motion/react";
-import { useSectionExit } from "@/components/animations/useSectionExit";
 import { ScrollReveal } from "@/components/layouts/scrollReveal";
 import { Title } from "@/components/atoms/titles";
 import { Paragraph } from "@/components/atoms/paragraph";
@@ -11,24 +8,16 @@ function CareerLearning({
   topics,
   label = "Áreas de aprendizaje de la carrera",
   digital = false,
-  cinematic = false,
+  layout = "carousel",
+  presentation = "interactive",
+  emphasizeCenter = true,
   description,
   eyebrow,
 }) {
-  const ref = useRef(null);
-  const {
-    active: transition,
-    style,
-    focusHandlers,
-  } = useSectionExit(ref, cinematic);
-  const Heading = cinematic ? "div" : ScrollReveal;
-  const CarouselFrame = cinematic ? "div" : ScrollReveal;
-
   return (
     <section
-      ref={ref}
       id="aprendizaje"
-      data-learning-transition={transition}
+      style={{ scrollMarginTop: "7rem" }}
       aria-labelledby="career-learning-title"
       className={
         digital
@@ -36,10 +25,7 @@ function CareerLearning({
           : "bg-neutral-white pb-15 sm:pb-14"
       }
     >
-      <Motion.div
-        data-learning-surface
-        {...focusHandlers}
-        style={style}
+      <div
         className={
           digital ? "relative origin-bottom bg-blue-dark py-16 sm:py-24" : ""
         }
@@ -50,8 +36,8 @@ function CareerLearning({
             className="pointer-events-none absolute inset-x-0 top-1/3 h-64 rounded-full bg-orange/20 blur-3xl"
           />
         )}
-        <Heading className="relative mx-auto max-w-3xl px-6">
-          {digital && eyebrow && (
+        <ScrollReveal y={16} duration={0.4} className="relative mx-auto max-w-3xl px-6">
+          {eyebrow && (
             <Paragraph
               as="span"
               className="mb-3 block text-center font-poppins text-xs tracking-[0.2em] text-orange uppercase"
@@ -77,24 +63,35 @@ function CareerLearning({
               text={description}
             />
           )}
-        </Heading>
-        <CarouselFrame className="relative mx-auto mt-2 w-full max-w-7xl sm:mt-4">
-          <ContinuousCarousel
-            items={topics}
-            emphasizeCenter
-            draggable
-            label={label}
-            className={digital ? "[&::before]:hidden [&::after]:hidden" : ""}
-            renderItem={(topic, duplicate) => (
-              <LearningCard
-                {...topic}
-                duplicate={duplicate}
-                digital={digital}
-              />
-            )}
-          />
-        </CarouselFrame>
-      </Motion.div>
+        </ScrollReveal>
+        {layout === "grid" ? (
+          <div className="relative mx-auto mt-10 grid max-w-6xl gap-6 px-6 sm:grid-cols-2 sm:px-10 lg:grid-cols-3">
+            {topics.map((topic, index) => (
+              <ScrollReveal key={topic.title} y={16} duration={0.4} delay={(index % 3) * 0.05}>
+                <LearningCard {...topic} presentation="static" />
+              </ScrollReveal>
+            ))}
+          </div>
+        ) : (
+          <ScrollReveal y={28} duration={0.55} className="relative mx-auto mt-6 w-full max-w-7xl sm:mt-8">
+            <ContinuousCarousel
+              items={topics}
+              emphasizeCenter={emphasizeCenter}
+              draggable
+              label={label}
+              className={digital ? "[&::before]:hidden [&::after]:hidden" : ""}
+              renderItem={(topic, duplicate) => (
+                <LearningCard
+                  {...topic}
+                  duplicate={duplicate}
+                  digital={digital}
+                  presentation={presentation}
+                />
+              )}
+            />
+          </ScrollReveal>
+        )}
+      </div>
     </section>
   );
 }
