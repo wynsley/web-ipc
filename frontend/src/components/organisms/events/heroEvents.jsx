@@ -2,7 +2,7 @@ import { DescrioptionHero } from "@/components/molecules/events/descriptionHero"
 import heroImage from "@assets/images/events/hero-events.webp";
 import { motion as Motion } from "motion/react";
 
-function HeroEvents({event}) {
+function HeroEvents({ event, onOpenCalendar }) {
   return (
     <section className="relative z-0 select-none">
       <div
@@ -36,9 +36,7 @@ function HeroEvents({event}) {
             "
           />
 
-          <DescrioptionHero
-            event={event}
-          />
+          <DescrioptionHero event={event} onOpenCalendar={onOpenCalendar} />
         </div>
       </div>
     </section>
