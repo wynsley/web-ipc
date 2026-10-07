@@ -161,21 +161,21 @@ const computerScienceJourney = [
     image: learningProgrammingImage,
     imageAlt: "Ilustración de código y algoritmos en un portátil",
     description:
-      "Observa una necesidad, escucha a las personas y define qué debería mejorar. Una buena solución comienza con una pregunta clara.",
+      "En una biblioteca, averigua cómo se registran los préstamos y qué dificulta encontrar un libro disponible. Define qué necesita resolver el sistema.",
   },
   {
     title: "Construye y conecta",
     image: learningWebImage,
     imageAlt: "Ilustración de interfaces digitales conectadas",
     description:
-      "Combina interfaces, lógica y datos. Divide la idea en pequeñas partes y convierte cada avance en algo que puedas probar.",
+      "Diseña una pantalla para consultar libros y registrar préstamos. Conecta la interfaz con los datos de ejemplares y usuarios.",
   },
   {
     title: "Prueba y mejora",
     image: learningSecurityImage,
     imageAlt: "Ilustración de protección de un sistema digital",
     description:
-      "Comprueba lo que funciona, encuentra errores y documenta lo aprendido. Mejorar también es parte de crear.",
+      "Prueba préstamos, devoluciones y datos incorrectos. Recoge comentarios, corrige errores y documenta cómo utilizar la solución.",
   },
 ];
 
@@ -189,7 +189,7 @@ const computerScienceContent = {
   journey: {
     title: "De una idea a una solución.",
     eyebrow: "Piensa · Construye · Mejora",
-    wordmark: "IMAGINA. CREA.",
+    description: "Un ejemplo ilustrativo: crear un sistema de préstamos para una biblioteca. Así se conecta cada etapa del trabajo.",
   },
   benefits: {
     imageAlt: "Ilustración de un entorno de trabajo tecnológico",

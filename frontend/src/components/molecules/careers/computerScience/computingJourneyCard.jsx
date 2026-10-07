@@ -5,8 +5,14 @@ import { ScrollReveal } from "@/components/layouts/scrollReveal";
 
 function ComputingJourneyCard({ step, index }) {
   return (
-    <ScrollReveal className="overflow-hidden rounded-xl2 border border-neutral-white/15 bg-blue-dark/70">
-      <Image src={step.image} alt={step.imageAlt} className="aspect-square" />
+    <ScrollReveal
+      as="article"
+      y={28}
+      duration={0.55}
+      delay={index * 0.1}
+      className="overflow-hidden border border-neutral-white/15 bg-blue-dark/70"
+    >
+      <Image src={step.image} alt={step.imageAlt} className="aspect-video" />
       <div className="p-6">
         <Paragraph
           as="span"

@@ -17,7 +17,7 @@ function WorkplaceTile({
         as="article"
         delay={delay}
         y={32}
-        scale={0.96}
+        duration={0.55}
         className="group relative min-w-0 overflow-hidden rounded-xl2 border border-blue-dark/15 bg-neutral-white p-6 transition-colors hover:border-orange sm:p-8"
       >
         {Icon && (

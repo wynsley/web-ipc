@@ -362,3 +362,37 @@ Verificación: nueve fuentes únicas y cargadas en Edge a 1440, 390 y 320 px, in
 ## Transición de aprendizaje de Traducción — 6 de octubre de 2026
 
 TranslationLearningPanel coordina fundido, escala sutil de imagen y desplazamiento de texto mediante Motion, sin dependencias nuevas. Los cuatro paneles comparten una celda de grid para conservar la altura; los inactivos usan aria-hidden e inert y no reciben foco ni clics. useMediaQuery respeta cambios dinámicos de prefers-reduced-motion: reduce, con transición inmediata. Se conserva la navegación por flechas, Inicio y Fin. Verificados clics rápidos, teclado, alturas estables y movimiento reducido en 1440/390/320 px; build y lint del alcance pasan.
+
+
+## Computación: lectura estable y simplificación — 7 de octubre de 2026
+
+Implementado: portada en grid con descripción y acciones junto al título; fondo estático; entradas breves de portada, aprendizaje y pasos. Aprendizaje muestra seis tarjetas con descripciones visibles. El proceso usa tres tarjetas en flujo normal y un ejemplo ilustrativo de biblioteca, sin atribuirlo a un proyecto institucional real. Se mantienen Image, respaldo institucional, documentos de referencia y ruta de admisión existente.
+
+CareerLearning incorpora layout="grid"; conserva layout="carousel" por defecto. LearningCard incorpora presentation="static"; conserva la interacción anterior por defecto. ContinuousCarousel y los componentes de carreras compartidos siguen disponibles. ScrollMotion conserva las entradas de una sola ejecución y movimiento reducido, eliminando el modo linked sin otros consumidores.
+
+Eliminados ScrollPanel, ScrollAnimationContext, useSectionExit, useJourneyMotion, useJourneyStepMotion, usePinnedScene, useKeyboardFocusWithin, ComputingJourneyBackground, ComputingJourneyStep y ComputerScienceHeroIntro. La descripción y las acciones de este último se integran en la cabecera. Retirados el parámetro cinematic, el título decorativo duplicado y wordmark del proceso.
+
+Verificación: build correcto (advertencia de tamaño del bundle); lint global solo reporta los dos errores previos de Toast y CareersCarousel. La inspección visual en navegador queda pendiente: el runtime de automatización falló al iniciar. No se certifican todavía responsive, teclado ni comportamiento visual. Admisión sigue pendiente de implementación y los PDF siguen siendo referencias no oficiales.
+
+## Ajuste visual de Computación — 7 de octubre de 2026
+
+Se sustituye la cuadrícula de aprendizaje por el carrusel existente en variante uniforme: tarjetas rectas, texto visible, arrastre y control Pausar/Continuar. La portada incorpora la curva reutilizable 6 y conserva un único enlace «Cómo postular», con estilo claro y acento naranja al interactuar. Los pasos tienen entradas escalonadas inspiradas en Nuestros valores. Los cambios de esquinas se limitan a Computación, preservando botones y diseños de otras carreras. Los contratos nuevos se describen en GUIA_NUEVAS_PAGINAS.md; Admisión sigue siendo una ruta provisional.
+
+Verificación de este ajuste: build y ESLint del alcance correctos. Inspección visual en Edge a 1440/390/320 px, sin desbordamiento horizontal ni errores JavaScript. Verificados curva, CTA único y destino /admissions, esquinas rectas, pausa/reanudación, arrastre, desplazamiento con teclado y movimiento reducido (sin animación ni control de pausa). Administración conserva su carrusel original. Persiste la advertencia conocida del tamaño del bundle.
+
+
+## Ajuste posterior de Computación — 7 de octubre de 2026
+
+La petición posterior sustituye la variante uniform-carousel por el comportamiento de Administración: ContinuousCarousel con emphasizeCenter, draggable y ciclo CSS compartido de 30 segundos. Se conserva la presentación estática de las tarjetas mediante CareerLearning presentation="static"; los demás consumidores mantienen presentation="interactive". Eliminados el estado y los controles de pausa, la indicación de arrastre y las props/estilos exclusivos de la variante uniforme. Las tarjetas estáticas admiten foco y las copias decorativas permanecen inert.
+
+El hero elimina la descripción larga y su dato sin consumidores, mantiene la frase corta y «Cómo postular», reduce el padding superior y el tamaño de la imagen. La curva 6 usa neutral-white y mayor altura, conectando con aprendizaje sobre fondo claro. Los estilos específicos se limitan a Computación; se conservan la cuadrícula reutilizable, el carrusel compartido y las demás secciones.
+
+Validación: build y ESLint del alcance correctos; Edge a 1440/390/320 px sin desbordamiento horizontal ni errores JavaScript. Hero de 560 px en escritorio; curva clara inspeccionada. Confirmados la eliminación del párrafo y la indicación inferior, el énfasis central y el ciclo de 30 segundos compartido con Administración. Se mantiene la advertencia conocida de tamaño del bundle.
+
+### Restitución del estilo del carrusel — 7 de octubre de 2026
+
+Computación vuelve a usar CareerLearning digital con tarjetas estáticas, rectas y borde neutral-white sobre fondo institucional azul. La curva 6 del hero usa orange. Se retira el espacio superior específico de la versión clara. Se conservan sin cambios la lógica compartida del carrusel, el énfasis central, el ciclo de 30 segundos y la ausencia de controles inferiores.
+
+### Alineación de tarjetas y unión curva — 7 de octubre de 2026
+
+CareerLearning admite emphasizeCenter (true por defecto); Computación lo desactiva para conservar una fila de tarjetas del mismo tamaño, de 18 a 24 rem según el viewport. Las tarjetas se estiran a igual altura. Se mantienen desplazamiento continuo de 30 segundos, arrastre y pausa contextual; Administración conserva el énfasis central. BannerBgCurve incorpora diseño 7 y secondaryAccentColor opcional: dos bandas curvas paralelas blanca y naranja sobre una base blue-dark que conecta con aprendizaje sin remate horizontal naranja. Los diseños anteriores no cambian.

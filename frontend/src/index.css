@@ -4,34 +4,34 @@
     FUENTES
 ========================= */
 @font-face {
-  font-family: 'Poppins';
-  src: url('/src/assets/fonts/Poppins-Regular.woff2') format('woff2');
+  font-family: "Poppins";
+  src: url("/src/assets/fonts/Poppins-Regular.woff2") format("woff2");
   font-weight: 400;
   font-display: swap;
 }
 @font-face {
-  font-family: 'Poppins';
-  src: url('/src/assets/fonts/Poppins-Bold.woff2') format('woff2');
+  font-family: "Poppins";
+  src: url("/src/assets/fonts/Poppins-Bold.woff2") format("woff2");
   font-weight: 700;
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'Hani';
-  src: url('/src/assets/fonts/Rajdhani-Regular.woff2') format('woff2');
+  font-family: "Hani";
+  src: url("/src/assets/fonts/Rajdhani-Regular.woff2") format("woff2");
   font-weight: 400;
   font-display: swap;
 }
 @font-face {
-  font-family: 'Hani';
-  src: url('/src/assets/fonts/Rajdhani-Bold.woff2') format('woff2');
+  font-family: "Hani";
+  src: url("/src/assets/fonts/Rajdhani-Bold.woff2") format("woff2");
   font-weight: 700;
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'Eurostar';
-  src: url('/src/assets/fonts/Eurostar-Regular.woff2') format('woff2');
+  font-family: "Eurostar";
+  src: url("/src/assets/fonts/Eurostar-Regular.woff2") format("woff2");
   font-weight: 400;
   font-display: swap;
 }
@@ -41,20 +41,20 @@
 ========================= */
 @theme {
   /* Colores */
-  --color-blue: #2073AA;
-  --color-blue-light: #4FA3D1;
-  --color-blue-dark: #1A3983;
-  --color-blue-deep: #232E42;
+  --color-blue: #2073aa;
+  --color-blue-light: #4fa3d1;
+  --color-blue-dark: #1a3983;
+  --color-blue-deep: #232e42;
 
-  --color-sky: #2F74A8;
+  --color-sky: #2f74a8;
 
-  --color-orange: #E08433;
-  --color-orange-soft: #BC9E67;
+  --color-orange: #e08433;
+  --color-orange-soft: #bc9e67;
 
-  --color-neutral-white: #FBFCFC;
-  --color-neutral-light: #F5F5F5;
-  --color-neutral-dark: #332C25;
-  --color-neutral-black: #1F2937;
+  --color-neutral-white: #fbfcfc;
+  --color-neutral-light: #f5f5f5;
+  --color-neutral-dark: #332c25;
+  --color-neutral-black: #1f2937;
 
   /* Fuentes */
   --font-poppins: "Poppins", sans-serif;
@@ -69,9 +69,9 @@
   --spacing-22: 5.5rem;
 
   /* Sombras */
-  --shadow-soft: 0 4px 10px rgba(0,0,0,0.3);
-  --shadow-medium: 0 6px 16px rgba(0,0,0,0.5);
-  --shadow-strong: 0 10px 25px rgba(0,0,0,0.9);
+  --shadow-soft: 0 4px 10px rgba(0, 0, 0, 0.3);
+  --shadow-medium: 0 6px 16px rgba(0, 0, 0, 0.5);
+  --shadow-strong: 0 10px 25px rgba(0, 0, 0, 0.9);
 
   /* Bordes */
   --radius-xl2: 1.5rem;
@@ -87,7 +87,8 @@
 ========================= */
 
 @keyframes float {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateX(0px);
   }
   50% {
@@ -124,7 +125,11 @@
 
 .continuous-carousel::before {
   left: 0;
-  background: linear-gradient(to right, var(--color-neutral-white), transparent);
+  background: linear-gradient(
+    to right,
+    var(--color-neutral-white),
+    transparent
+  );
 }
 
 .continuous-carousel::after {
@@ -147,7 +152,8 @@
   flex-shrink: 0;
 }
 
-.continuous-carousel:not(:has(.learning-card)):hover .continuous-carousel__track,
+.continuous-carousel:not(:has(.learning-card)):hover
+  .continuous-carousel__track,
 .continuous-carousel:has(.learning-card:hover) .continuous-carousel__track,
 .continuous-carousel:focus-within .continuous-carousel__track {
   animation-play-state: paused;
@@ -176,7 +182,10 @@
   grid-template-rows: 0fr;
   opacity: 0;
   transform: translateY(1.5rem);
-  transition: grid-template-rows 350ms ease, opacity 350ms ease, transform 350ms ease;
+  transition:
+    grid-template-rows 350ms ease,
+    opacity 350ms ease,
+    transform 350ms ease;
 }
 
 .learning-card[data-expanded="true"] .learning-card__description {
@@ -186,9 +195,15 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .continuous-carousel { overflow-x: auto; }
-  .continuous-carousel__track { animation: none; }
-  .continuous-carousel__group[aria-hidden="true"] { display: none; }
+  .continuous-carousel {
+    overflow-x: auto;
+  }
+  .continuous-carousel__track {
+    animation: none;
+  }
+  .continuous-carousel__group[aria-hidden="true"] {
+    display: none;
+  }
 
   .learning-card__description {
     transition: none;
@@ -212,12 +227,14 @@ section[aria-labelledby="career-learning-title"] .continuous-carousel::after {
 }
 
 @media (hover: none) {
-  .continuous-carousel[data-draggable]:not(:focus-within) .continuous-carousel__track {
+  .continuous-carousel[data-draggable]:not(:focus-within)
+    .continuous-carousel__track {
     animation-play-state: running;
   }
 }
 
-.continuous-carousel[data-draggable][data-dragging="true"] .continuous-carousel__track {
+.continuous-carousel[data-draggable][data-dragging="true"]
+  .continuous-carousel__track {
   animation-play-state: paused;
 }
 
@@ -257,5 +274,37 @@ section[aria-labelledby="career-learning-title"] .continuous-carousel::after {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .workplace-tile__image { transition: none; }
+  .workplace-tile__image {
+    transition: none;
+  }
+}
+
+/* Computación: superficies rectas; los controles conservan sus propios bordes. */
+.computer-science-page article,
+.computer-science-page section[aria-labelledby="career-benefits-title"] li,
+.computer-science-page
+  section[aria-labelledby="career-benefits-title"]
+  .overflow-hidden {
+  border-radius: 0;
+}
+
+/* Tarjetas rectas y borde claro sobre el fondo institucional del carrusel. */
+.computer-science-page .learning-card-static {
+  border-color: var(--color-neutral-white);
+}
+
+.computer-science-page .learning-card-static > .aspect-video {
+  aspect-ratio: 3 / 2;
+}
+
+.computer-science-page .continuous-carousel__card {
+  height: 100%;
+}
+
+.computer-science-page .continuous-carousel__slot {
+  width: clamp(14rem, 28vw, 20rem);
+}
+
+.computer-science-page .continuous-carousel__group {
+  align-items: stretch;
 }

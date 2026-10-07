@@ -61,6 +61,7 @@ function ContinuousCarousel({
             key={copy}
             className="continuous-carousel__group"
             aria-hidden={copy === 1 ? true : undefined}
+            inert={copy === 1 ? true : undefined}
           >
             {items.map((item) => (
               <div
