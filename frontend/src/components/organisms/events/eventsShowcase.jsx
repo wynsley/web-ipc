@@ -10,13 +10,13 @@ import { Button } from "@/components/atoms/button";
 import { Title } from "@/components/atoms/titles";
 import { Paragraph } from "@/components/atoms/paragraph";
 
-function EventsShowcase() {
+// El modal ya no vive aquí: lo renderiza EventsPage y este componente solo lo pide.
+function EventsShowcase({ onOpenCalendar }) {
   const {
     events, event, direction, current, next,
     goTo, goNext, goPrev, hoverHandlers,
   } = useEventsCarousel();
 
-  const title = `${event.category} de ${event.highlight}`
   const index = next !== null ? next : current;
   const order = String(index + 1).padStart(2, "0");
 
@@ -51,7 +51,7 @@ function EventsShowcase() {
 
                 <Reveal direction={direction} delay={0.08} className="mt-2">
                   <Title
-                    text={title}
+                    text={event.title}
                     level="h2"
                     weight="bold"
                     className="font-hani"
@@ -94,9 +94,10 @@ function EventsShowcase() {
                 </Reveal>
 
                 <Reveal direction={direction} delay={0.32} className="mt-8">
-                  <Button 
-                    text="Más información" 
-                    variant="base" 
+                  <Button
+                    text="Ver todos los eventos"
+                    variant="base"
+                    onClick={() => onOpenCalendar(event.id)}
                   />
                 </Reveal>
               </div>
@@ -109,7 +110,7 @@ function EventsShowcase() {
               <Motion.img
                 key={event.id}
                 src={event.image}
-                alt={`${event.title} ${event.highlight}`}
+                alt={event.title}
                 draggable={false}
                 custom={direction}
                 variants={slideVariants}
