@@ -11,7 +11,7 @@ import { EventsGallery } from "../organisms/events/eventsGallery";
 function EventsPage() {
   const [upcoming] = useState(() => getUpcomingEvent());
 
-  // Un solo modal para toda la página: lo abren el hero y el carrusel.
+  // Un solo modal calendar
   const { isOpen, openModal, closeModal } = useModal();
 
   // Evento que aparece seleccionado al abrir (el del hero o el del carrusel).
@@ -24,12 +24,16 @@ function EventsPage() {
 
   return (
     <MyTemplate>
-      <HeroEvents event={upcoming} onOpenCalendar={openCalendar} />
-      <EventsShowcase onOpenCalendar={openCalendar} />
+      <HeroEvents 
+        event={upcoming} 
+        onOpenCalendar={openCalendar} 
+      />
+      <EventsShowcase 
+        onOpenCalendar={openCalendar} 
+      />
       <FeatureEvents />
       <EventsGallery/>
 
-      {/* Se monta solo al abrir, así cada vez empieza desde el evento elegido */}
       {isOpen && (
         <EventsCalendarModal
           toggleModal={closeModal}
