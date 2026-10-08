@@ -6,6 +6,7 @@ import { FeatureEvents } from "../organisms/events/featureEvents";
 import { useModal } from "@/hooks/modal/useModal";
 import { EVENTS, getUpcomingEvent } from "@/data/events/evenst";
 import { EventsCalendarModal } from "../modals/eventsCalendarModal";
+import { EventsGallery } from "../organisms/events/eventsGallery";
 
 function EventsPage() {
   const [upcoming] = useState(() => getUpcomingEvent());
@@ -26,6 +27,7 @@ function EventsPage() {
       <HeroEvents event={upcoming} onOpenCalendar={openCalendar} />
       <EventsShowcase onOpenCalendar={openCalendar} />
       <FeatureEvents />
+      <EventsGallery/>
 
       {/* Se monta solo al abrir, así cada vez empieza desde el evento elegido */}
       {isOpen && (

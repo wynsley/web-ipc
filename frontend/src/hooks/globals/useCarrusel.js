@@ -20,7 +20,7 @@ function useCarousel({
   dragThreshold = 50,
   getSrc = (slide) => slide.src,
   autoplay = true,
-
+  initialIndex = 0, 
   // Para carruseles de múltiples cards
   cardsPerView = 1,
   gapRem = 1.25,
@@ -38,7 +38,7 @@ function useCarousel({
     ? [...slides, ...slides.slice(0, duplicateCount)]
     : slides;
 
-  const [current, setCurrent] = useState(0);
+  const [current, setCurrent] = useState(initialIndex);
   const [next, setNext] = useState(null);
   const [sliding, setSliding] = useState(false);
   const [userPaused, setUserPaused] = useState(false);
