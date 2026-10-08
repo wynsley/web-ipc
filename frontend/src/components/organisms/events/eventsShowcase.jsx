@@ -114,6 +114,7 @@ function EventsShowcase({ onOpenCalendar }) {
                 draggable={false}
                 custom={direction}
                 variants={slideVariants}
+                loading="lazy"
                 initial="enter"
                 animate="center"
                 exit="exit"
