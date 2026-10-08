@@ -20,7 +20,7 @@ function GalleryLightbox({ events, startIndex, onClose }) {
   });
 
   const position = next ?? current;
-  const shown = events[position]; // el texto cambia junto con la foto
+  const shown = events[position]; 
   const many = events.length > 1;
 
   useEffect(() => {
