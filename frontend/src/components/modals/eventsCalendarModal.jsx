@@ -12,6 +12,9 @@ import { EventListCard } from "@/components/molecules/events/eventListCard";
 import { useEventsCalendar } from "@/hooks/events/useEventCalendar";
 import { downloadIcs } from "../../../utils/calendarLinks";
 import { formatCalendarTitle, formatDayLong } from "../../../utils/calendarDates";
+import { Title } from "../atoms/titles";
+import { Button } from "../atoms/button";
+import { Paragraph } from "../atoms/paragraph";
 
 const VIEWS = [
   { id: "day", label: "Día" },
@@ -19,15 +22,16 @@ const VIEWS = [
   { id: "month", label: "Mes" },
 ];
 
-const navButton =
-  "flex h-8 w-8 items-center justify-center text-blue-deep transition hover:bg-blue-deep/10";
+const navButton ="flex h-8 w-8 items-center justify-center text-blue-deep transition hover:bg-blue-deep/10";
 
 function DayAgenda({ dayKey, entries, selectedId, onSelectEvent }) {
   return (
     <section aria-label={`Eventos del ${formatDayLong(dayKey)}`}>
-      <h3 className="mb-3 font-hani text-lg font-bold text-blue-deep">
-        {formatDayLong(dayKey)}
-      </h3>
+      <Title
+        text={formatDayLong(dayKey)}
+        level="h4"
+        className="font-poppins"
+      />
 
       {entries.length === 0 ? (
         <p className="bg-blue-deep/5 px-4 py-6 text-center font-poppins text-sm text-neutral-600">
@@ -50,14 +54,6 @@ function DayAgenda({ dayKey, entries, selectedId, onSelectEvent }) {
   );
 }
 
-/**
- * Modal con el calendario de todos los eventos.
- *
- * Props:
- *  - toggleModal    : cierra el modal (mismo patrón que ModalMessage)
- *  - events         : lista completa de eventos (estática hoy, API mañana)
- *  - initialEventId : evento que se muestra seleccionado al abrir
- */
 function EventsCalendarModal({ toggleModal, events, initialEventId }) {
   const modalRef = useClickOutside(toggleModal);
   const cal = useEventsCalendar(events, initialEventId);
@@ -95,17 +91,18 @@ function EventsCalendarModal({ toggleModal, events, initialEventId }) {
     >
       <div
         ref={modalRef}
-        // Evita que un re-render que reemplaza el nodo clicado cuente como "clic fuera".
         onClick={(e) => e.stopPropagation()}
-        className="relative flex max-h-[92vh] w-full max-w-6xl flex-col overflow-y-auto bg-white shadow-2xl md:h-[88vh] md:flex-row md:overflow-hidden"
+        className="relative flex max-h-[92vh] w-full max-w-6xl flex-col overflow-y-auto bg-white shadow-2xl 
+        md:h-[88vh] md:flex-row md:overflow-hidden"
       >
         <button
           type="button"
           onClick={toggleModal}
           aria-label="Cerrar calendario"
-          className="absolute right-3 top-3 z-10 flex h-9 w-9 items-center justify-center bg-white text-blue-deep transition hover:bg-blue-deep hover:text-white"
+          className="absolute right-4 top-3 z-10 flex h-9 w-9 rounded-full items-center justify-center bg-white text-blue-deep/50 
+          transition hover:bg-blue-deep/80 hover:text-white"
         >
-          <FaTimes aria-hidden="true" />
+          <FaTimes aria-hidden="true" size={25} />
         </button>
 
         {/* Calendario */}
@@ -131,34 +128,34 @@ function EventsCalendarModal({ toggleModal, events, initialEventId }) {
               >
                 <FaChevronRight aria-hidden="true" />
               </button>
-              <button
+              <Button
+                text="Hoy"
                 type="button"
+                variant="danger"
                 onClick={cal.goToday}
-                className="ml-1 border border-blue-deep/30 px-3 py-1 font-poppins text-xs font-semibold text-blue-deep transition hover:bg-blue-deep hover:text-white"
-              >
-                Hoy
-              </button>
+              />
             </div>
 
             <div
               role="group"
               aria-label="Vista del calendario"
-              className="flex bg-blue-deep/10 p-1"
+              className="flex gap-2"
             >
               {VIEWS.map(({ id, label }) => (
-                <button
+                <Button
                   key={id}
                   type="button"
                   aria-pressed={cal.view === id}
+                  variant="danger"
                   onClick={() => cal.setView(id)}
-                  className={`px-3 py-1.5 font-poppins text-xs font-semibold transition sm:px-4 sm:text-sm ${
+                  className={` ${
                     cal.view === id
                       ? "bg-blue-deep text-white"
-                      : "text-neutral-600 hover:text-blue-deep"
+                      : "text-white hover:text-white"
                   }`}
                 >
                   {label}
-                </button>
+                </Button>
               ))}
             </div>
           </div>
@@ -192,35 +189,41 @@ function EventsCalendarModal({ toggleModal, events, initialEventId }) {
 
         {/* Lista de eventos */}
         <aside className="order-2 bg-blue-deep/5 p-4 sm:p-6 md:order-1 md:w-96 md:shrink-0 md:overflow-y-auto">
-          <h2 className="font-hani text-2xl font-bold text-blue-deep">
-            {showingUpcoming ? "Próximos eventos" : "Eventos pasados"}
-          </h2>
-          <p className="font-poppins text-sm text-neutral-600">
-            {showingUpcoming ? "No te pierdas la agenda" : "Revive lo que ya vivimos"}
-          </p>
+          <Title
+            text={showingUpcoming ? "Próximos eventos" : "Eventos pasados"}
+            level="h3"
+            weight="bold"
+            className="font-poppins"
+          />
+          <Paragraph
+            text={showingUpcoming ? "No te pierdas la agenda" : "Revive lo que ya vivimos"}
+            variant="secondary"
+            size="small"
+            className="font-poppins"
+          />
 
           <div
             role="group"
             aria-label="Tipo de eventos"
-            className="mt-4 flex bg-blue-deep/10 p-1"
+            className="mt-4 flex gap-2"
           >
             {[
               { id: "upcoming", label: `Próximos (${cal.upcoming.length})` },
               { id: "past", label: `Pasados (${cal.past.length})` },
             ].map(({ id, label }) => (
-              <button
+              <Button
                 key={id}
+                text={label}
+                variant="danger"
                 type="button"
                 aria-pressed={cal.listMode === id}
                 onClick={() => cal.setListMode(id)}
-                className={`flex-1 px-3 py-1.5 font-poppins text-xs font-semibold transition sm:text-sm ${
+                className={`${
                   cal.listMode === id
                     ? "bg-blue-deep text-white"
-                    : "text-neutral-600 hover:text-blue-deep"
+                    : "text-white hover:text-white"
                 }`}
-              >
-                {label}
-              </button>
+              />
             ))}
           </div>
 
@@ -231,7 +234,7 @@ function EventsCalendarModal({ toggleModal, events, initialEventId }) {
                 : "Todavía no hay eventos pasados."}
             </p>
           ) : (
-            <ul className="mt-4 flex flex-col gap-3">
+            <ul className="mt-4 flex flex-col gap-2">
               {cal.listEvents.map((event) => (
                 <li key={event.id}>
                   <EventListCard
