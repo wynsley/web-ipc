@@ -1,5 +1,5 @@
-import { CloseIcon } from "@/components/atoms/galeryIcons";
 import { IconButton } from "@/components/atoms/iconButton";
+import { IoClose } from "react-icons/io5";
 
 function LightboxTopBar({ position, total, onClose }) {
   return (
@@ -12,7 +12,7 @@ function LightboxTopBar({ position, total, onClose }) {
         onClick={onClose}
         className="hover:bg-white/15"
       >
-        <CloseIcon />
+        <IoClose size={25} className="text-white/70"/>
       </IconButton>
     </div>
   );
