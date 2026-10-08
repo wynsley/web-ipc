@@ -1,5 +1,19 @@
 # Estado y evolución de IPC Platform
 
+## Admisión: hero — 8 de octubre de 2026
+
+Ajuste responsive de la tarjeta: importes de 28 px por debajo de 375 px, 30 px desde 375 px, 48 px desde 640 px y 60 px desde 1024 px. Moneda e importe se mantienen en una línea; el título pasa a compartir fila con los precios desde 1024 px. Se conservan las reducciones locales del usuario en alturas del hero, padding de la tarjeta y separación del texto inferior. Comprobados anchos 320/390/768/1024/1440 sin desbordes de página ni de las columnas de precios, e inspección visual a 320 px. Build y lint del alcance correctos; persiste la advertencia conocida del bundle.
+
+Modularización posterior: `AdmissionsHero` compone `Image`, `AdmissionsHeroContent` (textos y CTA) y `PriceSummaryCard` (tarjeta compartida por props); esta última sustituye a `AdmissionsFees`. Los precios siguen procediendo de `ServicesAcademic`, pero la tarjeta ya no depende del catálogo ni de Admisión. La superposición se configura en el organismo. Se corrige la frase promocional de `font-serif` a `font-hani` (Rajdhani local); título, descripción y botón mantienen Poppins. No cambia el flujo del modal.
+
+Actualización posterior: se adopta la paleta de la referencia (oscurecimiento negro, título blanco y botón azul), sustituyendo sus amarillos por `orange`. `AdmissionsFees` añade la franja negra sobresaliente y reutiliza `data/ServicesAcademic.js` (100/100/200 soles), sin duplicar el catálogo de Inicio. La fotografía se sustituye por `assets/images/admissions/admissions-classroom.png`, generada con ImageGen; su README conserva el prompt y la identifica como ilustración. Conservados `Image`, su respaldo institucional y el modal compartido. Verificados build, lint del alcance, presentación a 1440/390 px sin desbordes, apertura/cierre del modal y consola sin errores. Las notas siguientes describen la primera versión y quedan sustituidas en estilo, imagen y precios por este ajuste.
+
+Implementado únicamente el hero de `/admissions`, en `organisms/admissions/admissionsHero.jsx`. Conserva la composición centrada y el año 2027 de la referencia visual, con tokens azul institucional/naranja y una fotografía existente de estudiantes. `Image` mantiene el fondo `bg-blue-dark` cuando no hay imagen o falla la carga. El año y el texto del examen proceden de la referencia de diseño; no constituyen un cronograma confirmado.
+
+`AdmissionPage` compone el hero y reutiliza `useModal` y `ModalMessage`, igual que Inicio. «¡Inscríbete!» abre el formulario de asesoría existente; no representa una matrícula completada. No se añadieron precios ni otras secciones. El envío sigue sujeto a la API pendiente del formulario compartido.
+
+Verificación: ESLint de los componentes nuevos/modificados y build correctos; persiste la advertencia de tamaño del bundle. Hero inspeccionado en navegador a 1440 y 390 px, sin desbordamiento horizontal; apertura y cierre con Cancelar verificados en ambos tamaños, sin errores de consola. No se realizó envío de datos.
+
 ## Estado vigente — 5 de octubre de 2026
 
 Revisión de main en `dbf2f02`, con el árbol limpio al iniciar. Consulta [REVISION_2026-10-05.md](REVISION_2026-10-05.md) para hallazgos, evidencias y verificaciones actuales. Las secciones fechadas del 29 de septiembre y las notas posteriores se conservan como historial; sus contratos y estados pueden haber sido sustituidos por actualizaciones más recientes.

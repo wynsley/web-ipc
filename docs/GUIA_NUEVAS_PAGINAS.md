@@ -82,8 +82,11 @@ MyTemplate acepta className y conserva classmame como alias compatible. Combina 
 | Carrusel de varias tarjetas | useCarousel y useCardsPerView; verificar adaptación al consumidor |
 | Modal de consulta | ModalMessage y useModal; atender pendientes de accesibilidad |
 | Estilos de marca | Tokens de index.css |
+| Resumen de precios | `PriceSummaryCard` en `molecules/shared/priceSummaryCard.jsx` |
 
 Reutilizar responsabilidad y contrato, no solo apariencia. Si un formulario solicita otros datos, no heredar automáticamente la validación del contacto. No crear otro visor PDF ni un nuevo proveedor por página.
+
+`PriceSummaryCard({ title, items, footer, currency = "S/", className = "" })` presenta un resumen compacto de precios. `items` recibe elementos `{ text, value }` con etiquetas únicas; `footer` es opcional. No importa catálogos ni fija márgenes de superposición. El consumidor aporta datos y controla ancho/posición mediante `className`, combinada con `twMerge`. Admisión pasa el catálogo `ServicesAcademic` compartido con Inicio y aplica sus márgenes negativos desde `AdmissionsHero`. Para listas extensas usar otro layout; esta tarjeta está pensada para pocos conceptos resumidos.
 
 ### Imágenes
 
