@@ -1,14 +1,11 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
-const TICK_MS = 50;
-const WAIT_CEILING = 92; 
 const SEEN_KEY = "ipc-loader-seen";
+const WAIT_CEILING = 69; // si el sitio aún no carga, el avatar espera sobre la C
 
-const isCritical = (img) =>
-  img.loading !== "lazy" && !img.closest("[data-loader-ignore]");
-
-// ¿Es la primera vez que entra en esta sesión? (la recarga conserva sessionStorage)
-const isFirstVisit = () => {
+// ¿Debe mostrarse el loader? Solo en la primera entrada de la sesión.
+// sessionStorage sobrevive a la recarga (F5) y se borra al cerrar la pestaña.
+export const shouldShowLoader = () => {
   try {
     return !sessionStorage.getItem(SEEN_KEY);
   } catch {
@@ -17,26 +14,30 @@ const isFirstVisit = () => {
 };
 
 /**
- * Progreso 0 → 100.
- *  - Primera entrada: el avatar corre `firstDuration` ms (~3 s en total con el desvanecido).
- *  - Recarga: corre `reloadDuration` ms y se corta a los `reloadMaxTime` ms (< 2 s en total).
- * Si la carga real va más lenta, la barra espera al 92 % hasta que termine.
+ * Progreso 0 → 100 en `duration` ms, medido con rAF para que el salto sea fluido.
+ * `onDone` se llama cuando empieza el desvanecido (o de inmediato si no hay loader).
  */
 export function usePageLoader({
-  firstDuration = 2500,
-  firstMaxTime = 6000,
-  reloadDuration = 1000,
-  reloadMaxTime = 1800,
-  exitDelay = 200,
+  duration = 2800,
+  maxTime = 8000,
+  exitDelay = 350,
+  onDone,
 } = {}) {
+  const [show] = useState(shouldShowLoader);
   const [progress, setProgress] = useState(0);
-  const [visible, setVisible] = useState(true);
-  const [first] = useState(isFirstVisit);
+  const [visible, setVisible] = useState(show);
 
-  const duration = first ? firstDuration : reloadDuration;
-  const maxTime = first ? firstMaxTime : reloadMaxTime;
+  const onDoneRef = useRef(onDone);
+  useEffect(() => {
+    onDoneRef.current = onDone;
+  });
 
   useEffect(() => {
+    if (!show) {
+      onDoneRef.current?.();
+      return;
+    }
+
     const start = performance.now();
     const previousOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
@@ -46,50 +47,50 @@ export function usePageLoader({
       fontsReady = true;
     });
 
-    let shown = 0;
-    let finishing = false;
+    let raf;
     let exitTimer;
+    let shown = 0;
 
     const finish = () => {
-      finishing = true;
-      clearInterval(pulse);
       setProgress(100);
-      document.body.style.overflow = previousOverflow;
+      exitTimer = setTimeout(() => {
+        document.body.style.overflow = previousOverflow; // ← aquí
+        setVisible(false);
+        onDoneRef.current?.();
+      }, exitDelay);
       try {
         sessionStorage.setItem(SEEN_KEY, "1");
       } catch {
         /* sin storage: no pasa nada */
       }
-      exitTimer = setTimeout(() => setVisible(false), exitDelay);
+      exitTimer = setTimeout(() => {
+        setVisible(false);
+        onDoneRef.current?.();
+      }, exitDelay);
     };
 
-    const tick = () => {
-      if (finishing) return;
+    const frame = () => {
       const elapsed = performance.now() - start;
-
-      const images = Array.from(document.images).filter(isCritical);
-      const allLoaded = images.every((img) => img.complete);
-      const ready =
-        document.readyState === "complete" && fontsReady && allLoaded;
-
+      const ready = document.readyState === "complete" && fontsReady;
       const timePct = Math.min(100, (elapsed / duration) * 100);
-      const ceiling = ready ? 100 : WAIT_CEILING;
 
-      shown = Math.max(shown, Math.min(timePct, ceiling));
+      shown = Math.max(shown, Math.min(timePct, ready ? 100 : WAIT_CEILING));
       setProgress(shown);
 
-      if (shown >= 100 || elapsed >= maxTime) finish();
+      if (shown >= 100 || elapsed >= maxTime) {
+        finish();
+        return;
+      }
+      raf = requestAnimationFrame(frame);
     };
-
-    const pulse = setInterval(tick, TICK_MS);
-    tick();
+    raf = requestAnimationFrame(frame);
 
     return () => {
-      clearInterval(pulse);
+      cancelAnimationFrame(raf);
       clearTimeout(exitTimer);
       document.body.style.overflow = previousOverflow;
     };
-  }, [duration, maxTime, exitDelay]);
+  }, [show, duration, maxTime, exitDelay]);
 
   return { progress, visible };
 }

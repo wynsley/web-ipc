@@ -7,6 +7,12 @@ const RUNNER_CSS = `
 .ra-far *{animation-delay:-.3s}
 .ra-scarf{transform-origin:24px 21px;animation:ra-flap .3s ease-in-out infinite alternate}
 .ra-tassel{transform-origin:39px 7px;animation:ra-swing .3s ease-in-out infinite alternate}
+.ra-sit .ra-bob{animation:none;transform:translateY(0)}
+.ra-sit .ra-t{animation:none;transform:rotate(-80deg);transition:transform .3s ease-out}
+.ra-sit .ra-far .ra-t{transform:rotate(-68deg)}
+.ra-sit .ra-s{animation:none;transform:rotate(82deg);transition:transform .3s ease-out}
+.ra-sit .ra-a{animation:none;transform:rotate(12deg);transition:transform .3s ease-out}
+.ra-sit .ra-f{animation:none;transform:rotate(-30deg);transition:transform .3s ease-out}
 @keyframes ra-bob{0%,50%,100%{transform:translateY(2.2px)}25%,75%{transform:translateY(0)}}
 @keyframes ra-thigh{0%,100%{transform:rotate(-38deg)}50%{transform:rotate(30deg)}}
 @keyframes ra-shin{0%,100%{transform:rotate(12deg)}25%{transform:rotate(18deg)}50%{transform:rotate(70deg)}75%{transform:rotate(100deg)}}

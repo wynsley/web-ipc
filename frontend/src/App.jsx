@@ -20,8 +20,13 @@ import { AccountingPage } from "./components/pages/careers/accountingPage"
 import { ComputerSciencePage } from "@/components/pages/careers/computerScience/computerSciencePage"
 import { LanguageTranslationPage } from "@/components/pages/careers/languageTranslation/languageTranslationPage"
 import { SocialFloatings } from "./components/molecules/shared/SocialsFloatings"
+import { useState } from "react"
+import { shouldShowLoader } from "./hooks/globals/usePageLoader"
 
 function App() {
+
+  const [ready, setReady] = useState(() => !shouldShowLoader());
+
   const pages = [
     { path: '/', element: <HomePage /> },
     { path: '/alumni', element: <AlumniPage /> },
@@ -39,7 +44,7 @@ function App() {
 
   return (
     <>
-      <PageLoader/>
+      <PageLoader onDone={() => setReady(true)}/>
       <SocialFloatings />
       <AnimatePresence mode="wait" initial={false}>
         <Routes>

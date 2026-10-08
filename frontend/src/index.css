@@ -36,6 +36,10 @@
   font-display: swap;
 }
 
+html {
+  scrollbar-gutter: stable;
+}
+
 /* =========================
     THEME (Tailwind v4)
 ========================= */

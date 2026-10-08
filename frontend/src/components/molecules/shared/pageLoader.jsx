@@ -4,9 +4,57 @@ import { RunnerAvatar } from "./runnerAvatar";
 
 const LOGO_SRC = `${import.meta.env.BASE_URL}loader-logo.webp`;
 
+/*
+ * Posiciones medidas sobre el logo (en % de su ancho/alto):
+ * parte superior de la I, la P, la C y el diseño amarillo.
+ */
+const STOPS_X = [11.9, 33.4, 69.7, 92.5];
+const GROUND = 8.6; // altura donde pisa (parte superior de las letras)
+const ARC = 20; // qué tan alto salta
+const SIT_DROP = 6.5; // cuánto baja al sentarse
+const SIT_AT = 0.9;
+
+// Tramos de salto (fracción del progreso): I→P, P→C, C→amarillo
+const JUMPS = [
+  [0.1, 0.34],
+  [0.4, 0.64],
+  [0.7, SIT_AT],
+];
+
+const lerp = (a, b, u) => a + (b - a) * u;
+const smooth = (s) => s * s * (3 - 2 * s);
+
+function getPose(progress) {
+  const t = progress / 100;
+  let x = STOPS_X[0];
+  let y = GROUND;
+
+  for (let i = 0; i < JUMPS.length; i++) {
+    const [a, b] = JUMPS[i];
+    if (t >= b) {
+      x = STOPS_X[i + 1];
+      continue;
+    }
+    if (t > a) {
+      const u = (t - a) / (b - a);
+      x = lerp(STOPS_X[i], STOPS_X[i + 1], u);
+      y = GROUND - ARC * 4 * u * (1 - u); // parábola
+    } else {
+      x = STOPS_X[i];
+    }
+    break;
+  }
+
+  const sitting = t >= SIT_AT;
+  if (sitting) y = GROUND + SIT_DROP * smooth(Math.min(1, (t - SIT_AT) / 0.07));
+
+  return { x, y, sitting };
+}
+
 function PageLoader(options) {
   const { progress, visible } = usePageLoader(options);
   const pct = Math.round(progress);
+  const { x, y, sitting } = getPose(progress);
 
   return (
     <AnimatePresence>
@@ -19,69 +67,53 @@ function PageLoader(options) {
           transition={{ duration: 0.4, ease: "easeInOut" }}
           className="fixed inset-0 z-9999 flex items-center justify-center bg-white"
         >
-          {/* --av = ancho del avatar (ahora la mitad que antes) */}
           <div
-            className="w-64 sm:w-80 [--av:1.25rem] sm:[--av:1.625rem]"
+            className="w-72 sm:w-96"
             style={{ containerType: "inline-size" }}
-            data-loader-ignore
           >
-            <img
-              src={LOGO_SRC}
-              alt="IPC"
-              width={919}
-              height={232}
-              draggable={false}
-              className="block h-auto w-full select-none"
-            />
+            {/* Logo + capas: aquí las posiciones en % se miden solo contra el logo */}
+            <div className="relative">
+              <img
+                src={LOGO_SRC}
+                alt="IPC Instituto Privado Celendín"
+                width={1437}
+                height={693}
+                draggable={false}
+                className="block h-auto w-full select-none"
+              />
 
-            {/* Carril del avatar: alto = ancho × 56/48 */}
-            <div
-              aria-hidden="true"
-              className="pointer-events-none relative z-10 -mt-[1.25rem] h-[1.458rem] sm:-mt-[1.65rem] sm:h-[1.896rem]"
-            >
+              {/* Relleno de progreso sobre la línea naranja del logo */}
               <div
-                className="absolute bottom-0 left-0 flex h-full justify-end transition-[width] duration-100 ease-linear motion-reduce:transition-none"
-                style={{ width: `max(var(--av), ${progress}%)` }}
+                aria-hidden="true"
+                className="pointer-events-none absolute left-0 w-full overflow-hidden"
+                style={{ top: "75.7%", height: "2.2%" }}
               >
-                <div className="relative h-full" style={{ width: "var(--av)" }}>
-                  <RunnerAvatar className="h-full w-full" />
-                  <span
-                    className="absolute right-full top-1/2 mr-1.5 -translate-y-1/2 whitespace-nowrap font-euro font-bold leading-none tabular-nums text-orange"
-                    style={{ fontSize: "5cqw" }}
-                  >
-                    {pct}%
-                  </span>
-                </div>
+                <div
+                  className="h-full bg-[#C9600A]"
+                  style={{ width: `${progress}%` }}
+                />
+              </div>
+
+              {/* Avatar: sus pies están en (x, y); salta de letra en letra */}
+              <div
+                role="progressbar"
+                aria-label="Progreso de carga"
+                aria-valuemin={0}
+                aria-valuemax={100}
+                aria-valuenow={pct}
+                className="pointer-events-none absolute"
+                style={{
+                  left: `${x}%`,
+                  top: `${y}%`,
+                  width: "10cqw",
+                  transform: "translate(-50%, -100%)",
+                }}
+              >
+                <RunnerAvatar
+                  className={`block h-auto w-full ${sitting ? "ra-sit" : ""}`}
+                />
               </div>
             </div>
-
-            {/* Barra con el mismo grosor que la línea naranja del logo */}
-            <div
-              role="progressbar"
-              aria-label="Progreso de carga"
-              aria-valuemin={0}
-              aria-valuemax={100}
-              aria-valuenow={pct}
-              className="h-2 w-full overflow-hidden bg-orange/20 sm:h-1.5 rounded-full"
-            >
-              <div
-                className="h-full w-full origin-left bg-orange transition-transform duration-100 ease-linear motion-reduce:transition-none"
-                style={{ transform: `scaleX(${progress / 100})` }}
-              />
-            </div>
-
-            {/* Texto del tamaño del logo, repartido de borde a borde */}
-            <p
-              className="flex justify-around font-euro font-bold text-blue"
-              style={{
-                fontSize: "7.3cqw",
-                lineHeight: 1,
-                marginTop: "1cqw",
-                letterSpacing: "-0.01em",
-              }}
-            >
-              <span>Instituto</span> <span>Privado</span> <span>Celendín</span>
-            </p>
           </div>
         </Motion.div>
       )}
