@@ -1,5 +1,7 @@
 import { AnimatePresence } from "motion/react"
 import { Route, Routes } from "react-router-dom"
+//compoennte de carga
+import { PageLoader } from "./components/molecules/shared/pageLoader"
 
 //Animacion y trancicion
 import { MainLayout } from "./components/layouts/mainLayout"
@@ -37,6 +39,7 @@ function App() {
 
   return (
     <>
+      <PageLoader/>
       <SocialFloatings />
       <AnimatePresence mode="wait" initial={false}>
         <Routes>
