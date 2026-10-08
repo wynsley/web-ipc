@@ -30,13 +30,14 @@ function NavbarMenu() {
     { text: 'Vida Estudiantil', href: '/student-life' },
   ]
 
+  // Se sigue usando en el menú móvil (acordeón por clic).
   const handleToggle = (text) => {
     setOpenDropdown(prev => prev === text ? null : text)
   }
 
   useEffect(() => {
     const handleClickOutside = (e) => {
-      // Desktop dropdown
+      // Desktop dropdown (sigue sirviendo en tablets táctiles sin hover)
       if (navRef.current && !navRef.current.contains(e.target)) {
         setOpenDropdown(null)
       }
@@ -79,12 +80,28 @@ function NavbarMenu() {
           const isOpen = openDropdown === item.text
 
           return (
-            <li key={item.text} className="relative">
+            <li
+              key={item.text}
+              className="relative"
+              // Hover: abre al entrar y cierra al salir del <li> (botón + submenú)
+              onMouseEnter={item.submenu ? () => setOpenDropdown(item.text) : undefined}
+              onMouseLeave={item.submenu ? () => setOpenDropdown(null) : undefined}
+              // Teclado: Esc cierra el submenú
+              onKeyDown={
+                item.submenu
+                  ? (e) => { if (e.key === "Escape") setOpenDropdown(null) }
+                  : undefined
+              }
+            >
               {item.submenu ? (
                 <div>
                   <Button
-                    onClick={() => handleToggle(item.text)}
-                    className="flex items-center text-[1em]  
+                    // Clic/Enter/toque solo ABRE (no alterna), así no se cierra
+                    // justo después de abrirse con el hover.
+                    onClick={() => setOpenDropdown(item.text)}
+                    aria-haspopup="menu"
+                    aria-expanded={isOpen}
+                    className="flex items-center text-[1em]
                     gap-1 text-[#193F81] font-medium hover:text-orange-400"
                   >
                     {item.text}
@@ -94,18 +111,21 @@ function NavbarMenu() {
                   </Button>
 
                   {isOpen && (
-                    <ul className="absolute flex flex-col gap-3 z-50 top-full left-7 mt-2 bg-neutral-white shadow-lg 
-                    p-2 w-[18em] ">
-                      {item.submenu.map((subItem) => (
-                        <li key={subItem.href}>
-                          <NavbarLink
-                            href={subItem.href}
-                            text={subItem.text}
-                            onClick={() => setOpenDropdown(null)}
-                          />
-                        </li>
-                      ))}
-                    </ul>
+                    // pt-2 (en vez de mt-2) para que no haya hueco entre el botón
+                    // y el submenú; si hay hueco, el mouse "sale" y se cierra.
+                    <div className="absolute top-full left-7 z-50 pt-2 w-[18em]">
+                      <ul className="flex flex-col gap-3 bg-neutral-white shadow-lg p-2">
+                        {item.submenu.map((subItem) => (
+                          <li key={subItem.href}>
+                            <NavbarLink
+                              href={subItem.href}
+                              text={subItem.text}
+                              onClick={() => setOpenDropdown(null)}
+                            />
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
                   )}
                 </div>
               ) : (
