@@ -27,7 +27,7 @@ function NavbarMenu() {
     { text: 'Nosotros', href: '/about-us' },
     { text: 'Eventos', href: '/events' },
     { text: 'Admisión', href: '/admissions' },
-    { text: 'Contacto', href: '/contact' },
+    { text: 'Vida Estudiantil', href: '/student-life' },
   ]
 
   const handleToggle = (text) => {
@@ -52,7 +52,6 @@ function NavbarMenu() {
       }
     }
 
-    // 👇 usamos mousedown (mejor que click)
     document.addEventListener("mousedown", handleClickOutside)
     return () => document.removeEventListener("mousedown", handleClickOutside)
   }, [])

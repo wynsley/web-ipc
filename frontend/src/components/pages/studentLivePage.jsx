@@ -1,11 +1,11 @@
 import { MyTemplate } from "../templates/myTemplate";
 
-function ContactPage() {
+function StudentLivePage() {
   return (
     <MyTemplate>
-      <h1> Contacto </h1>
+      <h1> vida estudaintil </h1>
     </MyTemplate>
   )
 }
 
-export { ContactPage }
+export { StudentLivePage }
