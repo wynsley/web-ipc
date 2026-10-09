@@ -1,5 +1,5 @@
-import { FaGraduationCap, FaMapMarkerAlt } from "react-icons/fa";
-import { MdSchool } from "react-icons/md";
+import { FaGraduationCap } from "react-icons/fa";
+import { MdSchool, MdTipsAndUpdates } from "react-icons/md";
 
 export const  stats = [
     {
@@ -18,9 +18,9 @@ export const  stats = [
     },
     {
       id : 3,
-      value: "Ubícanos en:",
-      icon : FaMapMarkerAlt,
-      description : "Jr. dos de mayo 1390 - Celendín",
+      value: 19,
+      icon : MdTipsAndUpdates ,
+      description : "Años formando profecionales",
       position : "bottom"
     },
     ]
