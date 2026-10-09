@@ -5,6 +5,8 @@ import { MyTemplate } from "../templates/myTemplate";
 import { ModalStudentLifeCareer } from "../modals/modalStudentLifeCareer";
 import { useRef } from "react";
 import { useHoverMenu } from "@/hooks/modal/useHoverMenu";
+import { StudentLifeStats } from "../organisms/studentLife/studentLifeStats";
+import { StudentLifeWellbeing } from "../organisms/studentLife/studentLifeWellbeing";
 
 const MENU_WIDTH = 288 
 
@@ -20,6 +22,8 @@ function StudentLivePage() {
       <StudentLifeHero
         careersMenu={careersMenu}
       />
+      <StudentLifeStats/>
+      <StudentLifeWellbeing/>
       <ActivitiesSection/>
 
 
