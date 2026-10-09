@@ -17,7 +17,7 @@ function HeroDescription({ anchorRef, isMenuOpen, onMenuOpen, onMenuLeave }) {
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.3 }}
-      className="relative z-10 flex flex-col items-start"
+      className="relative z-10 flex flex-col items-start mb-8"
     >
       <Paragraph
         text="Vida Estudiantil"
