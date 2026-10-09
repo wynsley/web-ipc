@@ -67,4 +67,14 @@ const accountingCurriculum = [
   },
 ];
 
-export { accountingCurriculum };
+const accountingCurriculumYears = [
+  "Primer año",
+  "Segundo año",
+  "Tercer año",
+].map((title, index) => ({
+  title,
+  number: index + 1,
+  cycles: accountingCurriculum.slice(index * 2, index * 2 + 2),
+}));
+
+export { accountingCurriculum, accountingCurriculumYears };

@@ -101,3 +101,7 @@ AccountingOverview compone CareerSectionHeading, AccountingDetails y AccountingC
 ### Carrusel de competencias de Contabilidad
 
 AccountingLearning compone el encabezado compartido, ScrollReveal y ContinuousCarousel con renderItem hacia AccountingLearningCard. Para modificar contenido usar data/careers/accounting/learning.js (title, description, number, Icon). La interacción permanece en el carrusel y hook compartidos; no duplicar temporizadores ni estado en Contabilidad. Las dimensiones propias se delimitan mediante accounting-learning-carousel en index.css.
+
+### Malla por años de Contabilidad
+
+AccountingCurriculumYear recibe year (title, number, cycles) y expanded; reutiliza AccountingCycleCard({ cycle, number, expanded = true }). accountingCurriculumYears deriva los pares de ciclos del catálogo existente. AccountingCurriculum reutiliza useMediaQuery para establecer la apertura según el breakpoint de escritorio. El recorte es decorativo y conserva el foco del summary. Esta implementación sustituye la cuadrícula plana descrita anteriormente.
