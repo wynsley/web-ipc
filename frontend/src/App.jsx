@@ -1,5 +1,7 @@
 import { AnimatePresence } from "motion/react"
 import { Route, Routes } from "react-router-dom"
+//compoennte de carga
+import { PageLoader } from "./components/molecules/shared/pageLoader"
 
 //Animacion y trancicion
 import { MainLayout } from "./components/layouts/mainLayout"
@@ -10,33 +12,39 @@ import { AlumniPage } from "./components/pages/alumniPage"
 import { AboutUsPage } from "./components/pages/aboutUsPage"
 import { EventsPage } from "./components/pages/eventsPage"
 import { AdmissionPage } from "./components/pages/admissionsPage"
-import { ContactPage } from "./components/pages/contactPage"
+import {StudentLivePage } from "./components/pages/studentLivePage"
 
 /* Carreras */
-import { AdministrationPage } from "./components/pages/careers/businessAdministrationPage"
+import { AdministrationPage } from "@/components/pages/careers/administration/businessAdministrationPage"
 import { AccountingPage } from "./components/pages/careers/accountingPage"
-import { ComputerSciencePage } from "./components/pages/careers/computerSciencePage"
-import { LanguageTraslationPage } from "./components/pages/careers/languageTranslationPage"
+import { ComputerSciencePage } from "@/components/pages/careers/computerScience/computerSciencePage"
+import { LanguageTranslationPage } from "@/components/pages/careers/languageTranslation/languageTranslationPage"
 import { SocialFloatings } from "./components/molecules/shared/SocialsFloatings"
+import { useState } from "react"
+import { shouldShowLoader } from "./hooks/globals/usePageLoader"
 
 function App() {
+
+  const [ready, setReady] = useState(() => !shouldShowLoader());
+
   const pages = [
     { path: '/', element: <HomePage /> },
     { path: '/alumni', element: <AlumniPage /> },
     { path: '/about-us', element: <AboutUsPage /> },
     { path: '/events', element: <EventsPage /> },
     { path: '/admissions', element: <AdmissionPage /> },
-    { path: '/contact', element: <ContactPage /> },
+    { path: '/student-life', element: <StudentLivePage /> },
 
     // Carreras
     { path: '/career/administration', element: <AdministrationPage /> },
     { path: '/career/accounting', element: <AccountingPage /> },
     { path: '/career/computer-science', element: <ComputerSciencePage /> },
-    { path: '/career/language-translation', element: <LanguageTraslationPage /> },
+    { path: '/career/language-translation', element: <LanguageTranslationPage /> },
   ]
 
   return (
     <>
+      <PageLoader onDone={() => setReady(true)}/>
       <SocialFloatings />
       <AnimatePresence mode="wait" initial={false}>
         <Routes>

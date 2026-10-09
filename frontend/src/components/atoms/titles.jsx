@@ -15,11 +15,11 @@ function Title({
   const Tag = motion[level];
 
   const variants = {
-    default: 'text-black',
-    primary: 'text-white',
-    secondary: 'text-orange',
-    danger: 'text-blue',
-    institutional: 'text-blue-dark',
+    default: 'text-black leading-[1.05]',
+    primary: 'text-white leading-[1.05]',
+    secondary: 'text-orange leading-[1.05]',
+    danger: 'text-blue  leading-[1.05]',
+    institutional: 'text-blue-dark leading-[1.05]',
   };
 
   const alignments = {
@@ -29,7 +29,7 @@ function Title({
   };
 
   const defaultByLevel = {
-  h1: 'text-[1.1em] xs:text-[1.6em] sm:text-[1.9em] md:text-[2.8em] xl:text-6xl',
+  h1: 'text-[1.1em] xs:text-[1.6em] sm:text-[1.9em] md:text-[2.8em] xl:text-6xl ',
   h2: 'text-[1.7em] xs:text-[2.5] sm:text-[2.2em] md: xl:text-[2.6em]',
   h3: 'text-[1.3em] sm:text-[1.3em] xl:text-[1.6em]',
   h4: 'text-sm sm:text-base md:text-lg',

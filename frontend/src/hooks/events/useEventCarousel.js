@@ -1,11 +1,18 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useMemo, useRef } from "react";
 import { useCarousel } from "../globals/useCarrusel";
 import { useSlideDirection } from "./useSlidesDirection";
-import { EVENTS } from "@/data/events/evenst";
+import { EVENTS, getPastEvents, getUpcomingEvents } from "@/data/events/evenst";
 
 function useEventsCarousel() {
+  // El carrusel principal solo muestra eventos que aún no terminaron.
+  // Si ya no queda ninguno, muestra los últimos para que la sección no quede vacía.
+  const events = useMemo(() => {
+    const upcoming = getUpcomingEvents(EVENTS);
+    return upcoming.length > 0 ? upcoming : getPastEvents(EVENTS).slice(0, 3);
+  }, []);
+
   const carousel = useCarousel({
-    slides: EVENTS,
+    slides: events,
     getSrc: (event) => event.image,
     autoplayDelay: 7000,
     transitionMs: 900,
@@ -15,8 +22,8 @@ function useEventsCarousel() {
 
   // Si hay transición en curso, mostramos el destino
   const index = next !== null ? next : current;
-  const event = EVENTS[index];
-  const direction = useSlideDirection(index, EVENTS.length);
+  const event = events[index];
+  const direction = useSlideDirection(index, events.length);
 
   const hovering = useRef(false);
 
@@ -38,7 +45,14 @@ function useEventsCarousel() {
     },
   };
 
-  return { ...carousel, events: EVENTS, event, direction, hoverHandlers };
+  return {
+    ...carousel,
+    events, // los del carrusel (próximos)
+    allEvents: EVENTS, // todos, para el modal del calendario
+    event,
+    direction,
+    hoverHandlers,
+  };
 }
 
 export { useEventsCarousel };
