@@ -2,20 +2,23 @@ import { Paragraph } from "@/components/atoms/paragraph";
 
 function AccountingDetails({ items }) {
   return (
-    <dl className="mt-8 grid grid-cols-1 gap-x-6 sm:grid-cols-2">
+    <dl className="mt-7 grid gap-4 rounded-sm bg-neutral-light p-5 sm:grid-cols-3">
       {items.map(({ label, value }) => (
-        <div key={label} className="border-t border-blue-dark/15 py-4">
+        <div key={label} className="min-w-0">
           <dt>
             <Paragraph
               size="small"
               weight="bold"
-              className="font-hani uppercase tracking-wide text-blue-dark"
+              className="font-hani text-blue-dark"
             >
               {label}
             </Paragraph>
           </dt>
           <dd>
-            <Paragraph size="base" className="text-neutral-black">
+            <Paragraph
+              size="small"
+              className="mt-1 leading-relaxed text-neutral-black"
+            >
               {value}
             </Paragraph>
           </dd>

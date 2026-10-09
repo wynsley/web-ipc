@@ -1,27 +1,41 @@
 import { Paragraph } from "@/components/atoms/paragraph";
-import { ScrollReveal } from "@/components/layouts/scrollReveal";
+import { Title } from "@/components/atoms/titles";
 
-function AccountingLearningCard({ description, number }) {
+function AccountingLearningCard({
+  title,
+  description,
+  Icon,
+  duplicate = false,
+}) {
   return (
-    <ScrollReveal
-      as="li"
-      delay={(number - 1) * 0.06}
-      className="border-t-2 border-orange pt-5"
+    <article
+      tabIndex={duplicate ? -1 : 0}
+      className="h-full rounded-2xl border border-blue-dark/10 bg-neutral-white p-6 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-blue-dark sm:p-8"
     >
-      <Paragraph
-        as="span"
+      <div
         aria-hidden="true"
-        className="font-hani text-4xl font-bold text-blue-dark/30"
+        className="mb-8 flex items-center justify-between border-b border-blue-dark/10 pb-5"
       >
-        0{number}
-      </Paragraph>
+        <span className="flex size-12 items-center justify-center text-blue-dark">
+          {Icon && <Icon className="size-6" />}
+        </span>
+        
+      </div>
+      <Title
+        level="h3"
+        size="compact"
+        variant="institutional"
+        weight="bold"
+        className="font-hani"
+        text={title}
+      />
       <Paragraph
         size="compact"
         className="mt-4 leading-relaxed text-neutral-black/85"
       >
         {description}
       </Paragraph>
-    </ScrollReveal>
+    </article>
   );
 }
 

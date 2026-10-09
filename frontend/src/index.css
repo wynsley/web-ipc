@@ -152,6 +152,18 @@ html {
   padding-right: 1.25rem;
 }
 
+.accounting-learning-carousel .continuous-carousel__slot {
+  width: min(78vw, 21rem);
+}
+
+.accounting-learning-carousel .continuous-carousel__card {
+  height: 100%;
+}
+
+.accounting-learning-carousel .continuous-carousel__group {
+  align-items: stretch;
+}
+
 .continuous-carousel__slot {
   flex-shrink: 0;
 }

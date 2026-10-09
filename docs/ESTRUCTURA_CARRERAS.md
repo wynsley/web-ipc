@@ -93,3 +93,11 @@ Validación: ESLint del alcance y build correctos (persiste la advertencia conoc
 ### Hero vigente de Contabilidad — 9 de octubre de 2026
 
 AccountingHero compone BrandedHeroFrame (shared, también usado por Sobre nosotros) y AccountingHeroIntro (título y único botón de información). Se eliminan AccountingHighlights y AccountingHeroVisual; la fotografía local se pasa como prop al marco compartido. El resto de organismos de Contabilidad se conserva.
+
+### Ficha de Contabilidad — 9 de octubre de 2026
+
+AccountingOverview compone CareerSectionHeading, AccountingDetails y AccountingCapabilities. Esta última mapea AccountingCapabilityItem, con iconos por ID; datos y capacidades residen en overview.js. Eliminados AccountingReasonsPanel y data/careers/accounting/hero.js por falta de consumidores tras sustituir el contenido. Los estilos de esta sección son neutros y azules, sin acentos naranjas.
+
+### Carrusel de competencias de Contabilidad
+
+AccountingLearning compone el encabezado compartido, ScrollReveal y ContinuousCarousel con renderItem hacia AccountingLearningCard. Para modificar contenido usar data/careers/accounting/learning.js (title, description, number, Icon). La interacción permanece en el carrusel y hook compartidos; no duplicar temporizadores ni estado en Contabilidad. Las dimensiones propias se delimitan mediante accounting-learning-carousel en index.css.

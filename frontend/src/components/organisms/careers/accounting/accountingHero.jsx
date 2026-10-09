@@ -9,7 +9,11 @@ function AccountingHero({ onRequest }) {
       aria-labelledby="accounting-title"
       className="relative z-0 pb-6 sm:pb-8"
     >
-      <BrandedHeroFrame image={accountingImage} variant="institutional" className="h-[34rem] sm:min-h-80">
+      <BrandedHeroFrame
+        image={accountingImage}
+        variant="institutional"
+        className="h-136 sm:min-h-80"
+      >
         <AccountingHeroIntro onRequest={onRequest} />
       </BrandedHeroFrame>
       <AccountingHeroStudent />
