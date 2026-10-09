@@ -55,7 +55,7 @@ function WorkplaceTile({
         src={image}
         alt={title}
         fill
-        imageClassName="workplace-tile__image"
+        imageClassName="workplace-tile__image object-contain"
         decoding="async"
       />
     </ScrollMotion>

@@ -13,7 +13,8 @@ function HeroEvents({ event, onOpenCalendar }) {
         {/* Imagen de fondo */}
         <img
           src={heroImage}
-          alt=""
+          alt="evento institucional"
+          loading="lazy"
           draggable={false}
           className="absolute inset-0 h-full w-full object-cover"
         />

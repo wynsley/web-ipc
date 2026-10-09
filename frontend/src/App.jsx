@@ -12,7 +12,7 @@ import { AlumniPage } from "./components/pages/alumniPage"
 import { AboutUsPage } from "./components/pages/aboutUsPage"
 import { EventsPage } from "./components/pages/eventsPage"
 import { AdmissionPage } from "./components/pages/admissionsPage"
-import { ContactPage } from "./components/pages/contactPage"
+import {StudentLivePage } from "./components/pages/studentLivePage"
 
 /* Carreras */
 import { AdministrationPage } from "@/components/pages/careers/administration/businessAdministrationPage"
@@ -33,7 +33,7 @@ function App() {
     { path: '/about-us', element: <AboutUsPage /> },
     { path: '/events', element: <EventsPage /> },
     { path: '/admissions', element: <AdmissionPage /> },
-    { path: '/contact', element: <ContactPage /> },
+    { path: '/student-life', element: <StudentLivePage /> },
 
     // Carreras
     { path: '/career/administration', element: <AdministrationPage /> },

@@ -2,10 +2,10 @@ import { useEffect } from "react";
 import { createPortal } from "react-dom";
 import { motion as Motion } from "motion/react";
 import { useCarousel } from "@/hooks/globals/useCarrusel";
-import { NextIcon, PrevIcon } from "@/components/atoms/galeryIcons";
 import { LightboxTopBar } from "@/components/molecules/events/lightBoxTopBar";
 import { LightboxCaption } from "@/components/molecules/events/LightBoxCaption";
 import { IconButton } from "@/components/atoms/iconButton";
+import { GrNext, GrPrevious } from "react-icons/gr";
 
 const NAV_BUTTON =
   "absolute top-1/2 hidden -translate-y-1/2 bg-white/15 p-3 backdrop-blur hover:bg-white/30 sm:block";
@@ -20,7 +20,7 @@ function GalleryLightbox({ events, startIndex, onClose }) {
   });
 
   const position = next ?? current;
-  const shown = events[position]; // el texto cambia junto con la foto
+  const shown = events[position]; 
   const many = events.length > 1;
 
   useEffect(() => {
@@ -82,14 +82,14 @@ function GalleryLightbox({ events, startIndex, onClose }) {
               onClick={goPrev}
               className={`${NAV_BUTTON} left-3`}
             >
-              <PrevIcon />
+              <GrPrevious size={20}/>
             </IconButton>
             <IconButton
               label="Foto siguiente"
               onClick={() => goNext(true)}
               className={`${NAV_BUTTON} right-3`}
             >
-              <NextIcon />
+              <GrNext size={20}/>
             </IconButton>
           </>
         )}

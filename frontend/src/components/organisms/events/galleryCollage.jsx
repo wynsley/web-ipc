@@ -1,5 +1,6 @@
 import { GalleryCard } from "@/components/molecules/events/galeryCard";
 import { ASPECTS, chunk, COLUMNS, GROUP_SIZE } from "../../../../utils/galeryLayout";
+import { ScrollReveal } from "@/components/layouts/scrollReveal";
 
 
 function GalleryCollage({ events, onOpen }) {
@@ -19,12 +20,13 @@ function GalleryCollage({ events, onOpen }) {
                 const event = group[slot];
                 if (!event) return null;
                 return (
-                  <GalleryCard
-                    key={event.id}
-                    event={event}
-                    aspect={ASPECTS[slot]}
-                    onOpen={() => onOpen(g * GROUP_SIZE + slot)}
-                  />
+                  <ScrollReveal key={event.id} delay={slot * 0.25} y={50} duration = {0.9}>
+                    <GalleryCard
+                      event={event}
+                      aspect={ASPECTS[slot]}
+                      onOpen={() => onOpen(g * GROUP_SIZE + slot)}
+                    />
+                  </ScrollReveal>
                 );
               })}
             </div>

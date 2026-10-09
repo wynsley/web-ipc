@@ -1,63 +1,75 @@
 import { toDayKey } from "../../../utils/calendarDates";
+import alfombra from "@assets/images/events/alfombra-ipc-2.webp";
+import encuentro1 from "@assets/images/events/encuentro-img1.webp";
+import encuentro2 from "@assets/images/events/encuentro-img-2.webp";
+import encuentro3 from "@assets/images/events/encuentro-img-3.webp";
+import feria from "@assets/images/events/feria.webp";
+import feriaIgm3 from "@assets/images/events/feria-igm-3.webp";
+import graduates1 from "@assets/images/events/graduates-img1.webp";
+import graduates2 from "@assets/images/events/graduates-img2.webp";
+import taller from "@assets/images/events/taller.webp";
+import tallerImg2 from "@assets/images/events/taller-img2.webp";
+
 export const EVENTS = [
+  /* ---------------- Realizados ---------------- */
   {
-    id: "charla-vocacional-2026",
-    category: "Charla",
-    title: "Charla de Orientación Vocacional",
+    id: "graduacion-2026",
+    category: "Graduación",
+    title: "Ceremonia de Graduación",
     shortDescription:
-      "Sesión abierta para que jóvenes y familias conozcan opciones de carrera, rutas de formación y salidas laborales.",
+      "Celebramos junto a familias y docentes el logro de nuestros nuevos egresados.",
     longDescription:
-      "Una sesión abierta donde estudiantes de los últimos años y sus familias conocieron las opciones de carrera, las rutas de formación y las salidas laborales de cada área. Egresados compartieron su experiencia y hubo un espacio de preguntas con orientadores.",
+      "Una ceremonia emotiva donde los nuevos egresados recibieron sus diplomas en compañía de sus familias, docentes y autoridades. Hubo discursos de la promoción, entrega de reconocimientos a los mejores desempeños y un brindis final para celebrar este paso importante.",
     highlights: [
-      "Orientación personalizada",
-      "Rutas de formación",
-      "Testimonios de egresados",
-      "Preguntas y respuestas",
+      "Entrega de diplomas",
+      "Reconocimientos académicos",
+      "Palabras de la promoción",
+      "Brindis y fotos de recuerdo",
     ],
     date: "2026-04-09T16:00:00-05:00",
-    endDate: "2026-04-09T18:00:00-05:00",
+    endDate: "2026-04-09T19:00:00-05:00",
     location: "Lima, Perú",
-    image: "https://images.pexels.com/photos/18999484/pexels-photo-18999484.jpeg",
-    featured: false,
+    image: graduates1,
+    featured: true,
   },
   {
-    id: "simposio-investigacion-2026",
-    category: "Simposio",
-    title: "Simposio de Investigación",
+    id: "alfombra-fiestas-patronales-2026",
+    category: "Cultural",
+    title: "Elaboración de Alfombra por las Fiestas Patronales",
     shortDescription:
-      "Un día para presentar proyectos de investigación, recibir comentarios de especialistas y generar colaboraciones.",
+      "Estudiantes y comunidad elaboraron una alfombra artesanal en honor a las festividades patronales de la provincia.",
     longDescription:
-      "Una jornada dedicada a la investigación donde estudiantes y docentes presentaron sus proyectos ante un comité de especialistas. Hubo exposiciones orales, sesión de pósters y mesas de trabajo para conectar equipos con intereses comunes.",
+      "Estudiantes, docentes y vecinos se unieron para elaborar una alfombra artesanal en honor a las festividades patronales de la provincia. Con flores, aserrín teñido y otros materiales tradicionales, se diseñó y armó la obra que luego recibió la procesión. Una forma de mantener viva la identidad y la devoción de nuestra comunidad.",
     highlights: [
-      "Exposiciones orales",
-      "Sesión de pósters",
-      "Comité de especialistas",
-      "Mesas de colaboración",
+      "Tradición viva",
+      "Trabajo comunitario",
+      "Diseño con materiales naturales",
+      "Identidad y cultura local",
     ],
-    date: "2026-05-14T09:00:00-05:00",
-    endDate: "2026-05-14T18:00:00-05:00",
+    date: "2026-05-14T06:00:00-05:00",
+    endDate: "2026-05-14T14:00:00-05:00",
     location: "Cusco, Perú",
-    image: "https://images.pexels.com/photos/28683722/pexels-photo-28683722.jpeg",
-    featured: false,
+    image: alfombra,
+    featured: true,
   },
   {
-    id: "hackathon-2026",
-    category: "Hackathon",
-    title: "Hackathon de Innovación",
+    id: "encuentro-universitario-2026",
+    category: "Encuentro",
+    title: "Encuentro Universitario",
     shortDescription:
-      "Dos días de trabajo en equipo para convertir ideas en prototipos funcionales, con mentores y premios.",
+      "Un espacio para que estudiantes de distintas universidades se conozcan, compartan experiencias y formen redes.",
     longDescription:
-      "Equipos multidisciplinares trabajaron durante dos días para resolver retos reales planteados por instituciones aliadas. Contaron con mentores de la industria, sesiones de feedback y una presentación final ante un jurado que premió las mejores propuestas.",
+      "Estudiantes de distintas universidades se reunieron para intercambiar experiencias académicas, conocer proyectos de otras casas de estudio y construir redes de apoyo. Hubo dinámicas de integración, conversatorios con egresados y un espacio libre de networking.",
     highlights: [
-      "Retos reales",
-      "Mentores de la industria",
-      "Presentación ante jurado",
-      "Premios para los ganadores",
+      "Integración entre universidades",
+      "Conversatorios con egresados",
+      "Networking estudiantil",
+      "Intercambio de experiencias",
     ],
     date: "2026-06-27T09:00:00-05:00",
-    endDate: "2026-06-28T18:00:00-05:00",
+    endDate: "2026-06-27T17:00:00-05:00",
     location: "Arequipa, Perú",
-    image: "https://images.pexels.com/photos/8761323/pexels-photo-8761323.jpeg",
+    image: encuentro1,
     featured: true,
   },
   {
@@ -77,27 +89,27 @@ export const EVENTS = [
     date: "2026-07-15T09:00:00-05:00",
     endDate: "2026-07-15T13:00:00-05:00",
     location: "Lima, Perú",
-    image: "https://images.pexels.com/photos/34774347/pexels-photo-34774347.jpeg",
-    featured: true,
+    image: encuentro2,
+    featured: false,
   },
   {
-    id: "encuentro-empresarial-2026",
-    category: "Encuentro",
-    title: "Encuentro Empresarial",
+    id: "taller-habilidades-2026",
+    category: "Taller",
+    title: "Taller de Habilidades Prácticas",
     shortDescription:
-      "Rueda de contactos entre empresas e instituciones para generar alianzas y oportunidades de prácticas profesionales.",
+      "Jornada práctica en grupos pequeños para aprender haciendo, con guía de facilitadores.",
     longDescription:
-      "Un espacio de vinculación entre empresas, instituciones y estudiantes. Se realizaron ruedas de contactos programadas, presentaciones de oportunidades de prácticas profesionales y se firmaron los primeros convenios de colaboración.",
+      "Un taller de trabajo en grupos reducidos donde los participantes aprendieron haciendo. Con la guía de facilitadores, resolvieron ejercicios aplicados, recibieron retroalimentación inmediata y se llevaron material para seguir practicando.",
     highlights: [
-      "Rueda de contactos",
-      "Oportunidades de prácticas",
-      "Convenios de colaboración",
-      "Networking",
+      "Aprender haciendo",
+      "Grupos reducidos",
+      "Retroalimentación en vivo",
+      "Material de trabajo incluido",
     ],
     date: "2026-08-20T15:00:00-05:00",
     endDate: "2026-08-20T19:00:00-05:00",
     location: "Piura, Perú",
-    image: "https://images.pexels.com/photos/3321802/pexels-photo-3321802.jpeg",
+    image: taller,
     featured: true,
   },
   {
@@ -117,54 +129,53 @@ export const EVENTS = [
     date: "2026-09-12T10:00:00-05:00",
     endDate: "2026-09-12T18:00:00-05:00",
     location: "Trujillo, Perú",
-    image: "https://images.pexels.com/photos/15543214/pexels-photo-15543214.jpeg",
+    image: feria,
     featured: true,
   },
 
   /* ---------------- Próximos ---------------- */
   {
-    id: "jornada-docente-2026",
-    category: "Jornada",
-    title: "Jornada Docente",
+    id: "graduacion-promocion-2026",
+    category: "Graduación",
+    title: "Graduación de Promoción 2026",
     shortDescription:
-      "Espacio de actualización para docentes con metodologías activas, recursos digitales y experiencias de aula.",
+      "Ceremonia de cierre para la promoción 2026: diplomas, reconocimientos y una noche para celebrar en familia.",
     longDescription:
-      "Una jornada de actualización pensada para docentes de todos los niveles. Conocerás metodologías activas que puedes aplicar desde la próxima clase, herramientas digitales para evaluar y retroalimentar, y experiencias reales compartidas por colegas. Todos los participantes recibirán un kit de recursos y constancia de asistencia.",
+      "Nos reuniremos para celebrar el cierre de ciclo de la promoción 2026. Habrá entrega de diplomas, reconocimientos a los mejores egresados, palabras de las autoridades y un momento especial para compartir con las familias. Se recomienda llegar con anticipación para ubicarse.",
     highlights: [
-      "Metodologías activas",
-      "Recursos digitales",
-      "Experiencias de aula",
-      "Constancia de asistencia",
+      "Entrega de diplomas",
+      "Reconocimientos especiales",
+      "Acompañamiento de familias",
+      "Foto oficial de la promoción",
     ],
-    date: "2026-10-22T08:30:00-05:00",
-    endDate: "2026-10-22T17:30:00-05:00",
+    date: "2026-10-22T17:00:00-05:00",
+    endDate: "2026-10-22T20:00:00-05:00",
     location: "Lima, Perú",
-    image: "https://images.pexels.com/photos/18999484/pexels-photo-18999484.jpeg",
+    image: graduates2,
     featured: false,
   },
   {
-    id: "congreso-2026",
+    id: "congreso-universitario-2026",
     category: "Congreso",
-    title: "Congreso de Innovación",
+    title: "Congreso Universitario",
     shortDescription:
-      "Tres días de talleres prácticos, ponencias magistrales y networking con especialistas en innovación educativa y tecnológica.",
+      "Tres días de ponencias, mesas de trabajo y encuentros entre estudiantes, docentes y profesionales.",
     longDescription:
-      "Durante tres días reuniremos a especialistas, docentes y profesionales para compartir las últimas tendencias en innovación educativa y tecnológica. Habrá talleres prácticos en grupos reducidos, ponencias magistrales y espacios de networking pensados para que te lleves ideas aplicables desde el primer día. Al finalizar recibirás un certificado de asistencia y acceso al material de cada sesión.",
+      "Durante tres días reuniremos a estudiantes universitarios, docentes y profesionales para compartir ideas, proyectos y tendencias. Habrá ponencias magistrales, mesas de trabajo y espacios de networking pensados para que te lleves contactos y propuestas aplicables. Al finalizar recibirás un certificado de asistencia.",
     highlights: [
-      "Talleres prácticos",
-      "Speakers nacionales",
+      "Ponencias magistrales",
+      "Mesas de trabajo",
       "Networking",
       "Certificado de asistencia",
     ],
     date: "2026-11-10T09:00:00-05:00",
     endDate: "2026-11-12T18:00:00-05:00",
     location: "Lima, Perú",
-    image:
-      "https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=1200&h=1500&q=80",
+    image: encuentro3,
     featured: false,
   },
   {
-    id: "taller-2026",
+    id: "taller-liderazgo-2026",
     category: "Taller",
     title: "Taller de Liderazgo",
     shortDescription:
@@ -180,29 +191,27 @@ export const EVENTS = [
     date: "2026-12-05T10:00:00-05:00",
     endDate: "2026-12-05T17:00:00-05:00",
     location: "Arequipa, Perú",
-    image:
-      "https://images.unsplash.com/photo-1515187029135-18ee286d815b?auto=format&fit=crop&w=1200&h=1500&q=80",
+    image: tallerImg2,
     featured: false,
   },
   {
-    id: "foro-2027",
-    category: "Foro",
-    title: "Foro de Tecnología",
+    id: "feria-innovacion-2027",
+    category: "Feria",
+    title: "Feria de Innovación y Emprendimiento 2027",
     shortDescription:
-      "Conversatorio con referentes de la industria sobre inteligencia artificial, automatización y el futuro del trabajo.",
+      "Segunda edición de la feria: más stands, más mentorías y un espacio ampliado para presentar tu proyecto.",
     longDescription:
-      "Un espacio de diálogo abierto con referentes de la industria para analizar cómo la inteligencia artificial, la automatización y la transformación digital están cambiando el mercado laboral. Habrá paneles de expertos, preguntas en vivo del público y un cierre con networking. Todos los asistentes recibirán la memoria del evento con las conclusiones principales.",
+      "Regresamos con una nueva edición de la feria, con más stands, mentorías con empresarios y un espacio ampliado de pitch. Es la oportunidad para exhibir tu emprendimiento, conseguir retroalimentación y conocer posibles aliados. Habrá charlas sobre financiamiento y ventas.",
     highlights: [
-      "Panel de expertos",
-      "Preguntas en vivo",
-      "Networking",
-      "Memoria del evento",
+      "Más stands de emprendedores",
+      "Mentorías con empresarios",
+      "Pitch de proyectos",
+      "Charlas de financiamiento",
     ],
-    date: "2027-03-18T18:00:00-05:00",
-    endDate: "2027-03-18T21:00:00-05:00",
+    date: "2027-03-18T10:00:00-05:00",
+    endDate: "2027-03-18T18:00:00-05:00",
     location: "Cusco, Perú",
-    image:
-      "https://images.unsplash.com/photo-1505373877841-8d25f7d46678?auto=format&fit=crop&w=1200&h=1500&q=80",
+    image: feriaIgm3,
     featured: false,
   },
 ];

@@ -47,9 +47,10 @@ function CardStats({ stats }) {
                   />
                 ) : (
                   <Paragraph
-                    variant="danger"
+                    size="xlarge"
                     weight="bold"
-                    text={item.value}
+                    variant="danger"
+                    text={<><AnimatedNumber value={item.value} prefix={item.prefix} />+</>}
                   />
                 )}
                 <small className="text-[10px] sm:text-xs lg:text-sm text-gray-500 block">
