@@ -17,7 +17,7 @@ function AccountingPage() {
       <AccountingValueProps />
       <AccountingLearning />
       <AccountingCurriculum />
-      <AccountingCareerFields />
+      <AccountingCareerFields onRequest={openModal} />
       {isOpen && <ModalMessage toggleModal={closeModal} />}
     </MyTemplate>
   );

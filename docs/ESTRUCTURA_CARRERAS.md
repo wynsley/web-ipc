@@ -105,3 +105,7 @@ AccountingLearning compone el encabezado compartido, ScrollReveal y ContinuousCa
 ### Malla por años de Contabilidad
 
 AccountingCurriculumYear recibe year (title, number, cycles) y expanded; reutiliza AccountingCycleCard({ cycle, number, expanded = true }). accountingCurriculumYears deriva los pares de ciclos del catálogo existente. AccountingCurriculum reutiliza useMediaQuery para establecer la apertura según el breakpoint de escritorio. El recorte es decorativo y conserva el foco del summary. Esta implementación sustituye la cuadrícula plana descrita anteriormente.
+
+### Proyección profesional agrupada
+
+AccountingCareerFields({ onRequest }) compone AccountingCareerGroup({ id, title, groups }) y AccountingInformationCta({ onRequest }). Cada grupo reutiliza AccountingFeatureList como tarjeta de categoría con h4 bajo el h3 del bloque. Editar sectores y cargos en data/careers/accounting/fields.js. Mantener un único useModal en AccountingPage para ambos botones de información.

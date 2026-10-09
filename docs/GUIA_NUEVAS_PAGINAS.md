@@ -329,3 +329,7 @@ BrandedHeroFrame({ image, children }), en molecules/shared, reutiliza el fondo f
 ### Personas recortadas y variantes de hero
 
 Para PNG con alfa, usar Image transparent; el fondo se vuelve transparente solo tras la carga correcta y mantiene bg-blue-dark si falta la imagen o falla. Para garantizar un encuadre completo con el átomo actual, configurar style={{ objectFit: "contain", objectPosition: "bottom" }}. BrandedHeroFrame admite variant="institutional" para azul institucional y className para dimensiones locales; su variante predeterminada conserva Sobre nosotros. La persona superpuesta se coloca fuera del marco que recorta el fondo, con espacio reservado y disposición móvil que no cubra las acciones.
+
+### Encabezados sobre fondos oscuros
+
+CareerSectionHeading admite inverse (false por defecto): cambia el título y la descripción a blanco y el antetítulo a blanco atenuado. Usar esta variante sobre fondos institucionales oscuros para reutilizar estructura y ScrollReveal sin duplicar encabezados. Los consumidores existentes conservan su presentación por defecto.
