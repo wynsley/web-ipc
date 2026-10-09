@@ -88,7 +88,11 @@ Reutilizar responsabilidad y contrato, no solo apariencia. Si un formulario soli
 
 `PriceSummaryCard({ title, items, footer, currency = "S/", className = "" })` presenta un resumen compacto de precios. `items` recibe elementos `{ text, value }` con etiquetas únicas; `footer` es opcional. No importa catálogos ni fija márgenes de superposición. El consumidor aporta datos y controla ancho/posición mediante `className`, combinada con `twMerge`. Admisión pasa el catálogo `ServicesAcademic` compartido con Inicio y aplica sus márgenes negativos desde `AdmissionsHero`. Para listas extensas usar otro layout; esta tarjeta está pensada para pocos conceptos resumidos.
 
+`BannerBgCurve` incorpora diseño 8 para tarjetas con fotografía: `secondaryAccentColor`, `accentColor` y `color` forman dos bandas sobre una base continua. Su viewBox incluye la totalidad de las curvas para evitar cortes horizontales. Admisión usa los tokens blue-dark, orange y neutral-white. Los diseños anteriores se conservan. Para entradas de bloques reutilizar `ScrollReveal`, que delega en `ScrollMotion` y respeta movimiento reducido; la sección de examen anima contenido y tarjeta con y=28, duración 0,6 s y retraso de 0,12 s en la tarjeta.
+
 ### Imágenes
+
+El afiche de Admisión usa `BannerBgCurve` diseño 9, con `height="h-full"` y `className="h-full"`, para cubrir la región fotográfica conservando las tres curvas del original. Recibe blue-deep, orange y neutral-white mediante las props de color existentes. SVG sigue siendo el mecanismo de dibujo interno del componente compartido; los consumidores no duplican sus paths. El diseño 8 y los restantes conservan su geometría.
 
 Usar siempre Image en las páginas o componentes nuevos o modificados. Preservar el espacio cuando falte src o falle la carga. Ejemplo informativo:
 

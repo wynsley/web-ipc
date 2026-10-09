@@ -1,5 +1,23 @@
 # Estado y evolución de IPC Platform
 
+## Modularización del afiche — 9 de octubre de 2026
+
+`AdmissionsExamCard` queda como composición de 26 líneas: `AdmissionsPosterHeader` agrupa fotografía y títulos, `AdmissionsPosterRegistration` presenta fecha, contacto y botón, y `AdmissionsPosterCareers` resuelve el listado desde el catálogo compartido. `AdmissionsPosterPhoto` mantiene el encuadre y reutiliza `BannerBgCurve` diseño 9 para las tres superficies curvas; se elimina el SVG inline de la tarjeta. La geometría, los colores, `@container`, datos y callback del modal se conservan. ScrollReveal sigue en el organismo de la sección.
+
+ESLint del alcance y build correctos; persiste la advertencia conocida del tamaño del bundle.
+
+## Admisión: sección de examen — 8 de octubre de 2026
+
+Versión vigente del afiche: por indicación del usuario se implementa en JSX y SVG editables, conservando fecha «05 ABRIL», teléfono, dirección, orden de carreras y composición de la referencia. `AdmissionsPosterPhoto` encuadra la región fotográfica de `exam-reference.png` mediante CSS y aplica curvas SVG con naranja institucional. No se utiliza la generación intermedia del afiche completo. `AdmissionsExamCard` presenta títulos, datos de contacto, iconos y botón reales; las carreras se derivan del catálogo compartido en el orden del afiche. Fecha, teléfono y dirección viven en `data/admissions/exam.js`. Se conservan ScrollReveal, el contenido izquierdo y el modal abierto por «Inscripciones». Esta versión sustituye las notas previas sobre fecha pendiente y curva compartida de esta tarjeta.
+
+Corrección posterior: la curva local se sustituye por `BannerBgCurve` diseño 8, con viewBox de 190 unidades para contener toda la base blanca y evitar el recorte horizontal de las bandas. `AdmissionsExam` reutiliza `ScrollReveal` para las entradas de texto y tarjeta, sin lógica de animación nueva. Build y ESLint del alcance correctos; unión curva inspeccionada en escritorio y 390 px, animaciones completadas con opacidad 1 y transform none, apertura/cierre del modal móvil verificados. Movimiento reducido se conserva mediante el componente compartido (revisión de código).
+
+Se añade `AdmissionsExam` debajo del hero en `/admissions`. Compone `AdmissionsExamContent` (introducción y orientación) y `AdmissionsExamCard` (afiche editable con foto, curva institucional, convocatoria y carreras). Los textos y la imagen se configuran en `data/admissions/exam.js`; las carreras proceden del catálogo compartido. Azul `blue-dark`, naranja `orange`, fuentes Poppins/Hani e imágenes con `Image` y respaldo institucional.
+
+Ambos botones nuevos abren el `ModalMessage` ya montado en la página, mediante el mismo callback del hero. La tarjeta es una adaptación en HTML de la referencia; reutiliza una imagen ilustrativa existente de estudiantes. Se muestra «Fecha por confirmar» hasta confirmar la convocatoria vigente; no se trasladan el teléfono ni la fecha del afiche de referencia como datos oficiales. No se añade una descarga sin documento de admisión confirmado. El hero y la tarjeta de precios conservan sus ajustes locales.
+
+Verificados ESLint del alcance y build (advertencia conocida de tamaño del bundle), anchos 320/390/768/1440 sin desbordes, presentación en escritorio/móvil y apertura/cierre del formulario desde las dos acciones. Sin errores de consola; no se enviaron datos.
+
 ## Admisión: hero — 8 de octubre de 2026
 
 Ajuste responsive de la tarjeta: importes de 28 px por debajo de 375 px, 30 px desde 375 px, 48 px desde 640 px y 60 px desde 1024 px. Moneda e importe se mantienen en una línea; el título pasa a compartir fila con los precios desde 1024 px. Se conservan las reducciones locales del usuario en alturas del hero, padding de la tarjeta y separación del texto inferior. Comprobados anchos 320/390/768/1024/1440 sin desbordes de página ni de las columnas de precios, e inspección visual a 320 px. Build y lint del alcance correctos; persiste la advertencia conocida del bundle.
