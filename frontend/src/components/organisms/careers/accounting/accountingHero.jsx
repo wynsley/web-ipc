@@ -1,22 +1,18 @@
 import { AccountingHeroIntro } from "@/components/molecules/careers/accounting/accountingHeroIntro";
-import { AccountingHeroVisual } from "@/components/molecules/careers/accounting/accountingHeroVisual";
-import { CareerBreadcrumbs } from "@/components/molecules/careers/shared/careerBreadcrumbs";
-import { ScrollReveal } from "@/components/layouts/scrollReveal";
+import { BrandedHeroFrame } from "@/components/molecules/shared/brandedHeroFrame";
+import accountingImage from "@assets/images/careers/accounting/CONTABILIDAD.webp";
+import { AccountingHeroStudent } from "@/components/molecules/careers/accounting/accountingHeroStudent";
 
 function AccountingHero({ onRequest }) {
   return (
-    <section aria-labelledby="accounting-title" className="bg-blue-dark text-neutral-white">
-      <div className="mx-auto max-w-7xl px-5 py-8 sm:px-8 lg:px-12 lg:pb-16">
-        <CareerBreadcrumbs title="Contabilidad" className="mb-10 text-sm text-neutral-white/80" />
-        <div className="grid min-w-0 gap-10 lg:grid-cols-2 lg:items-center lg:gap-14">
-          <ScrollReveal>
-            <AccountingHeroIntro onRequest={onRequest} />
-          </ScrollReveal>
-          <ScrollReveal delay={0.12}>
-            <AccountingHeroVisual />
-          </ScrollReveal>
-        </div>
-      </div>
+    <section
+      aria-labelledby="accounting-title"
+      className="relative z-0 pb-6 sm:pb-8"
+    >
+      <BrandedHeroFrame image={accountingImage} variant="institutional" className="h-[34rem] sm:min-h-80">
+        <AccountingHeroIntro onRequest={onRequest} />
+      </BrandedHeroFrame>
+      <AccountingHeroStudent />
     </section>
   );
 }

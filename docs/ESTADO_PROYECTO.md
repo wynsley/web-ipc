@@ -444,3 +444,15 @@ CareerSectionHeading unifica los encabezados; BenefitCard presenta los beneficio
 AccountingPage conserva useModal para la apertura/cierre del formulario. Los hooks internos de Image y de las animaciones compartidas siguen siendo necesarios; no se duplican efectos en organismos ni moléculas de Contabilidad. Se conservan las asignaturas, duración y afirmaciones académicas preexistentes sin certificarlas como información oficial.
 
 Validación: ESLint del alcance y build correctos (persiste la advertencia conocida del bundle). Portada inspeccionada en escritorio y a 320 px, malla a 390 px; sin desborde horizontal de página a 320 px. Verificados apertura/cierre del modal, enlace a la malla, cierre con clic y apertura con Enter de un ciclo. Movimiento reducido delegado a los componentes compartidos y revisado en código.
+
+## Hero de Contabilidad simplificado — 9 de octubre de 2026
+
+Por indicación del usuario, el hero adopta la base de Sobre nosotros: fotografía de fondo, degradado, patrón triangular, banda inclinada y esquina inferior izquierda curva. Muestra únicamente Contabilidad y el botón Solicitar información conectado al modal existente. Se eliminan breadcrumb, párrafo, destacados, leyenda y acción secundaria del hero; se retiran AccountingHighlights, AccountingHeroVisual y sus datos sin consumidores. Las razones de estudio continúan en la sección de presentación.
+
+BrandedHeroFrame({ image, children }) centraliza la base visual y es consumido por AboutHero y AccountingHero. Usa Image para el fondo condicional y useId para evitar colisiones del patrón SVG; incorpora una altura mínima de 18 rem. AboutHero conserva título, persona y animaciones existentes. Contabilidad conserva ScrollReveal y una molécula de título/acción. Verificados ESLint del alcance, build, escritorio, Contabilidad a 320 px, apertura/cierre del formulario y composición de Sobre nosotros. Persiste la advertencia conocida del tamaño del bundle.
+
+## Contabilidad: estudiante y paleta propia — 9 de octubre de 2026
+
+AccountingHeroStudent integra una estudiante ficticia generada con transparencia, guardada en assets/images/careers/accounting/accounting-student.png. Reutiliza Image y ScrollReveal; se superpone 24/32 px al borde inferior y pasa debajo del título en móvil. Reducido el espacio blanco inferior. BrandedHeroFrame admite variant="institutional" y className, manteniendo por defecto la composición de Sobre nosotros. Contabilidad usa blue-dark, blue y orange; conserva su título y único botón conectado al modal.
+
+Image admite transparent=false por defecto: con true, retira el fondo azul únicamente después de cargar correctamente; conserva el respaldo institucional ante ausencia o error de la imagen. La fotografía generada conserva alfa, sin edición del bitmap. Verificados escritorio, móvil a 390 px y apertura del formulario. ESLint y build correctos, con advertencia conocida de tamaño del bundle.

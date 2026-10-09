@@ -321,3 +321,11 @@ Para ampliar Contabilidad, usar las carpetas accounting de pages/careers, organi
 ### Actualización de Contabilidad: simplificación — 9 de octubre de 2026
 
 La malla vigente sustituye el carrusel de la nota anterior: AccountingCycleCard({ cycle, number }) usa details/summary nativos en una cuadrícula, sin hooks ni controles externos. Se eliminaron AccountingCurriculumControls y AccountingChecklistItem. Para beneficios reutilizar BenefitCard; para encabezados, CareerSectionHeading; para entradas, ScrollReveal; para navegación de portada, CareerBreadcrumbs. AccountingLearningCard presenta los temas numerados. AccountingHeroVisual usa Image y el recurso local; AccountingPage mantiene únicamente useModal como hook propio de composición. No reintroducir lógica de carrusel para consultar asignaturas sin una necesidad explícita.
+
+### Base de hero de marca — 9 de octubre de 2026
+
+BrandedHeroFrame({ image, children }), en molecules/shared, reutiliza el fondo fotográfico mediante Image, el degradado, el patrón SVG con ID único, la banda inclinada y la esquina curva del hero de Sobre nosotros. Cada organismo aporta su contenido y los elementos superpuestos. Sobre nosotros conserva HeroPerson; Contabilidad solo aporta título y botón mediante AccountingHeroIntro. Evitar copiar la geometría en nuevos heroes que usen este diseño.
+
+### Personas recortadas y variantes de hero
+
+Para PNG con alfa, usar Image transparent; el fondo se vuelve transparente solo tras la carga correcta y mantiene bg-blue-dark si falta la imagen o falla. Para garantizar un encuadre completo con el átomo actual, configurar style={{ objectFit: "contain", objectPosition: "bottom" }}. BrandedHeroFrame admite variant="institutional" para azul institucional y className para dimensiones locales; su variante predeterminada conserva Sobre nosotros. La persona superpuesta se coloca fuera del marco que recorta el fondo, con espacio reservado y disposición móvil que no cubra las acciones.

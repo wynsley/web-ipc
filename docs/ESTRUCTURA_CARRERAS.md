@@ -89,3 +89,7 @@ CareerSectionHeading unifica los encabezados; BenefitCard presenta los beneficio
 AccountingPage conserva useModal para la apertura/cierre del formulario. Los hooks internos de Image y de las animaciones compartidas siguen siendo necesarios; no se duplican efectos en organismos ni moléculas de Contabilidad. Se conservan las asignaturas, duración y afirmaciones académicas preexistentes sin certificarlas como información oficial.
 
 Validación: ESLint del alcance y build correctos (persiste la advertencia conocida del bundle). Portada inspeccionada en escritorio y a 320 px, malla a 390 px; sin desborde horizontal de página a 320 px. Verificados apertura/cierre del modal, enlace a la malla, cierre con clic y apertura con Enter de un ciclo. Movimiento reducido delegado a los componentes compartidos y revisado en código.
+
+### Hero vigente de Contabilidad — 9 de octubre de 2026
+
+AccountingHero compone BrandedHeroFrame (shared, también usado por Sobre nosotros) y AccountingHeroIntro (título y único botón de información). Se eliminan AccountingHighlights y AccountingHeroVisual; la fotografía local se pasa como prop al marco compartido. El resto de organismos de Contabilidad se conserva.
