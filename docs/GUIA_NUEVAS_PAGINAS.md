@@ -313,3 +313,11 @@ Computación vuelve a usar CareerLearning digital con tarjetas estáticas, recta
 ### Alineación de tarjetas y unión curva — 7 de octubre de 2026
 
 CareerLearning admite emphasizeCenter (true por defecto); Computación lo desactiva para conservar una fila de tarjetas del mismo tamaño, de 18 a 24 rem según el viewport. Las tarjetas se estiran a igual altura. Se mantienen desplazamiento continuo de 30 segundos, arrastre y pausa contextual; Administración conserva el énfasis central. BannerBgCurve incorpora diseño 7 y secondaryAccentColor opcional: dos bandas curvas paralelas blanca y naranja sobre una base blue-dark que conecta con aprendizaje sin remate horizontal naranja. Los diseños anteriores no cambian.
+
+## Contabilidad — 9 de octubre de 2026
+
+Para ampliar Contabilidad, usar las carpetas accounting de pages/careers, organisms/careers, molecules/careers y data/careers. Mantener los datos por sección y los componentes en archivos propios. AccountingPage controla el modal de información y pasa onRequest al hero. AccountingChecklistItem recibe title opcional y description para reutilizar la presentación en beneficios y aprendizaje. AccountingCycleCard presenta un ciclo; AccountingCurriculumControls recibe cycles, current y onSelect. Mantener el hook useCarousel compartido, su withTransition y los controles derivados de la cantidad real de ciclos, sin listas fijas de índices.
+
+### Actualización de Contabilidad: simplificación — 9 de octubre de 2026
+
+La malla vigente sustituye el carrusel de la nota anterior: AccountingCycleCard({ cycle, number }) usa details/summary nativos en una cuadrícula, sin hooks ni controles externos. Se eliminaron AccountingCurriculumControls y AccountingChecklistItem. Para beneficios reutilizar BenefitCard; para encabezados, CareerSectionHeading; para entradas, ScrollReveal; para navegación de portada, CareerBreadcrumbs. AccountingLearningCard presenta los temas numerados. AccountingHeroVisual usa Image y el recurso local; AccountingPage mantiene únicamente useModal como hook propio de composición. No reintroducir lógica de carrusel para consultar asignaturas sin una necesidad explícita.

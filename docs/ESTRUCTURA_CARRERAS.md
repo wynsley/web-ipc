@@ -11,7 +11,7 @@ frontend/src/
       administration/businessAdministrationPage.jsx
       computerScience/computerSciencePage.jsx
       languageTranslation/languageTranslationPage.jsx
-      accountingPage.jsx                 # Fuera de esta reorganización
+      accounting/accountingPage.jsx      # Composición y modal de información
     organisms/careers/
       shared/                            # Aprendizaje, campo laboral, beneficios, documentos
       administration/                    # Hero exclusivo de Administración
@@ -71,3 +71,21 @@ Verificado: build correcto (714 módulos), lint de las carreras reorganizadas si
 - Migradas 21 imágenes de carreras a src/assets/images/careers/{administration,accounting,computerScience,languageTranslation}, mediante imports @assets. Actualizados todos sus consumidores, incluida la foto de FINANZAS de HomeAdmissions; esta sección usa Image para sus fotografías. Conservados los originales y la transparencia de Computación. Los PDF permanecen en public.
 - Traducción abre public/documents/languageTranslation/traduccion-referencia.pdf desde ambas tarjetas usando el visor global. Página 1: plan de referencia. Página 2: malla ficticia por etapas, sin créditos ni duración. Ambas incluyen «DOCUMENTO DE REFERENCIA - NO OFICIAL» y las tarjetas isReference=true. Sustituir por documentos oficiales cuando se disponga de ellos.
 - Verificados los tres breadcrumbs, regreso a inicio, ambos CTA, teclado de pestañas, carga de imágenes y anchos 320/390/768/1440. PDF renderizado e inspeccionado visualmente; apertura desde ambas tarjetas, dos páginas, navegación, zoom y descarga HTTP 200. Sin errores JavaScript. Build y lint del alcance pasan; la advertencia previa del bundle y los dos errores globales conocidos quedan fuera del alcance.
+
+## Contabilidad — 9 de octubre de 2026
+
+Contabilidad incorpora carpetas propias en pages/careers/accounting, organisms/careers/accounting, molecules/careers/accounting y data/careers/accounting. La página compone seis organismos y controla el modal compartido; el hero recibe onRequest. Las moléculas separan introducción, destacados, razones, ficha de datos, listas de campo profesional, elementos de verificación, tarjeta de ciclo y controles de la malla. AccountingChecklistItem se reutiliza en beneficios y aprendizaje. Los datos existentes se separan en hero.js, overview.js, benefits.js, fields.js, learning.js y curriculum.js.
+
+Se conservan contenido y ruta /career/accounting. La malla reutiliza useCarousel, useCardsPerView y useMediaQuery, respeta withTransition y movimiento reducido, pausa al recibir foco y permite elegir los seis ciclos. Los controles usan Button; las imágenes conservan Image y respaldo institucional. El hero utiliza el asset local ya disponible y corrige el recorte en móvil. Los acentos amarillos locales se sustituyen por orange y el fondo gris literal por neutral-light.
+
+AccountingCarousel permanece como archivo experimental sin consumidores, fuera de la página renderizada; no se incorpora ni se reescribe su animación en esta refactorización. Los datos académicos y afirmaciones institucionales existentes se conservan, sin validarlos como información oficial. Se reparan los imports de imágenes y la exportación careers que faltaban en el catálogo compartido y bloqueaban la compilación de la aplicación.
+
+## Contabilidad: diseño y simplificación vigentes — 9 de octubre de 2026
+
+Esta revisión sustituye la malla en carrusel y los componentes descritos en la primera fase de modularización. La página mantiene sus seis organismos y los datos académicos existentes. Hero con introducción y fotografía independientes, breadcrumb compartido, CTA del modal y enlace a la malla. El orden de lectura es presentación, ficha y razones, beneficios, aprendizaje, malla y campo profesional. Se usan Poppins/Hani y tokens institucionales.
+
+CareerSectionHeading unifica los encabezados; BenefitCard presenta los beneficios sin duplicar su diseño; CareerBreadcrumbs y ScrollReveal resuelven navegación y entradas. AccountingHeroVisual centraliza la fotografía local mediante Image con respaldo institucional. La malla usa seis AccountingCycleCard con details/summary nativos, abiertos inicialmente y operables con teclado, en una cuadrícula responsive. No tiene temporizadores, clones, controles de carrusel ni estado React propio. Se eliminan AccountingCarousel (experimental sin consumidores), AccountingCurriculumControls y AccountingChecklistItem; AccountingLearningCard presenta los temas numerados sin variantes innecesarias.
+
+AccountingPage conserva useModal para la apertura/cierre del formulario. Los hooks internos de Image y de las animaciones compartidas siguen siendo necesarios; no se duplican efectos en organismos ni moléculas de Contabilidad. Se conservan las asignaturas, duración y afirmaciones académicas preexistentes sin certificarlas como información oficial.
+
+Validación: ESLint del alcance y build correctos (persiste la advertencia conocida del bundle). Portada inspeccionada en escritorio y a 320 px, malla a 390 px; sin desborde horizontal de página a 320 px. Verificados apertura/cierre del modal, enlace a la malla, cierre con clic y apertura con Enter de un ciclo. Movimiento reducido delegado a los componentes compartidos y revisado en código.
