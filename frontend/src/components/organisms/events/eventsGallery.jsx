@@ -54,7 +54,7 @@ function EventsGallery() {
           items={items}
           layout={EVENTS_MOSAIC}
           onOpen={setOpenIndex}
-          cardProps={{ showDescription: false }}
+          cardProps={{ showDescription: false , titleSize : "xs"}}
         />
       </div>
 
