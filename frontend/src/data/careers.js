@@ -1,5 +1,8 @@
-// data/careers
-const careers = [
+import administracionImage from "@assets/images/careers/administration/ADMINISTRACION.webp"
+import contabilidadImage from "@assets/images/careers/accounting/CONTABILIDAD.webp"
+import computacionImage from "@assets/images/careers/computerScience/COMPUTACION.webp"
+
+export const careers = [
   {
     title: "Administración de Empresas",
     href: "/career/administration",
