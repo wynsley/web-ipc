@@ -9,20 +9,21 @@ function CareerSectionHeading({
   description,
   className,
   descriptionClassName = "",
+  inverse = false,
 }) {
   return (
     <ScrollReveal className={className}>
       <div>
         <Paragraph
           as="span"
-          className="mb-4 block font-poppins text-xs tracking-[0.2em] text-blue uppercase"
+          className={`mb-4 block font-poppins text-xs tracking-[0.2em] uppercase ${inverse ? "text-neutral-white/75" : "text-blue"}`}
         >
           {eyebrow}
         </Paragraph>
         <Title
           id={id}
           level="h2"
-          variant="institutional"
+          variant={inverse ? "secondary" : "institutional"}
           weight="bold"
           className="font-hani leading-tight"
           text={title}
@@ -30,6 +31,7 @@ function CareerSectionHeading({
       </div>
       <Paragraph
         size="compact"
+        variant={inverse ? "primary" : "default"}
         className={`font-poppins leading-relaxed ${descriptionClassName}`}
         text={description}
       />

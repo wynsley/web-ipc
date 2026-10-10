@@ -1,5 +1,37 @@
 # Estado y evolución de IPC Platform
 
+## Modularización del afiche — 9 de octubre de 2026
+
+`AdmissionsExamCard` queda como composición de 26 líneas: `AdmissionsPosterHeader` agrupa fotografía y títulos, `AdmissionsPosterRegistration` presenta fecha, contacto y botón, y `AdmissionsPosterCareers` resuelve el listado desde el catálogo compartido. `AdmissionsPosterPhoto` mantiene el encuadre y reutiliza `BannerBgCurve` diseño 9 para las tres superficies curvas; se elimina el SVG inline de la tarjeta. La geometría, los colores, `@container`, datos y callback del modal se conservan. ScrollReveal sigue en el organismo de la sección.
+
+ESLint del alcance y build correctos; persiste la advertencia conocida del tamaño del bundle.
+
+## Admisión: sección de examen — 8 de octubre de 2026
+
+Versión vigente del afiche: por indicación del usuario se implementa en JSX y SVG editables, conservando fecha «05 ABRIL», teléfono, dirección, orden de carreras y composición de la referencia. `AdmissionsPosterPhoto` encuadra la región fotográfica de `exam-reference.png` mediante CSS y aplica curvas SVG con naranja institucional. No se utiliza la generación intermedia del afiche completo. `AdmissionsExamCard` presenta títulos, datos de contacto, iconos y botón reales; las carreras se derivan del catálogo compartido en el orden del afiche. Fecha, teléfono y dirección viven en `data/admissions/exam.js`. Se conservan ScrollReveal, el contenido izquierdo y el modal abierto por «Inscripciones». Esta versión sustituye las notas previas sobre fecha pendiente y curva compartida de esta tarjeta.
+
+Corrección posterior: la curva local se sustituye por `BannerBgCurve` diseño 8, con viewBox de 190 unidades para contener toda la base blanca y evitar el recorte horizontal de las bandas. `AdmissionsExam` reutiliza `ScrollReveal` para las entradas de texto y tarjeta, sin lógica de animación nueva. Build y ESLint del alcance correctos; unión curva inspeccionada en escritorio y 390 px, animaciones completadas con opacidad 1 y transform none, apertura/cierre del modal móvil verificados. Movimiento reducido se conserva mediante el componente compartido (revisión de código).
+
+Se añade `AdmissionsExam` debajo del hero en `/admissions`. Compone `AdmissionsExamContent` (introducción y orientación) y `AdmissionsExamCard` (afiche editable con foto, curva institucional, convocatoria y carreras). Los textos y la imagen se configuran en `data/admissions/exam.js`; las carreras proceden del catálogo compartido. Azul `blue-dark`, naranja `orange`, fuentes Poppins/Hani e imágenes con `Image` y respaldo institucional.
+
+Ambos botones nuevos abren el `ModalMessage` ya montado en la página, mediante el mismo callback del hero. La tarjeta es una adaptación en HTML de la referencia; reutiliza una imagen ilustrativa existente de estudiantes. Se muestra «Fecha por confirmar» hasta confirmar la convocatoria vigente; no se trasladan el teléfono ni la fecha del afiche de referencia como datos oficiales. No se añade una descarga sin documento de admisión confirmado. El hero y la tarjeta de precios conservan sus ajustes locales.
+
+Verificados ESLint del alcance y build (advertencia conocida de tamaño del bundle), anchos 320/390/768/1440 sin desbordes, presentación en escritorio/móvil y apertura/cierre del formulario desde las dos acciones. Sin errores de consola; no se enviaron datos.
+
+## Admisión: hero — 8 de octubre de 2026
+
+Ajuste responsive de la tarjeta: importes de 28 px por debajo de 375 px, 30 px desde 375 px, 48 px desde 640 px y 60 px desde 1024 px. Moneda e importe se mantienen en una línea; el título pasa a compartir fila con los precios desde 1024 px. Se conservan las reducciones locales del usuario en alturas del hero, padding de la tarjeta y separación del texto inferior. Comprobados anchos 320/390/768/1024/1440 sin desbordes de página ni de las columnas de precios, e inspección visual a 320 px. Build y lint del alcance correctos; persiste la advertencia conocida del bundle.
+
+Modularización posterior: `AdmissionsHero` compone `Image`, `AdmissionsHeroContent` (textos y CTA) y `PriceSummaryCard` (tarjeta compartida por props); esta última sustituye a `AdmissionsFees`. Los precios siguen procediendo de `ServicesAcademic`, pero la tarjeta ya no depende del catálogo ni de Admisión. La superposición se configura en el organismo. Se corrige la frase promocional de `font-serif` a `font-hani` (Rajdhani local); título, descripción y botón mantienen Poppins. No cambia el flujo del modal.
+
+Actualización posterior: se adopta la paleta de la referencia (oscurecimiento negro, título blanco y botón azul), sustituyendo sus amarillos por `orange`. `AdmissionsFees` añade la franja negra sobresaliente y reutiliza `data/ServicesAcademic.js` (100/100/200 soles), sin duplicar el catálogo de Inicio. La fotografía se sustituye por `assets/images/admissions/admissions-classroom.png`, generada con ImageGen; su README conserva el prompt y la identifica como ilustración. Conservados `Image`, su respaldo institucional y el modal compartido. Verificados build, lint del alcance, presentación a 1440/390 px sin desbordes, apertura/cierre del modal y consola sin errores. Las notas siguientes describen la primera versión y quedan sustituidas en estilo, imagen y precios por este ajuste.
+
+Implementado únicamente el hero de `/admissions`, en `organisms/admissions/admissionsHero.jsx`. Conserva la composición centrada y el año 2027 de la referencia visual, con tokens azul institucional/naranja y una fotografía existente de estudiantes. `Image` mantiene el fondo `bg-blue-dark` cuando no hay imagen o falla la carga. El año y el texto del examen proceden de la referencia de diseño; no constituyen un cronograma confirmado.
+
+`AdmissionPage` compone el hero y reutiliza `useModal` y `ModalMessage`, igual que Inicio. «¡Inscríbete!» abre el formulario de asesoría existente; no representa una matrícula completada. No se añadieron precios ni otras secciones. El envío sigue sujeto a la API pendiente del formulario compartido.
+
+Verificación: ESLint de los componentes nuevos/modificados y build correctos; persiste la advertencia de tamaño del bundle. Hero inspeccionado en navegador a 1440 y 390 px, sin desbordamiento horizontal; apertura y cierre con Cancelar verificados en ambos tamaños, sin errores de consola. No se realizó envío de datos.
+
 ## Estado vigente — 5 de octubre de 2026
 
 Revisión de main en `dbf2f02`, con el árbol limpio al iniciar. Consulta [REVISION_2026-10-05.md](REVISION_2026-10-05.md) para hallazgos, evidencias y verificaciones actuales. Las secciones fechadas del 29 de septiembre y las notas posteriores se conservan como historial; sus contratos y estados pueden haber sido sustituidos por actualizaciones más recientes.
@@ -396,3 +428,51 @@ Computación vuelve a usar CareerLearning digital con tarjetas estáticas, recta
 ### Alineación de tarjetas y unión curva — 7 de octubre de 2026
 
 CareerLearning admite emphasizeCenter (true por defecto); Computación lo desactiva para conservar una fila de tarjetas del mismo tamaño, de 18 a 24 rem según el viewport. Las tarjetas se estiran a igual altura. Se mantienen desplazamiento continuo de 30 segundos, arrastre y pausa contextual; Administración conserva el énfasis central. BannerBgCurve incorpora diseño 7 y secondaryAccentColor opcional: dos bandas curvas paralelas blanca y naranja sobre una base blue-dark que conecta con aprendizaje sin remate horizontal naranja. Los diseños anteriores no cambian.
+
+## Contabilidad: separación por responsabilidades — 9 de octubre de 2026
+
+Se organiza la página en carpetas accounting para página, organismos, moléculas y datos, conforme a ESTRUCTURA_CARRERAS.md. Se eliminan las definiciones de componentes auxiliares dentro de organismos y se reutilizan los átomos, el modal y los hooks existentes. Beneficios y aprendizaje comparten AccountingChecklistItem. Solicitar información abre ModalMessage; la malla permite seleccionar los seis ciclos y respeta movimiento reducido. El hero conserva Image, usa el asset local de Contabilidad y ajusta su título al ancho móvil. Se mantiene el contenido académico existente; no se confirma su carácter oficial. Se restauran los imports y la exportación del catálogo careers que bloqueaban la aplicación. El carrusel experimental sin consumidores permanece fuera del alcance.
+
+Validación: ESLint de los componentes y datos de Contabilidad correcto; build correcto con la advertencia conocida de tamaño del bundle. Verificados 320/390/768/1440 px sin desbordamiento horizontal de página, portada móvil y de escritorio, apertura/cierre del modal y selección visible del sexto ciclo. Movimiento reducido revisado en código. App.jsx conserva el aviso previo de lint por la variable ready sin uso; el cambio de esta tarea en App se limita al import de la página.
+
+## Contabilidad: diseño y simplificación vigentes — 9 de octubre de 2026
+
+Esta revisión sustituye la malla en carrusel y los componentes descritos en la primera fase de modularización. La página mantiene sus seis organismos y los datos académicos existentes. Hero con introducción y fotografía independientes, breadcrumb compartido, CTA del modal y enlace a la malla. El orden de lectura es presentación, ficha y razones, beneficios, aprendizaje, malla y campo profesional. Se usan Poppins/Hani y tokens institucionales.
+
+CareerSectionHeading unifica los encabezados; BenefitCard presenta los beneficios sin duplicar su diseño; CareerBreadcrumbs y ScrollReveal resuelven navegación y entradas. AccountingHeroVisual centraliza la fotografía local mediante Image con respaldo institucional. La malla usa seis AccountingCycleCard con details/summary nativos, abiertos inicialmente y operables con teclado, en una cuadrícula responsive. No tiene temporizadores, clones, controles de carrusel ni estado React propio. Se eliminan AccountingCarousel (experimental sin consumidores), AccountingCurriculumControls y AccountingChecklistItem; AccountingLearningCard presenta los temas numerados sin variantes innecesarias.
+
+AccountingPage conserva useModal para la apertura/cierre del formulario. Los hooks internos de Image y de las animaciones compartidas siguen siendo necesarios; no se duplican efectos en organismos ni moléculas de Contabilidad. Se conservan las asignaturas, duración y afirmaciones académicas preexistentes sin certificarlas como información oficial.
+
+Validación: ESLint del alcance y build correctos (persiste la advertencia conocida del bundle). Portada inspeccionada en escritorio y a 320 px, malla a 390 px; sin desborde horizontal de página a 320 px. Verificados apertura/cierre del modal, enlace a la malla, cierre con clic y apertura con Enter de un ciclo. Movimiento reducido delegado a los componentes compartidos y revisado en código.
+
+## Hero de Contabilidad simplificado — 9 de octubre de 2026
+
+Por indicación del usuario, el hero adopta la base de Sobre nosotros: fotografía de fondo, degradado, patrón triangular, banda inclinada y esquina inferior izquierda curva. Muestra únicamente Contabilidad y el botón Solicitar información conectado al modal existente. Se eliminan breadcrumb, párrafo, destacados, leyenda y acción secundaria del hero; se retiran AccountingHighlights, AccountingHeroVisual y sus datos sin consumidores. Las razones de estudio continúan en la sección de presentación.
+
+BrandedHeroFrame({ image, children }) centraliza la base visual y es consumido por AboutHero y AccountingHero. Usa Image para el fondo condicional y useId para evitar colisiones del patrón SVG; incorpora una altura mínima de 18 rem. AboutHero conserva título, persona y animaciones existentes. Contabilidad conserva ScrollReveal y una molécula de título/acción. Verificados ESLint del alcance, build, escritorio, Contabilidad a 320 px, apertura/cierre del formulario y composición de Sobre nosotros. Persiste la advertencia conocida del tamaño del bundle.
+
+## Contabilidad: estudiante y paleta propia — 9 de octubre de 2026
+
+AccountingHeroStudent integra una estudiante ficticia generada con transparencia, guardada en assets/images/careers/accounting/accounting-student.png. Reutiliza Image y ScrollReveal; se superpone 24/32 px al borde inferior y pasa debajo del título en móvil. Reducido el espacio blanco inferior. BrandedHeroFrame admite variant="institutional" y className, manteniendo por defecto la composición de Sobre nosotros. Contabilidad usa blue-dark, blue y orange; conserva su título y único botón conectado al modal.
+
+Image admite transparent=false por defecto: con true, retira el fondo azul únicamente después de cargar correctamente; conserva el respaldo institucional ante ausencia o error de la imagen. La fotografía generada conserva alfa, sin edición del bitmap. Verificados escritorio, móvil a 390 px y apertura del formulario. ESLint y build correctos, con advertencia conocida de tamaño del bundle.
+
+## Conoce la carrera: ficha compacta — 9 de octubre de 2026
+
+AccountingOverview presenta «Convierte los números en decisiones», una descripción breve y tres datos: duración, modalidad y título obtenido. Se elimina el dato redundante del nombre de carrera. AccountingCapabilities y AccountingCapabilityItem sustituyen AccountingReasonsPanel por tres capacidades con iconos discretos; textos centralizados en data/careers/accounting/overview.js. Se retira hero.js, que solo contenía las razones antiguas sin otros consumidores. El bloque usa neutros y azul, sin acentos naranjas ni acciones adicionales. Conserva CareerSectionHeading, ScrollReveal y átomos de texto. ESLint y build correctos, inspección de escritorio y móvil a 390 px completada.
+
+## Competencias de Contabilidad: carrusel compartido — 9 de octubre de 2026
+
+AccountingLearning reutiliza ContinuousCarousel con arrastre, desplazamiento continuo y sin énfasis central, como Computación. Conserva CareerSectionHeading, ScrollReveal y los átomos Title/Paragraph. AccountingLearningCard presenta títulos, iconos y numeración sobre tarjetas claras con azul institucional; learning.js mantiene las descripciones originales y centraliza sus datos. Los estilos de dimensiones se limitan a accounting-learning-carousel. Las tarjetas originales admiten foco; las copias heredan aria-hidden e inert del carrusel compartido. La malla curricular continúa con details/summary, sin cambios. Revisados escritorio y móvil a 390 px, navegación por teclado y animación activa.
+
+## Malla de Contabilidad por años — 9 de octubre de 2026
+
+AccountingCurriculum agrupa los seis ciclos existentes en tres años mediante accountingCurriculumYears, derivado del catálogo sin duplicar asignaturas. AccountingCurriculumYear compone el encabezado azul con esquina recortada y las tarjetas AccountingCycleCard. Se reutilizan Title, Paragraph, CareerSectionHeading y ScrollReveal; Hani/Rajdhani en títulos y números, Poppins en cursos. Cada ciclo muestra su cantidad real de asignaturas. El hook compartido useMediaQuery establece apertura en escritorio (desde 1024 px) y cierre en tamaños menores; details/summary conserva la interacción nativa. Verificados diseño de escritorio, móvil a 390 px, apertura de cursos y fuentes calculadas. ESLint y build correctos, con advertencia existente de tamaño del bundle.
+
+## Proyección profesional de Contabilidad — 9 de octubre de 2026
+
+AccountingCareerFields presenta dos bloques sobre azul institucional: sectores y funciones, con cuatro categorías cada uno. fields.js conserva los ocho destinos laborales y diez cargos originales dentro de careerSectors/careerFunctions. AccountingCareerGroup reutiliza AccountingFeatureList y ScrollReveal; AccountingInformationCta compone los átomos de texto y Button. AccountingPage pasa openModal mediante onRequest y mantiene una única instancia de ModalMessage. Tipografías Hani/Rajdhani para títulos y Poppins para lectura. CareerSectionHeading incorpora inverse=false para fondos oscuros, sin cambiar por defecto sus consumidores. Verificados escritorio, móvil a 390 px sin desbordamiento horizontal y apertura/cierre del formulario desde el botón final (sin enviar datos). ESLint del alcance y build correctos; permanece la advertencia conocida de tamaño del bundle.
+
+### Tarjetas laborales con recortes y curvas — 9 de octubre de 2026
+
+AccountingFeatureList reutiliza BannerBgCurve design=7 con colores de index.css y altura h-12. La prop mirrored (false por defecto) alterna la esquina superior recortada y refleja la curva; AccountingCareerGroup la deriva de la posición. Se reserva espacio inferior para separar la decoración del contenido. Sin nuevas geometrías SVG ni cambios al componente compartido. Verificados escritorio y móvil a 390 px, con 32 px mínimos entre las listas y el área de las curvas; ESLint y build correctos, con aviso conocido de tamaño del bundle.

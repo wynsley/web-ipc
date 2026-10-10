@@ -82,10 +82,17 @@ MyTemplate acepta className y conserva classmame como alias compatible. Combina 
 | Carrusel de varias tarjetas | useCarousel y useCardsPerView; verificar adaptación al consumidor |
 | Modal de consulta | ModalMessage y useModal; atender pendientes de accesibilidad |
 | Estilos de marca | Tokens de index.css |
+| Resumen de precios | `PriceSummaryCard` en `molecules/shared/priceSummaryCard.jsx` |
 
 Reutilizar responsabilidad y contrato, no solo apariencia. Si un formulario solicita otros datos, no heredar automáticamente la validación del contacto. No crear otro visor PDF ni un nuevo proveedor por página.
 
+`PriceSummaryCard({ title, items, footer, currency = "S/", className = "" })` presenta un resumen compacto de precios. `items` recibe elementos `{ text, value }` con etiquetas únicas; `footer` es opcional. No importa catálogos ni fija márgenes de superposición. El consumidor aporta datos y controla ancho/posición mediante `className`, combinada con `twMerge`. Admisión pasa el catálogo `ServicesAcademic` compartido con Inicio y aplica sus márgenes negativos desde `AdmissionsHero`. Para listas extensas usar otro layout; esta tarjeta está pensada para pocos conceptos resumidos.
+
+`BannerBgCurve` incorpora diseño 8 para tarjetas con fotografía: `secondaryAccentColor`, `accentColor` y `color` forman dos bandas sobre una base continua. Su viewBox incluye la totalidad de las curvas para evitar cortes horizontales. Admisión usa los tokens blue-dark, orange y neutral-white. Los diseños anteriores se conservan. Para entradas de bloques reutilizar `ScrollReveal`, que delega en `ScrollMotion` y respeta movimiento reducido; la sección de examen anima contenido y tarjeta con y=28, duración 0,6 s y retraso de 0,12 s en la tarjeta.
+
 ### Imágenes
+
+El afiche de Admisión usa `BannerBgCurve` diseño 9, con `height="h-full"` y `className="h-full"`, para cubrir la región fotográfica conservando las tres curvas del original. Recibe blue-deep, orange y neutral-white mediante las props de color existentes. SVG sigue siendo el mecanismo de dibujo interno del componente compartido; los consumidores no duplican sus paths. El diseño 8 y los restantes conservan su geometría.
 
 Usar siempre Image en las páginas o componentes nuevos o modificados. Preservar el espacio cuando falte src o falle la carga. Ejemplo informativo:
 
@@ -306,3 +313,23 @@ Computación vuelve a usar CareerLearning digital con tarjetas estáticas, recta
 ### Alineación de tarjetas y unión curva — 7 de octubre de 2026
 
 CareerLearning admite emphasizeCenter (true por defecto); Computación lo desactiva para conservar una fila de tarjetas del mismo tamaño, de 18 a 24 rem según el viewport. Las tarjetas se estiran a igual altura. Se mantienen desplazamiento continuo de 30 segundos, arrastre y pausa contextual; Administración conserva el énfasis central. BannerBgCurve incorpora diseño 7 y secondaryAccentColor opcional: dos bandas curvas paralelas blanca y naranja sobre una base blue-dark que conecta con aprendizaje sin remate horizontal naranja. Los diseños anteriores no cambian.
+
+## Contabilidad — 9 de octubre de 2026
+
+Para ampliar Contabilidad, usar las carpetas accounting de pages/careers, organisms/careers, molecules/careers y data/careers. Mantener los datos por sección y los componentes en archivos propios. AccountingPage controla el modal de información y pasa onRequest al hero. AccountingChecklistItem recibe title opcional y description para reutilizar la presentación en beneficios y aprendizaje. AccountingCycleCard presenta un ciclo; AccountingCurriculumControls recibe cycles, current y onSelect. Mantener el hook useCarousel compartido, su withTransition y los controles derivados de la cantidad real de ciclos, sin listas fijas de índices.
+
+### Actualización de Contabilidad: simplificación — 9 de octubre de 2026
+
+La malla vigente sustituye el carrusel de la nota anterior: AccountingCycleCard({ cycle, number }) usa details/summary nativos en una cuadrícula, sin hooks ni controles externos. Se eliminaron AccountingCurriculumControls y AccountingChecklistItem. Para beneficios reutilizar BenefitCard; para encabezados, CareerSectionHeading; para entradas, ScrollReveal; para navegación de portada, CareerBreadcrumbs. AccountingLearningCard presenta los temas numerados. AccountingHeroVisual usa Image y el recurso local; AccountingPage mantiene únicamente useModal como hook propio de composición. No reintroducir lógica de carrusel para consultar asignaturas sin una necesidad explícita.
+
+### Base de hero de marca — 9 de octubre de 2026
+
+BrandedHeroFrame({ image, children }), en molecules/shared, reutiliza el fondo fotográfico mediante Image, el degradado, el patrón SVG con ID único, la banda inclinada y la esquina curva del hero de Sobre nosotros. Cada organismo aporta su contenido y los elementos superpuestos. Sobre nosotros conserva HeroPerson; Contabilidad solo aporta título y botón mediante AccountingHeroIntro. Evitar copiar la geometría en nuevos heroes que usen este diseño.
+
+### Personas recortadas y variantes de hero
+
+Para PNG con alfa, usar Image transparent; el fondo se vuelve transparente solo tras la carga correcta y mantiene bg-blue-dark si falta la imagen o falla. Para garantizar un encuadre completo con el átomo actual, configurar style={{ objectFit: "contain", objectPosition: "bottom" }}. BrandedHeroFrame admite variant="institutional" para azul institucional y className para dimensiones locales; su variante predeterminada conserva Sobre nosotros. La persona superpuesta se coloca fuera del marco que recorta el fondo, con espacio reservado y disposición móvil que no cubra las acciones.
+
+### Encabezados sobre fondos oscuros
+
+CareerSectionHeading admite inverse (false por defecto): cambia el título y la descripción a blanco y el antetítulo a blanco atenuado. Usar esta variante sobre fondos institucionales oscuros para reutilizar estructura y ScrollReveal sin duplicar encabezados. Los consumidores existentes conservan su presentación por defecto.

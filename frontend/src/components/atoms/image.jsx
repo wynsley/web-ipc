@@ -5,6 +5,7 @@ function Image({
   alt = "",
   className = "",
   fill = false,
+  transparent = false,
   imageClassName = "",
   fallbackClassName = "",
   overlayClassName = "",
@@ -24,7 +25,7 @@ function Image({
       aria-hidden={alt ? undefined : true}
       role={!hasImage && alt ? "img" : undefined}
       aria-label={!hasImage && alt ? alt : undefined}
-      className={`${fill ? "absolute inset-0" : "relative"} block overflow-hidden bg-blue-dark ${fallbackClassName} ${className}`}
+      className={`${fill ? "absolute inset-0" : "relative"} block overflow-hidden ${transparent && isLoaded ? "bg-transparent" : "bg-blue-dark"} ${fallbackClassName} ${className}`}
     >
       {hasImage && (
         <img

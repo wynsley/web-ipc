@@ -16,7 +16,7 @@ import {StudentLivePage } from "./components/pages/studentLivePage"
 
 /* Carreras */
 import { AdministrationPage } from "@/components/pages/careers/administration/businessAdministrationPage"
-import { AccountingPage } from "./components/pages/careers/accountingPage"
+import { AccountingPage } from "./components/pages/careers/accounting/accountingPage"
 import { ComputerSciencePage } from "@/components/pages/careers/computerScience/computerSciencePage"
 import { LanguageTranslationPage } from "@/components/pages/careers/languageTranslation/languageTranslationPage"
 import { SocialFloatings } from "./components/molecules/shared/SocialsFloatings"
