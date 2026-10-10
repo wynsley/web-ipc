@@ -15,7 +15,7 @@ function StudentLifeActivities() {
   const title = "APRENDE, PARTICIPAR Y VIVE NUESTRAS EXPERIENCIAS"
   return (
     <section aria-label="Actividades" className="bg-white">
-      <div className="mx-auto w-[92%] md:w-[90%] max-w-6xl pt-6 sm:pt-10 md:pt-14 pb-16 sm:pb-20 md:pb-24">
+      <div className="mx-auto flex flex-col gap-5 w-[92%] md:w-[90%] max-w-6xl pt-6 sm:pt-10 md:pt-14 pb-16 sm:pb-20 md:pb-24">
         {/* Encabezado */}
           <Motion.div
             variants={staggerContainer}
@@ -31,15 +31,12 @@ function StudentLifeActivities() {
             />
             
           </Motion.div>
-
         {/* Carrusel. key: al cambiar de breakpoint se remonta y reinicia el hook */}
-        <ScrollReveal y={40} className="mt-8 md:mt-12">
           <ActivitiesCarousel
             key={cardsPerView}
             slides={activities}
             cardsPerView={cardsPerView}
           />
-        </ScrollReveal>
       </div>
     </section>
   )
