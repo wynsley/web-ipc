@@ -1,5 +1,5 @@
 import { AnimatePresence, motion as Motion} from "motion/react";
-import { ActivitiesSection } from "../organisms/studentLife/activitiesSection";
+import {StudentLifeActivities } from "../organisms/studentLife/studentLifeActivities";
 import { StudentLifeHero } from "../organisms/studentLife/studentLifeHero";
 import { MyTemplate } from "../templates/myTemplate";
 import { ModalStudentLifeCareer } from "../modals/modalStudentLifeCareer";
@@ -24,10 +24,7 @@ function StudentLivePage() {
       />
       <StudentLifeStats/>
       <StudentLifeWellbeing/>
-      <ActivitiesSection/>
-
-
-
+      <StudentLifeActivities/>
       {/*Modal de carreras hero */}
       <AnimatePresence>
         {careersMenu.isOpen && (
