@@ -1,12 +1,11 @@
-import { GalleryCard } from "@/components/molecules/events/galeryCard";
-import { ASPECTS, chunk, COLUMNS, GROUP_SIZE } from "../../../../utils/galeryLayout";
-import { ScrollReveal } from "@/components/layouts/scrollReveal";
+import { GalleryTile } from "@/components/molecules/shared/galleryTile"
+import { ScrollReveal } from "@/components/layouts/scrollReveal"
+import { ASPECTS, chunk, COLUMNS, GROUP_SIZE } from "@/utils/galeryLayout"
 
-
-function GalleryCollage({ events, onOpen }) {
+function GalleryCollage({ items, onOpen }) {
   return (
     <div className="flex flex-col gap-3 sm:gap-4">
-      {chunk(events, GROUP_SIZE).map((group, g) => (
+      {chunk(items, GROUP_SIZE).map((group, g) => (
         <div
           key={g}
           className="grid grid-cols-2 items-center gap-3 sm:gap-4 lg:flex lg:gap-4"
@@ -17,24 +16,29 @@ function GalleryCollage({ events, onOpen }) {
               className="contents lg:flex lg:flex-1 lg:flex-col lg:gap-4"
             >
               {slots.map((slot) => {
-                const event = group[slot];
-                if (!event) return null;
+                const item = group[slot]
+                if (!item) return null
                 return (
-                  <ScrollReveal key={event.id} delay={slot * 0.25} y={50} duration = {0.9}>
-                    <GalleryCard
-                      event={event}
-                      aspect={ASPECTS[slot]}
+                  <ScrollReveal
+                    key={item.id}
+                    delay={slot * 0.12}
+                    y={40}
+                    className={`relative w-full ${ASPECTS[slot]}`}
+                  >
+                    <GalleryTile
+                      item={item}
+                      showDescription={false}
                       onOpen={() => onOpen(g * GROUP_SIZE + slot)}
                     />
                   </ScrollReveal>
-                );
+                )
               })}
             </div>
           ))}
         </div>
       ))}
     </div>
-  );
+  )
 }
 
-export { GalleryCollage };
+export { GalleryCollage }

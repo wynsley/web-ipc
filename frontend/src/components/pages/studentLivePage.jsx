@@ -1,5 +1,5 @@
 import { AnimatePresence, motion as Motion} from "motion/react";
-import { ActivitiesSection } from "../organisms/studentLife/activitiesSection";
+import {StudentLifeActivities } from "../organisms/studentLife/studentLifeActivities";
 import { StudentLifeHero } from "../organisms/studentLife/studentLifeHero";
 import { MyTemplate } from "../templates/myTemplate";
 import { ModalStudentLifeCareer } from "../modals/modalStudentLifeCareer";
@@ -7,6 +7,7 @@ import { useRef } from "react";
 import { useHoverMenu } from "@/hooks/modal/useHoverMenu";
 import { StudentLifeStats } from "../organisms/studentLife/studentLifeStats";
 import { StudentLifeWellbeing } from "../organisms/studentLife/studentLifeWellbeing";
+import { InfrastructureGallery } from "../organisms/studentLife/studentLifeGalery";
 
 const MENU_WIDTH = 288 
 
@@ -24,10 +25,8 @@ function StudentLivePage() {
       />
       <StudentLifeStats/>
       <StudentLifeWellbeing/>
-      <ActivitiesSection/>
-
-
-
+      <StudentLifeActivities/>
+      <InfrastructureGallery/>
       {/*Modal de carreras hero */}
       <AnimatePresence>
         {careersMenu.isOpen && (

@@ -1,5 +1,5 @@
 import { toDayKey } from "../../../utils/calendarDates";
-import alfombra from "@assets/images/events/alfombra-ipc-2.webp";
+import alfombra from "@assets/images/events/alfombra-ipc.webp";
 import encuentro1 from "@assets/images/events/encuentro-img1.webp";
 import encuentro2 from "@assets/images/events/encuentro-img-2.webp";
 import encuentro3 from "@assets/images/events/encuentro-img-3.webp";

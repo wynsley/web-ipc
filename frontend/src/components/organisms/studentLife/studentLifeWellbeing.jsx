@@ -1,3 +1,4 @@
+import { Title } from "@/components/atoms/titles"
 import { ScrollReveal } from "@/components/layouts/scrollReveal"
 import { wellbeingItems } from "@/data/studentLife/wellbeingItems"
 
@@ -23,15 +24,12 @@ function StudentLifeWellbeing() {
         {/* Encabezado */}
         <div className="grid gap-6 lg:grid-cols-2 lg:items-end lg:gap-16">
           <ScrollReveal y={30}>
-            <h2
-              id="wellbeing-title"
-              className="mt-4 font-hani text-3xl font-bold leading-tight text-blue-deep sm:text-4xl lg:text-5xl"
-            >
-              Acompañamos{" "}
-              <span className="box-decoration-clone bg-gradient-to-r from-blue-deep to-blue bg-clip-text text-transparent">
-                tu formación
-              </span>
-            </h2>
+            <Title
+              text="ACOMPACÑAMOS TU FORMACIÓN"
+              level="h2"
+              weight="bold"
+              className="font-hani"
+            />
           </ScrollReveal>
 
           <ScrollReveal y={30} delay={0.15}>

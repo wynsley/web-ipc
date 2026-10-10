@@ -1,9 +1,8 @@
-import administracionImage from "@assets/images/careers/administration/ADMINISTRACION.webp";
-import contabilidadImage from "@assets/images/careers/accounting/CONTABILIDAD.webp";
-import computacionImage from "@assets/images/careers/computerScience/COMPUTACION.webp";
+import administracionImage from "@assets/images/careers/administration/ADMINISTRACION.webp"
+import contabilidadImage from "@assets/images/careers/accounting/CONTABILIDAD.webp"
+import computacionImage from "@assets/images/careers/computerScience/COMPUTACION.webp"
 
-// data/careers
-const careers = [
+export const careers = [
   {
     title: "Administración de Empresas",
     href: "/career/administration",
@@ -46,5 +45,3 @@ const careers = [
     img: "INGLES.webp",
   },
 ];
-
-export { careers };
