@@ -59,7 +59,6 @@ function InfrastructureGallery() {
           </Motion.div>
         </Motion.div>
 
-        {/* Mosaico */}
         <div className="mt-10 md:mt-14">
           <GalleryMosaic
             items={spaces}
@@ -68,7 +67,6 @@ function InfrastructureGallery() {
           />
         </div>
 
-        {/* Categorías */}
         <ScrollReveal y={20} className="mt-8 sm:mt-10">
           <ul className="flex flex-wrap items-center justify-center gap-x-3 gap-y-2 font-euro text-xs uppercase tracking-[0.2em] text-blue-deep/70 sm:text-sm">
             {infrastructureCategories.map((category, i) => (

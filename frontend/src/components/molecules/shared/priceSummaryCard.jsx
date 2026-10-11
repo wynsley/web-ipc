@@ -16,7 +16,7 @@ function PriceSummaryCard({
         className,
       )}
     >
-      <div className="price-summary-note__paper relative bg-blue-dark py-6 pr-7 pl-11 sm:py-7 sm:pr-12 sm:pl-16">
+      <div className="price-summary-note__paper relative bg-blue-deep py-6 pr-7 pl-11 sm:py-7 sm:pr-12 sm:pl-16">
         <span
           aria-hidden="true"
           className="price-summary-note__fold pointer-events-none absolute right-0 top-0"
