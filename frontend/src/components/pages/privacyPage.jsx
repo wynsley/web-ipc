@@ -7,17 +7,16 @@ import { privacyDraft } from "../../data/privacy";
 function PrivacyPage() {
   return (
     <MyTemplate>
-      <article className="mx-auto max-w-3xl px-6 py-12 font-poppins text-blue-dark sm:py-16">
+      <article className="mx-auto max-w-4xl px-6 py-12 font-poppins text-black sm:py-16">
         <Link
           to="/"
-          className="text-sm underline underline-offset-4 focus-visible:outline-2"
+          className="text-sm underline underline-offset-4 focus-visible:outline-2 hover:text-orange"
         >
           Volver a Inicio
         </Link>
         <Title
           level="h1"
           size="hero"
-          variant="institutional"
           weight="bold"
           className="mt-6 font-hani"
         >
@@ -44,7 +43,6 @@ function PrivacyPage() {
                 id={`privacy-${id}`}
                 level="h2"
                 size="compact"
-                variant="institutional"
                 weight="bold"
                 className="font-hani"
               >
@@ -52,8 +50,8 @@ function PrivacyPage() {
               </Title>
               <Paragraph
                 size="small"
-                variant="inherit"
                 className="mt-3 leading-relaxed"
+                variant="secondary"
               >
                 {text}
               </Paragraph>
