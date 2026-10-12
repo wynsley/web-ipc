@@ -1,3 +1,47 @@
+# Recursos de Computación e Informática
+
+## Serie fotográfica vigente — 12 de octubre de 2026
+
+Nueve escenas generadas con la herramienta integrada ImageGen (photorealistic-natural), optimizadas en WebP. Sustituyen las seis ilustraciones del aprendizaje, el laboratorio compartido por portada y beneficios y las dos imágenes de documentos. El proceso reutiliza programación, web y seguridad. Se conserva sin cambios computing-student.png. Son escenas ilustrativas generadas por IA: no representan alumnado, instalaciones ni documentos oficiales del IPC. Los PNG anteriores y sus prompts se conservan como histórico, sin uso en esta página.
+
+### learning-programming.webp — prompt final
+
+Use case: photorealistic-natural. Generate one landscape 16:9 editorial photograph for a computing degree website. Authentic documentary photography, believable ordinary modern equipment, natural daylight, restrained blue accents, realistic textures and optics, professional but lived-in educational workspace. No 3D render, no illustration, no holograms, no floating objects, no neon, no logos, no watermark, no text overlays. Screens must be physically plausible, no need for legible small text. Main subject in central 70 percent for cover cropping. Over-the-shoulder close view of a young adult Latin American male programmer at a wooden desk, typing on a real laptop with a code editor, external monitor with code, notebook beside him. Focus on laptop and hands, face only in soft side profile. Warm daylight from side window, candid unposed moment.
+
+### learning-database.webp — prompt final
+
+Use case: photorealistic-natural. Generate one landscape 16:9 editorial photograph for a computing degree website. Authentic documentary photography, believable ordinary modern equipment, natural daylight, restrained blue accents, realistic textures and optics, professional but lived-in educational workspace. No 3D render, no illustration, no holograms, no floating objects, no neon, no logos, no watermark, no text overlays. Screens must be physically plausible, no need for legible small text. Main subject in central 70 percent for cover cropping. Close editorial photograph of an actual data analyst workstation: a large monitor showing a conventional database table with rows and columns and a small relational schema window, a laptop beside it, keyboard and an open notebook on desk. Human hand on mouse at edge. Clear practical data work, soft daylight. No cylindrical symbolic databases.
+
+### learning-networks.webp — prompt final
+
+Use case: photorealistic-natural. Generate one landscape 16:9 editorial photograph for a computing degree website. Authentic documentary photography, believable ordinary modern equipment, natural daylight, restrained blue accents, realistic textures and optics, professional but lived-in educational workspace. No 3D render, no illustration, no holograms, no floating objects, no neon, no logos, no watermark, no text overlays. Screens must be physically plausible, no need for legible small text. Main subject in central 70 percent for cover cropping. Detailed close photograph of a real rack-mounted Ethernet network switch and patch panel in a modest clean technical lab. Neatly connected blue and gray RJ45 cables, physically accurate ports and connectors, a technician's hand tracing one cable at edge. Real brushed metal, tiny status lights, neutral daylight, no magical glowing cables.
+
+### learning-support.webp — prompt final
+
+Use case: photorealistic-natural. Generate one landscape 16:9 editorial photograph for a computing degree website. Authentic documentary photography, believable ordinary modern equipment, natural daylight, restrained blue accents, realistic textures and optics, professional but lived-in educational workspace. No 3D render, no illustration, no holograms, no floating objects, no neon, no logos, no watermark, no text overlays. Screens must be physically plausible, no need for legible small text. Main subject in central 70 percent for cover cropping. Close-up documentary photograph of hands of an adult technician using a screwdriver to maintain an open desktop computer on a practical workbench. Real motherboard, RAM seated in slots, disconnected power, tools neatly placed, ESD wrist strap, accurate component scale, daylight. Composition centered on actual hardware.
+
+### learning-web.webp — prompt final
+
+Use case: photorealistic-natural. Generate one landscape 16:9 editorial photograph for a computing degree website. Authentic documentary photography, believable ordinary modern equipment, natural daylight, restrained blue accents, realistic textures and optics, professional but lived-in educational workspace. No 3D render, no illustration, no holograms, no floating objects, no neon, no logos, no watermark, no text overlays. Screens must be physically plausible, no need for legible small text. Main subject in central 70 percent for cover cropping. Photograph of a web developer's real desk with laptop and smartphone upright beside it, both showing consistent clean responsive library catalog interface with simple book cover thumbnails and neutral cards, no prominent readable wording. Adult person's hand on trackpad. Soft window light, believable screens, wood desk, notebook, ordinary working environment.
+
+### learning-security.webp — prompt final
+
+Use case: photorealistic-natural. Generate one landscape 16:9 editorial photograph for a computing degree website. Authentic documentary photography, believable ordinary modern equipment, natural daylight, restrained blue accents, realistic textures and optics, professional but lived-in educational workspace. No 3D render, no illustration, no holograms, no floating objects, no neon, no logos, no watermark, no text overlays. Screens must be physically plausible, no need for legible small text. Main subject in central 70 percent for cover cropping. Candid over-the-shoulder photograph of a young adult Latin American IT analyst reviewing a conventional security event log on a real desktop monitor in a modest bright office. Small secondary laptop shows a standard authentication settings panel. Plain navy shirt, natural skin texture, focus on physical screens and hands. No padlocks, shields, hoodies, dark hacker imagery or floating symbols.
+
+### computing-lab-background.webp — prompt final
+
+Use case: photorealistic-natural. Generate one landscape 16:9 editorial photograph for a computing degree website. Authentic documentary photography, believable ordinary modern equipment, natural daylight, restrained blue accents, realistic textures and optics, professional but lived-in educational workspace. No 3D render, no illustration, no holograms, no floating objects, no neon, no logos, no watermark, no text overlays. Screens must be physically plausible, no need for legible small text. Main subject in central 70 percent for cover cropping. Wide architectural photograph of a modest contemporary computer teaching lab, empty, rows of normal monitors on wood desks, daylight through tall windows, white walls and restrained blue chairs. Believable attainable educational setting, not luxury or sci-fi. Left third has quiet softly shaded wall and low detail for website heading. Right half shows computer workstations with depth. Full bleed opaque.
+
+### computing-study-plan.webp — prompt final
+
+Use case: photorealistic-natural. Generate one landscape 16:9 editorial photograph for a computing degree website. Authentic documentary photography, believable ordinary modern equipment, natural daylight, restrained blue accents, realistic textures and optics, professional but lived-in educational workspace. No 3D render, no illustration, no holograms, no floating objects, no neon, no logos, no watermark, no text overlays. Screens must be physically plausible, no need for legible small text. Main subject in central 70 percent for cover cropping. Editorial photograph of a real student study desk, with an open plain notebook containing small handwritten programming notes and a simple flowchart, a pen and laptop in the rightmost 45 percent. Left 55 percent is quiet pale wood desk negative space for website text overlay. Soft bright window light, tangible paper fibers, slightly imperfect natural arrangement, no staged 3D objects, no official seals or institutional claims.
+
+### computing-curriculum.webp — prompt final
+
+Use case: photorealistic-natural. Generate one landscape 16:9 editorial photograph for a computing degree website. Authentic documentary photography, believable ordinary modern equipment, natural daylight, restrained blue accents, realistic textures and optics, professional but lived-in educational workspace. No 3D render, no illustration, no holograms, no floating objects, no neon, no logos, no watermark, no text overlays. Screens must be physically plausible, no need for legible small text. Main subject in central 70 percent for cover cropping. Editorial photograph of a real computing study planning session on a desk: printed unbranded course planning sheets with subtle table lines, a plain blue notebook and a laptop, arranged in the rightmost 45 percent. Left 55 percent is quiet dark navy desk mat negative space for white website text overlay. Angled overhead camera, realistic paper and soft window light. No readable official curriculum, no modular sculptures or glowing pathways.
+
+## Histórico sustituido
+
 # Imagen del hero de Computación e Informática
 
 ## Imágenes de documentos — 11 de octubre de 2026

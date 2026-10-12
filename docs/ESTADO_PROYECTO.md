@@ -1,5 +1,11 @@
 # Estado y evolución de IPC Platform
 
+### Computación: imágenes de estilo fotográfico — 12 de octubre de 2026
+
+Sustituidas las seis ilustraciones de aprendizaje, el laboratorio compartido por portada y beneficios y las dos imágenes de documentos por nueve escenas de estilo fotográfico generadas con ImageGen y optimizadas en WebP. El proceso reutiliza las nuevas imágenes de programación, web y seguridad. La chica de portada (`computing-student.png`) permanece idéntica. Se conservan los componentes Image, el respaldo institucional y la distribución; actualizados imports y textos alternativos. Recursos, prompts finales y antecedentes en `frontend/src/assets/images/careers/computerScience/README.md`. Las escenas son ilustrativas, no fotografías de instalaciones o estudiantes reales del IPC; los PDF siguen siendo referencias no oficiales.
+
+Verificación: build y ESLint de los archivos editados correctos, sin errores de consola observados; revisión visual en 1440 y 390 px, imágenes cargadas y sin desbordamiento horizontal. Persiste el aviso previo de tamaño del bundle.
+
 ### Hero de Inicio: nuevas imágenes — 11 de octubre de 2026
 
 HomeBanner conserva la diapositiva de infraestructura `/BANNER_HOME.webp` y sustituye las otras tres por escenas ilustrativas generadas de aprendizaje digital, trabajo en equipo y práctica de interpretación. Recursos y prompts en `frontend/src/assets/images/home/README.md`. Se mantienen orden, textos, CTA, degradado y temporización del carrusel. Los fondos pasan de backgroundImage a Image con alt decorativo vacío, carga eager y respaldo bg-blue-dark; las imágenes no se pueden arrastrar nativamente para conservar el gesto del carrusel. ESLint del alcance y build correctos; revisión visual en escritorio y móvil de 390 px, sin errores de consola observados. Las escenas no representan alumnado ni instalaciones reales.

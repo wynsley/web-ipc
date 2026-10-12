@@ -1,6 +1,6 @@
 import administracionImage from "@assets/images/careers/administration/ADMINISTRACION.webp"
 import contabilidadImage from "@assets/images/careers/accounting/CONTABILIDAD.webp"
-import computacionImage from "@assets/images/careers/computerScience/COMPUTACION.webp"
+import computacionImage from "@assets/images/careers/computerScience/learning-programming.webp"
 
 export const careers = [
   {
