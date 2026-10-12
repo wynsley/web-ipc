@@ -8,7 +8,7 @@ function AdmissionsHeroContent({ onRegister }) {
       <Title
         id="admissions-title"
         level="h1"
-        variant="primary"
+        variant="institutional"
         align="center"
         weight="bold"
         className="leading-tight tracking-tight"
@@ -16,7 +16,7 @@ function AdmissionsHeroContent({ onRegister }) {
         ADMISIONES 2027
       </Title>
       <Paragraph
-        size="comfortable"
+        size="small"
         variant="inherit"
         align="center"
         className="mt-7 max-w-3xl leading-relaxed text-orange"
@@ -24,7 +24,7 @@ function AdmissionsHeroContent({ onRegister }) {
         Da el primer paso hacia tu futuro profesional.
       </Paragraph>
       <Paragraph
-        size="comfortable"
+        size="small"
         variant="inherit"
         align="center"
         className="mt-2 max-w-3xl leading-relaxed text-orange"
@@ -32,7 +32,7 @@ function AdmissionsHeroContent({ onRegister }) {
         Rinde tu examen de admisión y forma parte del Instituto Privado Celendín.
       </Paragraph>
       <Paragraph
-        size="xlarge"
+        size="medium"
         variant="primary"
         align="center"
         className="mt-5 font-hani leading-snug sm:mt-14"
@@ -42,7 +42,7 @@ function AdmissionsHeroContent({ onRegister }) {
       <Button
         type="button"
         onClick={onRegister}
-        className="mt-6 min-h-14 cursor-pointer rounded-lg bg-blue px-7 py-3 text-xl text-neutral-white transition-colors hover:bg-blue-dark focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-neutral-white sm:text-2xl"
+        className="mt-6 min-h-14 cursor-pointer rounded-lg bg-blue-dark px-7 py-3 text-xl text-neutral-white transition-colors hover:bg-blue focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-neutral-white sm:text-2xl"
       >
         ¡Inscríbete!
       </Button>
