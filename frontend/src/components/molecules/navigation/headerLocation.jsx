@@ -16,7 +16,9 @@ function Location() {
       />
 
       {/* Texto */}
-      <span 
+      <a
+        target="blank"
+        href="https://maps.app.goo.gl/nRQtEvBvmhKf3xLS6" 
         className="
           text-white 
           text-[0.4rem] sm:text-[0.6rem] md:text-[.7em] lg:text-[.8em]
@@ -29,7 +31,7 @@ function Location() {
         "
       >
         Jr. Dos de Mayo 1390 Celendín-Cajamarca
-      </span>
+      </a>
     </a>
   );
 }
