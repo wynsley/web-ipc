@@ -1,6 +1,6 @@
 import { GalleryTile } from "@/components/molecules/shared/galleryTile"
 import { ScrollReveal } from "@/components/layouts/scrollReveal"
-import { ASPECTS, chunk, COLUMNS, GROUP_SIZE } from "@/utils/galeryLayout"
+import { ASPECTS, chunk, COLUMNS, GROUP_SIZE } from "../../../../utils/galeryLayout"
 
 function GalleryCollage({ items, onOpen }) {
   return (
