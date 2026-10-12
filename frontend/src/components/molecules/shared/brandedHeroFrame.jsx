@@ -15,7 +15,7 @@ function BrandedHeroFrame({
     <div
       className={twMerge(
         "relative h-[45vh] min-h-72 overflow-hidden rounded-bl-[70px] sm:h-[55vh] sm:rounded-bl-[110px] md:h-[62vh] md:rounded-bl-[150px] xl:h-[68vh]",
-        institutional ? "bg-blue-dark" : "bg-blue-deep",
+        institutional ? "bg-blue-deep" : "bg-blue-deep",
         className,
       )}
     >
@@ -29,7 +29,7 @@ function BrandedHeroFrame({
       />
       <div
         aria-hidden="true"
-        className={`absolute inset-0 bg-linear-to-r ${institutional ? "from-blue-dark via-blue-dark/70 to-blue/30" : "from-blue-deep via-blue-deep/10 to-blue-deep/10"}`}
+        className={`absolute inset-0 bg-linear-to-r ${institutional ? "from-blue-deep via-blue-deep/400 to-blue-deep/10" : "from-blue-deep via-blue-deep/10 to-blue-deep/10"}`}
       />
       <svg
         aria-hidden="true"
