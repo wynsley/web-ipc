@@ -1,5 +1,9 @@
 # Estado y evolución de IPC Platform
 
+### Hero de Inicio: nuevas imágenes — 11 de octubre de 2026
+
+HomeBanner conserva la diapositiva de infraestructura `/BANNER_HOME.webp` y sustituye las otras tres por escenas ilustrativas generadas de aprendizaje digital, trabajo en equipo y práctica de interpretación. Recursos y prompts en `frontend/src/assets/images/home/README.md`. Se mantienen orden, textos, CTA, degradado y temporización del carrusel. Los fondos pasan de backgroundImage a Image con alt decorativo vacío, carga eager y respaldo bg-blue-dark; las imágenes no se pueden arrastrar nativamente para conservar el gesto del carrusel. ESLint del alcance y build correctos; revisión visual en escritorio y móvil de 390 px, sin errores de consola observados. Las escenas no representan alumnado ni instalaciones reales.
+
 ### Contacto temporal por correo — 11 de octubre de 2026
 
 Inicio, Admisión y modales envían mediante `submitContact` al adaptador temporal FormSubmit, con destinatario `craftyeyo6@gmail.com`. Se conservan los siete campos y el formulario compartido; se añaden comprobación de respuesta, espera máxima y bloqueo de envíos simultáneos. La API propia sigue pendiente y puede seleccionarse por configuración cuando esté implementada. Pruebas simuladas, ESLint del alcance y build correctos; persiste el aviso de tamaño del bundle. Activación del buzón y entrega real pendientes. Configuración, tratamiento por el tercero y pasos de migración en [CONTACTO_TEMPORAL.md](CONTACTO_TEMPORAL.md).
