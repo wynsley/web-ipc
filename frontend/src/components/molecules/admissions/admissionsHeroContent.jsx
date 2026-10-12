@@ -8,7 +8,7 @@ function AdmissionsHeroContent({ onRegister }) {
       <Title
         id="admissions-title"
         level="h1"
-        variant="institutional"
+        variant="primary"
         align="center"
         weight="bold"
         className="leading-tight tracking-tight"
@@ -16,18 +16,16 @@ function AdmissionsHeroContent({ onRegister }) {
         ADMISIONES 2027
       </Title>
       <Paragraph
-        size="small"
-        variant="inherit"
+        variant="ternary"
         align="center"
-        className="mt-7 max-w-3xl leading-relaxed text-orange"
+        className="mt-7 max-w-3xl leading-relaxed "
       >
         Da el primer paso hacia tu futuro profesional.
       </Paragraph>
       <Paragraph
-        size="small"
-        variant="inherit"
+        variant="ternary"
         align="center"
-        className="mt-2 max-w-3xl leading-relaxed text-orange"
+        className="mt-2 max-w-3xl leading-relaxed "
       >
         Rinde tu examen de admisión y forma parte del Instituto Privado Celendín.
       </Paragraph>
