@@ -1,7 +1,6 @@
-import { Link as AnchorLink } from "@/components/atoms/links";
 import { CareerBreadcrumbs } from "@/components/molecules/careers/shared/careerBreadcrumbs";
 import { Link } from "react-router-dom";
-import { PiArrowDown, PiArrowUpRight } from "react-icons/pi";
+import { PiArrowUpRight } from "react-icons/pi";
 import { Title } from "@/components/atoms/titles";
 import { Paragraph } from "@/components/atoms/paragraph";
 
@@ -26,8 +25,8 @@ function TranslationHeroHeading({ title }) {
           className="font-hani leading-[0.95] tracking-tight"
         >
           {title.replace("Idiomas", "")}
-          <Paragraph as="span" className="mt-2 block text-orange">
-            Idiomas.
+          <Paragraph as="p" className="mt-2 block text-orange font-bold">
+            Idiomas
           </Paragraph>
         </Title>
       </div>
@@ -50,14 +49,6 @@ function TranslationHeroHeading({ title }) {
         >
           Ver admisión <PiArrowUpRight aria-hidden="true" className="size-5" />
         </Link>
-        <AnchorLink
-          href="#aprendizaje"
-          variant="plain"
-          className="inline-flex min-h-12 items-center gap-3 py-3 font-poppins text-sm text-white underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
-        >
-          Explorar la carrera{" "}
-          <PiArrowDown aria-hidden="true" className="size-5" />
-        </AnchorLink>
       </div>
       <Paragraph
         as="span"
