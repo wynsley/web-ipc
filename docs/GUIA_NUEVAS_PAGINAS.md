@@ -1,5 +1,9 @@
 # Guía para crear páginas y continuar en nuevas ramas
 
+### Envío temporal de contacto — 11 de octubre de 2026
+
+El hook compartido llama a `helpers/submitContact.js`. Para la presentación se usa FormSubmit con el destinatario configurado en `contactConfig.js`; el backend sigue pendiente. No llamar al proveedor desde componentes. Consultar [CONTACTO_TEMPORAL.md](CONTACTO_TEMPORAL.md) para activación, configuración y retirada del adaptador. Pruebas simuladas, ESLint del alcance y build correctos; activación y recepción real pendientes. Esta nota sustituye las referencias al envío directo del hook a `/contact` mientras esté activo el proveedor temporal.
+
 ### Formulario de contacto compartido — 10 de octubre de 2026
 
 Reutilizar `molecules/shared/contactForm.jsx` → ContactForm, composición única extraída del formulario original por grupos. Inicio usa layout="home" y showSteps; modal usa showSteps y onCancel; Admisión solo appearance="light". Conserva ContactSteps, Toast, FormField, catálogo, hook y Button danger («Enviar»). No crear versiones alternativas del botón o duplicar los mapas de campos en consumidores. FormField genera IDs únicos para coexistir con el modal; fieldErrors puede contener mensajes o booleanos. No declarar operativo el envío sin validar la API /contact; la conexión real permanece pendiente.

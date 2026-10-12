@@ -1,5 +1,17 @@
 # Imagen del hero de Computación e Informática
 
+## Imágenes de documentos — 11 de octubre de 2026
+
+Dos imágenes exclusivas generadas con la herramienta integrada ImageGen para Plan de estudios y Malla curricular. Ilustraciones conceptuales; no representan documentos oficiales ni instalaciones reales. Se asignan en computerScienceDocuments y se renderizan como fondos decorativos mediante Image, con respaldo institucional y degradados existentes.
+
+### computing-study-plan.png — prompt final
+
+Use case: ads-marketing. Create one bespoke premium editorial 3D illustration for the STUDY PLAN card of a Computing and Informatics degree website. Landscape 1536x1024, full bleed opaque. Right half features an elegant open study notebook with abstract unlettered blue diagrams, a slim silver laptop displaying abstract code-like blue and orange strokes without readable text, and a refined blue pen on a pale neutral desk. Tangible realistic materials, softly lit architectural studio, institutional royal blue #1A3983 with restrained orange #E08433 accents. Composition: all meaningful objects concentrated in rightmost 45 percent, left 55 percent a quiet off-white pale gray background for HTML text, subjects within middle vertical 70 percent for responsive cover cropping. Camera three-quarter top-down, polished educational technology editorial rendering matching sophisticated blue glass and brushed metal computing illustrations, subtle shadows, clean generous negative space. No people, no readable letters, no words, no logos, no watermark, no UI buttons or borders. This is a conceptual illustrative scene, not an actual curriculum document.
+
+### computing-curriculum.png — prompt final
+
+Use case: ads-marketing. Create one bespoke premium editorial 3D illustration for the CURRICULUM PATHWAY card of a Computing and Informatics degree website. Landscape 1536x1024 full bleed opaque. A beautifully constructed physical abstract learning pathway: six blue glass and brushed silver rectangular modules arranged in rising stepped rows, connected with thin subtle glowing pale blue traces, tiny refined orange accents at junctions. Some modules carry embossed simple geometric symbols representing software, networks and databases, no letters. Modules concentrated in rightmost 45 percent, all important objects in middle vertical 70 percent for responsive cover cropping. Left 55 percent quiet institutional royal blue #1A3983 studio background with low detail for white HTML text overlay. Sophisticated tangible architectural model photographed at three-quarter angle, realistic blue glass, brushed metal, soft cinematic studio illumination, elegant shadows, restrained educational technology art direction. Visually distinct from a laptop and notebook study-plan image yet cohesive blue/orange palette. No people, no text, no readable letters or numbers, no logos, no watermark, no UI or border. Conceptual illustration of progression, not an official curriculum chart.
+
 Generada el 1 de octubre de 2026 con la herramienta integrada image_gen. Imagen ilustrativa generada por IA; no es una fotografía de alumnado real del IPC. Archivo: computing-student.png. Fondo transparente conservado.
 
 ## Prompt final
