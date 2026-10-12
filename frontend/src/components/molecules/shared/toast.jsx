@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 
-function Toast({ type = "error", message, visible, onClose, duration = 4000 }) {
+function Toast({ type = "error", message, visible, onClose, duration = 4000, fixed = false }) {
   const [animateIn, setAnimateIn] = useState(false);
   const onCloseRef = useRef(onClose);
 
@@ -27,12 +28,16 @@ function Toast({ type = "error", message, visible, onClose, duration = 4000 }) {
 
   const isSuccess = type === "success";
 
-  return (
-    <div
+   const position = fixed
+    ? "fixed top-4 right-4 left-4 sm:left-auto z-10000"
+    : "absolute top-3 right-3 left-3 sm:left-auto z-50";
+
+  const toast = (
+     <div
       role="alert"
       aria-live="assertive"
       className={`
-        absolute top-3 right-3 left-3 sm:left-auto z-50 flex items-start gap-3
+        ${position} flex items-start gap-3
         sm:w-full sm:max-w-sm rounded-lg bg-white px-4 py-3 shadow-xl
         border transition-all duration-300
         ${animateIn ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-3"}
@@ -91,6 +96,8 @@ function Toast({ type = "error", message, visible, onClose, duration = 4000 }) {
       </button>
     </div>
   );
+
+  return fixed ? createPortal(toast, document.body) : toast;
 }
 
 export { Toast };

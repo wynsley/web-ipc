@@ -13,6 +13,8 @@ const buildInitialValues = () =>
 
 const initialToast = { visible: false, type: "error", message: "" };
 
+
+// ← CAMBIO 2: el hook recibe onSuccess (opcional)
 function useContactForm() {
   const [values, setValues] = useState(buildInitialValues);
   const [activeStep, setActiveStep] = useState(1);
@@ -20,6 +22,7 @@ function useContactForm() {
   const [fieldErrors, setFieldErrors] = useState({});
   const [toast, setToast] = useState(initialToast);
   const [submitting, setSubmitting] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
   const sending = useRef(false);
 
   const closeToast = () => setToast(initialToast);
@@ -91,12 +94,8 @@ function useContactForm() {
 
       reset();
       setActiveStep(4);
-      setToast({
-        visible: true,
-        type: "success",
-        message:
-          "Tu solicitud fue enviada. Pronto nos pondremos en contacto contigo.",
-      });
+      setSubmitted(true)
+
     } catch (err) {
       console.error("Error al enviar el formulario de contacto:", err);
       setErrorStep(4);
@@ -109,8 +108,15 @@ function useContactForm() {
       sending.current = false;
       setSubmitting(false);
     }
+
+    
   };
 
+const startAgain = () => {
+    setSubmitted(false);
+    setActiveStep(1);
+  };
+  
   return {
     values,
     activeStep,
@@ -118,6 +124,8 @@ function useContactForm() {
     fieldErrors,
     toast,
     closeToast,
+    submitted,   
+    startAgain, 
     submitting,
     setValue,
     handleSubmit,
