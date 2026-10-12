@@ -35,7 +35,7 @@ function StudentHero({ heroImg }) {
         <ScrollReveal
           y={60}
           delay={at(2)}
-          duration={1.5}
+          duration={1}
           className="absolute inset-0"
         >
           <img
