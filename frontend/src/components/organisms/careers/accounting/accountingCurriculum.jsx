@@ -1,10 +1,8 @@
 import { AccountingCurriculumYear } from "@/components/molecules/careers/accounting/accountingCurriculumYear";
 import { CareerSectionHeading } from "@/components/molecules/careers/shared/careerSectionHeading";
 import { accountingCurriculumYears } from "@/data/careers/accounting/curriculum";
-import { useMediaQuery } from "@/hooks/globals/useMediaQuery";
 
 function AccountingCurriculum() {
-  const expanded = useMediaQuery("(min-width: 1024px)");
   return (
     <section
       id="malla-contabilidad"
@@ -24,7 +22,7 @@ function AccountingCurriculum() {
             <AccountingCurriculumYear
               key={year.number}
               year={year}
-              expanded={expanded}
+              expanded={false}
             />
           ))}
         </div>

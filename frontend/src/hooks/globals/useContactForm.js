@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { CONTACT_FORM_GROUPS } from "../../data/contactFormFields";
-import { apiFetch } from "../../helpers/apiFetch";
+import { submitContact } from "../../helpers/submitContact";
 import { ContactFormValidator } from "../../validations/validationCredentials";
 
 const ALL_FIELDS = CONTACT_FORM_GROUPS.flat();
@@ -20,10 +20,12 @@ function useContactForm() {
   const [fieldErrors, setFieldErrors] = useState({});
   const [toast, setToast] = useState(initialToast);
   const [submitting, setSubmitting] = useState(false);
+  const sending = useRef(false);
 
   const closeToast = () => setToast(initialToast);
 
   const setValue = (name) => (e) => {
+    if (sending.current) return;
     let val = e.target.value;
 
     if (name === "phone") {
@@ -66,11 +68,13 @@ function useContactForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (submitting) return;
+    if (sending.current) return;
+    sending.current = true;
 
     const { valid, errors, firstMessage } = await validate();
 
     if (!valid) {
+      sending.current = false;
       setFieldErrors(errors);
       setErrorStep(activeStep);
       setToast({ visible: true, type: "error", message: firstMessage });
@@ -83,17 +87,16 @@ function useContactForm() {
     setSubmitting(true);
 
     try {
-      const response = await apiFetch("/contact", "POST", values);
-      if (!response) throw new Error("Error en el envío");
+      await submitContact(values);
 
+      reset();
       setActiveStep(4);
       setToast({
         visible: true,
         type: "success",
         message:
-          "Hemos recibido tu solicitud, pronto nos pondremos en contacto contigo.",
+          "Tu solicitud fue enviada. Pronto nos pondremos en contacto contigo.",
       });
-      setTimeout(reset, 3000);
     } catch (err) {
       console.error("Error al enviar el formulario de contacto:", err);
       setErrorStep(4);
@@ -103,6 +106,7 @@ function useContactForm() {
         message: err.message || "Ocurrió un error al enviar. Intenta de nuevo.",
       });
     } finally {
+      sending.current = false;
       setSubmitting(false);
     }
   };

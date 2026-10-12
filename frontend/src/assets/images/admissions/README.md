@@ -1,5 +1,13 @@
 # Imagen del hero de Admisión
 
+## Docente del hero — 11 de octubre de 2026
+
+`admissions-classroom-teacher.png`: composición generada con la herramienta integrada ImageGen a partir del aula original y la fotografía de referencia aportada por el usuario. Sustituye la imagen del hero; se conserva el original. Presenta a la mujer de referencia como docente con terno beige entallado, lentes y rostro guiado por la referencia. La semejanza generada no garantiza identidad facial exacta. Es una escena ilustrativa, no una fotografía documental del instituto. Se mantienen el átomo Image, su respaldo institucional y el overlay existente.
+
+### Prompt de la edición
+
+Use case: identity-preserve compositing. Edit target: image 1, the existing classroom website hero. Identity reference: image 2, the user supplied adult woman wearing rectangular dark glasses and tied back dark hair. Replace ONLY the lecturer in image 1 with the exact woman from image 2. Highest priority is faithful facial identity: preserve her face shape, eyes, nose, lips, skin tone, age, dark rectangular glasses, forehead and hairline; keep the same natural closed-mouth expression and near frontal face angle from the reference to maximize likeness. Do not beautify, slim, or reshape her face. Dress her in an elegant tailored beige women's pantsuit with a light ivory blouse, professional modest attire matching the original lecturer's styling. Give her a subtly slimmer natural silhouette, well fitted waist and confident flattering upright posture, realistic anatomy. She holds a notebook in one hand and gently explains with the other; remove the cup, straw and winter coat. Preserve classroom, students, light, camera position and original composition with lecturer in right third and empty board on left and middle for web text. Landscape 1536x1024, photoreal editorial quality. No added text, logos, watermark or overlay. This is an illustrative composite. Keep facial identity as close as possible to image 2.
+
 ## Imagen exclusiva del formulario — 10 de octubre de 2026
 
 `admissions-advising.png`: generada con la herramienta integrada ImageGen para AdmissionsContact. Escena ficticia de orientación académica; no es una fotografía documental del instituto. Se mantiene Image con respaldo institucional.

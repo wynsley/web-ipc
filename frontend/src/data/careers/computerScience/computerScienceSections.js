@@ -1,4 +1,6 @@
 import learningSupportImage from "@assets/images/careers/computerScience/learning-support.webp";
+import studyPlanImage from "@assets/images/careers/computerScience/computing-study-plan.png";
+import curriculumImage from "@assets/images/careers/computerScience/computing-curriculum.png";
 import learningNetworksImage from "@assets/images/careers/computerScience/learning-networks.webp";
 import learningProgrammingImage from "@assets/images/careers/computerScience/learning-programming.webp";
 import learningSecurityImage from "@assets/images/careers/computerScience/learning-security.webp";
@@ -137,6 +139,7 @@ const computerScienceBenefits = [
 const computerScienceDocuments = [
   {
     id: "computing-study-plan",
+    image: studyPlanImage,
     title: "Plan de estudios",
     description:
       "Explora un plan de estudios ficticio, creado como referencia visual para Computación e Informática.",
@@ -146,6 +149,7 @@ const computerScienceDocuments = [
   },
   {
     id: "computing-curriculum",
+    image: curriculumImage,
     title: "Malla curricular",
     description:
       "Revisa una malla de ejemplo en la segunda página del documento de referencia.",
