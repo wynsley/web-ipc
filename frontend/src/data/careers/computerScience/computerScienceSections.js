@@ -1,6 +1,6 @@
 import learningSupportImage from "@assets/images/careers/computerScience/learning-support.webp";
-import studyPlanImage from "@assets/images/careers/computerScience/computing-study-plan.png";
-import curriculumImage from "@assets/images/careers/computerScience/computing-curriculum.png";
+import studyPlanImage from "@assets/images/careers/computerScience/computing-study-plan.webp";
+import curriculumImage from "@assets/images/careers/computerScience/computing-curriculum.webp";
 import learningNetworksImage from "@assets/images/careers/computerScience/learning-networks.webp";
 import learningProgrammingImage from "@assets/images/careers/computerScience/learning-programming.webp";
 import learningSecurityImage from "@assets/images/careers/computerScience/learning-security.webp";
@@ -21,7 +21,7 @@ const computerScienceLearning = [
   {
     title: "Programación",
     image: learningProgrammingImage,
-    imageAlt: "Ilustración de un portátil y paneles de código",
+    imageAlt: "Programador trabajando con un editor de código en su portátil",
     description:
       "Convierte un problema en instrucciones claras. Explora lógica, algoritmos y desarrollo de aplicaciones.",
     Icon: FiCode,
@@ -29,7 +29,8 @@ const computerScienceLearning = [
   {
     title: "Bases de datos",
     image: learningDatabaseImage,
-    imageAlt: "Ilustración de bases de datos conectadas",
+    imageAlt:
+      "Estación de trabajo con tablas y relaciones de una base de datos",
     description:
       "Organiza información, relaciona datos y comprende cómo consultarlos de forma útil y segura.",
     Icon: FiDatabase,
@@ -37,7 +38,7 @@ const computerScienceLearning = [
   {
     title: "Redes y conectividad",
     image: learningNetworksImage,
-    imageAlt: "Ilustración de un equipo de red y conexiones",
+    imageAlt: "Panel de red con cables Ethernet conectados a un switch",
     description:
       "Comprende cómo se comunican los equipos y cómo configurar conexiones y servicios de red.",
     Icon: FiWifi,
@@ -45,7 +46,7 @@ const computerScienceLearning = [
   {
     title: "Soporte técnico",
     image: learningSupportImage,
-    imageAlt: "Ilustración de componentes y herramientas de mantenimiento",
+    imageAlt: "Manos de un técnico realizando mantenimiento a una computadora",
     description:
       "Diagnostica fallas y explora el mantenimiento de equipos, sistemas y herramientas informáticas.",
     Icon: FiTool,
@@ -53,7 +54,7 @@ const computerScienceLearning = [
   {
     title: "Desarrollo web",
     image: learningWebImage,
-    imageAlt: "Ilustración de interfaces web en pantalla y móvil",
+    imageAlt: "Sitio web de biblioteca en un portátil y un teléfono",
     description:
       "Relaciona interfaces, datos y funcionalidad para construir experiencias digitales.",
     Icon: FiLayers,
@@ -61,7 +62,8 @@ const computerScienceLearning = [
   {
     title: "Seguridad digital",
     image: learningSecurityImage,
-    imageAlt: "Ilustración de un escudo y un candado sobre circuitos",
+    imageAlt:
+      "Analista revisando registros de seguridad en su estación de trabajo",
     description:
       "Reconoce riesgos y buenas prácticas para proteger equipos, cuentas e información.",
     Icon: FiShield,
@@ -163,21 +165,22 @@ const computerScienceJourney = [
   {
     title: "Entiende el problema",
     image: learningProgrammingImage,
-    imageAlt: "Ilustración de código y algoritmos en un portátil",
+    imageAlt: "Programador revisando código y apuntes junto a su portátil",
     description:
       "En una biblioteca, averigua cómo se registran los préstamos y qué dificulta encontrar un libro disponible. Define qué necesita resolver el sistema.",
   },
   {
     title: "Construye y conecta",
     image: learningWebImage,
-    imageAlt: "Ilustración de interfaces digitales conectadas",
+    imageAlt: "Interfaz de un catálogo de biblioteca en computadora y móvil",
     description:
       "Diseña una pantalla para consultar libros y registrar préstamos. Conecta la interfaz con los datos de ejemplares y usuarios.",
   },
   {
     title: "Prueba y mejora",
     image: learningSecurityImage,
-    imageAlt: "Ilustración de protección de un sistema digital",
+    imageAlt:
+      "Analista revisando registros y controles de un sistema informático",
     description:
       "Prueba préstamos, devoluciones y datos incorrectos. Recoge comentarios, corrige errores y documenta cómo utilizar la solución.",
   },
@@ -197,7 +200,8 @@ const computerScienceContent = {
       "Un ejemplo ilustrativo: crear un sistema de préstamos para una biblioteca. Así se conecta cada etapa del trabajo.",
   },
   benefits: {
-    imageAlt: "Ilustración de un entorno de trabajo tecnológico",
+    imageAlt:
+      "Laboratorio de computación con estaciones de trabajo y luz natural",
     eyebrow: "03 / Más allá del código",
     title: "Habilidades que abren posibilidades",
     description:

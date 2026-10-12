@@ -64,7 +64,7 @@ function HomeBanner({toggleModal}) {
         <div
           className="
             absolute inset-0 z-20
-            bg-gradient-to-r
+            bg-linear-to-r
             from-neutral-black
             via-neutral-black/85
             via-50%
