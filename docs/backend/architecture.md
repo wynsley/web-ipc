@@ -1,5 +1,9 @@
 # Arquitectura de carpetas del backend
 
+## Retiro de demostración — 30 de octubre de 2026
+
+POST / fue eliminado junto con su lógica de eco. GET / sigue disponible para comprobar que el servidor responde. Las referencias de la preparación inicial a la ruta de clase son históricas.
+
 ## JWT y refresh rotativo — 30 de octubre de 2026
 
 authService.js compone invitationService, loginService y refreshService; accessTokenService firma/verifica JWT y deriva CSRF. authCookies centraliza cookies. authRoutes y credentialRoutes separan contratos de cuentas y credenciales. repositories/refreshRepository conserva el historial y serializa rotaciones por familia; sessionRepository valida familias, las crea y revoca. Los detalles actuales están en [authentication.md](authentication.md). El diseño conserva un monolito modular y consultas Prisma en repositorios.

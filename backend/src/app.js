@@ -1,8 +1,7 @@
 import { randomUUID } from "node:crypto";
 import { Hono } from "hono";
-import { limitBody } from "./middleware/requestBody.js";
 import { secureHeaders } from "hono/secure-headers";
-import { AppError, handleError } from "./middleware/errors.js";
+import { handleError } from "./middleware/errors.js";
 import { createAuthRepository } from "./modules/auth/authRepository.js";
 import { createAuthService } from "./modules/auth/authService.js";
 import { createAuthRoutes } from "./modules/auth/authRoutes.js";
@@ -27,15 +26,5 @@ export async function createApp({ db, config, clientIp }) {
     }),
   );
 
-  // Demostración de clase: no guarda datos y nunca recibe credenciales.
-  app.post("/", limitBody(16 * 1024), async (c) => {
-    let data;
-    try {
-      data = await c.req.json();
-    } catch {
-      throw new AppError(400, "INVALID_JSON", "El cuerpo debe contener JSON válido.");
-    }
-    return c.json({ message: "Datos recibidos correctamente", data }, 201);
-  });
   return app;
 }

@@ -4,6 +4,8 @@ Actualizado: 30 de octubre de 2026, America/Celendin.
 
 ## Estado real
 
+Retirada la ruta POST / de demostración el 30 de octubre; responde 404. GET / se conserva como comprobación básica del servidor.
+
 Registro por invitación, activación, permisos y logout implementados. El usuario pidió expresamente JWT + refresh rotativo para el curso el 30 de octubre: access JWT HS256 de diez minutos, refresh opaco HttpOnly con historial de hashes en Prisma y revocación ante reutilización. Las sesiones/familias siguen venciendo tras treinta minutos inactivas u ocho horas absolutas. JWT se envía como Bearer y también se comprueba la familia en BD.
 
 Migración jwt_refresh_rotation aplicada: añade refresh_tokens, retira tokenHash de sessions y revoca las sesiones del formato previo. Cuentas y contraseñas conservadas; se requiere nuevo login. JWT_SECRET generada privadamente en .env; comando auth:key para otros equipos. No mostrar ni versionar secretos.
@@ -110,3 +112,7 @@ Implementadas únicamente las dos mejoras solicitadas: adminRequest/noStore/json
 readInput se extrajo a middleware y authSchema quedó limitado a esquemas. Errores 422 incluyen fields por campo en español, sin valores recibidos; JSON inválido sigue en 400 y credenciales incorrectas mantienen su mensaje genérico. Helper reutilizable con mensaje general personalizable.
 
 Verificado: 40 pruebas reportadas aprobadas (incluidos contenedores), ESLint correcto. Nuevas pruebas cubren aislamiento de middleware, JSON público, multipart, límites propios, errores por campo, normalización y mensajes personalizados. No se modificaron Prisma, limpieza de registros ni escrituras de lastSeenAt.
+
+## Retiro de demostración — 30 de octubre de 2026
+
+Eliminado el POST / que devolvía el JSON recibido y sus imports exclusivos de app.js. Actualizada su prueba para exigir 404 sin eco de datos. Se conservan GET /, autenticación, herramientas de desarrollo, pruebas y carpetas aprobadas para los futuros módulos. Las menciones anteriores al POST de clase son históricas.

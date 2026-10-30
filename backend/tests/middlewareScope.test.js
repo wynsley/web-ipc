@@ -71,7 +71,14 @@ test("auth mantiene origen, formato, límite y cache privado", async () => {
   assert.equal((await app.request("/api/v1/auth/me")).status, 401);
 });
 
-test("el POST de clase conserva su límite independiente", async () => {
-  const response = await app.request("/", { method: "POST", body: "a".repeat(17 * 1024) });
-  assert.equal(response.status, 413);
+test("la ruta de demostración retirada responde 404 sin devolver el cuerpo", async () => {
+  const response = await app.request("/", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ message: "dato-de-prueba" }),
+  });
+  assert.equal(response.status, 404);
+  const body = await response.json();
+  assert.equal(body.error.code, "NOT_FOUND");
+  assert.equal("data" in body, false);
 });

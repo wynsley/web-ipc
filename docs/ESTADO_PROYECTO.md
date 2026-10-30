@@ -1,5 +1,9 @@
 # Estado y evolución de IPC Platform
 
+## Retiro de ruta de clase — 30 de octubre de 2026
+
+Eliminado POST / y sus imports exclusivos; la prueba exige ahora 404. GET / y los endpoints de autenticación se conservan.
+
 ## Backend: middleware por módulo y errores por campo — 30 de octubre de 2026
 
 Restricciones de cliente admin/JSON/16 KiB/no-store acotadas a auth; límites reutilizables por ruta. readInput compartido devuelve errores 422 por campo en español sin valores privados. Se conservaron los contratos de JWT/refresh y se aprobaron 40 pruebas reportadas. No se implementaron todavía consultas públicas, uploads, limpieza de registros ni optimización de lastSeenAt.
