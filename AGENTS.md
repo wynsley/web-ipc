@@ -7,3 +7,11 @@ Por petición del usuario, prioriza esta regla en cualquier página o componente
 ## Referencia de arquitectura y nuevas páginas
 
 Antes de crear o ampliar una página, consulta [docs/ESTADO_PROYECTO.md](docs/ESTADO_PROYECTO.md) y [docs/GUIA_NUEVAS_PAGINAS.md](docs/GUIA_NUEVAS_PAGINAS.md). Contrasta la revisión fechada con el código actual y conserva los cambios locales. Al incorporar capacidades o cambiar contratos compartidos, actualiza la documentación pertinente; distingue lo implementado, lo pendiente y el contenido de referencia. La regla de imágenes anterior se mantiene.
+
+## Backend y administración — decisiones del 28 de octubre de 2026
+
+Para tareas de backend o panel administrativo, lee primero [docs/BACKEND_ADMIN.md](docs/BACKEND_ADMIN.md) y [la skill IPC backend/admin](docs/skills/ipc-backend-admin/SKILL.md); consulta únicamente las referencias pertinentes. Es el punto de continuidad para el equipo, otros chats y otras IA. Comprueba el código actual y actualiza el estado al terminar.
+
+Se acordó JavaScript moderno con ESM y async/await, sin TypeScript ni JSDoc; documentación separada en docs/, código en inglés y textos en español. Esta decisión sustituye ES6 estricto para el trabajo nuevo de backend/admin. Base recomendada: Hono sobre Node.js, PostgreSQL/Prisma y Zod, monolito modular; las referencias anteriores a Express no obligan a implementarlo.
+
+Tres roles: admin, admissions, events; sin registro público. La aplicación admin/ y su ruta /admin son propuestas de organización, no mecanismos de autorización. Proteger permisos en API. No presentar funcionalidades planificadas como implementadas ni comenzar todo V1 al activar la skill. Conservar las reglas de imágenes y convenciones visuales aplicables.

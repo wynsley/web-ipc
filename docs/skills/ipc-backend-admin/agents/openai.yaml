@@ -1,0 +1,4 @@
+interface:
+  display_name: "IPC: backend y administración"
+  short_description: "Hono en JavaScript y panel administrativo del IPC"
+  default_prompt: "Usa $ipc-backend-admin para continuar backend o administración leyendo primero el estado del repositorio."

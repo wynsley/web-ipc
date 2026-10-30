@@ -1,5 +1,44 @@
 # Estado y evolución de IPC Platform
 
+## Backend: middleware por módulo y errores por campo — 30 de octubre de 2026
+
+Restricciones de cliente admin/JSON/16 KiB/no-store acotadas a auth; límites reutilizables por ruta. readInput compartido devuelve errores 422 por campo en español sin valores privados. Se conservaron los contratos de JWT/refresh y se aprobaron 40 pruebas reportadas. No se implementaron todavía consultas públicas, uploads, limpieza de registros ni optimización de lastSeenAt.
+
+
+## JWT y refresh rotativo — 30 de octubre de 2026
+
+Por requerimiento académico explícito, el backend usa ahora JWT Bearer de diez minutos y cookie refresh rotativa, con hashes/historial en Prisma. Rotación atómica, detección de reutilización y revocación de familia verificadas en PostgreSQL aislado. Contratos y Bruno actualizados; claves privadas fuera de Git. Se conservaron cuentas y se revocaron sesiones antiguas al migrar. MFA y panel siguen pendientes. Ver [authentication.md](backend/authentication.md).
+
+
+## Backend: registro y autenticación inicial — 29 de octubre de 2026
+
+Implementados registro por admin con invitación, activación, login, sesiones revocables, permisos y logout; Prisma conectado al servidor. MFA aplazado expresamente al siguiente paso y producción bloqueada por ahora. Migración de tablas auxiliares aplicada sin crear cuentas reales; pruebas en ipc_backend_auth_test. Guía y colección Bruno en [authentication.md](backend/authentication.md). Esta nota sustituye las descripciones anteriores de carpetas vacías/servidor sin conexión.
+
+
+## Backend: arquitectura de carpetas — 29 de octubre de 2026
+
+Por solicitud del usuario y tras revisar `Documentación_Proyecto_web_IPC_v01.docx`, se preparó la estructura de carpetas en `backend/` con archivos `.gitkeep`, incorporando `careers` y `documents` junto a `auth`, `admins`, `events`, `media`, `content`, `inquiries` y `audit`, además de `config`, `middleware`, `infrastructure` (`database`, `storage`, `mail`), `jobs`, `bruno` y `tests`. Detalle en [architecture.md](backend/architecture.md). El servidor Hono y el esquema Prisma no cambian en este paso.
+
+## Prisma: primera tabla de administradores — 29 de octubre de 2026
+
+Por solicitud explícita se configuró PostgreSQL/WSL con ipc_backend_dev e ipc_backend_shadow, primera migración admins/AdminRole y generación del cliente JS. Roles admin, admissions y events; sin cuentas ni login. Comandos reunidos en [SCRIPTS.md](SCRIPTS.md). Reset local con confirmación y sin eliminación de archivos de migración. El servidor mínimo y frontend no cambian.
+
+## Reinicio a backend mínimo — 29 de octubre de 2026
+
+Por petición del usuario se retiró la base avanzada del backend activo. Quedan Hono/Node en un único index.js, Nodemon, Prettier y Prisma instalado sin usarlo. Copia anterior local fuera de Git; bases previas conservadas y sin conexión desde el servidor. Esta nota sustituye el estado backend de las notas anteriores. Avanzar en pasos pequeños, empezando por entender arranque y organización. Ver [BACKEND_ADMIN.md](BACKEND_ADMIN.md).
+
+## Base backend implementada — 28 de octubre de 2026
+
+Hono/Node 24, Prisma 7.10.1/PostgreSQL y Zod, configuración JS, health/readiness, errores uniformes, migración inicial users/Role y colección Bruno. Bases locales de desarrollo/pruebas separadas, sin usuarios iniciales. Verificados build/generación, esquema, migraciones, 11 pruebas HTTP/configuración, 3 de integración y 3 de Bruno contra servidor real. API de negocio, autenticación/MFA y panel siguen pendientes; frontend no modificado. Estado y próximo paso en [BACKEND_ADMIN.md](BACKEND_ADMIN.md).
+
+
+## Backend y administración: diseño V1 — 28 de octubre de 2026
+
+Se documentan alcance, arquitectura recomendada y skill específica en [BACKEND_ADMIN.md](BACKEND_ADMIN.md). JavaScript moderno con async/await, sin TypeScript/JSDoc; Hono/Node, PostgreSQL/Prisma y Zod como base recomendada, tres roles y panel separado. Incluye eventos/medios, contenido y consultas, con implementación por etapas y pruebas iniciales en Bruno. Referencia docente correcta login revisada estáticamente.
+
+Esta entrega es documental: backend y admin todavía no están implementados. No modifica contratos ni comportamiento del frontend. El estado y la siguiente tarea se mantienen en BACKEND_ADMIN.md; sus decisiones sustituyen las referencias históricas Express/ES6 estricto para el backend nuevo.
+
+
 ### Computación: imágenes de estilo fotográfico — 12 de octubre de 2026
 
 Sustituidas las seis ilustraciones de aprendizaje, el laboratorio compartido por portada y beneficios y las dos imágenes de documentos por nueve escenas de estilo fotográfico generadas con ImageGen y optimizadas en WebP. El proceso reutiliza las nuevas imágenes de programación, web y seguridad. La chica de portada (`computing-student.png`) permanece idéntica. Se conservan los componentes Image, el respaldo institucional y la distribución; actualizados imports y textos alternativos. Recursos, prompts finales y antecedentes en `frontend/src/assets/images/careers/computerScience/README.md`. Las escenas son ilustrativas, no fotografías de instalaciones o estudiantes reales del IPC; los PDF siguen siendo referencias no oficiales.

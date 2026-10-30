@@ -12,6 +12,8 @@ frontend/node_modules/
 .env
 backend/.env
 frontend/.env
+.env.*
+!.env.example
 
 # Sí se suben los ejemplos (sin datos reales)
 !backend/.env.example
@@ -58,3 +60,9 @@ desktop.ini
 .parcel-cache/
 frontend/.vite/
 *.tsbuildinfo
+# Copias locales de trabajo, fuera de Git
+.local/
+
+# Entornos privados de Bruno (no versionar credenciales).
+backend/bruno/environments/*.bru
+!backend/bruno/environments/*.example.bru
