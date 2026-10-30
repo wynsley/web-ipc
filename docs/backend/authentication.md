@@ -99,7 +99,7 @@ Se conservan repositorios de registro, activación y límites; admins contiene b
 
 `pnpm test:backend` usa únicamente ipc_backend_auth_test, con migraciones y limpieza de datos ficticios. Las suites se ejecutan en serie para no interferir entre sí. Se mantienen regresiones de registro/permisos y se añaden pruebas de firma/claims inválidos, expiración, rotación, historial de hashes, replay, concurrencia, CSRF, límites y revocación inmediata.
 
-Bruno está preparado para ejecución manual; no se declara ejecutado en la aplicación. La ruta POST / de clase se conserva como eco JSON, sin persistencia ni uso para credenciales.
+Bruno está preparado para ejecución manual; no se declara ejecutado en la aplicación. La ruta POST / de demostración fue retirada; responde 404. GET / se conserva como comprobación básica del servidor.
 
 Pendientes: MFA, recuperación/cambio de contraseña, revocación de todas las sesiones por usuario, gestión de bajas/roles y protección del último admin, verificación de correo, limpieza periódica, panel y revisión de despliegue. Cambiar JWT_SECRET invalida JWT y CSRF anteriores, pero por sí solo no revoca familias: con una cookie válida y el nuevo CSRF se puede renovar. Para un incidente debe revocarse también la familia correspondiente.
 
@@ -108,7 +108,7 @@ Referencias: [jose](https://github.com/panva/jose), [rotación y detección de r
 
 ## Alcance del middleware y validación — 30 de octubre de 2026
 
-app.js conserva requestId, cabeceras de seguridad y manejo de errores/not-found como reglas globales. El router /api/v1/auth aplica noStore, adminRequest(config) y jsonBody() con 16 KiB. La demostración POST / conserva un límite propio de 16 KiB. Las futuras rutas públicas no heredan cabecera admin, formato JSON ni no-store; cada módulo debe declarar su formato y límite antes de leer el cuerpo. No se crearon endpoints de consultas ni archivos en este cambio.
+app.js conserva requestId, cabeceras de seguridad y manejo de errores/not-found como reglas globales. El router /api/v1/auth aplica noStore, adminRequest(config) y jsonBody() con 16 KiB. Las futuras rutas públicas no heredan cabecera admin, formato JSON ni no-store; cada módulo debe declarar su formato y límite antes de leer el cuerpo. No se crearon endpoints de consultas ni archivos en este cambio.
 
 Helpers de middleware:
 - adminRequest.js: origen/cabecera de cliente y noStore separado. No sustituye autenticación, roles ni CSRF. Puede reutilizarse en un upload administrativo sin exigir JSON.
