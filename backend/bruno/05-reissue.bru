@@ -1,0 +1,24 @@
+meta {
+  name: Reemitir activacion
+  type: http
+  seq: 6
+}
+
+post {
+  url: http://127.0.0.1:3000/api/v1/auth/activation/reissue
+  body: json
+  auth: none
+}
+
+headers {
+  X-IPC-Client: admin
+  Content-Type: application/json
+  Authorization: Bearer {{accessToken}}
+  X-CSRF-Token: {{csrfToken}}
+}
+
+body:json {
+  {
+    "email": "jhackson@g.com"
+  }
+}

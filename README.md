@@ -1,77 +1,40 @@
-# WEb-IPC
+# IPC Platform
 
-> Revisión del 29/09/2026: el checkout actual contiene la implementación del frontend; no incluye fuentes ni package.json del backend. Las instrucciones fullstack que siguen son históricas y no están verificadas para esta base. Consulta el [estado del proyecto](docs/ESTADO_PROYECTO.md) y la [guía para nuevas páginas](docs/GUIA_NUEVAS_PAGINAS.md). Para el frontend están disponibles `pnpm --filter frontend run dev`, `pnpm --filter frontend run lint` y `pnpm --filter frontend run build`.
+Sitio público del IPC y backend en su etapa de inicialización.
 
-Monorepo fullstack con **Express** + **Prisma** (backend) y **React + Vite** (frontend) para la plataforma del Instituto Privado Celendín, organizados mediante **pnpm workspaces**.
----
+## Iniciar
 
-## Estructura
-```
-web-ipc/
-├── package.json          ← Raíz: scripts globales de orquestación
-├── pnpm-workspace.yaml  ← Configuración de espacios de trabajo pnpm
-├── backend/              ← API REST con Express + Prisma
-└── frontend/             ← SPA con React + Vite + Tailwind CSS
-```
+Desde la raíz, con Node y pnpm disponibles:
 
----
+~~~sh
+pnpm install --ignore-scripts
+pnpm dev
+~~~
 
-## Requisitos
-- Node.js
-- PostgreSQL
+El comando inicia el frontend y el backend. Ctrl+C detiene ambos.
+Backend: http://127.0.0.1:3000.
 
----
+## Comandos
 
-## Instalación
-```bash
-# 1. Clonar el repositorio
-git clone [https://github.com/wynsley/web-IPC-C.git](https://github.com/wynsley/web-IPC-C.git)
-cd web-ipc
- 
-# 2. Instalar dependencias, copiar .env y migrar la base de datos
-pnpm run setup
-# 2.1. Luego abre `backend/.env` y completa tus credenciales de ser necesario
+- pnpm dev:backend — solo backend con Nodemon.
+- pnpm dev:frontend — solo frontend.
+- pnpm format:backend — formatear backend con Prettier.
+- pnpm format:check:backend — comprobar formato.
+- pnpm build — construir frontend.
 
-# 3. Ejecutar en modo desarrollo
-pnpm run dev
-```
+## Estado
 
----
+Backend mínimo: Hono, adaptador Node, Nodemon y Prettier. Prisma configurado en PostgreSQL/WSL con la primera tabla admins y sus roles. Todavía no hay cuentas, login ni rutas de negocio. El frontend sigue independiente.
 
-## Scripts disponibles
- 
-| Comando | Descripción |
-|---|---|
-| `pnpm run setup` | Instala deps + copia `.env.example` → `.env` + migra DB |
-| `pnpm run dev` | Levanta backend y frontend en paralelo |
-| `pnpm run db:migrate` | Corre migraciones de Prisma en el backend |
-| `pnpm run build:frontend` | Build de producción del frontend |
-| `pnpm run install:all` | Instala dependencias en raíz, backend y frontend |
-| `pnpm run env` | Solo copia el `.env.example` al `.env` del backend |
+- [Todos los scripts y comandos](docs/SCRIPTS.md)
+- [Guía corta del backend](docs/backend/configuration.md)
+- [Estado y siguiente paso](docs/BACKEND_ADMIN.md)
+- [Arquitectura futura y skill](docs/skills/ipc-backend-admin/SKILL.md)
+- [Estado del frontend](docs/ESTADO_PROYECTO.md)
 
----
+La arquitectura futura es referencia, no una orden para implementar todas las etapas. Avanzamos en pasos pequeños.
 
-## Desarrollo
- 
-```bash
-pnpm run dev
-```
- 
-| Servicio | URL por defecto |
-|---|---|
-| Backend (Express) | http://localhost:3000 |
-| Frontend (Vite) | http://localhost:5173 |
- 
----
 
-## Base de datos
- 
-Las migraciones usan **Prisma**. Para crearlas manualmente:
- 
-```bash
-pnpm run db:migrate
-```
- 
-Esto ejecuta `prisma migrate dev && prisma generate` dentro del backend.
- 
----
+## Autenticación del backend
+
+Ya están implementados registro por invitación, activación, login con JWT Bearer y refresh rotativo en Prisma, permisos y logout. En un equipo nuevo configura backend/.env y ejecuta `pnpm auth:key`. Crea la primera cuenta con `pnpm admin:bootstrap` y sigue la [guía de autenticación y Bruno](docs/backend/authentication.md). Pruebas: `pnpm test:backend`, exclusivamente en ipc_backend_auth_test. MFA es el siguiente paso; esta etapa todavía no está habilitada para producción.

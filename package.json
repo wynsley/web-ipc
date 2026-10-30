@@ -4,15 +4,27 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "concurrently --names 'BACKEND,FRONTEND' --prefix-colors 'cyan,magenta' \"pnpm --filter backend run dev\" \"pnpm --filter frontend run dev\"",
+    "dev": "concurrently --kill-others --names BACKEND,FRONTEND --prefix-colors cyan,magenta \"pnpm --filter backend run dev\" \"pnpm --filter frontend run dev\"",
     "dev:backend": "pnpm --filter backend run dev",
     "dev:frontend": "pnpm --filter frontend run dev",
-    "setup:backend": "pnpm --filter backend run setup",
-    "setup:frontend": "pnpm --filter frontend run setup",
-    "build:backend": "pnpm --filter backend run build",
     "build:frontend": "pnpm --filter frontend run build",
-    "setup": "pnpm run setup:backend",
-    "build": "pnpm run build:backend && pnpm run build:frontend"
+    "build": "pnpm run build:frontend",
+    "format:backend": "pnpm --filter backend format",
+    "format:check:backend": "pnpm --filter backend format:check",
+    "lint:backend": "pnpm --filter backend lint",
+    "lint:fix:backend": "pnpm --filter backend lint:fix",
+    "db:validate": "pnpm --filter backend db:validate",
+    "db:format": "pnpm --filter backend db:format",
+    "db:migrate": "pnpm --filter backend db:migrate",
+    "db:generate": "pnpm --filter backend db:generate",
+    "db:status": "pnpm --filter backend db:status",
+    "db:studio": "pnpm --filter backend db:studio",
+    "db:reset": "pnpm --filter backend db:reset",
+    "db:reset:check": "pnpm --filter backend db:reset:check",
+    "admin:bootstrap": "pnpm --filter backend admin:bootstrap",
+    "test:backend": "pnpm --filter backend test",
+    "admin:activation": "pnpm --filter backend admin:activation",
+    "auth:key": "pnpm --filter backend auth:key"
   },
   "repository": {
     "type": "git",
@@ -28,5 +40,6 @@
   "homepage": "https://github.com/wynsley/web-IPC-C#readme",
   "dependencies": {
     "concurrently": "^10.0.5"
-  }
+  },
+  "packageManager": "pnpm@12.14.0"
 }

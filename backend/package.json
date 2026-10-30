@@ -1,0 +1,43 @@
+{
+  "name": "backend",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "nodemon src/index.js",
+    "start": "node src/index.js",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "db:validate": "prisma validate",
+    "db:format": "prisma format",
+    "db:migrate": "prisma migrate dev",
+    "db:generate": "prisma generate",
+    "db:status": "prisma migrate status",
+    "db:studio": "prisma studio",
+    "db:reset": "node scripts/resetDatabase.js",
+    "db:reset:check": "node scripts/resetDatabase.js --check",
+    "admin:bootstrap": "node scripts/bootstrapAdmin.js",
+    "test": "node scripts/testAuth.js",
+    "admin:activation": "node scripts/bootstrapAdmin.js --reissue",
+    "auth:key": "node scripts/createJwtKey.js"
+  },
+  "dependencies": {
+    "@hono/node-server": "2.1.5",
+    "@node-rs/argon2": "2.2.2",
+    "@prisma/adapter-pg": "7.10.1",
+    "@prisma/client": "7.10.1",
+    "hono": "4.13.14",
+    "jose": "6.2.14",
+    "zod": "4.6.7"
+  },
+  "devDependencies": {
+    "@eslint/js": "10.0.1",
+    "eslint": "10.13.0",
+    "globals": "17.13.0",
+    "nodemon": "3.1.14",
+    "prettier": "3.9.10",
+    "prisma": "7.10.1"
+  }
+}
