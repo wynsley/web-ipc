@@ -24,11 +24,6 @@ export function postAuthenticatedAuth(path, input, status) {
     postAuth(path, input, status, session.csrfToken, session.accessToken),
   );
 }
-export function listAccounts() {
-  return authenticated((session) =>
-    getAuth("accounts", 200, session.accessToken),
-  );
-}
-export function deactivateAccount(id) {
-  return postAuthenticatedAuth("accounts/deactivate", { id }, 200);
+export function getAuthenticatedAuth(path, status) {
+  return authenticated((session) => getAuth(path, status, session.accessToken));
 }

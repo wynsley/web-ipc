@@ -1,5 +1,7 @@
 import { WORKSPACE_AREAS } from "../../data/workspaceAreas";
 import { Title } from "../atoms/titles";
+import { RegenerateCodesForm } from "./auth/regenerateCodesForm";
+import { ChangePasswordForm } from "./auth/changePasswordForm";
 import { AreaCard } from "../molecules/areaCard";
 
 export function WorkspaceDashboard({ admin }) {
@@ -31,6 +33,8 @@ export function WorkspaceDashboard({ admin }) {
           )}
         </div>
       </section>
+      <RegenerateCodesForm />
+      <ChangePasswordForm />
     </>
   );
 }

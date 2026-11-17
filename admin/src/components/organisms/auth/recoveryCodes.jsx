@@ -2,10 +2,21 @@ import { useEffect, useState } from "react";
 import { copyText } from "../../../services/copyText";
 import { Button } from "../../atoms/button";
 import { Code } from "../../atoms/code";
+import { Link } from "../../atoms/links";
 import { Paragraph } from "../../atoms/paragraph";
 
-export function RecoveryCodes({ codes, onSaved }) {
+export function RecoveryCodes({ codes, onSaved, confirmText = "Ya guardé los códigos. Abrir escritorio" }) {
   const [copied, setCopied] = useState(false);
+  const [downloadUrl, setDownloadUrl] = useState("");
+
+  useEffect(() => {
+    const file = new Blob([codes.join("\n") + "\n"], {
+      type: "text/plain;charset=utf-8",
+    });
+    const url = URL.createObjectURL(file);
+    setDownloadUrl(url);
+    return () => URL.revokeObjectURL(url);
+  }, [codes]);
 
   useEffect(() => {
     const warn = (event) => {
@@ -31,13 +42,21 @@ export function RecoveryCodes({ codes, onSaved }) {
         ))}
       </ul>
       <div className="grid gap-2.5">
+        {downloadUrl && (
+          <Link
+            href={downloadUrl}
+            download="ipc-codigos-de-recuperacion.txt"
+            variant="button"
+            text="Descargar códigos (.txt)"
+          />
+        )}
         <Button
           variant="secondary"
           text={copied ? "Códigos copiados" : "Copiar códigos"}
           onClick={copyCodes}
         />
         <Button
-          text="Ya guardé los códigos. Abrir escritorio"
+          text={confirmText}
           onClick={onSaved}
         />
       </div>

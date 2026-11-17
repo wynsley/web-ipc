@@ -1,3 +1,4 @@
+import { generateRecoveryCodes } from "./recoveryCredentials.js";
 import { digest, newToken } from "./authCrypto.js";
 import { createMfaCrypto, createTotp } from "./mfaCrypto.js";
 import { AppError } from "../../middleware/errors.js";
@@ -31,7 +32,7 @@ export function createMfaService(repository, tokens, config) {
       if (!challenge) throw new AppError(401, "INVALID_MFA", "Código o desafío inválido.");
       await repository.limit(digest("mfa-account:" + challenge.adminId), 10, 15 * 60_000);
       const refreshToken = newToken();
-      const recoveryCodes = Array.from({ length: 10 }, () => newToken());
+      const recoveryCodes = generateRecoveryCodes();
       const result = await repository.completeMfa(
         hash,
         data.code,

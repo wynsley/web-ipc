@@ -26,6 +26,9 @@ model Admin {
   mfaLastStep   Int?
   mfaChallenges MfaChallenge[]
   recoveryCodes RecoveryCode[]
+  resetHash       String?   @unique @db.Char(64)
+  resetExpiresAt  DateTime? @db.Timestamptz(3)
+  resetMfa        Boolean   @default(false)
 
   sessions    Session[]
   activations Activation[]

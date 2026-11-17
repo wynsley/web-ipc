@@ -21,7 +21,7 @@ POST /api/v1/auth/mfa/verify: { challengeToken, code }. Admite seis dígitos TOT
 
 Refresh y logout conservan sus contratos y CSRF. No persistir JWT, desafío, secreto ni recuperación en archivos compartidos o localStorage.
 
-Si el panel pierde la respuesta durante el primer enrolamiento, conserva la cuenta en la aplicación autenticadora y usa «Reiniciar acceso» al recuperar la conexión. Las demás pestañas esperan hasta que termine la cancelación. El siguiente login indica si debes configurar el autenticador o introducir un código actual. Si la API ya entregó los códigos de recuperación y la respuesta se perdió, esos códigos no pueden volver a mostrarse.
+Si el panel pierde la respuesta durante el primer enrolamiento, conserva la cuenta en la aplicación autenticadora y usa «Reiniciar acceso» al recuperar la conexión. Las demás pestañas esperan hasta que termine la cancelación. El siguiente login indica si debes configurar el autenticador o introducir un código actual. Si la API ya entregó los códigos de recuperación y la respuesta se perdió, entra con tu autenticador y genera un juego nuevo desde el escritorio.
 
 ## Persistencia y concurrencia
 
@@ -39,7 +39,28 @@ La migración add_mfa añade campos/tablas y revoca sesiones anteriores; no borr
 
 ## Alcance y pendientes
 
-Implementado: enrolamiento obligatorio, TOTP, anti-replay, desafío temporal, recuperación de acceso por códigos y compatibilidad con JWT/refresh rotativo. Pendientes: reemplazar autenticador, regenerar códigos con reautenticación reciente, recuperación asistida con identidad verificada y procedimiento institucional por pérdida de todos los factores. No existe un bypass ni desactivación pública de MFA.
+Desde el 16 de noviembre, en el primer enrolamiento se pueden copiar los diez códigos o descargar un archivo de texto con un código por línea. La descarga se genera en el navegador y la persona confirma por separado que guardó su copia.
+
+### Recuperación de cuentas activas
+
+En el escritorio, los tres roles pueden renovar sus diez códigos o cambiar su contraseña. Cada operación requiere una sesión activa, CSRF, la contraseña actual y un TOTP aún sin usar. Si acabas de iniciar sesión, espera al siguiente código del autenticador. Renovar sustituye todos los hashes en una transacción. Cambiar la contraseña revoca las sesiones, los desafíos pendientes y el código de restablecimiento que pudiera existir.
+
+| POST bajo `/api/v1/auth` | Datos | Resultado |
+| --- | --- | --- |
+| `/recovery/codes` | password, code | 200 con diez recoveryCodes entregados una vez |
+| `/password/change` | password, code, newPassword | 200 y nuevo inicio de sesión obligatorio |
+| `/recovery/issue` | password y code del operador, email del titular, identityVerified, resetMfa | 200 con token y expiresAt. Solo rol admin para otra cuenta activa |
+| `/recovery/complete` | token, password nueva de 15–128 caracteres | 200. El titular debe iniciar sesión y completar MFA |
+
+#### Procedimiento asistido
+
+1. El titular contacta con el responsable institucional. El responsable coteja la identidad presencialmente o por un canal previamente registrado y comprueba la cuenta en el registro institucional. Anota en el expediente quién verificó la identidad, cuándo y qué se autorizó. Mantén los secretos fuera del expediente.
+2. En **Cuentas → Restablecer el acceso de otra cuenta**, el administrador indica el correo del titular. Para una contraseña olvidada conserva el autenticador y los códigos. Marca el reemplazo del autenticador solo tras confirmar también la pérdida de los factores.
+3. El administrador confirma la identidad e introduce su propia contraseña y un TOTP nuevo. Entrega el código por el canal privado verificado. Cada emisión sustituye la anterior y vence en 15 minutos. En la base solo queda el hash.
+4. En **Recuperar cuenta**, el titular introduce el código y elige su contraseña. El canje se realiza una sola vez y revoca las sesiones y desafíos de la cuenta. Si se autorizó reemplazar los factores, se eliminan el secreto TOTP anterior y los códigos de respaldo. En el siguiente acceso el titular configura el autenticador, confirma un TOTP y guarda sus diez códigos nuevos.
+5. Si el afectado es el único administrador activo, un operador autorizado con acceso al servidor verifica la identidad y registra la autorización institucional antes de ejecutar `pnpm --filter backend admin:recover` en una terminal privada. Introduce la referencia del expediente, el correo y el alcance. La operación comprueba el rol y la unicidad del administrador y registra la referencia en auditoría. El titular completa el mismo canje en el panel. Cuando hay otro administrador activo se usa el flujo del panel.
+
+El IPC debe designar a los responsables y el canal de entrega para su despliegue. La aplicación registra la emisión y el canje, pero la comprobación de identidad es una actuación del responsable institucional.
 
 Desde el 8 de noviembre, el panel envía el código como texto a `POST /api/v1/auth/mfa/verify`. En el enrolamiento muestra la clave manual y, tras el 200, los diez códigos de recuperación hasta que el usuario confirme que los guardó. Una cuenta ya configurada puede elegir entre TOTP y un código de recuperación. Ante un 401 puede corregir el código mientras el desafío siga vigente. Al vencer el desafío o recibir un 429 vuelve al acceso con el mensaje correspondiente.
 

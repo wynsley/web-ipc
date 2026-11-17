@@ -15,6 +15,18 @@ export const deactivateAccountSchema = z
     id: z.string().uuid(),
   })
   .strict();
+export const reauthSchema = z
+  .object({
+    password: z.string().min(1).max(128),
+    code: z.string().regex(/^\d{6}$/),
+  })
+  .strict();
+export const changePasswordSchema = reauthSchema.extend({ newPassword: passwordSchema });
+export const issueRecoverySchema = reauthSchema.extend({
+  email: emailSchema,
+  resetMfa: z.boolean(),
+  identityVerified: z.literal(true),
+});
 export const loginSchema = z
   .object({
     email: emailSchema,
@@ -25,5 +37,12 @@ export const activateSchema = z
   .object({
     token: z.string().regex(/^[A-Za-z0-9_-]{43}$/),
     password: passwordSchema,
+  })
+  .strict();
+
+export const verifyMfaSchema = z
+  .object({
+    challengeToken: z.string().regex(/^[A-Za-z0-9_-]{43}$/),
+    code: z.string().regex(/^(?:[0-9]{6}|[A-Za-z0-9_-]{43})$/),
   })
   .strict();

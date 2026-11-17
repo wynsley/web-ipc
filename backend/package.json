@@ -20,6 +20,7 @@
     "db:reset:check": "node scripts/resetDatabase.js --check",
     "admin:bootstrap": "node scripts/bootstrapAdmin.js",
     "test": "node scripts/testAuth.js",
+    "admin:recover": "node scripts/recoverSoleAdmin.js",
     "admin:activation": "node scripts/bootstrapAdmin.js --reissue",
     "auth:key": "node scripts/createJwtKey.js",
     "mfa:key": "node scripts/createMfaKey.js"

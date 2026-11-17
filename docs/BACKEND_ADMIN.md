@@ -1,8 +1,20 @@
 # Backend y administración: punto de entrada
 
-Actualizado: 9 de noviembre de 2026, America/Lima.
+Actualizado: 16 de noviembre de 2026, America/Lima.
+
+## Organización del código
+
+En la API, `authRoutes.js` monta el middleware del módulo y los routers de credenciales, cuentas y recuperación bajo el prefijo existente. Cada router declara los permisos y el CSRF de sus acciones. Los esquemas de entrada están en `authSchema.js`. Los servicios coordinan las operaciones y los repositorios conservan los bloqueos y escrituras que deben confirmarse juntos. El enrolamiento y la renovación de códigos usan el mismo generador. La recuperación asistida y el comando excepcional del único administrador comparten la generación, el hash y el vencimiento del código de restablecimiento.
+
+En el panel, `main.jsx` monta React y el router. `adminApp.jsx` elige las vistas y `hooks/useAdminSession.js` conecta React con la restauración y los avisos de sesión. Los formularios para cambiar contraseña, regenerar códigos y asistir a otra cuenta declaran sus propios campos y resultados. Comparten `ReauthenticationForm` para las credenciales, el envío y los errores. Las solicitudes de recuperación y las de gestión de cuentas se encuentran en `services/accountRecovery.js` y `services/accounts.js`.
+
+Verificación del 16 de noviembre: 57 pruebas con PostgreSQL, lint del backend y compilación del panel. En Edge con respuestas simuladas se comprobaron la descarga de códigos, la emisión asistida, la discrepancia de contraseñas, el cierre tras el cambio y el canje de un código desde el acceso.
 
 ## Panel visual
+
+Revisión del 16 de noviembre de 2026. En el primer enrolamiento MFA se pueden descargar los diez códigos de recuperación como archivo de texto antes de confirmar que se guardaron. La API conserva sus hashes de un solo uso. Desde el escritorio se pueden regenerar los diez códigos y cambiar la contraseña con reautenticación. En Cuentas, otro administrador verifica la identidad del titular y emite un código breve para recuperar contraseña o reemplazar también el autenticador. El titular lo canjea en «Recuperar cuenta». El procedimiento excepcional para el único administrador activo y los cuatro contratos están en [la guía MFA](backend/mfa.md).
+
+En desarrollo y en la vista previa de Vite, abrir `/admin` redirige automáticamente a `/admin/` y conserva los parámetros de consulta.
 
 El panel React/Vite en `admin/` usa ahora Tailwind CSS v4 (`@tailwindcss/vite`) y `tailwind-merge`, alineado con el sitio público: `admin/src/index.css` conserva únicamente `@import "tailwindcss"`, `@source` hacia el átomo `Image` compartido, `@font-face` (`Poppins` y `Rajdhani`) y `@theme` con los tokens institucionales (`blue`, `blue-light`, `blue-dark`, `blue-deep`, `orange`, `ink`, `muted`, `line`, `surface`, `soft`, `accent`, `focus`, `font-poppins` y `font-hani`), mientras que todos los estilos de páginas y componentes se aplican con utilidades de Tailwind. En `admin/src/components/atoms/` se incorporaron átomos reutilizables con variantes, tamaños y `twMerge` siguiendo el contrato de la web pública: `Button`, `IconButton`, `Badge`, `Code`, `Input`, `Select` (con `options` o `children` y flecha `FiChevronDown`), `Textarea`, `Label`, `Title` (`h1`–`h6` o `as="strong"`), `Paragraph` (`p`, `span` o `strong`) y `Link` (unificado para enlaces internos de React Router con `to` y `nav`, o enlaces `href`). Las moléculas y organismos reutilizables (`Field`, `PasswordField` con icono de ojo para mostrar/ocultar contraseña, `SelectField`, `TextareaField`, `StatusBanner`, `AreaCard`, `Brand`, `SidebarNav` vertical a la izquierda, `RoleRoute` y `WorkspaceDashboard`) permanecen en la raíz de `molecules/` y `organisms/`, mientras que las piezas específicas de cada rol o flujo se organizan en subcarpetas (`auth/`, `admin/`, `admissions/` y `events/`). En el enrolamiento MFA, `AuthenticatorSetup` y `renderQrWithLogo.js` generan el QR con corrección de errores alta (`errorCorrectionLevel: "H"`) e incrustan el logo institucional del IPC (`@ipc/logo`) en el centro.
 
@@ -57,7 +69,7 @@ Estas decisiones superan las referencias históricas Express/ES6 estricto para b
 
 Revisión del acceso del 12 de noviembre de 2026. Pasaron las 50 pruebas del backend con PostgreSQL, el lint y la compilación de admin. En Edge un lector independiente decodificó el QR con logo de una cuenta simulada. Se confirmó un cierre pendiente del primer enrolamiento: si la solicitud de verificación falla por red y la persona vuelve al acceso, otra pestaña sigue pidiendo confirmar códigos que nunca se mostraron. Corregido el mismo día. Ante un resultado incierto, la pestaña original conserva la opción «Reiniciar acceso» incluso después del vencimiento. Con conexión, comprueba si hay una sesión accesible por cookie, la cierra si existe y libera la espera de las otras pestañas. En Edge se comprobaron con respuestas controladas la petición perdida y la respuesta perdida después de activar MFA, con y sin cookie recibida. Un 401 por código incorrecto permite corregirlo en el mismo formulario. La recuperación de contraseña y de todos los factores, la prueba física con Authy y la configuración operativa de producción siguen pendientes.
 
-La gestión de cuentas incluye ahora listado de estados (`GET /api/v1/auth/accounts`) y desactivación transaccional con protección del último administrador activo y revocación inmediata de sesiones (`POST /api/v1/auth/accounts/deactivate`). La siguiente etapa propuesta es la recuperación asistida de cuentas activas por el administrador, antes de pasar a los módulos de negocio (Eventos, Admisión y Contenido).
+La gestión de cuentas incluye ahora listado de estados (`GET /api/v1/auth/accounts`) y desactivación transaccional con protección del último administrador activo y revocación inmediata de sesiones (`POST /api/v1/auth/accounts/deactivate`). La recuperación asistida propuesta en esta revisión se implementó el 16 de noviembre.
 
 ## Verificación del 9 de noviembre
 

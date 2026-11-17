@@ -57,6 +57,7 @@ export async function createJwtContext() {
   return {
     db,
     config,
+    password,
     request,
     read,
     async begin() {

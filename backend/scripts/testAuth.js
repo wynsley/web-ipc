@@ -22,6 +22,7 @@ for (const args of [
     "tests/auth.test.js",
     "tests/jwt.test.js",
     "tests/mfa.test.js",
+    "tests/accountRecovery.test.js",
     "tests/middlewareScope.test.js",
     "tests/readInput.test.js",
   ],

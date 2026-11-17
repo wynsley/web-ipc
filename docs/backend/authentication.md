@@ -4,7 +4,7 @@
 
 Actualizado: 30 de octubre de 2026. Por petición explícita del usuario para el curso, se sustituyó la cookie de sesión opaca por **access token JWT + refresh token rotativo en Prisma**. Esta decisión reemplaza la recomendación anterior de usar solo sesiones opacas. No es una implementación de OAuth: es autenticación de primera parte con login propio.
 
-MFA, recuperación/cambio de contraseña y gestión completa de cuentas siguen pendientes. NODE_ENV=production permanece bloqueado hasta completar esa etapa. No hay panel ni integración del frontend todavía.
+El panel administrativo implementa MFA obligatorio. El cambio de contraseña y la recuperación asistida están disponibles en el panel y se detallan en [mfa.md](mfa.md). La preparación para producción sigue pendiente.
 
 ## Inicio y pruebas en Bruno
 
@@ -13,7 +13,7 @@ MFA, recuperación/cambio de contraseña y gestión completa de cuentas siguen p
 3. Ejecuta `pnpm dev:backend` o `pnpm dev`.
 4. Abre backend/bruno/ y selecciona el entorno privado local. En otro equipo copia environments/local.example.bru a environments/local.bru. Los archivos locales están ignorados por Git.
 5. Si la cuenta es nueva, usa **Activar cuenta** con su código de un solo uso y contraseña. Si ya está activa, pasa directamente a **Iniciar sesión JWT**.
-6. Login devuelve accessToken y csrfToken. El script de Bruno los guarda como variables de ejecución, sin escribirlos en archivos. Activa el manejo de cookies: ipc_refresh llega mediante Set-Cookie.
+6. Login devuelve 202 con un desafío de cinco minutos. Completa la verificación MFA para recibir accessToken y csrfToken. Activa el manejo de cookies en Bruno para recibir ipc_refresh mediante Set-Cookie.
 7. **Mi sesión JWT** envía Authorization: Bearer y debe responder 200. **Registrar cuenta** y **Reemitir activación** requieren además CSRF y rol admin.
 8. **Renovar JWT y rotar refresh** envía la cookie y CSRF, reemplaza ambos tokens de autenticación y conserva la misma sesión/familia.
 9. **Cerrar sesión** revoca la familia y borra la cookie. Un JWT previamente emitido ya no accede a /me.
@@ -28,7 +28,8 @@ Prefijo /api/v1/auth. Respuestas con `{ "data": ... }`; errores con error.code, 
 | --- | --- | --- | --- |
 | POST /register | name, email, role | Bearer + CSRF + rol admin | 201: cuenta pendiente, activationToken, expiresAt |
 | POST /activate | token, password | Código único vigente | 200: cuenta activada |
-| POST /login | email, password | Público con límites | 200: admin, accessToken, tokenType, expiresIn, csrfToken; refresh solo por cookie |
+| POST /login | email, password | Público con límites | 202 con desafío MFA y datos de configuración en el primer acceso |
+| POST /mfa/verify | challengeToken, code | Desafío vigente y segundo factor | 200 con JWT y CSRF, refresh por cookie y diez códigos de recuperación solo en el primer enrolamiento |
 | GET /me | Sin cuerpo | Bearer válido | 200: cuenta y CSRF de su sesión |
 | GET /accounts | Sin cuerpo | Bearer vigente y rol admin | 200: data.accounts con id, name, email, role e isActive; 401 sin sesión y 403 para admissions/events |
 | POST /accounts/deactivate | id (UUID) | Bearer + CSRF + rol admin | 200: data.admin con isActive=false, revoca sesiones/desafíos MFA y protege al último admin activo (409 LAST_ADMIN_PROTECTED) |
@@ -47,7 +48,7 @@ Se firma con jose y HS256. JWT_SECRET contiene 32 bytes aleatorios codificados c
 
 Claims: sub (UUID de cuenta), sid (UUID de sesión/familia), jti (UUID del token), iss, aud, iat, exp. No lleva contraseña, correo ni rol. El contenido de un JWT firmado es legible; la firma no lo cifra. Los permisos se consultan en BD para evitar roles desactualizados.
 
-Duración: hasta diez minutos, sin sobrepasar la expiración absoluta de la familia. Se envía como Authorization: Bearer. En el futuro frontend se conservará en memoria. No basta con decodificarlo: el servidor verifica la firma y comprueba en PostgreSQL que sid pertenece a sub, que la sesión sigue activa y que la cuenta está habilitada. Esta consulta permite revocación inmediata; el diseño no es completamente sin estado.
+El panel mantiene el JWT en memoria y lo envía en la cabecera Authorization con el esquema Bearer. Dura hasta diez minutos, limitado por la expiración absoluta de la familia. El servidor verifica la firma y comprueba en PostgreSQL que sid pertenece a sub, que la sesión sigue activa y que la cuenta está habilitada. Esta consulta permite la revocación inmediata.
 
 ## Refresh token y rotación
 
@@ -105,7 +106,7 @@ Se conservan repositorios de registro, activación y límites; admins contiene b
 
 Bruno está preparado para ejecución manual; no se declara ejecutado en la aplicación. La ruta POST / de demostración fue retirada; responde 404. GET / se conserva como comprobación básica del servidor.
 
-Pendientes: MFA, recuperación/cambio de contraseña, revocación de todas las sesiones por usuario, gestión de bajas/roles y protección del último admin, verificación de correo, limpieza periódica, panel y revisión de despliegue. Cambiar JWT_SECRET invalida JWT y CSRF anteriores, pero por sí solo no revoca familias: con una cookie válida y el nuevo CSRF se puede renovar. Para un incidente debe revocarse también la familia correspondiente.
+Siguen pendientes la verificación de correo, la limpieza periódica y la revisión del despliegue. Cambiar JWT_SECRET invalida los JWT y CSRF anteriores. Una familia activa todavía permite renovar con una cookie válida y el nuevo CSRF. Ante un incidente debe revocarse también la familia correspondiente.
 
 Referencias: [jose](https://github.com/panva/jose), [rotación y detección de reutilización en RFC 9700](https://www.rfc-editor.org/rfc/rfc9700.html#section-4.14.2). Se aplican estos principios de protección de refresh; no se implementa un servidor OAuth.
 

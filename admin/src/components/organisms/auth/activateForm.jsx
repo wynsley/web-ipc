@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { completeRecovery } from "../../../services/accountRecovery";
 import { activateAccount } from "../../../services/activateAccount";
 import { Button } from "../../atoms/button";
 import { Paragraph } from "../../atoms/paragraph";
@@ -6,7 +7,7 @@ import { Field } from "../../molecules/field";
 import { PasswordField } from "../../molecules/passwordField";
 import { StatusBanner } from "../../molecules/statusBanner";
 
-export function ActivateForm({ onActivated, onBack }) {
+export function ActivateForm({ onActivated, onBack, recovering = false }) {
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
 
@@ -18,18 +19,25 @@ export function ActivateForm({ onActivated, onBack }) {
     const password = fields.get("password");
     const confirmPassword = fields.get("confirmPassword");
     if (password !== confirmPassword) {
-      setError("No se pudo activar la cuenta: Las contraseñas no coinciden.");
+      setError("Las contraseñas no coinciden.");
       return;
     }
     setBusy(true);
     setError("");
     try {
+      if (recovering) {
+        await completeRecovery(token, password);
+        onActivated(
+          "Contraseña restablecida. Inicia sesión para verificar tu identidad.",
+        );
+        return;
+      }
       await activateAccount(token, password);
       onActivated(
         "Cuenta activada. Inicia sesión para configurar el autenticador.",
       );
     } catch (failure) {
-      setError(`No se pudo activar la cuenta: ${failure.message}`);
+      setError(failure.message);
     } finally {
       setBusy(false);
     }
@@ -37,10 +45,18 @@ export function ActivateForm({ onActivated, onBack }) {
 
   return (
     <>
-      <Paragraph text="Introduce el código de invitación de un solo uso y crea una contraseña de al menos 15 caracteres." />
+      <Paragraph
+        text={
+          recovering
+            ? "Solicita un código de restablecimiento al responsable del IPC. Tras verificar tu identidad, te lo entregará por un canal privado."
+            : "Introduce el código de invitación de un solo uso y crea una contraseña de al menos 15 caracteres."
+        }
+      />
       <form onSubmit={submit} aria-busy={busy} className="mt-8 grid gap-4.5">
         <Field
-          label="Código de activación"
+          label={
+            recovering ? "Código de restablecimiento" : "Código de activación"
+          }
           name="token"
           type="text"
           pattern="[A-Za-z0-9_\-]{43}"
@@ -72,7 +88,13 @@ export function ActivateForm({ onActivated, onBack }) {
         <Button
           type="submit"
           disabled={busy}
-          text={busy ? "Activando…" : "Activar cuenta"}
+          text={
+            busy
+              ? "Guardando…"
+              : recovering
+                ? "Restablecer contraseña"
+                : "Activar cuenta"
+          }
         />
       </form>
       <div className="mt-3 flex flex-wrap justify-between gap-2.5">

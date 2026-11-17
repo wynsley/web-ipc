@@ -1,3 +1,4 @@
+import { createAccountRecoveryService } from "./accountRecoveryService.js";
 import { createMfaService } from "./mfaService.js";
 import { digest } from "./authCrypto.js";
 import { createAccessTokenService } from "./accessTokenService.js";
@@ -14,6 +15,7 @@ export async function createAuthService(repository, config) {
       return { admin: await repository.deactivateAccount(actor, id, requestId) };
     },
     ...mfa,
+    ...createAccountRecoveryService(repository, config),
     ...createInvitationService(repository),
     ...(await createLoginService(repository, mfa)),
     ...createRefreshService(repository, tokens),

@@ -3,6 +3,7 @@ import { Title } from "../../atoms/titles";
 import { InvitationResult } from "../../molecules/admin/invitationResult";
 import { RegisterAdminForm } from "./registerAdminForm";
 import { ReissueActivationForm } from "./reissueActivationForm";
+import { AssistedRecoveryForm } from "./assistedRecoveryForm";
 import { AccountList } from "./accountList";
 
 export function AccountInvitations() {
@@ -27,6 +28,7 @@ export function AccountInvitations() {
         <RegisterAdminForm onIssued={setInvitation} />
         <ReissueActivationForm onIssued={setInvitation} />
       </div>
+      <AssistedRecoveryForm />
     </section>
   );
 }

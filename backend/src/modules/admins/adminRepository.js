@@ -36,7 +36,7 @@ export function createAdminRepository(db) {
         const now = new Date();
         const admin = await tx.admin.update({
           where: { id: target.id },
-          data: { isActive: false },
+          data: { isActive: false, resetHash: null, resetExpiresAt: null, resetMfa: false },
           select: publicAdmin,
         });
         await tx.session.updateMany({

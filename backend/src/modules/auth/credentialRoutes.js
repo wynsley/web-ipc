@@ -1,8 +1,7 @@
 import { readInput } from "../../middleware/readInput.js";
 import { Hono } from "hono";
 import { AppError } from "../../middleware/errors.js";
-import { z } from "zod";
-import { loginSchema } from "./authSchema.js";
+import { loginSchema, verifyMfaSchema } from "./authSchema.js";
 import { readRefreshCookie, sendTokens, clearAuthCookies } from "./authCookies.js";
 
 export function createCredentialRoutes(service, config, throttle) {
@@ -14,15 +13,7 @@ export function createCredentialRoutes(service, config, throttle) {
     return c.json({ data: result }, 202);
   });
   routes.post("/mfa/verify", throttle, async (c) => {
-    const data = await readInput(
-      c,
-      z
-        .object({
-          challengeToken: z.string().regex(/^[A-Za-z0-9_-]{43}$/),
-          code: z.string().regex(/^(?:[0-9]{6}|[A-Za-z0-9_-]{43})$/),
-        })
-        .strict(),
-    );
+    const data = await readInput(c, verifyMfaSchema);
     return sendTokens(c, await service.completeMfa(data, c.get("requestId")), config);
   });
   routes.get("/csrf", async (c) => {

@@ -4,9 +4,27 @@ import tailwindcss from "@tailwindcss/vite";
 import { fileURLToPath } from "node:url";
 
 const resource = (path) => fileURLToPath(new URL(path, import.meta.url));
+
+function redirectAdminRoot(server) {
+  server.middlewares.use((req, res, next) => {
+    const url = req.url ?? "";
+    if (url.split("?")[0] !== "/admin") return next();
+    res.writeHead(307, { Location: "/admin/" + url.slice("/admin".length) });
+    res.end();
+  });
+}
+
 export default defineConfig({
   base: "/admin/",
-  plugins: [react(), tailwindcss()],
+  plugins: [
+    react(),
+    tailwindcss(),
+    {
+      name: "redirect-admin-root",
+      configureServer: redirectAdminRoot,
+      configurePreviewServer: redirectAdminRoot,
+    },
+  ],
   server: {
     port: 5174,
     strictPort: true,

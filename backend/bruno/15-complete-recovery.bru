@@ -1,0 +1,20 @@
+meta {
+  name: Completar restablecimiento
+  type: http
+  seq: 15
+}
+post {
+  url: http://127.0.0.1:3000/api/v1/auth/recovery/complete
+  body: json
+  auth: none
+}
+headers {
+  X-IPC-Client: admin
+  Content-Type: application/json
+}
+body:json {
+  {
+    "token": "{{resetToken}}",
+    "password": "{{newPassword}}"
+  }
+}

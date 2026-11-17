@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import {
   deactivateAccount,
   listAccounts,
-} from "../../../services/postAuthenticatedAuth";
+} from "../../../services/accounts";
 import { Button } from "../../atoms/button";
 import { Paragraph } from "../../atoms/paragraph";
 import { Title } from "../../atoms/titles";

@@ -46,7 +46,8 @@ export function AccessForm({ onAuthenticated, initialNotice }) {
   }
 
   let title = "Iniciar sesión";
-  if (activating) title = "Activar cuenta";
+  if (activating)
+    title = activating === "recover" ? "Recuperar cuenta" : "Activar cuenta";
   if (challenge)
     title = challenge.enrollmentRequired
       ? "Configurar el autenticador"
@@ -86,7 +87,11 @@ export function AccessForm({ onAuthenticated, initialNotice }) {
       ) : challenge ? (
         <MfaForm challenge={challenge} onBack={back} onVerified={accept} />
       ) : activating ? (
-        <ActivateForm onActivated={back} onBack={back} />
+        <ActivateForm
+          recovering={activating === "recover"}
+          onActivated={back}
+          onBack={back}
+        />
       ) : (
         <>
           <Paragraph text="Accede al panel con tu cuenta institucional." />
@@ -113,7 +118,15 @@ export function AccessForm({ onAuthenticated, initialNotice }) {
               text="Activar cuenta con código"
               onClick={() => {
                 setNotice("");
-                setActivating(true);
+                setActivating("activate");
+              }}
+            />
+            <Button
+              variant="link"
+              text="Recuperar cuenta"
+              onClick={() => {
+                setNotice("");
+                setActivating("recover");
               }}
             />
           </div>
