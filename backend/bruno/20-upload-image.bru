@@ -1,0 +1,23 @@
+meta {
+  name: Subir imagen de evento
+  type: http
+  seq: 20
+}
+post {
+  url: http://127.0.0.1:3000/api/v1/admin/images
+  body: multipartForm
+  auth: none
+}
+headers {
+  X-IPC-Client: admin
+  Authorization: Bearer {{accessToken}}
+  X-CSRF-Token: {{csrfToken}}
+}
+body:multipart-form {
+  image: @file({{imageFile}})
+}
+script:post-response {
+  if (res.getStatus() === 201) {
+    bru.setVar("imageUrl", res.getBody().data.imageUrl);
+  }
+}

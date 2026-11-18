@@ -1,19 +1,25 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { FaMapMarkerAlt } from "react-icons/fa";
 import { useCarousel } from "@/hooks/globals/useCarrusel";
 import { useCardsPerView } from "@/hooks/globals/useCardPowerView";
-import { FEATURED_EVENTS } from "@/data/events/featureEvents";
+import { Image } from "@/components/atoms/image";
 import { Dost } from "@/components/molecules/shared/dots";
 import { Title } from "@/components/atoms/titles";
 import { Paragraph } from "@/components/atoms/paragraph";
 import { motion as Motion } from "motion/react";
 import { staggerContainer } from "@/components/animations/animation";
 
+import { Button } from "@/components/atoms/button";
+import { useMotionPreference } from "@/hooks/globals/useMotionPreference";
+
 const GAP_REM = 1.25;
 const TRANSITION_MS = 700;
 
-function FeatureEvents() {
+function FeatureEvents({ events }) {
+  const [paused, setPaused] = useState(false);
+  const reducedMotion = useMotionPreference();
   const cardsPerView = useCardsPerView("default");
+  const scrollable = events.length > cardsPerView;
 
   const {
     extendedSlides,
@@ -26,7 +32,8 @@ function FeatureEvents() {
     userPaused,
     setUserPaused,
   } = useCarousel({
-    slides: FEATURED_EVENTS,
+    slides: events,
+    autoplay: scrollable && !paused && !reducedMotion,
     getSrc: (item) => item.image,
     cardsPerView,
     gapRem: GAP_REM,
@@ -40,9 +47,8 @@ function FeatureEvents() {
     return () => clearTimeout(t);
   }, [userPaused, activeDot, setUserPaused]);
 
-  const total = FEATURED_EVENTS.length;
+  const total = events.length;
 
-  
   return (
     <section className="mx-auto w-full py-0 md:py-8 sm:w-[96%] md:w-[90%] md:max-w-6xl ">
       {/* Encabezado */}
@@ -60,16 +66,25 @@ function FeatureEvents() {
           className="font-hani"
         />
         <Paragraph
-          text="Revive nuestros eventos más destacados y los momentos que dejaron huella en nuestra comunidad."
+          text="Conoce las actividades destacadas de nuestra comunidad."
           className="max-w-sm font-poppins"
           variant="secondary"
           size="base"
         />
       </Motion.div>
 
+      {scrollable && (
+        <Button
+          type="button"
+          variant="ternary"
+          aria-pressed={paused}
+          onClick={() => setPaused((value) => !value)}
+          text={paused ? "Reanudar destacados" : "Pausar destacados"}
+        />
+      )}
       {/* Carrusel */}
       <div
-        {...dragHandlers}
+        {...(scrollable ? dragHandlers : {})}
         onMouseEnter={() => setUserPaused(true)}
         onMouseLeave={(e) => {
           dragHandlers.onMouseLeave(e);
@@ -84,13 +99,13 @@ function FeatureEvents() {
           className="flex"
           style={{
             gap: `${GAP_REM}rem`,
-            transform: `translateX(${translateX})`,
+            transform: scrollable ? `translateX(${translateX})` : undefined,
             transition: withTransition
               ? `transform ${TRANSITION_MS}ms ease-in-out`
               : "none",
           }}
         >
-          {extendedSlides.map((item, i) => {
+          {(scrollable ? extendedSlides : events).map((item, i) => {
             const isClone = i >= total;
 
             return (
@@ -101,17 +116,20 @@ function FeatureEvents() {
                 className="group relative aspect-3/4 shrink-0 overflow-hidden bg-blue-deep shadow-lg outline-none"
                 style={{ width: `calc(${cardWidthExpr})` }}
               >
-                <img
+                <Image
+                  fill
+                  crop={item.imageCrop}
                   src={item.image}
-                  alt={item.title}
+                  alt={item.image ? item.title : ""}
                   draggable={false}
                   loading="lazy"
-                  className="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-105"
+                  imageClassName="transition duration-500 group-hover:scale-105"
                 />
 
                 {/* Degradado inicial (se desvanece al hacer hover) */}
-                <div className="pointer-events-none absolute inset-0 
-                  bg-linear-to-t from-blue-deep via-blue-deep/40 to-transparent 
+                <div
+                  className="pointer-events-none absolute inset-0
+                  bg-linear-to-t from-blue-deep via-blue-deep/40 to-transparent
                   transition-opacity duration-300 group-hover:opacity-0 group-focus-within:opacity-0"
                 />
 
@@ -134,7 +152,7 @@ function FeatureEvents() {
 
                       {/* Descripción: la altura se ajusta al contenido */}
                       <div
-                        className="grid grid-rows-[0fr] transition-[grid-template-rows] 
+                        className="grid grid-rows-[0fr] transition-[grid-template-rows]
                         duration-500 ease-out group-hover:grid-rows-[1fr] group-focus-within:grid-rows-[1fr]"
                       >
                         <div className="min-h-0 overflow-hidden">
@@ -162,14 +180,16 @@ function FeatureEvents() {
         </div>
       </div>
 
-      <div className="mt-6" >
-        <Dost
-          dots={FEATURED_EVENTS}
-          current={activeDot}
-          next={null}
-          goTo={(i) => goTo(i, true)}
-        />
-      </div>
+      {scrollable && (
+        <div className="mt-6">
+          <Dost
+            dots={events}
+            current={activeDot}
+            next={null}
+            goTo={(i) => goTo(i, true)}
+          />
+        </div>
+      )}
     </section>
   );
 }

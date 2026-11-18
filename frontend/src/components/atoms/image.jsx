@@ -1,7 +1,10 @@
 import { useState } from "react";
+import { twMerge } from "tailwind-merge";
 
 function Image({
   src,
+  crop,
+  style,
   alt = "",
   className = "",
   fill = false,
@@ -30,12 +33,24 @@ function Image({
       {hasImage && (
         <img
           {...imageProps}
+          style={{
+            ...(crop && {
+              objectPosition: `${crop.x}% ${crop.y}%`,
+              transformOrigin: `${crop.x}% ${crop.y}%`,
+              transform: `scale(${crop.zoom})`,
+            }),
+            ...style,
+          }}
           key={src}
           src={src}
           alt={alt}
           loading={loading}
           fetchPriority={fetchPriority}
-          className={`block h-full w-full object-cover object-center ${isLoaded ? "opacity-100" : "opacity-0"} ${imageClassName}`}
+          className={twMerge(
+            "block h-full w-full object-cover object-center",
+            isLoaded ? "opacity-100" : "opacity-0",
+            imageClassName,
+          )}
           onLoad={(event) => {
             setLoadedSrc(src);
             if (onLoad) onLoad(event);
@@ -47,7 +62,10 @@ function Image({
         />
       )}
       {isLoaded && overlayClassName && (
-        <span aria-hidden="true" className={`absolute inset-0 ${overlayClassName}`} />
+        <span
+          aria-hidden="true"
+          className={`absolute inset-0 ${overlayClassName}`}
+        />
       )}
     </span>
   );

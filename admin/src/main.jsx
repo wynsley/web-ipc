@@ -1,13 +1,26 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import { BrowserRouter } from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { AdminApp } from "./adminApp";
 import "./index.css";
+import { UnsavedChangesProvider } from "./context/unsavedChanges";
+
+const router = createBrowserRouter(
+  [
+    {
+      path: "*",
+      element: (
+        <UnsavedChangesProvider>
+          <AdminApp />
+        </UnsavedChangesProvider>
+      ),
+    },
+  ],
+  { basename: "/admin" },
+);
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <BrowserRouter basename="/admin">
-      <AdminApp />
-    </BrowserRouter>
+    <RouterProvider router={router} />
   </StrictMode>,
 );

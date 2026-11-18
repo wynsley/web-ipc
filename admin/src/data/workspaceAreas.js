@@ -17,11 +17,10 @@ export const WORKSPACE_AREAS = [
   },
   {
     slug: "eventos",
-    pending: true,
     path: "/eventos",
     Icon: FiCalendar,
     title: "Eventos",
-    description: "Agenda, capacitaciones, conferencias y recursos multimedia.",
+    description: "Crea borradores y publica actividades en la agenda del IPC.",
     roles: ["admin", "events"],
   },
   {

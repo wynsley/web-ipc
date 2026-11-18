@@ -26,6 +26,7 @@ export function StatusBanner({
   variant = "info",
   role = "status",
   className = "",
+  ...props
 }) {
   if (!text && !children) return null;
   const config = styles[variant] || styles.info;
@@ -33,6 +34,7 @@ export function StatusBanner({
 
   return (
     <div
+      {...props}
       role={role}
       className={twMerge(
         "flex items-start gap-2.5 rounded-lg border px-3.5 py-3",

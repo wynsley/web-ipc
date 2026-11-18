@@ -11,7 +11,10 @@ import { WAITING_NOTICE } from "./services/session/recoveryPending";
 import { Button } from "./components/atoms/button";
 import { Paragraph } from "./components/atoms/paragraph";
 
+import { useUnsavedChanges } from "./context/unsavedChanges";
+
 export function AdminApp() {
+  const { confirmExit } = useUnsavedChanges();
   const {
     session,
     restoring,
@@ -60,7 +63,9 @@ export function AdminApp() {
         element={
           <WorkspacePage
             admin={session.admin}
-            onLogout={() => logoutSession()}
+            onLogout={() => {
+              if (confirmExit()) logoutSession();
+            }}
           />
         }
       >

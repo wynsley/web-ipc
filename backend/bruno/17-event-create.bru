@@ -1,0 +1,30 @@
+meta {
+  name: Crear borrador
+  type: http
+  seq: 17
+}
+post {
+  url: http://127.0.0.1:3000/api/v1/admin/events
+  body: json
+  auth: none
+}
+headers {
+  Content-Type: application/json
+  X-IPC-Client: admin
+  Authorization: Bearer {{accessToken}}
+  X-CSRF-Token: {{csrfToken}}
+}
+body:json {
+  {
+    "title": "{{eventTitle}}",
+    "location": "{{eventLocation}}",
+    "description": "{{eventDescription}}",
+    "startsAt": "{{eventStart}}"
+  }
+}
+script:post-response {
+  if ([200, 201].includes(res.getStatus())) {
+    bru.setVar("eventId", res.getBody().data.id);
+    bru.setVar("eventVersion", res.getBody().data.version);
+  }
+}

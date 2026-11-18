@@ -1,8 +1,67 @@
 # Backend y administración: punto de entrada
 
+## Cambios de horario y situación — 18 de noviembre de 2026
+
+Implementadas reprogramación, posposición sin fecha y cancelación con acciones explícitas en API/admin. status (scheduled/postponed/cancelled) es independiente de published. Reprogramar conserva identidad y publicación, valida el intervalo y reactiva un pospuesto/cancelado con confirmación. En curso/finalizado se calculan con las fechas. El motivo de la acción se muestra públicamente cuando el evento está publicado; la interfaz lo advierte antes de guardar.
+
+El historial privado conserva snapshots antes/después, acción, motivo, autor y momento. Cambio, historial y auditoría se confirman juntos, con bloqueo de fila y control de versión. Las correcciones de fechas en borradores también dejan historial. No se reconstruye el historial anterior a la migración. La API rechaza repetición de cancelación/posposición y cambios concurrentes obsoletos. Las acciones requieren rol admin/events y CSRF; el historial es paginado y no se expone en la API pública.
+
+La web muestra «Cambios en la agenda» con horario anterior/nuevo y avisos. Pospuestos y cancelados permanecen visibles como avisos pero se excluyen de destacados, cuenta regresiva, galería y exportaciones de calendario. Reprogramar fechas pasadas o futuras reclasifica el evento automáticamente. Las descargas y enlaces a calendarios avisan que son copias sin actualización automática; no hay suscripción de calendario ni notificaciones externas.
+
+Reglas en eventSchedulePolicy.js, escritura de historial en eventChangeRepository.js, formularios e historial administrativo separados. Bruno 21–24 documenta acciones y consulta; variables eventChangeReason, eventStart y eventEnd. Migración aplicada en desarrollo y pruebas, conservando existentes como scheduled.
+
+Verificación: 62 pruebas del backend y cuatro del ciclo temporal/calendarios aprobadas; ESLint de backend y archivos públicos modificados correcto; compilaciones admin/web correctas. Edge con Hono y PostgreSQL de pruebas verificó reprogramación publicada, avisos, aplazamiento, confirmación de cancelación, recuperación al histórico, cuatro entradas de historial y formulario móvil de 390 px. La colección Bruno está preparada, no ejecutada en la aplicación. Persiste el aviso previo del tamaño del bundle público.
+
+
+## Historial automático y medios — 18 de noviembre de 2026
+
+Actualización vigente que sustituye los pendientes anteriores de almacenamiento, limpieza y actualización de la agenda. El usuario confirmó que todos los eventos publicados finalizados pasan a «Revive nuestros eventos» y que las imágenes externas deben poder proceder de cualquier proveedor mediante URL HTTPS.
+
+El panel incorpora finalización en hora de Lima; la API valida endsAt > startsAt y conserva compatibilidad con entradas anteriores sin endsAt. Los registros antiguos sin finalización se consideran vigentes hasta terminar el día de inicio en Lima. La web separa vigentes e históricos; los finalizados salen del carrusel/destacados y aparecen en la galería con la misma foto del evento, título y datos. No se genera automáticamente un álbum de fotografías nuevas. El histórico conserva la publicación y aparece también en el calendario; retirarlo lo oculta de todas las secciones públicas. La galería permite cargar más de 20 registros y reutiliza Image para sus fotos y visor, incluidos los fallbacks institucionales.
+
+La colección publicada se consulta cada 15 segundos mientras la página está visible y al recuperar foco/conexión; hay cancelación, límite de espera y retroceso ante fallos. La clasificación temporal se recalcula cada segundo usando el reloj de la API como referencia. Se conservan los últimos datos con aviso cuando falla una actualización. No se implementó SSE.
+
+Los archivos subidos se almacenan en backend/.local/media (MEDIA_DIRECTORY configurable); PostgreSQL conserva los metadatos. La API privada/pública y las URLs permanecen iguales. Migración aplicada en desarrollo y pruebas; dos imágenes existentes migradas tras verificar igualdad de bytes. Los enlaces externos no se descargan ni se restringen a una lista de proveedores. La limpieza horaria mantiene cualquier referencia de evento, incluidos borradores e históricos, espera siete días sin uso (MEDIA_RETENTION_DAYS), coordina asociaciones concurrentes y reintenta errores de eliminación. Comandos y respaldo: [Medios](backend/media.md).
+
+Verificación: 61 pruebas del backend y dos pruebas del ciclo temporal aprobadas; ESLint del backend y archivos públicos modificados correcto; ambas compilaciones correctas. Edge con Hono/PostgreSQL aislado verificó fecha final inválida, subida local, paso automático al histórico, retirada por actualización periódica, URL externa y fallback al fallar, foco del visor y navegación por teclado, móvil 390 px y pausas manuales. Se revisó captura de la galería. No se realizó prueba con lector de pantalla nativo ni teléfono físico; la comprobación de roles/foco no equivale a esa prueba. Persiste el aviso previo de tamaño del bundle público.
+
+No se ha contratado ni configurado un proveedor remoto porque el usuario aún no ha elegido uno. La carpeta local debe ser persistente y respaldarse junto con PostgreSQL. Se mantienen las restricciones previas de despliegue a producción.
+
+
+Actualización del 17 de noviembre de 2026. El formulario de Eventos incorpora «Destacar evento». El campo featured es booleano, opcional en entradas de API y falso por defecto para eventos existentes. La sección de destacados consume los eventos publicados marcados; se oculta si no hay ninguno. Para cambiar la selección de una publicación se retira, edita y publica nuevamente. Se verificaron 58 pruebas del backend, lint, ambas compilaciones y en Edge el filtrado, la tarjeta única, el fondo sin foto y la sección vacía con datos simulados.
+
+
 Actualizado: 16 de noviembre de 2026, America/Lima.
 
+## Cierre funcional de eventos e imágenes — 18 de noviembre de 2026
+
+El formulario detecta cambios en campos, foto y encuadre. Confirma antes de cancelar, cambiar de ruta o cerrar sesión voluntariamente; la recarga y salida del documento usan el aviso nativo del navegador. Durante el guardado se bloquea el formulario y la navegación interna y se muestra «Guardando…». No hay autoguardado: una sesión vencida o revocada sigue cerrándose por seguridad y el navegador puede omitir beforeunload en determinados cierres móviles.
+
+La protección compartida vive en context/unsavedChanges.jsx; main.jsx usa createBrowserRouter y RouterProvider para habilitar useBlocker, conservando las rutas de AdminApp. La validación del formulario está en helpers/eventFormErrors.js. Field y TextareaField admiten errorMessage, asociado con aria-describedby y aria-invalid. Se enfoca el primer campo inválido; errores generales enfocan el aviso. Retirar una publicación requiere confirmación y conserva el evento como borrador.
+
+Verificación: 59 pruebas de regresión del backend aprobadas y ESLint correcto; compilaciones de admin y frontend correctas (persiste el aviso de tamaño del bundle público). Edge con Hono y PostgreSQL de pruebas verificó validaciones locales, foco, cancelación de salida por cancelar/navegar/logout/recarga, bloqueo durante el envío, subida local real, recuperación privada tras recargar, persistencia del encuadre, publicación en carrusel y destacados, retiro y edición. Un 422 por campo se inyectó en el navegador para comprobar su presentación y el reintento; las demás operaciones del recorrido usaron la API real. Se comprobó teclado en el zoom, ausencia de desbordamiento y captura visual a 390 px. No se realizó prueba con lector de pantalla ni dispositivo móvil físico.
+
+Pendientes posteriores: retención y limpieza de imágenes sin referencias, almacenamiento externo según infraestructura y actualización de la agenda sin recarga. El cierre corresponde al flujo funcional de eventos e imágenes, no a toda V1 ni a una certificación integral de accesibilidad.
+
+## Revisión de interfaz — 18 de noviembre de 2026
+
+Se consultaron las skills instaladas `design-taste-frontend` y `web-design-guidelines`. En el editor de imágenes del admin se incorporó el átomo `Slider`, reutilizado para zoom y posiciones, con foco visible y área de interacción mínima de 44 px. Se reutiliza `Label`, se identifican el grupo de formatos y los valores de los deslizadores para tecnologías de asistencia, y el zoom muestra dos decimales para reflejar su paso de 0,05. Los botones de formato, quitar, restablecer y selección local tienen al menos 44 px de altura. Se conserva el diseño institucional; las recetas de landing pages de Taste no se aplican al formulario administrativo. Compilación del admin y formato correctos. Pendiente: comprobación visual y con lector de pantalla de estos ajustes; esto no constituye una auditoría integral del panel ni de la web pública.
+
+## Encuadre de imágenes
+
+El panel permite mover y acercar la foto desde la vista previa. ImageCropEditor es el componente de interacción y el átomo Image aplica el encuadre en el carrusel y destacados. Los valores se guardan como imageCrop y los eventos anteriores reciben encuadre centrado. [Contrato](backend/events.md).
+
+## Imágenes de eventos
+
+El formulario usa un selector segmentado «URL» / «Desde el equipo», con el campo correspondiente y vista previa. Conserva cada selección al alternar. EventImageField compone la interfaz, LocalImageInput valida la selección local y useImagePreview administra la carga privada y las URLs temporales. Compilación y comprobación en Edge móvil correctas. Los archivos se normalizan a WebP y se guardan en PostgreSQL; su acceso público depende de que un evento publicado los utilice. Pruebas y contratos en [Eventos](backend/events.md). Se verificaron 59 pruebas, ambas compilaciones y las vistas previas en Edge con respuestas controladas.
+
+## Eventos
+
+La agenda ya permite crear y editar borradores, publicar y retirar eventos con los roles admin y events. La web consulta la lista publicada al abrir `/events`. Pasaron las 58 pruebas del backend y ambas compilaciones. En Edge se verificó el recorrido de borrador privado, publicación y retiro con Hono y PostgreSQL de pruebas. El carrusel y el calendario ya consumen las publicaciones. El formulario permite añadir la URL HTTPS de la foto y cuatro puntos destacados opcionales. En Edge con datos simulados se comprobó la navegación entre eventos de distintas páginas de la API, la apertura del calendario y la agenda vacía. [Contrato y alcance](backend/events.md).
+
 ## Organización del código
+
+Refactorización del módulo de imágenes (17 de noviembre de 2026): `imageRoutes.js` conserva multipart, cabeceras, middleware y respuestas HTTP; `imageService.js` coordina validación, normalización y permisos de lectura/subida; `imageRepository.js` concentra las consultas Prisma y la transacción que guarda imagen y auditoría. `app.js` compone sus dependencias. Se mantienen los contratos, el almacenamiento en PostgreSQL y la visibilidad pública solo cuando un evento publicado utiliza la imagen. Verificado: 59 pruebas del backend aprobadas, ESLint y formato correctos. Pendientes de medios: limpieza de archivos sin referencias y evolución del almacenamiento según infraestructura; esta refactorización no los implementa.
 
 En la API, `authRoutes.js` monta el middleware del módulo y los routers de credenciales, cuentas y recuperación bajo el prefijo existente. Cada router declara los permisos y el CSRF de sus acciones. Los esquemas de entrada están en `authSchema.js`. Los servicios coordinan las operaciones y los repositorios conservan los bloqueos y escrituras que deben confirmarse juntos. El enrolamiento y la renovación de códigos usan el mismo generador. La recuperación asistida y el comando excepcional del único administrador comparten la generación, el hash y el vencimiento del código de restablecimiento.
 
@@ -163,3 +222,10 @@ Eliminado el POST / que devolvía el JSON recibido y sus imports exclusivos de a
 ## MFA — 4 de noviembre de 2026
 
 Implementación y límites en [mfa.md](backend/mfa.md). 48 pruebas reportadas aprobadas y ESLint correcto. Nueva clave privada creada sin exponerla; migración añade MFA y revoca sesiones previas conservando cuentas. Bruno actualizado con variables, sin credenciales literales. Sin cambios al frontend ni publicación.
+
+
+## Corrección del visor y fechas — 18 de noviembre de 2026
+
+Image combina sus clases con twMerge para que object-contain sustituya object-cover sin depender del orden CSS. El visor compartido reserva una fila para controles, otra flexible para la foto completa y un panel de detalles de hasta 30dvh con desplazamiento propio. Se conserva el fondo institucional y la navegación por teclado. GalleryCaption ahora muestra fecha/horario y ubicación; el adaptador usa startsAt/endsAt, mostrando el período cuando hay varios días.
+
+Se verificó en Edge con datos controlados, fotos verticales y panorámicas, y descripciones extensas a 1280×900, 390×844 y 844×390: ajuste contain, sin transformaciones de recorte, cierre visible, límites del visor y fecha mostrada. ESLint y compilaciones pública/admin correctos. Se consultaron las fechas del evento de prueba: inicio 4 de noviembre y finalización 18 de noviembre; el usuario confirmó que el fin era una prueba. No se modificaron sus datos. El paso al histórico es automático, las fechas programadas no se reemplazan por la fecha actual.

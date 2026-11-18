@@ -1,19 +1,20 @@
+import { Image } from "@/components/atoms/image";
 const TITLE_SIZE = {
   lg: "text-2xl sm:text-3xl lg:text-4xl",
   md: "text-xl sm:text-2xl",
   sm: "text-base sm:text-lg",
   xs: "text-sm sm:text-base",
-}
+};
 
 const DESC_CLAMP = {
   lg: "line-clamp-4",
   md: "line-clamp-3",
   sm: "line-clamp-2",
   xs: "line-clamp-2",
-}
+};
 
 const SHOW_ON_HOVER =
-  "opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100"
+  "opacity-100 sm:opacity-0 sm:group-hover:opacity-100 sm:group-focus-visible:opacity-100";
 
 function GalleryTile({
   item,
@@ -22,12 +23,12 @@ function GalleryTile({
   showDescription = true,
   onOpen,
 }) {
-  const { image, alt, title, category, date, description } = item
-  const desc = showDescription ? description : null
-  const hasText = Boolean(category || title || date || desc)
+  const { image, alt, title, category, date, description } = item;
+  const desc = showDescription ? description : null;
+  const hasText = Boolean(category || title || date || desc);
 
-  const titleClass = TITLE_SIZE[titleSize ?? size] ?? TITLE_SIZE.md
-  const descClass = DESC_CLAMP[size] ?? DESC_CLAMP.md
+  const titleClass = TITLE_SIZE[titleSize ?? size] ?? TITLE_SIZE.md;
+  const descClass = DESC_CLAMP[size] ?? DESC_CLAMP.md;
 
   return (
     <button
@@ -36,21 +37,14 @@ function GalleryTile({
       aria-label={title ? `Ver fotos de ${title}` : "Ver foto"}
       className="group absolute inset-0 block overflow-hidden bg-blue-deep shadow-md shadow-blue-deep/30 outline-none focus-visible:ring-2 focus-visible:ring-orange"
     >
-      {image ? (
-        <img
-          src={image}
-          alt={alt ?? title ?? ""}
-          loading="lazy"
-          decoding="async"
-          draggable={false}
-          className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-        />
-      ) : (
-        <span
-          aria-hidden="true"
-          className="absolute inset-0 bg-gradient-to-br from-blue-deep via-blue to-sky/60 transition-transform duration-700 ease-out group-hover:scale-105"
-        />
-      )}
+      <Image
+        fill
+        src={image}
+        crop={item.imageCrop}
+        alt={alt ?? title ?? ""}
+        loading="lazy"
+        draggable={false}
+      />
 
       {hasText && (
         <>
@@ -60,7 +54,7 @@ function GalleryTile({
           />
 
           <span
-            className={`absolute inset-0 flex translate-y-2 flex-col items-start justify-end px-4 pb-5 text-left transition-all duration-500 ease-out group-hover:translate-y-0 group-focus-visible:translate-y-0 ${SHOW_ON_HOVER}`}
+            className={`absolute inset-0 flex translate-y-2 flex-col items-start justify-end px-4 pb-5 text-left transition-[transform,opacity] duration-500 motion-reduce:transition-none ease-out group-hover:translate-y-0 group-focus-visible:translate-y-0 ${SHOW_ON_HOVER}`}
           >
             {title && (
               <span
@@ -71,7 +65,10 @@ function GalleryTile({
             )}
 
             {title && (date || desc) && (
-              <span aria-hidden="true" className="mt-3 block h-0.5 w-full bg-blue" />
+              <span
+                aria-hidden="true"
+                className="mt-3 block h-0.5 w-full bg-blue"
+              />
             )}
 
             {date && (
@@ -91,7 +88,7 @@ function GalleryTile({
         </>
       )}
     </button>
-  )
+  );
 }
 
-export { GalleryTile }
+export { GalleryTile };

@@ -7,7 +7,8 @@
     "dev": "vite  ",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test:events": "node --test tests/eventLifecycle.test.js tests/calendarChanges.test.js"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.2.2",

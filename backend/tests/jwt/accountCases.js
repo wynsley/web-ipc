@@ -164,18 +164,11 @@ export async function accountCases(t, context) {
       );
 
       const [r1, r2] = await Promise.all([
-        context.request(
-          "/accounts/deactivate",
-          { id: invitedSecondAdmin.admin.id },
-          adminSession,
-        ),
+        context.request("/accounts/deactivate", { id: invitedSecondAdmin.admin.id }, adminSession),
         context.request("/accounts/deactivate", { id: adminSession.admin.id }, adminSession),
       ]);
       assert.deepEqual([r1.status, r2.status].sort(), [200, 409]);
-      assert.equal(
-        await context.db.admin.count({ where: { role: "admin", isActive: true } }),
-        1,
-      );
+      assert.equal(await context.db.admin.count({ where: { role: "admin", isActive: true } }), 1);
 
       const auditEntry = await context.db.auditLog.findFirst({
         where: { action: "admin.deactivate", targetId: eventsSession.admin.id },

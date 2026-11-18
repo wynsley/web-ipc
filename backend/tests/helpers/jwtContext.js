@@ -17,6 +17,7 @@ export async function createJwtContext() {
     throw new Error("Base no permitida");
   const db = createDatabase(url.href);
   const config = {
+    mediaDirectory: "/tmp/ipc-test-media",
     origin: "http://localhost:3000",
     production: false,
     jwtSecret: randomBytes(32).toString("hex"),
@@ -55,6 +56,7 @@ export async function createJwtContext() {
     return { ...data, cookie: cookie?.split(";")[0], csrf: data.csrfToken };
   };
   return {
+    app,
     db,
     config,
     password,

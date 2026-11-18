@@ -15,7 +15,7 @@ const pad = (n) => String(n).padStart(2, "0");
 
 function EventsCountdownBand({ event, direction }) {
   const timeLeft = useCountdown(event.date);
-  const title = `${event.category} de ${event.highlight}`
+  const title = event.title;
 
   return (
     <ScrollReveal

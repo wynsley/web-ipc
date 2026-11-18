@@ -1,7 +1,10 @@
 import { twMerge } from "tailwind-merge";
 
-const base =
+const textBase =
   "min-h-12 w-full rounded-[7px] border bg-[#fafbfd] px-3.5 py-2.5 font-poppins text-base text-ink transition-colors duration-200 focus-visible:outline-3 focus-visible:outline-offset-3 focus-visible:outline-focus disabled:cursor-not-allowed disabled:opacity-70";
+
+const checkboxBase =
+  "size-5 shrink-0 cursor-pointer accent-blue-dark focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-focus disabled:cursor-not-allowed disabled:opacity-70";
 
 export function Input({
   id,
@@ -17,6 +20,9 @@ export function Input({
   className = "",
   ...props
 }) {
+  const isCheckbox = type === "checkbox";
+  const isCustomControl = type === "radio" || type === "file";
+
   return (
     <input
       id={id}
@@ -30,8 +36,16 @@ export function Input({
       disabled={disabled}
       aria-invalid={error || undefined}
       className={twMerge(
-        base,
-        error ? "border-red-600" : "border-line hover:border-blue-dark/60",
+        isCheckbox
+          ? checkboxBase
+          : isCustomControl
+            ? ""
+            : twMerge(
+                textBase,
+                error
+                  ? "border-red-600"
+                  : "border-line hover:border-blue-dark/60",
+              ),
         className,
       )}
       {...props}

@@ -13,7 +13,8 @@ export function createAdminRepository(db) {
       return db.$transaction(async (tx) => {
         await assertAdminSession(tx, actor);
         await tx.$queryRaw`SELECT id FROM admins WHERE role = 'admin' AND "isActive" = true ORDER BY id FOR UPDATE`;
-        const rows = await tx.$queryRaw`SELECT id FROM admins WHERE id = ${targetId}::uuid FOR UPDATE`;
+        const rows =
+          await tx.$queryRaw`SELECT id FROM admins WHERE id = ${targetId}::uuid FOR UPDATE`;
         if (!rows.length) {
           throw new AppError(404, "ACCOUNT_NOT_FOUND", "Cuenta no encontrada.");
         }

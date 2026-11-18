@@ -1,4 +1,15 @@
+## Actualización de eventos — 18 de noviembre de 2026
+
+La agenda se actualiza automáticamente y los eventos publicados finalizados aparecen en «Revive nuestros eventos». El admin permite indicar finalización; el carrusel y destacados muestran vigentes. Fotos por URL HTTPS o subida local, almacenada fuera de PostgreSQL con limpieza de huérfanos. Estado, pruebas y límites en [BACKEND_ADMIN.md](BACKEND_ADMIN.md) y [medios](backend/media.md).
+
 # Estado y evolución de IPC Platform
+
+Actualización del 17 de noviembre de 2026. El formulario de Eventos incorpora «Destacar evento». El campo featured es booleano, opcional en entradas de API y falso por defecto para eventos existentes. La sección de destacados consume los eventos publicados marcados; se oculta si no hay ninguno. Para cambiar la selección de una publicación se retira, edita y publica nuevamente. Se verificaron 58 pruebas del backend, lint, ambas compilaciones y en Edge el filtrado, la tarjeta única, el fondo sin foto y la sección vacía con datos simulados.
+
+
+## Agenda institucional — 16 de noviembre de 2026
+
+La página `/events` carga la agenda publicada desde `GET /api/v1/events`, con paginación y estados de carga, error y lista vacía. El carrusel, la portada y el calendario comparten los eventos publicados. La galería y los destacados editoriales conservan sus fuentes locales. [Contrato de Eventos](backend/events.md).
 
 ## Retiro de ruta de clase — 30 de octubre de 2026
 

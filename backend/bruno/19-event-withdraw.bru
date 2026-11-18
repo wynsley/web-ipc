@@ -1,0 +1,27 @@
+meta {
+  name: Retirar evento
+  type: http
+  seq: 19
+}
+post {
+  url: http://127.0.0.1:3000/api/v1/admin/events/{{eventId}}/unpublish
+  body: json
+  auth: none
+}
+headers {
+  Content-Type: application/json
+  X-IPC-Client: admin
+  Authorization: Bearer {{accessToken}}
+  X-CSRF-Token: {{csrfToken}}
+}
+body:json {
+  {
+    "version": {{eventVersion}}
+  }
+}
+script:post-response {
+  if ([200, 201].includes(res.getStatus())) {
+    bru.setVar("eventId", res.getBody().data.id);
+    bru.setVar("eventVersion", res.getBody().data.version);
+  }
+}

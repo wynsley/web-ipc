@@ -1,7 +1,7 @@
 import { getAuth, postAuth } from "./authRequest";
 import { EXPIRED_NOTICE, getSession, refreshSession } from "./session";
 
-async function authenticated(request) {
+export async function authenticated(request) {
   let session = getSession();
   if (!session) throw new Error(EXPIRED_NOTICE);
   const accountId = session.admin.id;

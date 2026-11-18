@@ -1,3 +1,4 @@
+import { Image } from "@/components/atoms/image";
 import { DescrioptionHero } from "@/components/molecules/events/descriptionHero";
 import heroImage from "@assets/images/events/hero-events.webp";
 import { motion as Motion } from "motion/react";
@@ -11,9 +12,9 @@ function HeroEvents({ event, onOpenCalendar }) {
           "
       >
         {/* Imagen de fondo */}
-        <img
+        <Image fill
           src={heroImage}
-          alt="evento institucional"
+          alt=""
           loading="lazy"
           draggable={false}
           className="absolute inset-0 h-full w-full object-cover"

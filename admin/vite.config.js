@@ -28,7 +28,7 @@ export default defineConfig({
   server: {
     port: 5174,
     strictPort: true,
-    proxy: { "/api/v1/auth": "http://127.0.0.1:3000" },
+    proxy: { "/api/v1": "http://127.0.0.1:3000" },
   },
   resolve: {
     dedupe: ["react", "react-dom"],

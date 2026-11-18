@@ -1,13 +1,13 @@
 const unavailable =
   "No se pudo contactar con el servicio de acceso. Inténtalo de nuevo.";
 
-async function sendAuth(path, options, status) {
+export async function sendApiRequest(path, options, status) {
   let response;
   try {
-    response = await fetch("/api/v1/auth/" + path, {
+    response = await fetch("/api/v1/" + path, {
       ...options,
       credentials: "same-origin",
-      signal: ["mfa/verify", "csrf", "logout"].includes(path)
+      signal: ["auth/mfa/verify", "auth/csrf", "auth/logout"].includes(path)
         ? AbortSignal.timeout(30_000)
         : undefined,
     });
@@ -34,8 +34,8 @@ async function sendAuth(path, options, status) {
 }
 
 export function getAuth(path, status, accessToken) {
-  return sendAuth(
-    path,
+  return sendApiRequest(
+    "auth/" + path,
     {
       method: "GET",
       headers: {
@@ -54,8 +54,8 @@ export function postAuth(path, input, status, csrfToken, accessToken) {
   };
   if (csrfToken) headers["X-CSRF-Token"] = csrfToken;
   if (accessToken) headers.Authorization = "Bearer " + accessToken;
-  return sendAuth(
-    path,
+  return sendApiRequest(
+    "auth/" + path,
     { method: "POST", headers, body: JSON.stringify(input) },
     status,
   );
