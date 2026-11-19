@@ -25,7 +25,6 @@ export const WORKSPACE_AREAS = [
   },
   {
     slug: "admision",
-    pending: true,
     path: "/admision",
     Icon: FiInbox,
     title: "Admisión",

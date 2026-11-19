@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { Button } from "../../atoms/button";
 
 function ContactSuccess({
-  appearance = "dark",
   title = "¡Enviado con éxito!",
   message = "Tu solicitud fue enviada. Pronto nos pondremos en contacto contigo.",
   onClose,
@@ -14,8 +13,6 @@ function ContactSuccess({
     const raf = requestAnimationFrame(() => setAnimateIn(true));
     return () => cancelAnimationFrame(raf);
   }, []);
-
-  const light = appearance === "light";
 
   return (
     <div
@@ -45,19 +42,11 @@ function ContactSuccess({
         />
       </svg>
 
-      <h3
-        className={`font-hani text-xl font-bold sm:text-2xl ${
-          light ? "text-blue-deep" : "text-white"
-        }`}
-      >
+      <h3 className="font-hani text-xl font-bold text-white sm:text-2xl">
         {title}
       </h3>
 
-      <p
-        className={`max-w-sm font-poppins text-sm leading-relaxed ${
-          light ? "text-gray-600" : "text-white/75"
-        }`}
-      >
+      <p className="max-w-sm font-poppins text-sm leading-relaxed text-white/75">
         {message}
       </p>
 

@@ -8,6 +8,11 @@ import { createAuthRoutes } from "./modules/auth/authRoutes.js";
 
 import { createEventRepository } from "./modules/events/eventRepository.js";
 import { createPublicEventRoutes, createAdminEventRoutes } from "./modules/events/eventRoutes.js";
+import { createInquiryRepository } from "./modules/inquiries/inquiryRepository.js";
+import {
+  createPublicInquiryRoutes,
+  createAdminInquiryRoutes,
+} from "./modules/inquiries/inquiryRoutes.js";
 
 import { createImageRepository } from "./modules/media/imageRepository.js";
 import { createImageService } from "./modules/media/imageService.js";
@@ -40,6 +45,11 @@ export async function createApp({
   const events = createEventRepository(db);
   app.route("/api/v1/events", createPublicEventRoutes(events));
   app.route("/api/v1/admin/events", createAdminEventRoutes(events, service, config));
+  const inquiries = createInquiryRepository(db);
+  const publicInquiries = createPublicInquiryRoutes(inquiries, service, clientIp);
+  app.route("/api/v1/inquiries", publicInquiries);
+  app.route("/contact", publicInquiries);
+  app.route("/api/v1/admin/inquiries", createAdminInquiryRoutes(inquiries, service, config));
   app.get("/", (c) =>
     c.json({
       message: "Backend del IPC iniciado",

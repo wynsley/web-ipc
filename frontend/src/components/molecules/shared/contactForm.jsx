@@ -6,9 +6,8 @@ import { CONTACT_FORM_GROUPS } from "../../../data/contactFormFields";
 import { useContactForm } from "../../../hooks/globals/useContactForm";
 import { ContactSuccess } from "./contactSuccess";
 
-// Una sola composición: modal y Admisión comparten el orden por filas.
+// Una sola composición: Inicio, modal y Admisión comparten estilo e interacción.
 function ContactForm({
-  appearance = "dark",
   layout = "compact",
   showSteps = false,
   onCancel,
@@ -30,7 +29,7 @@ function ContactForm({
 
   return (
     <div
-      className={`contact-form relative ${appearance === "light" ? "contact-form--light" : ""} ${isHome ? "grid grid-cols-1 gap-5 md:grid-cols-[9em_1fr] lg:grid-cols-[12em_1fr]" : ""}`}
+      className={`contact-form relative ${isHome ? "grid grid-cols-1 gap-5 md:grid-cols-[9em_1fr] lg:grid-cols-[12em_1fr]" : ""}`}
     >
       <Toast
         fixed
@@ -51,7 +50,6 @@ function ContactForm({
       {showSteps && !isHome && <hr className="my-5 text-blue" />}
       {submitted ? (
         <ContactSuccess
-          appearance={appearance}
           onClose={onCancel}
           onAnother={startAgain}
         />

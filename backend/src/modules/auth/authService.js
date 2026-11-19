@@ -42,5 +42,9 @@ export async function createAuthService(repository, config) {
         await repository.limit(digest("media-upload-account:" + adminId), 60, 15 * 60_000);
       }
     },
+    async throttlePublicInquiry(ip) {
+      await repository.limit(digest("inquiry-global"), 100, 15 * 60_000);
+      await repository.limit(digest("inquiry-ip:" + ip), 5, 15 * 60_000);
+    },
   };
 }

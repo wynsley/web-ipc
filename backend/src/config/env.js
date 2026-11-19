@@ -16,6 +16,7 @@ export function loadConfig() {
       MFA_ENCRYPTION_KEY: z.string().regex(/^[a-f0-9]{64}$/i),
       MEDIA_DIRECTORY: z.string().min(1).optional(),
       MEDIA_RETENTION_DAYS: z.coerce.number().int().min(1).max(365).default(7),
+      INQUIRY_ARCHIVE_DAYS: z.coerce.number().int().min(1).max(365).default(30),
       PORT: z.coerce.number().int().min(1).max(65535).default(3000),
       ADMIN_ORIGIN: z.string().url().default("http://localhost:5174"),
     })
@@ -44,6 +45,7 @@ export function loadConfig() {
   return {
     mediaDirectory: env.MEDIA_DIRECTORY,
     mediaRetentionDays: env.MEDIA_RETENTION_DAYS,
+    inquiryArchiveDays: env.INQUIRY_ARCHIVE_DAYS,
     databaseUrl: env.DATABASE_URL,
     port: env.PORT,
     origin: env.ADMIN_ORIGIN,

@@ -8,7 +8,7 @@
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "test": "node --test tests/eventLifecycle.test.js tests/calendarChanges.test.js src/helpers/sendContactEmail.test.js",
+    "test": "node --test tests/eventLifecycle.test.js tests/calendarChanges.test.js tests/submitContact.test.js",
     "test:events": "node --test tests/eventLifecycle.test.js tests/calendarChanges.test.js"
   },
   "dependencies": {

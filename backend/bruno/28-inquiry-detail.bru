@@ -1,0 +1,19 @@
+meta {
+  name: Detalle de consulta y notas
+  type: http
+  seq: 28
+}
+get {
+  url: http://127.0.0.1:3000/api/v1/admin/inquiries/{{inquiryId}}
+  body: none
+  auth: none
+}
+headers {
+  X-IPC-Client: admin
+  Authorization: Bearer {{accessToken}}
+}
+script:post-response {
+  if (res.getStatus() === 200) {
+    bru.setVar("inquiryVersion", res.getBody().data.version);
+  }
+}

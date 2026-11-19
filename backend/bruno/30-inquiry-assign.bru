@@ -1,0 +1,27 @@
+meta {
+  name: Asignar responsable de consulta
+  type: http
+  seq: 30
+}
+patch {
+  url: http://127.0.0.1:3000/api/v1/admin/inquiries/{{inquiryId}}/assign
+  body: json
+  auth: none
+}
+headers {
+  Content-Type: application/json
+  X-IPC-Client: admin
+  Authorization: Bearer {{accessToken}}
+  X-CSRF-Token: {{csrfToken}}
+}
+body:json {
+  {
+    "version": {{inquiryVersion}},
+    "assigneeId": "{{targetAdminId}}"
+  }
+}
+script:post-response {
+  if (res.getStatus() === 200) {
+    bru.setVar("inquiryVersion", res.getBody().data.version);
+  }
+}

@@ -17,6 +17,7 @@
     "lint": "pnpm run lint:backend && pnpm run lint:frontend && pnpm run lint:admin",
     "lint:fix:backend": "pnpm --filter backend lint:fix",
     "test:frontend": "pnpm --filter frontend test",
+    "test:admin": "pnpm --filter admin test",
     "db:validate": "pnpm --filter backend db:validate",
     "db:format": "pnpm --filter backend db:format",
     "db:migrate": "pnpm --filter backend db:migrate",

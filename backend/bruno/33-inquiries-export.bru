@@ -1,0 +1,14 @@
+meta {
+  name: Exportar consultas CSV
+  type: http
+  seq: 33
+}
+get {
+  url: http://127.0.0.1:3000/api/v1/admin/inquiries/export?status=all
+  body: none
+  auth: none
+}
+headers {
+  X-IPC-Client: admin
+  Authorization: Bearer {{accessToken}}
+}

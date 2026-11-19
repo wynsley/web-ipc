@@ -76,7 +76,7 @@ export function AdminApp() {
             path={area.path}
             element={
               <RoleRoute role={session.admin.role} allowed={area.roles}>
-                <AreaPage area={area} />
+                <AreaPage area={area} admin={session.admin} />
               </RoleRoute>
             }
           />

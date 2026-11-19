@@ -8,6 +8,8 @@ import { createLocalImageStorage } from "./infrastructure/storage/localImageStor
 import { createImageMaintenanceRepository } from "./modules/media/imageMaintenanceRepository.js";
 import { createImageMaintenanceService } from "./modules/media/imageMaintenanceService.js";
 import { startImageCleanup } from "./jobs/imageCleanup.js";
+import { createInquiryMaintenanceService } from "./modules/inquiries/inquiryMaintenanceService.js";
+import { startInquiryAutoArchive } from "./jobs/inquiryAutoArchive.js";
 
 const config = loadConfig();
 const db = createDatabase(config.databaseUrl);
@@ -25,6 +27,9 @@ const stopCleanup = startImageCleanup(
     config.mediaRetentionDays,
   ),
 );
+const stopInquiryArchive = startInquiryAutoArchive(
+  createInquiryMaintenanceService(db, config.inquiryArchiveDays),
+);
 const server = serve(
   {
     fetch: app.fetch,
@@ -37,7 +42,7 @@ const server = serve(
 for (const signal of ["SIGINT", "SIGTERM"]) {
   process.once(signal, () => {
     server.close(async () => {
-      await stopCleanup();
+      await Promise.all([stopCleanup(), stopInquiryArchive()]);
       await db.$disconnect();
       process.exit(0);
     });

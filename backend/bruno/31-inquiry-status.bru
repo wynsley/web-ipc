@@ -1,0 +1,27 @@
+meta {
+  name: Cambiar estado de consulta
+  type: http
+  seq: 31
+}
+patch {
+  url: http://127.0.0.1:3000/api/v1/admin/inquiries/{{inquiryId}}/status
+  body: json
+  auth: none
+}
+headers {
+  Content-Type: application/json
+  X-IPC-Client: admin
+  Authorization: Bearer {{accessToken}}
+  X-CSRF-Token: {{csrfToken}}
+}
+body:json {
+  {
+    "version": {{inquiryVersion}},
+    "status": "resolved"
+  }
+}
+script:post-response {
+  if (res.getStatus() === 200) {
+    bru.setVar("inquiryVersion", res.getBody().data.version);
+  }
+}

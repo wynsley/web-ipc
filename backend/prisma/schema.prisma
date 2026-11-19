@@ -12,6 +12,13 @@ enum AdminRole {
   events
 }
 
+enum InquiryStatus {
+  new
+  in_progress
+  resolved
+  archived
+}
+
 model Admin {
   id           String    @id @default(uuid()) @db.Uuid
   name         String    @db.VarChar(100)
@@ -30,8 +37,10 @@ model Admin {
   resetExpiresAt  DateTime? @db.Timestamptz(3)
   resetMfa        Boolean   @default(false)
 
-  sessions    Session[]
-  activations Activation[]
+  sessions          Session[]
+  activations       Activation[]
+  assignedInquiries Inquiry[]     @relation("AssignedInquiries")
+  inquiryNotes      InquiryNote[] @relation("AuthoredInquiryNotes")
 
   @@map("admins")
 }
@@ -158,16 +167,58 @@ model RecoveryCode {
 }
 
 model EventChange {
- id String @id @default(uuid()) @db.Uuid
- eventId String @db.Uuid
- event Event @relation(fields: [eventId], references: [id], onDelete: Cascade)
- action String @db.VarChar(32)
- reason String @db.VarChar(500)
- before Json
- after Json
- actorId String @db.Uuid
- actorName String @db.VarChar(100)
- createdAt DateTime @default(now()) @db.Timestamptz(3)
- @@index([eventId, createdAt])
- @@map("event_changes")
+  id        String   @id @default(uuid()) @db.Uuid
+  eventId   String   @db.Uuid
+  event     Event    @relation(fields: [eventId], references: [id], onDelete: Cascade)
+  action    String   @db.VarChar(32)
+  reason    String   @db.VarChar(500)
+  before    Json
+  after     Json
+  actorId   String   @db.Uuid
+  actorName String   @db.VarChar(100)
+  createdAt DateTime @default(now()) @db.Timestamptz(3)
+
+  @@index([eventId, createdAt])
+  @@map("event_changes")
+}
+
+model Inquiry {
+  id             String        @id @default(uuid()) @db.Uuid
+  name           String        @db.VarChar(100)
+  email          String        @db.VarChar(254)
+  phone          String        @db.VarChar(20)
+  address        String        @db.VarChar(200)
+  career         String        @db.VarChar(32)
+  shift          String        @db.VarChar(16)
+  message        String        @db.VarChar(1000)
+  status         InquiryStatus @default(new)
+  assignedToId   String?       @db.Uuid
+  assignedTo     Admin?        @relation("AssignedInquiries", fields: [assignedToId], references: [id], onDelete: SetNull)
+  idempotencyKey String?       @unique @db.Char(64)
+  version        Int           @default(1)
+  resolvedAt     DateTime?     @db.Timestamptz(3)
+  createdAt      DateTime      @default(now()) @db.Timestamptz(3)
+  updatedAt      DateTime      @updatedAt @db.Timestamptz(3)
+
+  notes InquiryNote[]
+
+  @@index([status, createdAt, id])
+  @@index([assignedToId, status])
+  @@index([career, status])
+  @@index([createdAt])
+  @@map("inquiries")
+}
+
+model InquiryNote {
+  id         String   @id @default(uuid()) @db.Uuid
+  inquiryId  String   @db.Uuid
+  inquiry    Inquiry  @relation(fields: [inquiryId], references: [id], onDelete: Cascade)
+  authorId   String?  @db.Uuid
+  author     Admin?   @relation("AuthoredInquiryNotes", fields: [authorId], references: [id], onDelete: SetNull)
+  authorName String   @db.VarChar(100)
+  body       String   @db.VarChar(1000)
+  createdAt  DateTime @default(now()) @db.Timestamptz(3)
+
+  @@index([inquiryId, createdAt])
+  @@map("inquiry_notes")
 }

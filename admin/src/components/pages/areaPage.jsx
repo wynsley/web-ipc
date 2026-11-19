@@ -7,7 +7,7 @@ import { AccountInvitations } from "../organisms/admin/accountInvitations";
 import { AdmissionsPanel } from "../organisms/admissions/admissionsPanel";
 import { EventsPanel } from "../organisms/events/eventsPanel";
 
-export function AreaPage({ area }) {
+export function AreaPage({ area, admin }) {
   const { Icon, title, description, slug } = area;
   return (
     <section className="pt-5">
@@ -29,7 +29,7 @@ export function AreaPage({ area }) {
         <Paragraph text={description} className="mt-1.5 max-w-2xl" />
       </div>
       {slug === "cuentas" && <AccountInvitations />}
-      {slug === "admision" && <AdmissionsPanel />}
+      {slug === "admision" && <AdmissionsPanel admin={admin} />}
       {slug === "eventos" && <EventsPanel />}
     </section>
   );

@@ -13,8 +13,23 @@ const buildInitialValues = () =>
 
 const initialToast = { visible: false, type: "error", message: "" };
 
+function createIdempotencyKey() {
+  if (typeof globalThis.crypto?.randomUUID === "function") {
+    return globalThis.crypto.randomUUID();
+  }
+  return `ipc-${Date.now()}-${Math.random().toString(36).slice(2, 12)}`;
+}
 
-// ← CAMBIO 2: el hook recibe onSuccess (opcional)
+function mapServerFieldErrors(fields) {
+  if (!fields || typeof fields !== "object") return {};
+  const mapped = {};
+  for (const [key, messages] of Object.entries(fields)) {
+    const first = Array.isArray(messages) ? messages[0] : messages;
+    if (first && key !== "_form") mapped[key] = first;
+  }
+  return mapped;
+}
+
 function useContactForm() {
   const [values, setValues] = useState(buildInitialValues);
   const [activeStep, setActiveStep] = useState(1);
@@ -24,6 +39,7 @@ function useContactForm() {
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const sending = useRef(false);
+  const idempotencyKeyRef = useRef(null);
 
   const closeToast = () => setToast(initialToast);
 
@@ -37,6 +53,7 @@ function useContactForm() {
       // Si hay más de un '+', deja solo el primero (y solo al inicio)
       val = val.replace(/(?!^)\+/g, "");
     }
+    idempotencyKeyRef.current = null;
     setValues((prev) => ({ ...prev, [name]: val }));
     setFieldErrors((prev) => (prev[name] ? { ...prev, [name]: false } : prev));
     setErrorStep((prev) => (prev ? null : prev));
@@ -63,6 +80,7 @@ function useContactForm() {
   };
 
   const reset = () => {
+    idempotencyKeyRef.current = null;
     setValues(buildInitialValues());
     setActiveStep(1);
     setErrorStep(null);
@@ -84,21 +102,31 @@ function useContactForm() {
       return;
     }
 
+    if (!idempotencyKeyRef.current) {
+      idempotencyKeyRef.current = createIdempotencyKey();
+    }
+
     setFieldErrors({});
     setErrorStep(null);
     setActiveStep(3);
     setSubmitting(true);
 
     try {
-      await submitContact(values);
+      await submitContact(values, {
+        idempotencyKey: idempotencyKeyRef.current,
+      });
 
       reset();
       setActiveStep(4);
-      setSubmitted(true)
-
+      setSubmitted(true);
     } catch (err) {
       console.error("Error al enviar el formulario de contacto:", err);
-      setErrorStep(4);
+      const serverErrors = mapServerFieldErrors(err.fields);
+      if (Object.keys(serverErrors).length > 0) {
+        setFieldErrors(serverErrors);
+        idempotencyKeyRef.current = null;
+      }
+      setErrorStep(err.status === 422 ? 2 : 4);
       setToast({
         visible: true,
         type: "error",
@@ -108,15 +136,14 @@ function useContactForm() {
       sending.current = false;
       setSubmitting(false);
     }
-
-    
   };
 
-const startAgain = () => {
+  const startAgain = () => {
+    idempotencyKeyRef.current = null;
     setSubmitted(false);
     setActiveStep(1);
   };
-  
+
   return {
     values,
     activeStep,
@@ -124,8 +151,8 @@ const startAgain = () => {
     fieldErrors,
     toast,
     closeToast,
-    submitted,   
-    startAgain, 
+    submitted,
+    startAgain,
     submitting,
     setValue,
     handleSubmit,
