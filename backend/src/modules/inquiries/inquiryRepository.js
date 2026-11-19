@@ -109,7 +109,7 @@ export function createInquiryRepository(db) {
     async list(actor, query) {
       const now = new Date();
       const where = buildInquiryWhere(query, actor.admin.id);
-      const [rows, grouped] = await Promise.all([
+      const [rows, total, grouped] = await Promise.all([
         db.inquiry.findMany({
           where,
           select: summarySelect,
@@ -117,6 +117,7 @@ export function createInquiryRepository(db) {
           skip: (query.page - 1) * pageSize,
           take: pageSize + 1,
         }),
+        db.inquiry.count({ where }),
         db.inquiry.groupBy({
           by: ["status"],
           _count: { _all: true },
@@ -130,6 +131,9 @@ export function createInquiryRepository(db) {
       return {
         inquiries: rows.slice(0, pageSize).map(mapSummary),
         hasMore: rows.length > pageSize,
+        total,
+        pageSize,
+        totalPages: Math.max(1, Math.ceil(total / pageSize)),
         serverTime: now.toISOString(),
         counts,
       };

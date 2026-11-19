@@ -1,11 +1,15 @@
 import {
+  FiArchive,
   FiChevronDown,
   FiChevronUp,
   FiClock,
   FiMessageSquare,
 } from "react-icons/fi";
 import { formatLimaDateTime } from "../../../helpers/eventDates";
-import { inquiryElapsedInfo } from "../../../helpers/inquiryElapsedTime";
+import {
+  inquiryArchiveCountdown,
+  inquiryElapsedInfo,
+} from "../../../helpers/inquiryElapsedTime";
 import {
   INQUIRY_CAREER_LABELS,
   INQUIRY_SHIFT_LABELS,
@@ -37,7 +41,9 @@ export function InquiryCard({
   const careerLabel = INQUIRY_CAREER_LABELS[inquiry.career] || inquiry.career;
   const shiftLabel = INQUIRY_SHIFT_LABELS[inquiry.shift] || inquiry.shift;
   const elapsed = inquiryElapsedInfo(inquiry, nowMs);
+  const archiveInfo = inquiryArchiveCountdown(inquiry, nowMs);
   const primaryAction = inquiryNextActions(inquiry)[0] ?? null;
+  const canReplyDirectly = inquiry.status === "in_progress";
   const exactTimestamp = formatLimaDateTime(inquiry.createdAt);
 
   return (
@@ -73,6 +79,15 @@ export function InquiryCard({
             {elapsed.isOverdue && (
               <Badge variant="danger" text="Sin atender > 24 h" />
             )}
+            {archiveInfo && (
+              <span
+                title={`Resuelta el ${formatLimaDateTime(inquiry.resolvedAt)}`}
+                className="inline-flex items-center gap-1 rounded-md border border-[#34d399]/25 bg-[#10b981]/10 px-2 py-0.5 text-[#a7f3d0]"
+              >
+                <FiArchive aria-hidden="true" />
+                {archiveInfo.archiveLabel}
+              </span>
+            )}
             <span
               title={`Recibida el ${exactTimestamp}`}
               className={`inline-flex items-center gap-1 ${
@@ -84,7 +99,7 @@ export function InquiryCard({
               }`}
             >
               <FiClock aria-hidden="true" />
-              {elapsed.label}
+              {archiveInfo ? archiveInfo.resolvedLabel : elapsed.label}
             </span>
             <span
               title={`${inquiry.notesCount} nota(s) interna(s)`}
@@ -108,6 +123,9 @@ export function InquiryCard({
           )}
 
           <div className="flex flex-wrap items-center gap-2">
+            {!isExpanded && canReplyDirectly && (
+              <InquiryQuickReplyButtons inquiry={inquiry} compact />
+            )}
             {!isExpanded && primaryAction && (
               <Button
                 variant={primaryAction.variant}
@@ -117,9 +135,6 @@ export function InquiryCard({
                 onClick={() => onAction(inquiry, primaryAction)}
                 className="min-h-9 px-3 py-1.5 text-xs"
               />
-            )}
-            {!isExpanded && (
-              <InquiryQuickReplyButtons inquiry={inquiry} compact />
             )}
             <Button
               variant={isExpanded ? "secondary" : "outline"}
@@ -148,6 +163,7 @@ export function InquiryCard({
       {isExpanded && (
         <InquiryDetailPanel
           inquiry={inquiry}
+          archiveInfo={archiveInfo}
           isAdmin={isAdmin}
           assignees={assignees}
           busy={busy}

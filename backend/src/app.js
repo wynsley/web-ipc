@@ -13,6 +13,8 @@ import {
   createPublicInquiryRoutes,
   createAdminInquiryRoutes,
 } from "./modules/inquiries/inquiryRoutes.js";
+import { createAuditRepository } from "./modules/audit/auditRepository.js";
+import { createAdminAuditRoutes } from "./modules/audit/auditRoutes.js";
 
 import { createImageRepository } from "./modules/media/imageRepository.js";
 import { createImageService } from "./modules/media/imageService.js";
@@ -50,6 +52,8 @@ export async function createApp({
   app.route("/api/v1/inquiries", publicInquiries);
   app.route("/contact", publicInquiries);
   app.route("/api/v1/admin/inquiries", createAdminInquiryRoutes(inquiries, service, config));
+  const audit = createAuditRepository(db);
+  app.route("/api/v1/admin/audit", createAdminAuditRoutes(audit, service, config));
   app.get("/", (c) =>
     c.json({
       message: "Backend del IPC iniciado",

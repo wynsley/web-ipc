@@ -5,6 +5,7 @@ import { Paragraph } from "../atoms/paragraph";
 import { Title } from "../atoms/titles";
 import { AccountInvitations } from "../organisms/admin/accountInvitations";
 import { AdmissionsPanel } from "../organisms/admissions/admissionsPanel";
+import { AuditPanel } from "../organisms/audit/auditPanel";
 import { EventsPanel } from "../organisms/events/eventsPanel";
 
 export function AreaPage({ area, admin }) {
@@ -31,6 +32,7 @@ export function AreaPage({ area, admin }) {
       {slug === "cuentas" && <AccountInvitations />}
       {slug === "admision" && <AdmissionsPanel admin={admin} />}
       {slug === "eventos" && <EventsPanel />}
+      {slug === "auditoria" && <AuditPanel />}
     </section>
   );
 }

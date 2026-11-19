@@ -7,6 +7,7 @@ import {
 } from "../src/helpers/inquiryContactLinks.js";
 import {
   formatRelativeElapsed,
+  inquiryArchiveCountdown,
   inquiryElapsedInfo,
 } from "../src/helpers/inquiryElapsedTime.js";
 
@@ -80,4 +81,35 @@ test("inquiryElapsedInfo formatea tiempos relativos y marca alertas de consultas
   );
   assert.equal(inProgressOld.isOverdue, false);
   assert.equal(inProgressOld.isWarning, false);
+});
+
+test("inquiryArchiveCountdown calcula el tiempo restante para el auto-archivado de 30 días", () => {
+  const resolvedAt = "2026-11-10T10:00:00.000Z";
+  const resolvedMs = Date.parse(resolvedAt);
+
+  assert.equal(
+    inquiryArchiveCountdown({ ...sampleInquiry, status: "in_progress", resolvedAt }, resolvedMs),
+    null,
+  );
+
+  const afterThreeDays = inquiryArchiveCountdown(
+    { ...sampleInquiry, status: "resolved", resolvedAt },
+    resolvedMs + 3 * 86_400_000,
+  );
+  assert.deepEqual(afterThreeDays, {
+    resolvedLabel: "Resuelta hace 3 días",
+    archiveLabel: "Se archiva en 27 días",
+  });
+
+  const lastDay = inquiryArchiveCountdown(
+    { ...sampleInquiry, status: "resolved", resolvedAt },
+    resolvedMs + 29 * 86_400_000 + 12 * 3_600_000,
+  );
+  assert.equal(lastDay.archiveLabel, "Se archiva en 1 día");
+
+  const expired = inquiryArchiveCountdown(
+    { ...sampleInquiry, status: "resolved", resolvedAt },
+    resolvedMs + 31 * 86_400_000,
+  );
+  assert.equal(expired.archiveLabel, "Se archivará pronto");
 });

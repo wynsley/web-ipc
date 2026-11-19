@@ -1,0 +1,13 @@
+meta {
+  name: Listar auditoría administrativa
+  type: http
+  seq: 34
+}
+get {
+  url: http://127.0.0.1:3000/api/v1/admin/audit?page=1&category=all&actor=all
+  auth: none
+}
+headers {
+  X-IPC-Client: admin
+  Authorization: Bearer {{accessToken}}
+}

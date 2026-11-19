@@ -32,6 +32,7 @@ function CopyFieldButton({ value, label, copiedKey, activeKey, onCopy }) {
 
 export function InquiryDetailPanel({
   inquiry,
+  archiveInfo,
   isAdmin,
   assignees,
   busy,
@@ -125,15 +126,32 @@ export function InquiryDetailPanel({
             className="text-xs tabular-nums"
             text={`Recibida el ${formatLimaDateTime(inquiry.createdAt)}`}
           />
+          {archiveInfo && inquiry.resolvedAt && (
+            <Paragraph
+              size="sm"
+              className="text-xs text-[#a7f3d0] tabular-nums"
+              text={`Resuelta el ${formatLimaDateTime(inquiry.resolvedAt)} · ${archiveInfo.archiveLabel}`}
+            />
+          )}
         </div>
       </div>
 
-      <div className="flex flex-wrap items-center justify-between gap-3 rounded-lg border border-line/80 bg-card/70 px-3.5 py-3">
-        <InquiryQuickReplyButtons inquiry={inquiry} />
-        <span className="font-poppins text-xs text-muted">
-          Se abre en una pestaña nueva con un mensaje sugerido editable.
-        </span>
-      </div>
+      {inquiry.status === "in_progress" && (
+        <div className="flex flex-wrap items-center justify-between gap-3 rounded-lg border border-line/80 bg-card/70 px-3.5 py-3">
+          <InquiryQuickReplyButtons inquiry={inquiry} />
+          <span className="font-poppins text-xs text-muted">
+            Se abre en una pestaña nueva con un mensaje sugerido editable.
+          </span>
+        </div>
+      )}
+
+      {inquiry.status === "new" && (
+        <Paragraph
+          size="sm"
+          className="rounded-lg border border-line/70 bg-card/50 px-3.5 py-2.5 text-xs"
+          text="Toma y atiende la consulta para habilitar los accesos directos de WhatsApp y Gmail y evitar respuestas duplicadas."
+        />
+      )}
 
       <div className="rounded-lg border border-line/80 bg-card px-3.5 py-3">
         <span className="block font-poppins text-xs font-semibold tracking-wide text-muted uppercase">

@@ -42,7 +42,6 @@ export const WORKSPACE_AREAS = [
   },
   {
     slug: "auditoria",
-    pending: true,
     path: "/auditoria",
     Icon: FiShield,
     title: "Auditoría",

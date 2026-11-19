@@ -2,6 +2,8 @@ const MINUTE_MS = 60_000;
 const HOUR_MS = 3_600_000;
 const DAY_MS = 86_400_000;
 
+export const INQUIRY_ARCHIVE_DAYS = 30;
+
 export function formatRelativeElapsed(elapsedMs) {
   const safeMs = Math.max(0, Number(elapsedMs) || 0);
   if (safeMs < MINUTE_MS) return "Hace un momento";
@@ -28,5 +30,36 @@ export function inquiryElapsedInfo(inquiry, nowMs) {
     label: formatRelativeElapsed(elapsedMs),
     isOverdue: inquiry.status === "new" && hours >= 24,
     isWarning: inquiry.status === "new" && hours >= 6 && hours < 24,
+  };
+}
+
+export function inquiryArchiveCountdown(
+  inquiry,
+  nowMs,
+  archiveDays = INQUIRY_ARCHIVE_DAYS,
+) {
+  if (inquiry?.status !== "resolved" || !inquiry.resolvedAt) return null;
+  const resolvedMs = Date.parse(inquiry.resolvedAt);
+  if (!Number.isFinite(resolvedMs)) return null;
+
+  const sinceResolvedMs = Math.max(0, nowMs - resolvedMs);
+  const relative = formatRelativeElapsed(sinceResolvedMs).toLowerCase();
+  const archiveAtMs = resolvedMs + archiveDays * DAY_MS;
+  const remainingMs = archiveAtMs - nowMs;
+
+  let archiveLabel;
+  if (remainingMs <= 0) {
+    archiveLabel = "Se archivará pronto";
+  } else {
+    const remainingDays = Math.ceil(remainingMs / DAY_MS);
+    archiveLabel =
+      remainingDays === 1
+        ? "Se archiva en 1 día"
+        : `Se archiva en ${remainingDays} días`;
+  }
+
+  return {
+    resolvedLabel: `Resuelta ${relative}`,
+    archiveLabel,
   };
 }

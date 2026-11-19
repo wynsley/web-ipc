@@ -23,6 +23,7 @@ for (const args of [
     "tests/events.test.js",
     "tests/eventChanges.test.js",
     "tests/inquiries.test.js",
+    "tests/audit.test.js",
     "tests/images.test.js",
     "tests/mediaMaintenance.test.js",
     "tests/jwt.test.js",

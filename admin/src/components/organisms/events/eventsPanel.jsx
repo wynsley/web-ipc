@@ -4,6 +4,7 @@ import { Paragraph } from "../../atoms/paragraph";
 import { Title } from "../../atoms/titles";
 import { EventCard } from "../../molecules/events/eventCard";
 import { EventTabs } from "../../molecules/events/eventTabs";
+import { Pagination } from "../../molecules/pagination";
 import { StatusBanner } from "../../molecules/statusBanner";
 import { EventForm } from "./eventForm";
 
@@ -145,26 +146,18 @@ export function EventsPanel() {
           ))}
         </ul>
       )}
-      <div className="mt-5 flex gap-3">
-        {page > 1 && (
-          <Button
-            variant="secondary"
-            size="sm"
-            text="Anterior"
-            disabled={busy}
-            onClick={() => goToPage(page - 1)}
-          />
-        )}
-        {list?.hasMore && (
-          <Button
-            variant="secondary"
-            size="sm"
-            text="Siguiente"
-            disabled={busy}
-            onClick={() => goToPage(page + 1)}
-          />
-        )}
-      </div>
+      {list && (
+        <Pagination
+          page={page}
+          totalPages={list.totalPages}
+          totalItems={list.total}
+          pageSize={list.pageSize}
+          disabled={busy}
+          onPageChange={goToPage}
+          itemLabel="eventos"
+          ariaLabel="Paginación de eventos"
+        />
+      )}
     </section>
   );
 }

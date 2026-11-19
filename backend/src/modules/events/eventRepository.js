@@ -82,16 +82,21 @@ export function createEventRepository(db) {
         db.event.count({ where: drafts }),
         db.event.count({ where: past }),
       ]);
+      const counts = {
+        published: publishedCount,
+        drafts: draftsCount,
+        past: pastCount,
+        all: publishedCount + draftsCount + pastCount,
+      };
+      const total = counts[scope] ?? counts.all;
       return {
         events: rows.slice(0, pageSize),
         hasMore: rows.length > pageSize,
+        total,
+        pageSize,
+        totalPages: Math.max(1, Math.ceil(total / pageSize)),
         serverTime: now.toISOString(),
-        counts: {
-          published: publishedCount,
-          drafts: draftsCount,
-          past: pastCount,
-          all: publishedCount + draftsCount + pastCount,
-        },
+        counts,
       };
     },
     async history(id, page) {

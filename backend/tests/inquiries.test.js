@@ -283,6 +283,9 @@ test("Consultas administrativas: permisos por rol, toma atómica, asignación, e
 
     // Listado, filtros y conteos disjuntos
     const listedAll = (await (await api(admissionsSession, "")).json()).data;
+    assert.equal(listedAll.total, 2);
+    assert.equal(listedAll.pageSize, 20);
+    assert.equal(listedAll.totalPages, 1);
     assert.deepEqual(listedAll.counts, {
       new: 1,
       in_progress: 0,

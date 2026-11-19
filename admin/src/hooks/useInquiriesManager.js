@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import { useUnsavedChanges } from "../context/unsavedChangesContext";
+import { triggerFileDownload } from "../helpers/fileDownload";
 import { inquiryStatusNotice } from "../helpers/inquiryMeta";
 import {
   addInquiryNote,
@@ -28,17 +29,6 @@ function matchesActiveView(inquiry, filters, currentAdminId) {
   )
     return false;
   return true;
-}
-
-function triggerFileDownload(blob, filename) {
-  const url = URL.createObjectURL(blob);
-  const anchor = document.createElement("a");
-  anchor.href = url;
-  anchor.download = filename;
-  document.body.append(anchor);
-  anchor.click();
-  anchor.remove();
-  URL.revokeObjectURL(url);
 }
 
 export function useInquiriesManager(admin) {
@@ -254,6 +244,20 @@ export function useInquiriesManager(admin) {
     }
   }
 
+  function openInProgressFocus(inquiryId) {
+    if (status !== "all" && status !== "in_progress") {
+      setStatus("in_progress");
+      setPage(1);
+    }
+    if (assigned === "unassigned") {
+      setAssigned("all");
+      setPage(1);
+    }
+    setExpandedId(inquiryId);
+    setDetailRevision((value) => value + 1);
+    setRefreshTick((value) => value + 1);
+  }
+
   async function claim(inquiry) {
     if (busy || !confirmExit()) return;
     setBusy(true);
@@ -261,12 +265,15 @@ export function useInquiriesManager(admin) {
     setNotice("");
     try {
       const updated = await claimInquiry(inquiry);
-      setNotice(
-        inquiry.status === "new"
-          ? "Consulta asignada a tu cuenta y movida a En seguimiento."
-          : "Consulta asignada a tu cuenta.",
-      );
-      syncAfterMutation(inquiry, updated);
+      if (inquiry.status === "new") {
+        setNotice(
+          "Consulta tomada y abierta en En seguimiento. Ya puedes responder por WhatsApp o Gmail.",
+        );
+        openInProgressFocus(updated.id);
+      } else {
+        setNotice("Consulta asignada a tu cuenta.");
+        syncAfterMutation(inquiry, updated);
+      }
     } catch (failure) {
       handleMutationError(inquiry, failure);
     } finally {
@@ -306,7 +313,14 @@ export function useInquiriesManager(admin) {
     try {
       const updated = await updateInquiryStatus(inquiry, nextStatus);
       setNotice(inquiryStatusNotice(inquiry.status, updated.status));
-      syncAfterMutation(inquiry, updated);
+      if (
+        updated.status === "in_progress" &&
+        (inquiry.status === "resolved" || inquiry.status === "archived")
+      ) {
+        openInProgressFocus(updated.id);
+      } else {
+        syncAfterMutation(inquiry, updated);
+      }
     } catch (failure) {
       handleMutationError(inquiry, failure);
     } finally {

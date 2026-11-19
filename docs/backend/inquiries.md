@@ -23,7 +23,7 @@ Requiere `Bearer`, cabecera `X-IPC-Client: admin`, origen válido y rol `admin` 
 
 | Método y ruta | Permisos | Comportamiento |
 | --- | --- | --- |
-| `GET /api/v1/admin/inquiries` | `admin`, `admissions` | Lista paginada (20/página, más recientes primero). Filtros: `page`, `status` (o `scope`: `all\|new\|in_progress\|resolved\|archived`), `career`, `shift`, `assigned` (`all\|unassigned\|mine\|<uuid>`), `q` (búsqueda en nombre, correo, teléfono y mensaje). Devuelve `inquiries`, `hasMore`, `serverTime` y `counts` por estado. |
+| `GET /api/v1/admin/inquiries` | `admin`, `admissions` | Lista paginada (20/página, más recientes primero). Filtros: `page`, `status` (o `scope`: `all\|new\|in_progress\|resolved\|archived`), `career`, `shift`, `assigned` (`all\|unassigned\|mine\|<uuid>`), `q` (búsqueda en nombre, correo, teléfono y mensaje). Devuelve `inquiries`, `hasMore`, `total`, `pageSize`, `totalPages`, `serverTime` y `counts` por estado. |
 | `GET /api/v1/admin/inquiries/assignees` | `admin`, `admissions` | Devuelve cuentas activas con rol `admin` o `admissions` (`{ id, name, role }`, sin correos ni cuentas `events`). |
 | `GET /api/v1/admin/inquiries/export` | `admin`, `admissions` | Exporta hasta 5,000 filas filtradas en CSV UTF-8 con BOM (`Content-Disposition: attachment`, `Cache-Control: no-store`). Neutraliza fórmulas peligrosas (`=`, `+`, `-`, `@`, `\t`) anteponiendo `'` y registra `inquiry.exported` en `audit_logs` sin PII. |
 | `GET /api/v1/admin/inquiries/:id` | `admin`, `admissions` | Detalle completo de la consulta con responsable asignado y notas internas en orden cronológico. |
@@ -36,7 +36,7 @@ Requiere `Bearer`, cabecera `X-IPC-Client: admin`, origen válido y rol `admin` 
 
 - **Auto-archivado a los 30 días (`INQUIRY_ARCHIVE_DAYS=30`)**: `inquiryMaintenanceService.js` y el trabajo horario `backend/src/jobs/inquiryAutoArchive.js` archivan en lotes seguros (`FOR UPDATE SKIP LOCKED`) las consultas en estado `resolved` cuyo `resolvedAt` tenga al menos 30 días, conservando `resolvedAt`, incrementando `version` y registrando `inquiry.auto_archived` en `audit_logs` con `actorId: null` (sin PII).
 - **Refresco automático en `/admin/admision`**: `useAutoRefresh` actualiza silenciosamente la bandeja cada 30 s cuando la pestaña está visible y al recuperar foco/conexión (pausado mientras hay una acción en curso o un panel de notas abierto), sin parpadeos y acompañado de un botón manual «Actualizar».
-- **Canales directos, tiempos y densidad en `/admin/admision`**: filas compactas con adelanto de 1 línea y panel desplegable `InquiryDetailPanel`; botones directos a WhatsApp (`wa.me`) y compositor web de Gmail (`mail.google.com/mail/?view=cm&fs=1`, evitando `mailto:`/Outlook) con mensaje prellenado editable; copiado rápido de correo/teléfono y tiempo transcurrido actualizado con alerta visual para consultas `new` con más de 24 horas sin atender.
+- **Canales directos, tiempos y densidad en `/admin/admision`**: filas compactas con adelanto de 1 línea y panel desplegable `InquiryDetailPanel`; botones directos a WhatsApp (`wa.me`) y compositor web de Gmail (`mail.google.com/mail/?view=cm&fs=1`, evitando `mailto:`/Outlook) visibles únicamente en estado `in_progress` (al pulsar «Tomar y atender» o «Reabrir seguimiento» la vista salta a *En seguimiento* con la ficha abierta); copiado rápido de correo/teléfono, tiempo transcurrido con alerta >24 h para `new` y cuenta regresiva de auto-archivado a 30 días en `resolved`.
 
 ## Auditoría y privacidad
 

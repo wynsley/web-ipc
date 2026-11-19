@@ -13,6 +13,7 @@ import { Title } from "../../atoms/titles";
 import { InquiryCard } from "../../molecules/admissions/inquiryCard";
 import { InquiryFiltersBar } from "../../molecules/admissions/inquiryFiltersBar";
 import { InquiryTabs } from "../../molecules/admissions/inquiryTabs";
+import { Pagination } from "../../molecules/pagination";
 import { StatusBanner } from "../../molecules/statusBanner";
 
 export function AdmissionsPanel({ admin }) {
@@ -205,32 +206,17 @@ export function AdmissionsPanel({ admin }) {
         </ul>
       )}
 
-      {(page > 1 || list?.hasMore) && (
-        <div className="mt-4 flex items-center gap-3">
-          {page > 1 && (
-            <Button
-              variant="secondary"
-              size="sm"
-              text="Anterior"
-              disabled={busy}
-              onClick={() => goToPage(page - 1)}
-            />
-          )}
-          <Paragraph
-            size="sm"
-            className="tabular-nums"
-            text={`Página ${page}`}
-          />
-          {list?.hasMore && (
-            <Button
-              variant="secondary"
-              size="sm"
-              text="Siguiente"
-              disabled={busy}
-              onClick={() => goToPage(page + 1)}
-            />
-          )}
-        </div>
+      {list && (
+        <Pagination
+          page={page}
+          totalPages={list.totalPages}
+          totalItems={list.total}
+          pageSize={list.pageSize}
+          disabled={busy}
+          onPageChange={goToPage}
+          itemLabel="consultas"
+          ariaLabel="Paginación de consultas"
+        />
       )}
     </section>
   );
