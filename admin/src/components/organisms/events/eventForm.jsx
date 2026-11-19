@@ -9,22 +9,38 @@ import { Title } from "../../atoms/titles";
 import { StatusBanner } from "../../molecules/statusBanner";
 import { createEvent, editEvent } from "../../../services/events";
 
-import { useDraftGuard } from "../../../context/unsavedChanges";
+import { useDraftGuard } from "../../../context/unsavedChangesContext";
 import {
   normalizeEventErrors,
   validateEventForm,
   focusEventError,
 } from "../../../helpers/eventFormErrors";
+import {
+  fromLimaInputValue,
+  toLimaInputValue,
+} from "../../../helpers/eventDates";
 
-const localTime = new Intl.DateTimeFormat("sv-SE", {
-  timeZone: "America/Lima",
-  year: "numeric",
-  month: "2-digit",
-  day: "2-digit",
-  hour: "2-digit",
-  minute: "2-digit",
-  hourCycle: "h23",
-});
+const TRACKED_FIELDS = [
+  "title",
+  "startsAt",
+  "endsAt",
+  "location",
+  "description",
+  "highlights",
+  "featured",
+];
+
+function buildFormSnapshot(form, currentImage) {
+  const fields = [...new FormData(form)].filter(([name]) =>
+    TRACKED_FIELDS.includes(name),
+  );
+  return JSON.stringify({
+    fields,
+    url: currentImage.url,
+    crop: currentImage.crop ?? { x: 50, y: 50, zoom: 1 },
+  });
+}
+
 export function EventForm({ event, inline = false, onSaved, onCancel }) {
   const [image, setImage] = useState({
     url: event?.imageUrl ?? "",
@@ -32,6 +48,7 @@ export function EventForm({ event, inline = false, onSaved, onCancel }) {
     crop: event?.imageCrop ?? { x: 50, y: 50, zoom: 1 },
   });
   const formRef = useRef(null);
+  const initialImageRef = useRef(image);
   const initialSnapshot = useRef(null);
   const [dirty, setDirty] = useState(false);
   const [fieldErrors, setFieldErrors] = useState({});
@@ -39,39 +56,23 @@ export function EventForm({ event, inline = false, onSaved, onCancel }) {
   const [error, setError] = useState("");
   const confirmExit = useDraftGuard(dirty, busy);
   function trackChanges(nextImage = image) {
-    const fields = [...new FormData(formRef.current)].filter(([name]) =>
-      [
-        "title",
-        "startsAt",
-        "endsAt",
-        "location",
-        "description",
-        "highlights",
-        "featured",
-      ].includes(name),
-    );
-    const snapshot = JSON.stringify({
-      fields,
-      url: nextImage.url,
-      crop: nextImage.crop ?? { x: 50, y: 50, zoom: 1 },
-    });
+    const snapshot = buildFormSnapshot(formRef.current, nextImage);
     initialSnapshot.current ??= snapshot;
     setDirty(Boolean(nextImage.file) || snapshot !== initialSnapshot.current);
   }
   useEffect(() => {
-    trackChanges();
+    initialSnapshot.current ??= buildFormSnapshot(
+      formRef.current,
+      initialImageRef.current,
+    );
     formRef.current?.scrollIntoView?.({ behavior: "smooth", block: "nearest" });
   }, []);
   useEffect(() => {
     if (!busy && (error || Object.keys(fieldErrors).length))
       focusEventError(formRef.current, fieldErrors);
   }, [fieldErrors, error, busy]);
-  const originalTime = event
-    ? localTime.format(new Date(event.startsAt)).replace(" ", "T")
-    : "";
-  const originalEnd = event?.endsAt
-    ? localTime.format(new Date(event.endsAt)).replace(" ", "T")
-    : "";
+  const originalTime = toLimaInputValue(event?.startsAt);
+  const originalEnd = toLimaInputValue(event?.endsAt);
   async function submit(e) {
     e.preventDefault();
     if (busy) return;
@@ -100,15 +101,12 @@ export function EventForm({ event, inline = false, onSaved, onCancel }) {
       .split("\n")
       .map((line) => line.trim())
       .filter(Boolean);
-    data.startsAt =
-      event && originalTime === data.startsAt
-        ? event.startsAt
-        : data.startsAt + ":00-05:00";
-    data.endsAt = data.endsAt
-      ? event && originalEnd === data.endsAt
-        ? event.endsAt
-        : data.endsAt + ":00-05:00"
-      : null;
+    data.startsAt = fromLimaInputValue(
+      data.startsAt,
+      originalTime,
+      event?.startsAt,
+    );
+    data.endsAt = fromLimaInputValue(data.endsAt, originalEnd, event?.endsAt);
     setBusy(true);
     setError("");
     try {
@@ -133,18 +131,7 @@ export function EventForm({ event, inline = false, onSaved, onCancel }) {
       noValidate
       aria-busy={busy}
       onChange={(event) => {
-        if (
-          [
-            "title",
-            "startsAt",
-            "endsAt",
-            "location",
-            "description",
-            "highlights",
-            "featured",
-          ].includes(event.target.name)
-        )
-          trackChanges();
+        if (TRACKED_FIELDS.includes(event.target.name)) trackChanges();
       }}
       onSubmit={submit}
       className={

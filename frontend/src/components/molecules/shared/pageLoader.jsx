@@ -1,4 +1,5 @@
 import { AnimatePresence, motion as Motion } from "motion/react";
+import { Image } from "@/components/atoms/image";
 import { usePageLoader } from "@/hooks/globals/usePageLoader";
 import { RunnerAvatar } from "./runnerAvatar";
 
@@ -73,13 +74,15 @@ function PageLoader(options) {
           >
             {/* Logo + capas: aquí las posiciones en % se miden solo contra el logo */}
             <div className="relative">
-              <img
+              <Image
+                transparent
                 src={LOGO_SRC}
                 alt="IPC Instituto Privado Celendín"
-                width={1437}
-                height={693}
+                loading="eager"
+                fetchPriority="high"
                 draggable={false}
-                className="block h-auto w-full select-none"
+                className="aspect-[1437/693] w-full select-none"
+                imageClassName="object-contain"
               />
 
               {/* Relleno de progreso sobre la línea naranja del logo */}

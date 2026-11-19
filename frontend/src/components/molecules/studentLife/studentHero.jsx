@@ -1,3 +1,4 @@
+import { Image } from "@/components/atoms/image"
 import { ScrollReveal } from "@/components/layouts/scrollReveal"
 
 const START = 0.15
@@ -31,24 +32,23 @@ function StudentHero({ heroImg }) {
         className="absolute bottom-0 left-0 h-px w-full bg-gradient-to-r from-transparent via-sky to-transparent"
       />
 
-      {heroImg && (
-        <ScrollReveal
-          y={60}
-          delay={at(2)}
-          duration={1}
-          className="absolute inset-0"
-        >
-          <img
-            src={heroImg}
-            alt="Estudiante del Instituto Privado Celendín"
-            width="1600"
-            height="1800"
-            fetchPriority="high"
-            decoding="async"
-            className="absolute inset-x-0 bottom-0 mx-auto h-full w-auto max-w-none object-contain object-bottom [mask-image:linear-gradient(to_bottom,black_80%,transparent)]"
-          />
-        </ScrollReveal>
-      )}
+      <ScrollReveal
+        y={60}
+        delay={at(2)}
+        duration={1}
+        className="absolute inset-0"
+      >
+        <Image
+          fill
+          transparent
+          src={heroImg}
+          alt="Estudiante del Instituto Privado Celendín"
+          loading="eager"
+          fetchPriority="high"
+          decoding="async"
+          imageClassName="object-contain object-bottom [mask-image:linear-gradient(to_bottom,black_80%,transparent)]"
+        />
+      </ScrollReveal>
 
       <ScrollReveal
         y={30}

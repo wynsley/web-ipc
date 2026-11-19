@@ -71,13 +71,18 @@ function EventsShowcase({ publishedEvents, now, clockOffset = 0, onOpenCalendar 
                 exit="exit"
                 transition={{ duration: 0.35, ease: SLIDE_EASE }}
               >
-                <div className="flex items-center gap-2">
+                <div className="flex flex-wrap items-center gap-2">
                   <span className="flex h-12 w-12 items-center justify-center rounded-full bg-blue/40 font-poppins text-2xl font-extrabold text-white">
                     {order}
                   </span>
                   <span className="font-euro text-xl font-extrabold text-blue">
                     {formatEventDate(event.date)}
                   </span>
+                  {event.scheduleNotice && (
+                    <span className="rounded-full border border-orange/35 bg-orange/15 px-2.5 py-0.5 font-poppins text-xs font-semibold text-orange">
+                      Horario actualizado
+                    </span>
+                  )}
                 </div>
 
                 <div className="mt-2">

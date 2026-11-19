@@ -24,6 +24,13 @@ function page(c) {
   if (!result.success) throw new AppError(422, "INVALID_PAGE", "Página inválida.");
   return result.data;
 }
+function scope(c) {
+  const result = z
+    .enum(["all", "published", "drafts", "past"])
+    .safeParse(c.req.query("scope") ?? "all");
+  if (!result.success) throw new AppError(422, "INVALID_SCOPE", "Filtro de eventos inválido.");
+  return result.data;
+}
 export function createPublicEventRoutes(events) {
   const routes = new Hono();
   routes.get("/", noStore, async (c) => c.json({ data: await events.list(page(c), true) }));
@@ -48,7 +55,7 @@ export function createAdminEventRoutes(events, auth, config) {
     if (!z.uuid().safeParse(c.req.param("id")).success) throw missingEvent();
     await next();
   });
-  routes.get("/", async (c) => c.json({ data: await events.list(page(c), false) }));
+  routes.get("/", async (c) => c.json({ data: await events.list(page(c), false, scope(c)) }));
   routes.get("/:id/history", async (c) =>
     c.json({ data: await events.history(c.req.param("id"), page(c)) }),
   );
@@ -113,5 +120,10 @@ export function createAdminEventRoutes(events, auth, config) {
       });
     });
   }
+  routes.delete("/:id", requireCsrf, async (c) => {
+    const { version } = await readInput(c, versionInput);
+    await events.remove(c.get("actor"), c.get("requestId"), c.req.param("id"), version);
+    return c.body(null, 204);
+  });
   return routes;
 }

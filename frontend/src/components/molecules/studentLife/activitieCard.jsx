@@ -1,3 +1,4 @@
+import { Image } from "@/components/atoms/image"
 import { Paragraph } from "@/components/atoms/paragraph"
 import { Title } from "@/components/atoms/titles"
 
@@ -10,24 +11,14 @@ function ActivityCard({ title, description, image, alt }) {
       />
 
       <div className="relative aspect-[4/5] overflow-hidden bg-blue-deep shadow-xl shadow-blue-deep/30">
-        {image ? (
-          <img
-            src={image}
-            alt={alt}
-            width="1200"
-            height="1500"
-            loading="lazy"
-            decoding="async"
-            draggable={false}
-            className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out group-hover:-rotate-[30deg] group-hover:scale-150"
-          />
-        ) : (
-          // Placeholder mientras no hay imagen
-          <div
-            aria-hidden="true"
-            className="absolute inset-0 bg-gradient-to-br from-blue-deep via-blue to-sky/60 transition-transform duration-700 ease-out group-hover:-rotate-[30deg] group-hover:scale-150"
-          />
-        )}
+        <Image
+          fill
+          src={image}
+          alt={alt}
+          decoding="async"
+          draggable={false}
+          imageClassName="object-cover transition-transform duration-700 ease-out group-hover:-rotate-[30deg] group-hover:scale-150"
+        />
 
         <div
           aria-hidden="true"

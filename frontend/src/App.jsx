@@ -38,6 +38,7 @@ const LanguageTranslationPage = lazyPage(
   () => import("@/components/pages/careers/languageTranslation/languageTranslationPage"),
   "LanguageTranslationPage",
 )
+const NotFoundPage = lazyPage(() => import("./components/pages/notFoundPage"), "NotFoundPage")
 
 function App() {
 
@@ -56,6 +57,7 @@ function App() {
     { path: '/career/accounting', element: <AccountingPage /> },
     { path: '/career/computer-science', element: <ComputerSciencePage /> },
     { path: '/career/language-translation', element: <LanguageTranslationPage /> },
+    { path: '*', element: <NotFoundPage /> },
   ]
 
   return (

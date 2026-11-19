@@ -1,5 +1,6 @@
 import { assertEventDates, eventConflict, scheduleChanges } from "./eventSchedulePolicy.js";
 import { recordScheduleChange } from "./eventChangeRepository.js";
+import { adminEventScope, defaultEventOrder } from "./eventFilters.js";
 import { AppError } from "../../middleware/errors.js";
 import { recordAudit } from "../audit/auditRepository.js";
 import { isSessionActive, unauthorized } from "../auth/sessionPolicy.js";
@@ -20,7 +21,6 @@ const visible = {
   highlights: true,
   featured: true,
 };
-const orderBy = [{ startsAt: "asc" }, { id: "asc" }];
 const pageSize = 20;
 export const canManageEvents = (role) => role === "events" || role === "admin";
 export const missingEvent = () => new AppError(404, "EVENT_NOT_FOUND", "Evento no encontrado.");
@@ -53,18 +53,45 @@ export function createEventRepository(db) {
     });
   }
   return {
-    async list(page, publicOnly) {
-      const rows = await db.event.findMany({
-        where: publicOnly ? { published: true } : {},
-        select: publicOnly ? visible : { ...visible, published: true, version: true },
-        orderBy,
-        skip: (page - 1) * pageSize,
-        take: pageSize + 1,
-      });
+    async list(page, publicOnly, scope = "all") {
+      const now = new Date();
+      if (publicOnly) {
+        const rows = await db.event.findMany({
+          where: { published: true },
+          select: visible,
+          orderBy: defaultEventOrder,
+          skip: (page - 1) * pageSize,
+          take: pageSize + 1,
+        });
+        return {
+          events: rows.slice(0, pageSize),
+          hasMore: rows.length > pageSize,
+          serverTime: now.toISOString(),
+        };
+      }
+      const { where, orderBy, active, drafts, past } = adminEventScope(scope, now);
+      const [rows, publishedCount, draftsCount, pastCount] = await Promise.all([
+        db.event.findMany({
+          where,
+          select: { ...visible, published: true, version: true },
+          orderBy,
+          skip: (page - 1) * pageSize,
+          take: pageSize + 1,
+        }),
+        db.event.count({ where: active }),
+        db.event.count({ where: drafts }),
+        db.event.count({ where: past }),
+      ]);
       return {
         events: rows.slice(0, pageSize),
         hasMore: rows.length > pageSize,
-        serverTime: new Date().toISOString(),
+        serverTime: now.toISOString(),
+        counts: {
+          published: publishedCount,
+          drafts: draftsCount,
+          past: pastCount,
+          all: publishedCount + draftsCount + pastCount,
+        },
       };
     },
     async history(id, page) {
@@ -134,6 +161,16 @@ export function createEventRepository(db) {
           "EVENT_CONFLICT",
           "El evento cambió o su estado impide esta acción. Actualiza la lista.",
         );
+      });
+    },
+    remove(actor, requestId, id, version) {
+      return write(actor, requestId, "event.deleted", async (tx) => {
+        await tx.$queryRaw`SELECT id FROM events WHERE id = ${id}::uuid FOR UPDATE`;
+        const current = await tx.event.findUnique({ where: { id } });
+        if (!current) throw missingEvent();
+        if (current.published || current.version !== version) throw eventConflict();
+        await tx.event.delete({ where: { id } });
+        return current;
       });
     },
   };

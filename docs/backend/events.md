@@ -38,12 +38,13 @@ La primera entrega conecta la sección Eventos del panel con la agenda de `/even
 | Método y ruta | Comportamiento |
 | --- | --- |
 | GET /api/v1/events?page=1 | Público. Devuelve data.events y data.hasMore. Cada fila contiene id, title, description, location, startsAt, imageUrl y highlights. |
-| GET /api/v1/admin/events?page=1 | Lista de gestión con published y version. |
+| GET /api/v1/admin/events?page=1&scope=all | Lista de gestión con published, version y counts (`published`, `drafts`, `past`, `all`). `scope` admite `all`, `published`, `drafts` o `past`. |
 | GET /api/v1/admin/events/:id | Detalle administrativo. |
 | POST /api/v1/admin/events | Recibe title, description, location y startsAt. Crea un borrador y devuelve 201 con data. |
 | PATCH /api/v1/admin/events/:id | Recibe version y los campos modificados. Edita un borrador. |
 | POST /api/v1/admin/events/:id/publish | Recibe version. Hace visible el borrador. |
-| POST /api/v1/admin/events/:id/unpublish | Recibe version. Retira el evento y permite volver a editarlo. |
+| POST /api/v1/admin/events/:id/unpublish | Recibe version. Retira el evento y permite volver a editarlo o eliminarlo. |
+| DELETE /api/v1/admin/events/:id | Recibe version. Elimina definitivamente un borrador (`published: false`), responde 204 y registra `event.deleted` en auditoría. Rechaza eventos publicados con 409. |
 
 Las listas devuelven hasta 20 eventos ordenados por inicio e identificador. Los cambios se consultan automáticamente según la política descrita arriba. Las rutas de gestión requieren un JWT con rol admin o events. Las escrituras requieren además las cabeceras del cliente, CSRF y cuerpo JSON. El backend responde 409 ante una versión obsoleta o una transición incompatible. Cada cambio y su registro de auditoría se confirman en la misma transacción.
 
@@ -71,4 +72,4 @@ POST /api/v1/admin/events/:id/reschedule recibe version, reason (5–500 caracte
 
 GET /api/v1/admin/events/:id/history?page=1 devuelve data.changes y data.hasMore (20 por página), con action, reason, before, after, actorId, actorName y createdAt. Requiere autorización administrativa; nombres y detalles de historial no se incluyen en la colección pública. Los conflictos de versión/transición devuelven 409. Historial y auditoría se confirman dentro de la transacción del cambio. Las fechas de borradores editadas por PATCH también dejan registro en el historial privado sin generar aviso público (`scheduleNotice`).
 
-Los visitantes ven el aviso y la nueva fecha en la siguiente actualización periódica. Una copia .ics o un evento añadido a Google no se sincronizan automáticamente: la interfaz y la descripción exportada lo indican. Los eventos cancelados/pospuestos se excluyen de las exportaciones.
+Los visitantes ven el aviso y la nueva fecha en la siguiente actualización periódica, presentados en una franja compacta con navegación 1-a-1 y modal «Ver todos». Para evitar acumulación indefinida en la web pública, los avisos de eventos reprogramados se ocultan al terminar el evento, los cancelados permanecen visibles 24 horas tras su finalización programada y los pospuestos hasta 7 días tras su fecha original (el registro sigue gestionable en el panel). Una copia .ics o un evento añadido a Google no se sincronizan automáticamente: la interfaz y la descripción exportada lo indican. Los eventos cancelados/pospuestos se excluyen de las exportaciones.

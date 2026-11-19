@@ -1,3 +1,4 @@
+import { Image } from "@/components/atoms/image"
 import { ScrollReveal } from "../../layouts/scrollReveal"
 import graduateCap from "@assets/images/graduates/cap.webp"
 
@@ -22,10 +23,12 @@ function AlumniCap() {
           aria-hidden="true"
         />
 
-        <img
+        <Image
+          transparent
           src={graduateCap}
-          alt="Birrete institucional"
-          className="relative w-full drop-shadow-lg"
+          alt=""
+          className="aspect-square w-full"
+          imageClassName="object-contain drop-shadow-lg"
         />
       </ScrollReveal>
     </div>

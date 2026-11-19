@@ -1,7 +1,7 @@
 import { Title } from "@/components/atoms/titles";
 import { HeroPerson } from "@/components/molecules/aboutUs/heroPerson";
 import { BrandedHeroFrame } from "@/components/molecules/shared/brandedHeroFrame";
-import personImage from "@assets/images/aboutUs/about-hero-person.png";
+import personImage from "@assets/images/aboutUs/about-hero-person.webp";
 import { staggerContainer } from "@/components/animations/animation";
 import { motion as Motion } from "motion/react";
 

@@ -3,7 +3,7 @@ import { AdmissionsHeroContent } from "@/components/molecules/admissions/admissi
 import { services } from "@/data/ServicesAcademic";
 
 import { PriceSummaryCard } from "@/components/molecules/shared/priceSummaryCard";
-import admissionsImage from "@assets/images/admissions/admissions-classroom-teacher.png";
+import admissionsImage from "@assets/images/admissions/admissions-classroom-teacher.webp";
 
 function AdmissionsHero({ onRegister }) {
   return (

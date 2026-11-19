@@ -1,3 +1,5 @@
+import { Image } from "@/components/atoms/image";
+
 function GraduateCard ({ name, description, year, photo, isHovered, onMouseEnter, onMouseLeave }) {
   return (
     <div
@@ -10,11 +12,12 @@ function GraduateCard ({ name, description, year, photo, isHovered, onMouseEnter
       `}
     >
       <div className="relative h-48 sm:h-52 md:h-56 w-full overflow-hidden">
-        <img
+        <Image
+          fill
           src={photo}
           alt={name}
           draggable={false}
-          className="h-full w-full object-cover select-none"
+          imageClassName="object-cover select-none"
         />
       </div>
 

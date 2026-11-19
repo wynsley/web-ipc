@@ -1,3 +1,15 @@
+## Avisos compactos y expiración automática en `/events` — 18 de noviembre de 2026
+
+`EventNotices` reemplaza la lista apilada por una franja institucional compacta de altura constante con navegación 1-a-1 y modal filtrable `EventNoticesModal`, acompañada de la insignia «Horario actualizado» en `EventsShowcase`. Los avisos públicos expiran automáticamente según su estado (reprogramados al terminar el evento, cancelados a las 24 h de la hora de fin programada y pospuestos a los 7 días de la fecha original), conservando sus registros en el panel. Verificados 9/9 pruebas del frontend, ESLint con 0 errores y build correcto.
+
+## Optimización WebP, convención Image, 404, ESLint admin y modularización — 18 de noviembre de 2026
+
+Convertidos los 8 PNG grandes activos del sitio público a WebP (conservando transparencia en las 3 siluetas de portada: `13.87 MB → 0.79 MB`, -94.3%). Migradas las 15 etiquetas `<img>` directas pendientes al átomo compartido `Image` (`frontend/src/components/atoms/image.jsx`), añadida la ruta comodín 404 (`NotFoundPage`) en `App.jsx` y corregido el espacio inicial en `data/home/agreements.js`. Configurado ESLint en `admin/` (`0` errores en todo el monorepo), modularizado `eventsPanel.jsx` (`useEventsManager`, `EventCard`, `eventDates.js`) y `eventFilters.js` en backend, actualizado `.gitignore` (retirando `admin/dist/` de Git) y `backend/.prettierignore`. Detalle y verificaciones en [BACKEND_ADMIN.md](BACKEND_ADMIN.md).
+
+## Pestañas y borrado de borradores en Eventos — 18 de noviembre de 2026
+
+El panel de Eventos ahora separa **Publicados**, **Borradores**, **Finalizados** y **Todos** con filtrado en servidor (`GET /api/v1/admin/events?scope=...`) y contadores por pestaña. Además, los roles `admin` y `events` pueden eliminar definitivamente borradores (`DELETE /api/v1/admin/events/:id` con `version`, CSRF y confirmación en línea); los eventos publicados o finalizados requieren retirarse primero a borrador. Detalle en [BACKEND_ADMIN.md](BACKEND_ADMIN.md) y [Contrato de Eventos](backend/events.md).
+
 ## Estabilización de eventos, lint y carga inicial — 18 de noviembre de 2026
 
 Corregido el bucle de re-descargas de imágenes en `/events` (temporizador por hitos de inicio/cierre en `usePublishedEvents`, precarga deduplicada en `useCarousel`, reloj sincronizado con el servidor en `EventsShowcase`/`useCountdown`, y revalidación `ETag`/`304` para medios publicados). Corregidos además el falso aviso público al editar fechas en borrador y el límite de intentos compartido entre subidas de imágenes y login. Resueltos los 14 errores de ESLint en `frontend` (`0` errores) y aplicado *code-splitting* por ruta y carga diferida de `PdfViewerModal`, reduciendo el bundle JS inicial de 1,542 kB a 550 kB (174.7 kB gzip). Verificados 64 pruebas del backend, 5+3 pruebas del frontend, ESLint en ambos paquetes y compilación pública. Detalle en [BACKEND_ADMIN.md](BACKEND_ADMIN.md).

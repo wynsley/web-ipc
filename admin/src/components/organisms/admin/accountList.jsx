@@ -10,52 +10,65 @@ import { AccountItem } from "../../molecules/admin/accountItem";
 import { StatusBanner } from "../../molecules/statusBanner";
 
 export function AccountList({ revision }) {
-  const [accounts, setAccounts] = useState(null);
-  const [error, setError] = useState("");
+  const [attempt, setAttempt] = useState(0);
+  const requestKey = `${revision}:${attempt}`;
+  const [fetched, setFetched] = useState({
+    key: "",
+    accounts: null,
+    error: "",
+  });
+  const [actionError, setActionError] = useState("");
   const [feedback, setFeedback] = useState("");
   const [confirmingId, setConfirmingId] = useState(null);
   const [submittingId, setSubmittingId] = useState(null);
-  const [attempt, setAttempt] = useState(0);
 
   useEffect(() => {
     let active = true;
-    setError("");
-    setAccounts(null);
     listAccounts()
       .then(({ accounts: loaded }) => {
-        if (active) setAccounts(loaded);
+        if (active) setFetched({ key: requestKey, accounts: loaded, error: "" });
       })
       .catch((failure) => {
-        if (active) setError(failure.message);
+        if (active)
+          setFetched({
+            key: requestKey,
+            accounts: null,
+            error: failure.message,
+          });
       });
     return () => {
       active = false;
     };
-  }, [revision, attempt]);
+  }, [requestKey]);
+
+  const accounts = fetched.key === requestKey ? fetched.accounts : null;
+  const error =
+    actionError || (fetched.key === requestKey ? fetched.error : "");
 
   const activeAdminCount = (accounts || []).filter(
     (item) => item.role === "admin" && item.isActive,
   ).length;
 
   async function handleConfirmDeactivate(target) {
-    setError("");
+    setActionError("");
     setFeedback("");
     setSubmittingId(target.id);
     try {
       const { admin: updated } = await deactivateAccount(target.id);
-      setAccounts((current) =>
-        (current || []).map((item) =>
+      setFetched((current) => ({
+        ...current,
+        accounts: (current.accounts || []).map((item) =>
           item.id === updated.id
             ? { ...item, ...updated, deactivated: true }
             : item,
         ),
-      );
+      }));
       setConfirmingId(null);
       setFeedback(
         `Cuenta de ${target.name} (${target.email}) desactivada. Sus sesiones activas fueron revocadas.`,
       );
     } catch (failure) {
-      setError(failure.message);
+      setActionError(failure.message);
     } finally {
       setSubmittingId(null);
     }
@@ -70,6 +83,7 @@ export function AccountList({ revision }) {
           disabled={!accounts && !error}
           text="Actualizar listado"
           onClick={() => {
+            setActionError("");
             setFeedback("");
             setConfirmingId(null);
             setAttempt((value) => value + 1);
@@ -114,7 +128,7 @@ export function AccountList({ revision }) {
               confirming={confirmingId === account.id}
               submitting={submittingId === account.id}
               onStartConfirm={(id) => {
-                setError("");
+                setActionError("");
                 setFeedback("");
                 setConfirmingId(id);
               }}

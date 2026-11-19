@@ -1,5 +1,5 @@
 import computingLabBackgroundImage from "@assets/images/careers/computerScience/computing-lab-background.webp";
-import computingStudentImage from "@assets/images/careers/computerScience/computing-student.png";
+import computingStudentImage from "@assets/images/careers/computerScience/computing-student.webp";
 const computerScienceHero = {
   eyebrow: "Tu futuro empieza aquí",
   tagline: {

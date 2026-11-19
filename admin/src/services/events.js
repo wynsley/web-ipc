@@ -21,7 +21,8 @@ function request(path, method = "GET", data, status = 200) {
     ),
   );
 }
-export const listEvents = (page) => request("?page=" + page);
+export const listEvents = (page, scope = "all") =>
+  request("?page=" + page + "&scope=" + encodeURIComponent(scope));
 export const createEvent = (input) => request("", "POST", input, 201);
 export const editEvent = (event, input) =>
   request("/" + event.id, "PATCH", { ...input, version: event.version });
@@ -31,6 +32,8 @@ export const setPublication = (event) =>
     "POST",
     { version: event.version },
   );
+export const deleteEvent = (event) =>
+  request("/" + event.id, "DELETE", { version: event.version }, 204);
 
 export const changeEventSchedule = (event, action, input) =>
   request("/" + event.id + "/" + action, "POST", {

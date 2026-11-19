@@ -1,4 +1,5 @@
 import { FaWhatsapp } from "react-icons/fa"
+import { Image } from "@/components/atoms/image"
 
 function SocialFloatings() {
   return (
@@ -20,10 +21,13 @@ function SocialFloatings() {
           hover:scale-110
         "
       >
-        <img
+        <Image
+          transparent
           src="/LOGO_Q10.webp"
           alt="Q10"
-          className="w-10 h-10 sm:w-11 sm:h-11 rounded-full"
+          loading="eager"
+          className="h-10 w-10 rounded-full sm:h-11 sm:w-11"
+          imageClassName="object-contain"
         />
 
         <span

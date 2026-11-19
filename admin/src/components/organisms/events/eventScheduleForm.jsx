@@ -5,22 +5,17 @@ import { StatusBanner } from "../../molecules/statusBanner";
 import { Button } from "../../atoms/button";
 import { Title } from "../../atoms/titles";
 import { Paragraph } from "../../atoms/paragraph";
-import { useDraftGuard } from "../../../context/unsavedChanges";
+import { useDraftGuard } from "../../../context/unsavedChangesContext";
+import {
+  fromLimaInputValue,
+  toLimaInputValue,
+} from "../../../helpers/eventDates";
 import { changeEventSchedule } from "../../../services/events";
 const labels = {
   reschedule: "Reprogramar evento",
   postpone: "Posponer evento",
   cancel: "Cancelar evento",
 };
-const time = new Intl.DateTimeFormat("sv-SE", {
-  timeZone: "America/Lima",
-  year: "numeric",
-  month: "2-digit",
-  day: "2-digit",
-  hour: "2-digit",
-  minute: "2-digit",
-  hourCycle: "h23",
-});
 export function EventScheduleForm({
   event,
   action,
@@ -36,10 +31,8 @@ export function EventScheduleForm({
   useEffect(() => {
     formRef.current?.scrollIntoView?.({ behavior: "smooth", block: "nearest" });
   }, []);
-  const start = time.format(new Date(event.startsAt)).replace(" ", "T");
-  const end = event.endsAt
-    ? time.format(new Date(event.endsAt)).replace(" ", "T")
-    : "";
+  const start = toLimaInputValue(event.startsAt);
+  const end = toLimaInputValue(event.endsAt);
   async function submit(e) {
     e.preventDefault();
     if (busy) return;
@@ -47,14 +40,16 @@ export function EventScheduleForm({
     const fields = new FormData(form);
     const input = { reason: fields.get("reason").trim() };
     if (action === "reschedule") {
-      input.startsAt =
-        fields.get("startsAt") === start
-          ? event.startsAt
-          : fields.get("startsAt") + ":00-05:00";
-      input.endsAt =
-        fields.get("endsAt") === end
-          ? event.endsAt
-          : fields.get("endsAt") + ":00-05:00";
+      input.startsAt = fromLimaInputValue(
+        fields.get("startsAt"),
+        start,
+        event.startsAt,
+      );
+      input.endsAt = fromLimaInputValue(
+        fields.get("endsAt"),
+        end,
+        event.endsAt,
+      );
       if (Date.parse(input.endsAt) <= Date.parse(input.startsAt)) {
         setError("La finalización debe ser posterior al inicio.");
         form.elements.namedItem("endsAt").focus();

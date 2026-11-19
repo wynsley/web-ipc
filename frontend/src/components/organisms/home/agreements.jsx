@@ -1,7 +1,7 @@
 import { Title } from "../../atoms/titles"
 import { ContinuousCarousel } from "../../molecules/shared/continuousCarousel"
 import { ConvCard } from "../../molecules/home/convCard"
-import { agreements } from "../../../data/home/ agreements"
+import { agreements } from "../../../data/home/agreements"
 
 function Agreements() {
   return (

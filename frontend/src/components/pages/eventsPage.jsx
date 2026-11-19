@@ -5,7 +5,10 @@ import { HeroEvents } from "../organisms/events/heroEvents";
 import { EventsShowcase } from "../organisms/events/eventsShowcase";
 import { FeatureEvents } from "../organisms/events/featureEvents";
 import { useModal } from "@/hooks/modal/useModal";
-import { partitionEvents } from "@/helpers/eventLifecycle";
+import {
+  partitionEvents,
+  visibleEventNotices,
+} from "@/helpers/eventLifecycle";
 import { usePublishedEvents } from "@/hooks/events/usePublishedEvents";
 import { EventsCalendarModal } from "../modals/eventsCalendarModal";
 import { EventsGallery } from "../organisms/events/eventsGallery";
@@ -15,7 +18,7 @@ import { Paragraph } from "../atoms/paragraph";
 function EventsPage() {
   const { events, now, clockOffset, failed, retry } = usePublishedEvents();
   const { isOpen, openModal, closeModal } = useModal();
-  const { active, past, exceptions } = useMemo(
+  const { active, past } = useMemo(
     () => partitionEvents(events, now),
     [events, now],
   );
@@ -24,11 +27,8 @@ function EventsPage() {
     [active],
   );
   const noticeEvents = useMemo(
-    () => [
-      ...exceptions,
-      ...active.filter((event) => event.scheduleNotice),
-    ],
-    [exceptions, active],
+    () => visibleEventNotices(events, now),
+    [events, now],
   );
   const calendarEvents = useMemo(() => [...active, ...past], [active, past]);
   const [calendarEventId, setCalendarEventId] = useState(null);

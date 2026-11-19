@@ -7,16 +7,9 @@ import { Paragraph } from "../../atoms/paragraph";
 
 export function RecoveryCodes({ codes, onSaved, confirmText = "Ya guardé los códigos. Abrir escritorio" }) {
   const [copied, setCopied] = useState(false);
-  const [downloadUrl, setDownloadUrl] = useState("");
-
-  useEffect(() => {
-    const file = new Blob([codes.join("\n") + "\n"], {
-      type: "text/plain;charset=utf-8",
-    });
-    const url = URL.createObjectURL(file);
-    setDownloadUrl(url);
-    return () => URL.revokeObjectURL(url);
-  }, [codes]);
+  const downloadUrl =
+    "data:text/plain;charset=utf-8," +
+    encodeURIComponent(codes.join("\n") + "\n");
 
   useEffect(() => {
     const warn = (event) => {

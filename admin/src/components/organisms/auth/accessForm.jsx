@@ -14,7 +14,13 @@ export function AccessForm({ onAuthenticated, initialNotice }) {
   const [activating, setActivating] = useState(false);
   const [challenge, setChallenge] = useState(null);
   const [verified, setVerified] = useState(null);
-  const [notice, setNotice] = useState(initialNotice);
+  const [localNotice, setLocalNotice] = useState(null);
+  const notice =
+    localNotice?.base === initialNotice ? localNotice.text : initialNotice;
+  const setNotice = useCallback(
+    (text) => setLocalNotice({ base: initialNotice, text }),
+    [initialNotice],
+  );
   const heading = useRef(null);
   useEffect(() => {
     if (!verified) return;
@@ -26,15 +32,15 @@ export function AccessForm({ onAuthenticated, initialNotice }) {
     };
     window.addEventListener("storage", cancel);
     return () => window.removeEventListener("storage", cancel);
-  }, [verified]);
-  useEffect(() => {
-    setNotice(initialNotice);
-  }, [initialNotice]);
-  const back = useCallback((message) => {
-    setActivating(false);
-    setChallenge(null);
-    setNotice(message);
-  }, []);
+  }, [verified, setNotice]);
+  const back = useCallback(
+    (message) => {
+      setActivating(false);
+      setChallenge(null);
+      setNotice(message);
+    },
+    [setNotice],
+  );
   function accept(result) {
     setChallenge(null);
     if (result.recoveryCodes) {

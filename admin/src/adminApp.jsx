@@ -11,7 +11,7 @@ import { WAITING_NOTICE } from "./services/session/recoveryPending";
 import { Button } from "./components/atoms/button";
 import { Paragraph } from "./components/atoms/paragraph";
 
-import { useUnsavedChanges } from "./context/unsavedChanges";
+import { useUnsavedChanges } from "./context/unsavedChangesContext";
 
 export function AdminApp() {
   const { confirmExit } = useUnsavedChanges();

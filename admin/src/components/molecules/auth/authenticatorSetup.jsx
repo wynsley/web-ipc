@@ -5,27 +5,28 @@ import { Code } from "../../atoms/code";
 import { Paragraph } from "../../atoms/paragraph";
 
 export function AuthenticatorSetup({ provisioningUri, secret }) {
-  const [source, setSource] = useState(null);
-  const [failed, setFailed] = useState(false);
+  const [result, setResult] = useState({ uri: "", source: null, failed: false });
+  const validUri = Boolean(provisioningUri?.startsWith("otpauth://totp/"));
 
   useEffect(() => {
+    if (!validUri) return;
     let active = true;
-    if (!provisioningUri?.startsWith("otpauth://totp/")) {
-      setFailed(true);
-      return;
-    }
     renderQrWithLogo(provisioningUri).then(
       (url) => {
-        if (active) setSource(url);
+        if (active) setResult({ uri: provisioningUri, source: url, failed: false });
       },
       () => {
-        if (active) setFailed(true);
+        if (active) setResult({ uri: provisioningUri, source: null, failed: true });
       },
     );
     return () => {
       active = false;
     };
-  }, [provisioningUri]);
+  }, [provisioningUri, validUri]);
+
+  const isCurrent = result.uri === provisioningUri;
+  const failed = !validUri || (isCurrent && result.failed);
+  const source = isCurrent ? result.source : null;
 
   return (
     <>
@@ -42,7 +43,9 @@ export function AuthenticatorSetup({ provisioningUri, secret }) {
           alt="QR para configurar el autenticador de IPC"
           className="aspect-square w-[min(100%,220px)] rounded-lg bg-blue-dark"
           loading="eager"
-          onError={() => setFailed(true)}
+          onError={() =>
+            setResult({ uri: provisioningUri, source: null, failed: true })
+          }
         />
       </div>
       <details open={failed || undefined} className="rounded-lg border border-line bg-soft p-3">

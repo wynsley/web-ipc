@@ -1,13 +1,7 @@
-import {
-  createContext,
-  useCallback,
-  useContext,
-  useEffect,
-  useState,
-} from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useBlocker } from "react-router-dom";
+import { UnsavedChangesContext } from "./unsavedChangesContext";
 
-const UnsavedChangesContext = createContext(null);
 export function UnsavedChangesProvider({ children }) {
   const [guard, setGuard] = useState({ dirty: false, busy: false });
   const confirmExit = useCallback(() => {
@@ -41,13 +35,4 @@ export function UnsavedChangesProvider({ children }) {
       {children}
     </UnsavedChangesContext.Provider>
   );
-}
-export const useUnsavedChanges = () => useContext(UnsavedChangesContext);
-export function useDraftGuard(dirty, busy) {
-  const { setGuard, confirmExit } = useUnsavedChanges();
-  useEffect(() => {
-    setGuard({ dirty, busy });
-    return () => setGuard({ dirty: false, busy: false });
-  }, [dirty, busy, setGuard]);
-  return confirmExit;
 }

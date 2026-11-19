@@ -1,15 +1,14 @@
 import { useEffect, useRef, useState } from "react";
+import {
+  formatLimaDateTime,
+  formatLimaRange,
+} from "../../../helpers/eventDates";
 import { getEventHistory } from "../../../services/events";
 import { Badge } from "../../atoms/badge";
 import { Button } from "../../atoms/button";
 import { Paragraph } from "../../atoms/paragraph";
 import { Title } from "../../atoms/titles";
 import { StatusBanner } from "../../molecules/statusBanner";
-const date = new Intl.DateTimeFormat("es-PE", {
-  dateStyle: "medium",
-  timeStyle: "short",
-  timeZone: "America/Lima",
-});
 const labels = {
   scheduled: "Programado",
   postponed: "Pospuesto",
@@ -20,10 +19,7 @@ const labels = {
   draft_dates: "Corrección del borrador",
 };
 const summary = (value) =>
-  labels[value.status] +
-  " · " +
-  date.format(new Date(value.startsAt)) +
-  (value.endsAt ? " → " + date.format(new Date(value.endsAt)) : "");
+  labels[value.status] + " · " + formatLimaRange(value.startsAt, value.endsAt);
 export function EventHistory({ event, inline = false, onClose }) {
   const sectionRef = useRef(null);
   const [page, setPage] = useState(1);
@@ -92,7 +88,7 @@ export function EventHistory({ event, inline = false, onClose }) {
                 <Paragraph
                   size="small"
                   className="tabular-nums"
-                  text={date.format(new Date(change.createdAt))}
+                  text={formatLimaDateTime(change.createdAt)}
                 />
               </div>
               <Paragraph
