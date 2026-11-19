@@ -11,7 +11,10 @@ import { CalendarGrid } from "@/components/molecules/events/calendarGrid";
 import { EventListCard } from "@/components/molecules/events/eventListCard";
 import { useEventsCalendar } from "@/hooks/events/useEventCalendar";
 import { downloadIcs } from "../../../utils/calendarLinks";
-import { formatCalendarTitle, formatDayLong } from "../../../utils/calendarDates";
+import {
+  formatCalendarTitle,
+  formatDayLong,
+} from "../../../utils/calendarDates";
 import { Title } from "../atoms/titles";
 import { Button } from "../atoms/button";
 import { Paragraph } from "../atoms/paragraph";
@@ -22,16 +25,13 @@ const VIEWS = [
   { id: "month", label: "Mes" },
 ];
 
-const navButton ="flex h-8 w-8 items-center justify-center text-blue-deep transition hover:bg-blue-deep/10";
+const navButton =
+  "flex h-8 w-8 items-center justify-center text-blue-deep transition hover:bg-blue-deep/10";
 
 function DayAgenda({ dayKey, entries, selectedId, onSelectEvent }) {
   return (
     <section aria-label={`Eventos del ${formatDayLong(dayKey)}`}>
-      <Title
-        text={formatDayLong(dayKey)}
-        level="h4"
-        className="font-poppins"
-      />
+      <Title text={formatDayLong(dayKey)} level="h4" className="font-poppins" />
 
       {entries.length === 0 ? (
         <p className="bg-blue-deep/5 px-4 py-6 text-center font-poppins text-sm text-neutral-600">
@@ -196,7 +196,11 @@ function EventsCalendarModal({ toggleModal, events, initialEventId }) {
             className="font-poppins"
           />
           <Paragraph
-            text={showingUpcoming ? "No te pierdas la agenda" : "Revive lo que ya vivimos"}
+            text={
+              showingUpcoming
+                ? "No te pierdas la agenda"
+                : "Revive lo que ya vivimos"
+            }
             variant="secondary"
             size="small"
             className="font-poppins"
@@ -247,6 +251,11 @@ function EventsCalendarModal({ toggleModal, events, initialEventId }) {
             </ul>
           )}
 
+          <Paragraph
+            size="small"
+            className="mt-4"
+            text="Los calendarios descargados no se actualizan automáticamente. Revisa la web antes de asistir."
+          />
           {showingUpcoming && cal.upcoming.length > 0 && (
             <button
               type="button"

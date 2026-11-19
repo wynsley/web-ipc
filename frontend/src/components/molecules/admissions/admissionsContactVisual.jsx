@@ -1,6 +1,6 @@
 import { Paragraph } from "@/components/atoms/paragraph";
 import { Image } from "@/components/atoms/image";
-import contactImage from "@assets/images/admissions/admissions-advising.png";
+import contactImage from "@assets/images/admissions/admissions-advising.webp";
 
 function AdmissionsContactVisual() {
   return (

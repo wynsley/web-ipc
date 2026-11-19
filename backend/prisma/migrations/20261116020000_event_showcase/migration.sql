@@ -1,0 +1,3 @@
+ALTER TABLE "events"
+  ADD COLUMN "imageUrl" VARCHAR(2048),
+  ADD COLUMN "highlights" TEXT[] NOT NULL DEFAULT ARRAY[]::TEXT[];

@@ -13,6 +13,11 @@ export default defineConfig({
     tailwindcss()
   ],
   server: {
+    proxy: {
+      '/api/v1/events': 'http://127.0.0.1:3000',
+      '/api/v1/media': 'http://127.0.0.1:3000',
+      '/api/v1/inquiries': 'http://127.0.0.1:3000',
+    },
     watch: {
       // Espera a que terminen las escrituras desde Windows sobre WSL antes de recargar.
       awaitWriteFinish: {

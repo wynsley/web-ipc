@@ -1,0 +1,21 @@
+meta {
+  name: Eliminar borrador de evento
+  type: http
+  seq: 25
+}
+delete {
+  url: http://127.0.0.1:3000/api/v1/admin/events/{{eventId}}
+  body: json
+  auth: none
+}
+headers {
+  Content-Type: application/json
+  X-IPC-Client: admin
+  Authorization: Bearer {{accessToken}}
+  X-CSRF-Token: {{csrfToken}}
+}
+body:json {
+  {
+    "version": {{eventVersion}}
+  }
+}

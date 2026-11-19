@@ -1,3 +1,4 @@
+import { lazy } from "react"
 import { AnimatePresence } from "motion/react"
 import { Route, Routes } from "react-router-dom"
 //compoennte de carga
@@ -8,19 +9,36 @@ import { MainLayout } from "./components/layouts/mainLayout"
 
 /* Páginas */
 import { HomePage } from "./components/pages/homePage"
-import { AlumniPage } from "./components/pages/alumniPage"
-import { AboutUsPage } from "./components/pages/aboutUsPage"
-import { EventsPage } from "./components/pages/eventsPage"
-import { AdmissionPage } from "./components/pages/admissionsPage"
-import { PrivacyPage } from "./components/pages/privacyPage"
-import {StudentLivePage } from "./components/pages/studentLivePage"
+import { SocialFloatings } from "./components/molecules/shared/SocialsFloatings"
+
+const lazyPage = (loader, name) =>
+  lazy(() => loader().then((module) => ({ default: module[name] })))
+
+const AlumniPage = lazyPage(() => import("./components/pages/alumniPage"), "AlumniPage")
+const AboutUsPage = lazyPage(() => import("./components/pages/aboutUsPage"), "AboutUsPage")
+const EventsPage = lazyPage(() => import("./components/pages/eventsPage"), "EventsPage")
+const AdmissionPage = lazyPage(() => import("./components/pages/admissionsPage"), "AdmissionPage")
+const PrivacyPage = lazyPage(() => import("./components/pages/privacyPage"), "PrivacyPage")
+const StudentLivePage = lazyPage(() => import("./components/pages/studentLivePage"), "StudentLivePage")
 
 /* Carreras */
-import { AdministrationPage } from "@/components/pages/careers/administration/businessAdministrationPage"
-import { AccountingPage } from "./components/pages/careers/accounting/accountingPage"
-import { ComputerSciencePage } from "@/components/pages/careers/computerScience/computerSciencePage"
-import { LanguageTranslationPage } from "@/components/pages/careers/languageTranslation/languageTranslationPage"
-import { SocialFloatings } from "./components/molecules/shared/SocialsFloatings"
+const AdministrationPage = lazyPage(
+  () => import("@/components/pages/careers/administration/businessAdministrationPage"),
+  "AdministrationPage",
+)
+const AccountingPage = lazyPage(
+  () => import("./components/pages/careers/accounting/accountingPage"),
+  "AccountingPage",
+)
+const ComputerSciencePage = lazyPage(
+  () => import("@/components/pages/careers/computerScience/computerSciencePage"),
+  "ComputerSciencePage",
+)
+const LanguageTranslationPage = lazyPage(
+  () => import("@/components/pages/careers/languageTranslation/languageTranslationPage"),
+  "LanguageTranslationPage",
+)
+const NotFoundPage = lazyPage(() => import("./components/pages/notFoundPage"), "NotFoundPage")
 
 function App() {
 
@@ -39,6 +57,7 @@ function App() {
     { path: '/career/accounting', element: <AccountingPage /> },
     { path: '/career/computer-science', element: <ComputerSciencePage /> },
     { path: '/career/language-translation', element: <LanguageTranslationPage /> },
+    { path: '*', element: <NotFoundPage /> },
   ]
 
   return (

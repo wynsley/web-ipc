@@ -1,4 +1,6 @@
-# Contacto por correo para la presentación
+# Contacto por correo para la presentación (histórico — retirado)
+
+> **Estado actual (18 de noviembre de 2026)**: este adaptador temporal a FormSubmit fue **retirado** al completarse el Paso 3 del módulo de consultas de admisión (`inquiries`). `frontend/src/helpers/submitContact.js` envía ahora directamente a `POST /api/v1/inquiries` (con `Idempotency-Key` y validación alineada), y se eliminaron `sendContactEmail.js`, `sendContactEmail.test.js`, `contactConfig.js` y `apiFetch.js`. Ver el contrato vigente en [inquiries.md](backend/inquiries.md).
 
 Implementado el 11 de octubre de 2026. Inicio, Admisión y modales reutilizan ContactForm y useContactForm. Se envían nombre, correo, teléfono, dirección, carrera, turno y mensaje a `craftyeyo6@gmail.com` mediante FormSubmit. Carrera y turno llegan con sus etiquetas legibles; Reply-To permite responder al solicitante.
 

@@ -12,6 +12,13 @@ enum AdminRole {
   events
 }
 
+enum InquiryStatus {
+  new
+  in_progress
+  resolved
+  archived
+}
+
 model Admin {
   id           String    @id @default(uuid()) @db.Uuid
   name         String    @db.VarChar(100)
@@ -22,8 +29,18 @@ model Admin {
   createdAt    DateTime  @default(now()) @db.Timestamptz(3)
   updatedAt    DateTime  @updatedAt @db.Timestamptz(3)
 
-  sessions    Session[]
-  activations Activation[]
+  mfaSecret     String?
+  mfaLastStep   Int?
+  mfaChallenges MfaChallenge[]
+  recoveryCodes RecoveryCode[]
+  resetHash       String?   @unique @db.Char(64)
+  resetExpiresAt  DateTime? @db.Timestamptz(3)
+  resetMfa        Boolean   @default(false)
+
+  sessions          Session[]
+  activations       Activation[]
+  assignedInquiries Inquiry[]     @relation("AssignedInquiries")
+  inquiryNotes      InquiryNote[] @relation("AuthoredInquiryNotes")
 
   @@map("admins")
 }
@@ -54,6 +71,40 @@ model Activation {
 
   @@index([adminId])
   @@map("activations")
+}
+
+model Image {
+  id        String   @id @default(uuid()) @db.Uuid
+  data      Bytes?
+  storageKey String? @unique @db.VarChar(80)
+  orphanedAt DateTime? @db.Timestamptz(3)
+  deletedAt DateTime? @db.Timestamptz(3)
+  createdAt DateTime @default(now()) @db.Timestamptz(3)
+
+  @@map("images")
+}
+
+model Event {
+  status String @default("scheduled") @db.VarChar(16)
+  scheduleNotice String? @db.VarChar(500)
+  previousStartsAt DateTime? @db.Timestamptz(3)
+  previousEndsAt DateTime? @db.Timestamptz(3)
+  changes EventChange[]
+  id          String   @id @default(uuid()) @db.Uuid
+  title       String   @db.VarChar(160)
+  description String   @db.VarChar(2000)
+  location    String   @db.VarChar(200)
+  endsAt DateTime? @db.Timestamptz(3)
+  startsAt    DateTime @db.Timestamptz(3)
+  imageCrop   Json     @default("{\"x\":50,\"y\":50,\"zoom\":1}")
+  imageUrl    String?  @db.VarChar(2048)
+  highlights  String[] @default([])
+  featured    Boolean  @default(false)
+  published   Boolean  @default(false)
+  version     Int      @default(1)
+
+  @@index([published, startsAt, id])
+  @@map("events")
 }
 
 model AuditLog {
@@ -87,4 +138,87 @@ model RefreshToken {
 
   @@index([sessionId])
   @@map("refresh_tokens")
+}
+
+model MfaChallenge {
+  id              String    @id @default(uuid()) @db.Uuid
+  tokenHash       String    @unique @db.Char(64)
+  adminId         String    @db.Uuid
+  admin           Admin     @relation(fields: [adminId], references: [id], onDelete: Cascade)
+  passwordVersion String    @db.Char(64)
+  pendingSecret   String?
+  oldHash         String?
+  expiresAt       DateTime  @db.Timestamptz(3)
+  usedAt          DateTime? @db.Timestamptz(3)
+
+  @@index([adminId])
+  @@index([expiresAt])
+  @@map("mfa_challenges")
+}
+
+model RecoveryCode {
+  id        String @id @default(uuid()) @db.Uuid
+  adminId   String @db.Uuid
+  admin     Admin  @relation(fields: [adminId], references: [id], onDelete: Cascade)
+  tokenHash String @unique @db.Char(64)
+
+  @@index([adminId])
+  @@map("recovery_codes")
+}
+
+model EventChange {
+  id        String   @id @default(uuid()) @db.Uuid
+  eventId   String   @db.Uuid
+  event     Event    @relation(fields: [eventId], references: [id], onDelete: Cascade)
+  action    String   @db.VarChar(32)
+  reason    String   @db.VarChar(500)
+  before    Json
+  after     Json
+  actorId   String   @db.Uuid
+  actorName String   @db.VarChar(100)
+  createdAt DateTime @default(now()) @db.Timestamptz(3)
+
+  @@index([eventId, createdAt])
+  @@map("event_changes")
+}
+
+model Inquiry {
+  id             String        @id @default(uuid()) @db.Uuid
+  name           String        @db.VarChar(100)
+  email          String        @db.VarChar(254)
+  phone          String        @db.VarChar(20)
+  address        String        @db.VarChar(200)
+  career         String        @db.VarChar(32)
+  shift          String        @db.VarChar(16)
+  message        String        @db.VarChar(1000)
+  status         InquiryStatus @default(new)
+  assignedToId   String?       @db.Uuid
+  assignedTo     Admin?        @relation("AssignedInquiries", fields: [assignedToId], references: [id], onDelete: SetNull)
+  idempotencyKey String?       @unique @db.Char(64)
+  version        Int           @default(1)
+  resolvedAt     DateTime?     @db.Timestamptz(3)
+  createdAt      DateTime      @default(now()) @db.Timestamptz(3)
+  updatedAt      DateTime      @updatedAt @db.Timestamptz(3)
+
+  notes InquiryNote[]
+
+  @@index([status, createdAt, id])
+  @@index([assignedToId, status])
+  @@index([career, status])
+  @@index([createdAt])
+  @@map("inquiries")
+}
+
+model InquiryNote {
+  id         String   @id @default(uuid()) @db.Uuid
+  inquiryId  String   @db.Uuid
+  inquiry    Inquiry  @relation(fields: [inquiryId], references: [id], onDelete: Cascade)
+  authorId   String?  @db.Uuid
+  author     Admin?   @relation("AuthoredInquiryNotes", fields: [authorId], references: [id], onDelete: SetNull)
+  authorName String   @db.VarChar(100)
+  body       String   @db.VarChar(1000)
+  createdAt  DateTime @default(now()) @db.Timestamptz(3)
+
+  @@index([inquiryId, createdAt])
+  @@map("inquiry_notes")
 }

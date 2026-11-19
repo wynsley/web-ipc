@@ -1,6 +1,11 @@
-import { useState, useCallback } from "react";
+import { lazy, Suspense, useState, useCallback } from "react";
 import { PdfViewerContext } from "./pdfViewersContext";
-import { PdfViewerModal } from "../../components/organisms/shared/pdfViewerModal";
+
+const PdfViewerModal = lazy(() =>
+  import("../../components/organisms/shared/pdfViewerModal").then((module) => ({
+    default: module.PdfViewerModal,
+  })),
+);
 
 /**
  * Provider global. Se coloca UNA sola vez en el árbol (main.jsx)
@@ -29,12 +34,16 @@ function PdfViewerProvider({ children }) {
   return (
     <PdfViewerContext.Provider value={{ openPdf, closePdf }}>
       {children}
-      <PdfViewerModal
-        isOpen={state.isOpen}
-        pdfUrl={state.pdfUrl}
-        title={state.title}
-        onClose={closePdf}
-      />
+      {state.pdfUrl && (
+        <Suspense fallback={null}>
+          <PdfViewerModal
+            isOpen={state.isOpen}
+            pdfUrl={state.pdfUrl}
+            title={state.title}
+            onClose={closePdf}
+          />
+        </Suspense>
+      )}
     </PdfViewerContext.Provider>
   );
 }

@@ -1,0 +1,41 @@
+export const RECOVERY_KEY = "ipc-admin-recovery-pending";
+export const WAITING_NOTICE =
+  "Termina la configuración del autenticador en la pestaña donde la empezaste.";
+export const UNCONFIRMED_RECOVERY_NOTICE =
+  "El acceso se canceló antes de confirmar los códigos de recuperación. Si no los guardaste, entra con tu autenticador y renueva los códigos desde el escritorio.";
+
+export function markRecoveryPending() {
+  if (isRecoveryPending() && !isRecoveryOwner())
+    throw new Error(WAITING_NOTICE);
+  try {
+    const id = String(Math.random()).slice(2);
+    sessionStorage.setItem(RECOVERY_KEY, id);
+    localStorage.setItem(RECOVERY_KEY, id);
+  } catch {
+    throw new Error(
+      "Permite el almacenamiento del sitio para configurar el autenticador.",
+    );
+  }
+}
+
+export function isRecoveryPending() {
+  try {
+    return Boolean(localStorage.getItem(RECOVERY_KEY));
+  } catch {
+    return false;
+  }
+}
+export function isRecoveryOwner() {
+  return (
+    isRecoveryPending() &&
+    sessionStorage.getItem(RECOVERY_KEY) === localStorage.getItem(RECOVERY_KEY)
+  );
+}
+export function clearRecoveryPending() {
+  if (isRecoveryPending()) localStorage.removeItem(RECOVERY_KEY);
+  try {
+    sessionStorage.removeItem(RECOVERY_KEY);
+  } catch {
+    /* El almacenamiento puede estar deshabilitado. */
+  }
+}

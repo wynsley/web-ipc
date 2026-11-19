@@ -1,0 +1,13 @@
+meta {
+  name: Exportar auditoría en CSV
+  type: http
+  seq: 36
+}
+get {
+  url: http://127.0.0.1:3000/api/v1/admin/audit/export?category=all
+  auth: none
+}
+headers {
+  X-IPC-Client: admin
+  Authorization: Bearer {{accessToken}}
+}

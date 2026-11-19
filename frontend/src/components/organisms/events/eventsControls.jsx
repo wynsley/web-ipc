@@ -2,9 +2,18 @@ import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { Dost } from "@/components/molecules/shared/dots";
 import { Button } from "@/components/atoms/button";
 
-function EventsControls({ events, current, next, goTo, goNext, goPrev }) {
+function EventsControls({
+  events,
+  current,
+  next,
+  goTo,
+  goNext,
+  goPrev,
+  paused,
+  onTogglePause,
+}) {
   return (
-    <div className="mt-8 flex items-center justify-center gap-3 sm:gap-6">
+    <div className="mt-8 flex flex-wrap items-center justify-center gap-3 sm:gap-6">
       <Button
         type="button"
         onClick={() => goPrev()}
@@ -15,6 +24,13 @@ function EventsControls({ events, current, next, goTo, goNext, goPrev }) {
         <FaChevronLeft className="h-3.5 w-3.5" aria-hidden="true" />
       </Button>
 
+      <Button
+        type="button"
+        variant="ternary"
+        onClick={onTogglePause}
+        aria-pressed={paused}
+        text={paused ? "Reanudar carrusel" : "Pausar carrusel"}
+      />
       <Dost
         dots={events}
         next={next}

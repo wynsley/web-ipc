@@ -1,7 +1,7 @@
 import { readInput } from "../../middleware/readInput.js";
 import { Hono } from "hono";
 import { AppError } from "../../middleware/errors.js";
-import { loginSchema } from "./authSchema.js";
+import { loginSchema, verifyMfaSchema } from "./authSchema.js";
 import { readRefreshCookie, sendTokens, clearAuthCookies } from "./authCookies.js";
 
 export function createCredentialRoutes(service, config, throttle) {
@@ -10,7 +10,11 @@ export function createCredentialRoutes(service, config, throttle) {
     const data = await readInput(c, loginSchema);
     const result = await service.login(data, readRefreshCookie(c), c.get("requestId"));
     clearAuthCookies(c, config);
-    return sendTokens(c, result, config);
+    return c.json({ data: result }, 202);
+  });
+  routes.post("/mfa/verify", throttle, async (c) => {
+    const data = await readInput(c, verifyMfaSchema);
+    return sendTokens(c, await service.completeMfa(data, c.get("requestId")), config);
   });
   routes.get("/csrf", async (c) => {
     if (

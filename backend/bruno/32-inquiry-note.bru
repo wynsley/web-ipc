@@ -1,0 +1,26 @@
+meta {
+  name: Añadir nota interna a consulta
+  type: http
+  seq: 32
+}
+post {
+  url: http://127.0.0.1:3000/api/v1/admin/inquiries/{{inquiryId}}/notes
+  body: json
+  auth: none
+}
+headers {
+  Content-Type: application/json
+  X-IPC-Client: admin
+  Authorization: Bearer {{accessToken}}
+  X-CSRF-Token: {{csrfToken}}
+}
+body:json {
+  {
+    "body": "Se brindó orientación por teléfono sobre requisitos de matrícula."
+  }
+}
+script:post-response {
+  if (res.getStatus() === 201 && res.getBody()?.data?.inquiryVersion) {
+    bru.setVar("inquiryVersion", res.getBody().data.inquiryVersion);
+  }
+}

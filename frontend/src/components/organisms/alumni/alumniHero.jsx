@@ -1,3 +1,4 @@
+import { Image } from "@/components/atoms/image";
 import { HeroContent } from "../../molecules/alumni/HeroContent";
 import imgHeroGradutes from "@assets/images/graduates/hero-graduates.webp"
 
@@ -11,11 +12,12 @@ function Hero() {
         select-none"
     >
       {/* Imagen de fondo */}
-      <img
+      <Image
+        fill
         src={imgHeroGradutes}
-        alt="Nuestros egresados"
-        aria-hidden="true"
-        className="absolute inset-0 h-full w-full object-cover"
+        alt=""
+        loading="eager"
+        fetchPriority="high"
       />
 
       {/* Degradado oscuro -> transparente, color de marca */}

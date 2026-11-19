@@ -1,6 +1,6 @@
 import { Image } from "@/components/atoms/image";
 import { ScrollReveal } from "@/components/layouts/scrollReveal";
-import studentImage from "@assets/images/careers/accounting/accounting-student.png";
+import studentImage from "@assets/images/careers/accounting/accounting-student.webp";
 
 function AccountingHeroStudent() {
   return (

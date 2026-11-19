@@ -24,7 +24,10 @@ const toUtcStamp = (date) =>
     .replace(/\.\d{3}/, "");
 
 function buildDescription(event) {
-  const lines = [event.shortDescription ?? ""];
+  const lines = [
+    event.shortDescription ?? "",
+    "Esta copia no se actualiza automáticamente. Consulta la web del IPC antes de asistir.",
+  ];
   if (event.highlights?.length) {
     lines.push("", ...event.highlights.map((item) => `• ${item}`));
   }
@@ -32,6 +35,8 @@ function buildDescription(event) {
 }
 
 export function buildGoogleCalendarUrl(event) {
+  if (event.status && event.status !== "scheduled")
+    throw new Error("El evento no tiene un horario vigente.");
   const params = new URLSearchParams({
     action: "TEMPLATE",
     text: event.title,
@@ -102,7 +107,9 @@ function buildVEvent(event, stamp, host) {
 }
 
 export function buildIcs(events) {
-  const list = Array.isArray(events) ? events : [events];
+  const list = (Array.isArray(events) ? events : [events]).filter(
+    (event) => !event.status || event.status === "scheduled",
+  );
   const stamp = toUtcStamp(new Date());
   const host =
     typeof window !== "undefined"
@@ -125,6 +132,7 @@ export function buildIcs(events) {
 /** Descarga un evento (o varios) como archivo .ics. */
 export function downloadIcs(events, filename) {
   const list = Array.isArray(events) ? events : [events];
+  if (!list.length) return;
   const blob = new Blob([buildIcs(list)], {
     type: "text/calendar;charset=utf-8",
   });

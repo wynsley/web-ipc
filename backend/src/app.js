@@ -6,7 +6,28 @@ import { createAuthRepository } from "./modules/auth/authRepository.js";
 import { createAuthService } from "./modules/auth/authService.js";
 import { createAuthRoutes } from "./modules/auth/authRoutes.js";
 
-export async function createApp({ db, config, clientIp }) {
+import { createEventRepository } from "./modules/events/eventRepository.js";
+import { createPublicEventRoutes, createAdminEventRoutes } from "./modules/events/eventRoutes.js";
+import { createInquiryRepository } from "./modules/inquiries/inquiryRepository.js";
+import {
+  createPublicInquiryRoutes,
+  createAdminInquiryRoutes,
+} from "./modules/inquiries/inquiryRoutes.js";
+import { createAuditRepository } from "./modules/audit/auditRepository.js";
+import { createAdminAuditRoutes } from "./modules/audit/auditRoutes.js";
+
+import { createImageRepository } from "./modules/media/imageRepository.js";
+import { createImageService } from "./modules/media/imageService.js";
+import { createImageRoutes, createImageUploadRoutes } from "./modules/media/imageRoutes.js";
+
+import { createLocalImageStorage } from "./infrastructure/storage/localImageStorage.js";
+
+export async function createApp({
+  db,
+  config,
+  clientIp,
+  storage = createLocalImageStorage(config.mediaDirectory),
+}) {
   const app = new Hono();
   const service = await createAuthService(createAuthRepository(db), config);
   app.use("*", async (c, next) => {
@@ -20,6 +41,19 @@ export async function createApp({ db, config, clientIp }) {
     c.json({ error: { code: "NOT_FOUND", message: "Ruta no encontrada." } }, 404),
   );
   app.route("/api/v1/auth", createAuthRoutes(service, config, clientIp));
+  const images = createImageService(createImageRepository(db), service, storage);
+  app.route("/api/v1/admin/images", createImageUploadRoutes(images, service, config, clientIp));
+  app.route("/api/v1/media", createImageRoutes(images));
+  const events = createEventRepository(db);
+  app.route("/api/v1/events", createPublicEventRoutes(events));
+  app.route("/api/v1/admin/events", createAdminEventRoutes(events, service, config));
+  const inquiries = createInquiryRepository(db);
+  const publicInquiries = createPublicInquiryRoutes(inquiries, service, clientIp);
+  app.route("/api/v1/inquiries", publicInquiries);
+  app.route("/contact", publicInquiries);
+  app.route("/api/v1/admin/inquiries", createAdminInquiryRoutes(inquiries, service, config));
+  const audit = createAuditRepository(db);
+  app.route("/api/v1/admin/audit", createAdminAuditRoutes(audit, service, config));
   app.get("/", (c) =>
     c.json({
       message: "Backend del IPC iniciado",

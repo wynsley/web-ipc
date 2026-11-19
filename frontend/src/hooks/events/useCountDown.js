@@ -14,7 +14,7 @@ function getTimeLeft(target, now) {
 }
 
 /** Cuenta regresiva hacia `target` (string ISO o Date). Cambia al instante si cambia el target. */
-function useCountdown(target) {
+function useCountdown(target, clockOffset = 0) {
   const [now, setNow] = useState(() => Date.now());
 
   useEffect(() => {
@@ -22,7 +22,7 @@ function useCountdown(target) {
     return () => clearInterval(id);
   }, []);
 
-  return getTimeLeft(target, now);
+  return getTimeLeft(target, now + clockOffset);
 }
 
 export { useCountdown };

@@ -1,4 +1,3 @@
-import { Fragment } from "react";
 import { AnimatePresence, motion as Motion } from "motion/react";
 import { useCountdown } from "@/hooks/events/useCountDown";
 import { slideVariants, SLIDE_EASE } from "@/components/animations/eventsSlides";
@@ -13,9 +12,9 @@ const UNITS = [
 
 const pad = (n) => String(n).padStart(2, "0");
 
-function EventsCountdownBand({ event, direction }) {
-  const timeLeft = useCountdown(event.date);
-  const title = `${event.category} de ${event.highlight}`
+function EventsCountdownBand({ event, direction, clockOffset = 0 }) {
+  const timeLeft = useCountdown(event.date, clockOffset);
+  const title = event.title;
 
   return (
     <ScrollReveal

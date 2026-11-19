@@ -1,0 +1,30 @@
+meta {
+  name: Enviar consulta pública
+  type: http
+  seq: 26
+}
+post {
+  url: http://127.0.0.1:3000/api/v1/inquiries
+  body: json
+  auth: none
+}
+headers {
+  Content-Type: application/json
+}
+body:json {
+  {
+    "name": "Postulante de Prueba",
+    "email": "postulante@example.test",
+    "phone": "+51 987654321",
+    "address": "Jr. Ejemplo #123, Celendín",
+    "career": "administracion",
+    "shift": "manana",
+    "message": "Quisiera información sobre vacantes y fechas de admisión."
+  }
+}
+script:post-response {
+  if ([200, 201].includes(res.getStatus())) {
+    bru.setVar("inquiryId", res.getBody().data.id);
+    bru.setVar("inquiryVersion", 1);
+  }
+}

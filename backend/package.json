@@ -20,8 +20,12 @@
     "db:reset:check": "node scripts/resetDatabase.js --check",
     "admin:bootstrap": "node scripts/bootstrapAdmin.js",
     "test": "node scripts/testAuth.js",
+    "admin:recover": "node scripts/recoverSoleAdmin.js",
     "admin:activation": "node scripts/bootstrapAdmin.js --reissue",
-    "auth:key": "node scripts/createJwtKey.js"
+    "auth:key": "node scripts/createJwtKey.js",
+    "mfa:key": "node scripts/createMfaKey.js",
+    "images:migrate": "node scripts/imageMaintenance.js migrate",
+    "images:cleanup": "node scripts/imageMaintenance.js cleanup"
   },
   "dependencies": {
     "@hono/node-server": "2.1.5",
@@ -30,6 +34,8 @@
     "@prisma/client": "7.10.1",
     "hono": "4.13.14",
     "jose": "6.2.14",
+    "otpauth": "9.6.0",
+    "sharp": "^0.35.5",
     "zod": "4.6.7"
   },
   "devDependencies": {

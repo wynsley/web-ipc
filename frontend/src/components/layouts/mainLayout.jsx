@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 import { AnimatePresence } from "motion/react";
 
@@ -20,7 +21,17 @@ function MainLayout() {
       <main className="flex-1">
         <AnimatePresence mode="wait">
           <TransitionPage key={location.pathname}>
-            <Outlet />
+            <Suspense
+              fallback={
+                <div
+                  className="min-h-[60vh]"
+                  role="status"
+                  aria-label="Cargando página…"
+                />
+              }
+            >
+              <Outlet />
+            </Suspense>
           </TransitionPage>
         </AnimatePresence>
       </main>

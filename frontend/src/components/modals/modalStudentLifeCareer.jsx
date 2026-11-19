@@ -5,18 +5,16 @@ function ModalStudentLifeCareer () {
   return(
     <div className="bg-blue-deep text-white z-100">
       <ul className="flex flex-col">
-        {
-        careers.map((career , i) => {
-          return (
+        {careers.map((career) => (
+          <li key={career.href}>
             <Link
               to={career.href}
-              className="px-3 py-2 transition-all duration-300 hover:bg-orange/40"
+              className="block px-3 py-2 transition-all duration-300 hover:bg-orange/40"
             >
               {career.title}
             </Link>
-          )
-        })
-      }
+          </li>
+        ))}
       </ul>
     </div>
   )

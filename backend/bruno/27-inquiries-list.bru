@@ -1,0 +1,14 @@
+meta {
+  name: Listar consultas (Admisión)
+  type: http
+  seq: 27
+}
+get {
+  url: http://127.0.0.1:3000/api/v1/admin/inquiries?page=1&status=all
+  body: none
+  auth: none
+}
+headers {
+  X-IPC-Client: admin
+  Authorization: Bearer {{accessToken}}
+}

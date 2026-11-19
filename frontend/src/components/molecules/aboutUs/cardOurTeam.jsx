@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { AsignaturesModal } from "@/components/modals/asignaturesModal";
+import { Image } from "@/components/atoms/image";
 import { Paragraph } from "@/components/atoms/paragraph";
 function CardOurTeam({
   name,
@@ -41,11 +42,12 @@ function CardOurTeam({
       "
     >
       <div className="relative h-40 w-full overflow-hidden md:h-45">
-        <img
+        <Image
+          fill
           src={photo}
           alt={name}
           draggable={false}
-          className="h-full w-full select-none object-cover object-top"
+          imageClassName="select-none object-cover object-top"
         />
       </div>
 

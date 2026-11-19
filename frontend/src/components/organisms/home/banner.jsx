@@ -2,9 +2,9 @@ import { BannerDescription } from "../../molecules/home/bannerDescriptions";
 import { useCarousel } from "../../../hooks/globals/useCarrusel";
 import { Dost } from "../../molecules/shared/dots";
 import { Image } from "../../atoms/image";
-import digitalImage from "@assets/images/home/hero-digital.png";
-import teamImage from "@assets/images/home/hero-team.png";
-import languagesImage from "@assets/images/home/hero-languages.png";
+import digitalImage from "@assets/images/home/hero-digital.webp";
+import teamImage from "@assets/images/home/hero-team.webp";
+import languagesImage from "@assets/images/home/hero-languages.webp";
 
 const SLIDES = [
   { src: "/BANNER_HOME.webp", alt: "Infraestructura del instituto" },

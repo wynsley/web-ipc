@@ -30,7 +30,7 @@ function DescrioptionHero({ event, onOpenCalendar }) {
           className="mt-4 block h-1 w-60 rounded-full bg-linear-to-r from-blue to-orange/0 sm:w-120"
         />
 
-        <ScrollReveal
+        {event && <ScrollReveal
           delay={0.2}
           duration={0.8}
           y={30}
@@ -70,7 +70,7 @@ function DescrioptionHero({ event, onOpenCalendar }) {
               {formatEventYear(event.date)}
             </span>
           </button>
-        </ScrollReveal>
+        </ScrollReveal>}
       </Motion.div>
     </div>
   );

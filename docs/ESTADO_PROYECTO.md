@@ -1,4 +1,59 @@
+## Módulo de Auditoría (`/admin/auditoria`) — 19 de noviembre de 2026
+
+Habilitada el área **Auditoría** en el panel administrativo (exclusiva para rol `admin`, retirada la etiqueta «en preparación»), conectada a la nueva API inmutable `/api/v1/admin/audit` (`GET /`, `/actors`, `/export`) y peticiones Bruno 34–36. Permite inspeccionar en español todos los eventos de seguridad, cuentas, eventos, medios, admisión y auditoría con pestañas por módulo y contadores, filtro por actor (incluyendo *Sistema / Público* y cuentas inactivas), rango de fechas en hora de Lima, búsqueda por acción/`requestId`/UUID, trazabilidad desplegable con copia rápida, refresco automático y exportación CSV segura (`audit.exported`). Además, los listados de **Auditoría**, **Admisión** y **Eventos** incorporan paginación numerada compartida (`Pagination` + `total`/`pageSize`/`totalPages` desde la API) con resumen *Mostrando X–Y de Z* y puntos suspensivos con las 3 últimas páginas cuando superan las 10 páginas. Única área aún en preparación en el panel: **Contenido (`/admin/contenido`)**. Contrato en [audit.md](backend/audit.md) y detalle en [BACKEND_ADMIN.md](BACKEND_ADMIN.md).
+
+## Formulario unificado en `/admissions` y mejoras de bandeja `/admin/admision` — 19 de noviembre de 2026
+
+En la web pública, el formulario final de `/admissions` (`AdmissionsContactForm`) quedó unificado con el mismo estilo `bg-blue-deep` y pasos (`showSteps`) del modal superior y de Inicio, retirando la variante `appearance="light"` y el CSS `.contact-form--light`. En `/admin/admision` se mejoró la densidad visual con filas compactas y panel de detalle desplegable (`InquiryDetailPanel`), enlaces directos para responder por **WhatsApp** (`wa.me` con prefijo `+51` automático para móviles peruanos) y **Gmail** web (`mail.google.com/mail/?view=cm&fs=1`, sin abrir Outlook) habilitados únicamente en **En seguimiento** (al pulsar «Tomar y atender» en *Nuevas* o «Reabrir seguimiento» salta directo a *En seguimiento* con la consulta abierta), copiado rápido de correo/teléfono, tiempo transcurrido con alerta >24 h en consultas nuevas y cuenta regresiva visible del auto-archivado a 30 días en *Resueltas*. Detalle en [BACKEND_ADMIN.md](BACKEND_ADMIN.md) e [inquiries.md](backend/inquiries.md).
+
+## Admisión: flujo guiado por etapas, auto-archivado (30 días) y refresco automático — 18 de noviembre de 2026
+
+El panel `/admin/admision` sustituye el desplegable libre de 4 estados por acciones contextuales por etapa (`InquiryActionsBar`: *Tomar y atender*, *Marcar como resuelta*, *Archivar*, *Reabrir seguimiento*), respaldadas por validación estricta en `backend/src/modules/inquiries/inquiryLifecyclePolicy.js` (impide volver a *Nueva* o saltar directo de *Nueva* a *Resuelta*). Escribir la primera nota en una consulta *Nueva* la avanza automáticamente a *En seguimiento* y la asigna al autor si estaba libre; un trabajo periódico (`inquiryAutoArchive.js`) archiva automáticamente las consultas *Resueltas* tras 30 días (`INQUIRY_ARCHIVE_DAYS=30`), y `useAutoRefresh` mantiene la bandeja actualizada cada 30 s sin parpadeos (pausado al abrir notas). Detalle en [BACKEND_ADMIN.md](BACKEND_ADMIN.md) e [inquiries.md](backend/inquiries.md).
+
+## Formulario público conectado a `/api/v1/inquiries` (Admisión Paso 3) — 18 de noviembre de 2026
+
+Inicio, Admisión y los modales de contacto (`ContactForm` / `useContactForm` / `submitContact`) envían ahora directamente a `POST /api/v1/inquiries` con `Idempotency-Key` reutilizable en reintentos, proxy de desarrollo en `frontend/vite.config.js`, validación cliente alineada con el backend (cualquier dominio de correo válido y direcciones peruanas con `,`, `#`, `°`, `-`, `/`) y despliegue de errores `422`/`429` del servidor. Se retiraron el adaptador temporal FormSubmit (`sendContactEmail.js`, `contactConfig.js`, `apiFetch.js`) y las variables `VITE_CONTACT_*`. Con esto quedan completados los 3 pasos del flujo de Admisión / Consultas (`inquiries`). Detalle en [BACKEND_ADMIN.md](BACKEND_ADMIN.md) e [inquiries.md](backend/inquiries.md).
+
+## Panel de Admisión (`/admin/admision`, Paso 2) y ajuste del pie de página — 18 de noviembre de 2026
+
+Implementada la bandeja operativa de consultas en `/admin/admision` para los roles `admin` y `admissions` (retirada la etiqueta «en preparación»): pestañas por estado con contadores (`Nuevas`, `En seguimiento`, `Resueltas`, `Archivadas`, `Todas`), búsqueda y filtros por carrera, turno y responsable, toma atómica («Tomar consulta»), cambio de estado, asignación manual visible solo para `admin`, notas internas cronológicas con protección de borrador sin guardar y descarga de CSV con los filtros activos. Además, en la web pública se corrigió la superposición del logo Q10 sobre el logo IPC en `FooterBrand` (`frontend/src/components/molecules/footer/footerBrand.jsx`). Queda pendiente el Paso 3 (conectar el formulario de contacto público a `POST /api/v1/inquiries` y retirar FormSubmit temporal). Detalle y verificaciones en [BACKEND_ADMIN.md](BACKEND_ADMIN.md) y [inquiries.md](backend/inquiries.md).
+
+## Paginación real en la galería de eventos — 18 de noviembre de 2026
+
+`EventsGallery` («Revive Nuestros Eventos») reemplaza la carga acumulativa de 20 en 20 por paginación real de **6 eventos por página** (un ciclo completo del mosaico `EVENTS_MOSAIC`), usando la nueva molécula reutilizable `Pagination` (`components/molecules/shared/pagination.jsx`) con indicador `Mostrando X–Y de N`, desplazamiento suave respetando `prefers-reduced-motion` y visor `GalleryLightbox` conectado al índice global.
+
+## Backend: módulo de consultas de admisión (`inquiries`, Paso 1) — 18 de noviembre de 2026
+
+Implementados en `backend/` el modelo Prisma (`inquiries`, `inquiry_notes`), la API pública (`POST /api/v1/inquiries` y adaptador transicional `POST /contact` con límite anti-spam e idempotencia) y la gestión privada `/api/v1/admin/inquiries/*` para los roles `admin` y `admissions` (bandeja filtrable, toma atómica, asignación por `admin`, estados, notas internas, auditoría y exportación CSV segura contra inyección de fórmulas). Siguen pendientes el panel en `/admin/admision` (Paso 2) y el cambio del formulario público de FormSubmit a la API propia (Paso 3). Contrato en [inquiries.md](backend/inquiries.md).
+
+## Avisos compactos y expiración automática en `/events` — 18 de noviembre de 2026
+
+`EventNotices` reemplaza la lista apilada por una franja institucional compacta de altura constante con navegación 1-a-1 y modal filtrable `EventNoticesModal`, acompañada de la insignia «Horario actualizado» en `EventsShowcase`. Los avisos públicos expiran automáticamente según su estado (reprogramados al terminar el evento, cancelados a las 24 h de la hora de fin programada y pospuestos a los 7 días de la fecha original), conservando sus registros en el panel. Verificados 9/9 pruebas del frontend, ESLint con 0 errores y build correcto.
+
+## Optimización WebP, convención Image, 404, ESLint admin y modularización — 18 de noviembre de 2026
+
+Convertidos los 8 PNG grandes activos del sitio público a WebP (conservando transparencia en las 3 siluetas de portada: `13.87 MB → 0.79 MB`, -94.3%). Migradas las 15 etiquetas `<img>` directas pendientes al átomo compartido `Image` (`frontend/src/components/atoms/image.jsx`), añadida la ruta comodín 404 (`NotFoundPage`) en `App.jsx` y corregido el espacio inicial en `data/home/agreements.js`. Configurado ESLint en `admin/` (`0` errores en todo el monorepo), modularizado `eventsPanel.jsx` (`useEventsManager`, `EventCard`, `eventDates.js`) y `eventFilters.js` en backend, actualizado `.gitignore` (retirando `admin/dist/` de Git) y `backend/.prettierignore`. Detalle y verificaciones en [BACKEND_ADMIN.md](BACKEND_ADMIN.md).
+
+## Pestañas y borrado de borradores en Eventos — 18 de noviembre de 2026
+
+El panel de Eventos ahora separa **Publicados**, **Borradores**, **Finalizados** y **Todos** con filtrado en servidor (`GET /api/v1/admin/events?scope=...`) y contadores por pestaña. Además, los roles `admin` y `events` pueden eliminar definitivamente borradores (`DELETE /api/v1/admin/events/:id` con `version`, CSRF y confirmación en línea); los eventos publicados o finalizados requieren retirarse primero a borrador. Detalle en [BACKEND_ADMIN.md](BACKEND_ADMIN.md) y [Contrato de Eventos](backend/events.md).
+
+## Estabilización de eventos, lint y carga inicial — 18 de noviembre de 2026
+
+Corregido el bucle de re-descargas de imágenes en `/events` (temporizador por hitos de inicio/cierre en `usePublishedEvents`, precarga deduplicada en `useCarousel`, reloj sincronizado con el servidor en `EventsShowcase`/`useCountdown`, y revalidación `ETag`/`304` para medios publicados). Corregidos además el falso aviso público al editar fechas en borrador y el límite de intentos compartido entre subidas de imágenes y login. Resueltos los 14 errores de ESLint en `frontend` (`0` errores) y aplicado *code-splitting* por ruta y carga diferida de `PdfViewerModal`, reduciendo el bundle JS inicial de 1,542 kB a 550 kB (174.7 kB gzip). Verificados 64 pruebas del backend, 5+3 pruebas del frontend, ESLint en ambos paquetes y compilación pública. Detalle en [BACKEND_ADMIN.md](BACKEND_ADMIN.md).
+
+## Actualización de eventos — 18 de noviembre de 2026
+
+La agenda se actualiza automáticamente y los eventos publicados finalizados aparecen en «Revive nuestros eventos». El admin permite indicar finalización; el carrusel y destacados muestran vigentes. Fotos por URL HTTPS o subida local, almacenada fuera de PostgreSQL con limpieza de huérfanos. Estado, pruebas y límites en [BACKEND_ADMIN.md](BACKEND_ADMIN.md) y [medios](backend/media.md).
+
 # Estado y evolución de IPC Platform
+
+Actualización del 17 de noviembre de 2026. El formulario de Eventos incorpora «Destacar evento». El campo featured es booleano, opcional en entradas de API y falso por defecto para eventos existentes. La sección de destacados consume los eventos publicados marcados; se oculta si no hay ninguno. Para cambiar la selección de una publicación se retira, edita y publica nuevamente. Se verificaron 58 pruebas del backend, lint, ambas compilaciones y en Edge el filtrado, la tarjeta única, el fondo sin foto y la sección vacía con datos simulados.
+
+
+## Agenda institucional — 16 de noviembre de 2026
+
+La página `/events` carga la agenda publicada desde `GET /api/v1/events`, con paginación y estados de carga, error y lista vacía. El carrusel, la portada y el calendario comparten los eventos publicados. La galería y los destacados editoriales conservan sus fuentes locales. [Contrato de Eventos](backend/events.md).
 
 ## Retiro de ruta de clase — 30 de octubre de 2026
 

@@ -1,43 +1,86 @@
-import { useState } from "react";
+import { EventNotices } from "../organisms/events/eventNotices";
+import { useMemo, useState } from "react";
 import { MyTemplate } from "../templates/myTemplate";
 import { HeroEvents } from "../organisms/events/heroEvents";
 import { EventsShowcase } from "../organisms/events/eventsShowcase";
 import { FeatureEvents } from "../organisms/events/featureEvents";
 import { useModal } from "@/hooks/modal/useModal";
-import { EVENTS, getUpcomingEvent } from "@/data/events/evenst";
+import {
+  partitionEvents,
+  visibleEventNotices,
+} from "@/helpers/eventLifecycle";
+import { usePublishedEvents } from "@/hooks/events/usePublishedEvents";
 import { EventsCalendarModal } from "../modals/eventsCalendarModal";
 import { EventsGallery } from "../organisms/events/eventsGallery";
+import { Button } from "../atoms/button";
+import { Paragraph } from "../atoms/paragraph";
 
 function EventsPage() {
-  const [upcoming] = useState(() => getUpcomingEvent());
-
-  // Un solo modal calendar
+  const { events, now, clockOffset, failed, retry } = usePublishedEvents();
   const { isOpen, openModal, closeModal } = useModal();
-
-  // Evento que aparece seleccionado al abrir (el del hero o el del carrusel).
+  const { active, past } = useMemo(
+    () => partitionEvents(events, now),
+    [events, now],
+  );
+  const featuredEvents = useMemo(
+    () => active.filter((event) => event.featured),
+    [active],
+  );
+  const noticeEvents = useMemo(
+    () => visibleEventNotices(events, now),
+    [events, now],
+  );
+  const calendarEvents = useMemo(() => [...active, ...past], [active, past]);
   const [calendarEventId, setCalendarEventId] = useState(null);
-
-  const openCalendar = (eventId) => {
+  function openCalendar(eventId) {
     setCalendarEventId(eventId);
     openModal();
-  };
-
+  }
   return (
     <MyTemplate>
-      <HeroEvents 
-        event={upcoming} 
-        onOpenCalendar={openCalendar} 
-      />
-      <EventsShowcase 
-        onOpenCalendar={openCalendar} 
-      />
-      <FeatureEvents />
-      <EventsGallery/>
-
-      {isOpen && (
+      <HeroEvents event={active[0]} onOpenCalendar={openCalendar} />
+      {active.length ? (
+        <EventsShowcase
+          publishedEvents={active}
+          now={now}
+          clockOffset={clockOffset}
+          onOpenCalendar={openCalendar}
+        />
+      ) : (
+        <section
+          aria-label="Agenda institucional"
+          className="mx-auto max-w-6xl px-5 py-12"
+        >
+          <Paragraph
+            role="status"
+            text={
+              failed
+                ? "No se pudo cargar la agenda."
+                : events
+                  ? "No hay próximos eventos publicados."
+                  : "Cargando agenda…"
+            }
+          />
+          {failed && (
+            <Button variant="ternary" text="Reintentar" onClick={retry} />
+          )}
+        </section>
+      )}
+      <EventNotices events={noticeEvents} />
+      {featuredEvents.length > 0 && (
+        <FeatureEvents events={featuredEvents} />
+      )}
+      {failed && events && (
+        <Paragraph
+          role="status"
+          text="No se pudo actualizar la agenda. Se muestra la última información recibida."
+        />
+      )}
+      <EventsGallery events={past} />
+      {isOpen && events && (
         <EventsCalendarModal
           toggleModal={closeModal}
-          events={EVENTS}
+          events={calendarEvents}
           initialEventId={calendarEventId}
         />
       )}

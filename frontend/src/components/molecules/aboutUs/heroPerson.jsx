@@ -1,4 +1,5 @@
 
+import { Image } from "@/components/atoms/image";
 import { ScrollReveal } from "@/components/layouts/scrollReveal";
 
 function HeroPerson({ personImage }) {
@@ -26,11 +27,13 @@ function HeroPerson({ personImage }) {
         duration={1.5}
         className="absolute inset-0 z-10"
       >
-        <img
+        <Image
+          fill
+          transparent
           src={personImage}
           alt=""
-          aria-hidden="true"
-          className="h-full w-full object-contain object-bottom"
+          loading="eager"
+          imageClassName="object-contain object-bottom"
         />
       </ScrollReveal>
 

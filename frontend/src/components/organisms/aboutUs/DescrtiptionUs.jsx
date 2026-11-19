@@ -1,3 +1,4 @@
+import { Image } from "@/components/atoms/image"
 import { Paragraph } from "@/components/atoms/paragraph"
 import { Title } from "@/components/atoms/titles"
 import ipcStudents from "@/assets/images/aboutUs/aboutus-students.webp"
@@ -25,7 +26,7 @@ function DescriptionUs ( ) {
       className=" flex  flex-col items-start gap-8
       mx-auto md:mt-10 w-[92%] md:max-w-6xl md:w-[90%] md:py-10
       lg:flex-row lg:items-center lg:justify-between 
-      "x
+      "
     >
       <Motion.div
         variants={staggerContainer}
@@ -62,16 +63,12 @@ function DescriptionUs ( ) {
           y={50}
           className="absolute inset-0 translate-x-3 translate-y-3 border-2 border-blue -z-10" />
       
-          <img 
-          src={ipcStudents} 
-          alt="infraestructura ipc" 
-          className="block z- h-auto w-full object-cover drop-shadow-lg drop-shadow-blue-deep"
+        <Image
+          src={ipcStudents}
+          alt="Estudiantes e infraestructura del Instituto Privado Celendín"
+          className="aspect-square w-full drop-shadow-lg drop-shadow-blue-deep"
         />
       </ScrollReveal>
-      <div
-      >
-
-      </div>
     </section>
   )
 }

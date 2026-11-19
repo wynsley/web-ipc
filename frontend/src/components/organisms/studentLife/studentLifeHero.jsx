@@ -3,7 +3,10 @@ import { HeroDescription } from "@/components/molecules/studentLife/heroDescript
 import { StudentHero } from "@/components/molecules/studentLife/studentHero"
 
 function StudentLifeHero({
-  careersMenu
+  anchorRef,
+  isMenuOpen,
+  onMenuOpen,
+  onMenuLeave,
 }) {
   
 
@@ -28,10 +31,10 @@ function StudentLifeHero({
         lg:h-full lg:grid-cols-2 lg:gap-6 lg:pb-0 lg:pt-24"
       >
         <HeroDescription
-          anchorRef={careersMenu.anchorRef}
-          isMenuOpen={careersMenu.isOpen}
-          onMenuOpen={careersMenu.open}
-          onMenuLeave={careersMenu.scheduleClose}
+          anchorRef={anchorRef}
+          isMenuOpen={isMenuOpen}
+          onMenuOpen={onMenuOpen}
+          onMenuLeave={onMenuLeave}
         />
 
         {/* Visual */}

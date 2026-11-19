@@ -1,0 +1,45 @@
+@import "tailwindcss";
+@source "../../frontend/src/components/atoms/image.jsx";
+
+@font-face {
+  font-family: "Poppins";
+  src: url("@ipc/font") format("woff2");
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Rajdhani";
+  src: url("@ipc/display") format("woff2");
+  font-weight: 700;
+  font-display: swap;
+}
+
+@theme {
+  --color-blue: #2563eb;
+  --color-blue-light: #60a5fa;
+  --color-blue-dark: #1a3983;
+  --color-blue-deep: #070b12;
+  --color-orange: #e08433;
+  --color-ink: #eef2f8;
+  --color-muted: #94a3b8;
+  --color-line: #334460;
+  --color-surface: #0b0f17;
+  --color-card: #131b29;
+  --color-soft: #1b263b;
+  --color-accent: #ed6262;
+  --color-focus: #60a5fa;
+
+  --font-poppins: "Poppins", Arial, sans-serif;
+  --font-hani: "Rajdhani", Arial, sans-serif;
+}
+
+@layer base {
+  :root {
+    color-scheme: dark;
+    font: 16px/1.5 var(--font-poppins);
+    color: var(--color-ink);
+    background-color: var(--color-surface);
+    -webkit-tap-highlight-color: transparent;
+  }
+}

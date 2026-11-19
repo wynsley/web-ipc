@@ -1,0 +1,25 @@
+meta {
+  name: Emitir restablecimiento asistido
+  type: http
+  seq: 14
+}
+post {
+  url: http://127.0.0.1:3000/api/v1/auth/recovery/issue
+  body: json
+  auth: none
+}
+headers {
+  X-IPC-Client: admin
+  Content-Type: application/json
+  Authorization: Bearer {{accessToken}}
+  X-CSRF-Token: {{csrfToken}}
+}
+body:json {
+  {
+    "password": "{{password}}",
+    "code": "{{mfaCode}}",
+    "email": "{{recoveryEmail}}",
+    "resetMfa": false,
+    "identityVerified": {{identityVerified}}
+  }
+}

@@ -1,0 +1,13 @@
+meta {
+  name: Listar cuentas para filtro de auditoría
+  type: http
+  seq: 35
+}
+get {
+  url: http://127.0.0.1:3000/api/v1/admin/audit/actors
+  auth: none
+}
+headers {
+  X-IPC-Client: admin
+  Authorization: Bearer {{accessToken}}
+}
