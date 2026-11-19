@@ -15,12 +15,12 @@ export function createImageUploadRoutes(images, auth, config, clientIp) {
     requireCsrf,
     async (c, next) => {
       images.assertCanUpload(c.get("actor"));
-      await auth.throttle(clientIp(c));
+      await auth.throttleMediaUpload(clientIp(c), c.get("actor").admin.id);
       await next();
     },
     limitBody(IMAGE_MAX_BYTES + 64 * 1024),
     async (c) => {
-      if (!c.req.header("Content-Type")?.startsWith("multipart/form-data;"))
+      if (!c.req.header("Content-Type")?.toLowerCase().startsWith("multipart/form-data;"))
         throw new AppError(415, "MULTIPART_REQUIRED", "Envía la imagen como formulario multipart.");
       let form;
       try {
@@ -39,12 +39,21 @@ export function createImageUploadRoutes(images, auth, config, clientIp) {
 
 export function createImageRoutes(images) {
   const routes = new Hono();
-  routes.get("/:id", noStore, async (c) => {
-    const match = /^Bearer ([A-Za-z0-9_.-]+)$/i.exec(c.req.header("Authorization") ?? "");
-    const data = await images.read(c.req.param("id"), match?.[1]);
-    c.header("Content-Type", "image/webp");
+  routes.get("/:id", async (c) => {
+    c.header("Cache-Control", "no-store");
     c.header("X-Content-Type-Options", "nosniff");
-    return c.body(data);
+    c.header("Vary", "Authorization");
+    const match = /^Bearer ([A-Za-z0-9_.-]+)$/i.exec(c.req.header("Authorization") ?? "");
+    const result = await images.read(c.req.param("id"), match?.[1], c.req.header("If-None-Match"));
+    if (result.isPublic) {
+      c.header("Cache-Control", "public, no-cache");
+      c.header("ETag", result.etag);
+    } else {
+      c.header("Cache-Control", "private, no-store");
+    }
+    if (result.notModified) return c.body(null, 304);
+    c.header("Content-Type", "image/webp");
+    return c.body(result.data);
   });
   return routes;
 }

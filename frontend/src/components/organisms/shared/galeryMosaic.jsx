@@ -18,13 +18,14 @@ function buildGroups(items, layout) {
   return groups
 }
 
-function GalleryMosaic({
-  items,
-  layout,
-  onOpen,
-  Card = GalleryTile,
-  cardProps,
-}) {
+function GalleryMosaic(props) {
+  const {
+    items,
+    layout,
+    onOpen,
+    Card = GalleryTile,
+    cardProps,
+  } = props
   return (
     <div className="flex flex-col gap-3 sm:gap-4">
       {buildGroups(items, layout).map((group, g) => {

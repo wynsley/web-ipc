@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Button } from "../../atoms/button";
+import { Paragraph } from "../../atoms/paragraph";
 import { Field } from "../../molecules/field";
 import { PasswordField } from "../../molecules/passwordField";
 import { StatusBanner } from "../../molecules/statusBanner";
@@ -34,12 +35,18 @@ export function ReauthenticationForm({
     }
   }
   return (
-    <details className="mt-6 rounded-lg border border-line bg-white p-5">
-      <summary className="cursor-pointer font-bold text-blue-dark">
-        {title}
+    <details className="rounded-xl border border-line bg-card p-5 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.04)] transition-colors hover:border-blue-light/40">
+      <summary className="cursor-pointer py-0.5">
+        <Paragraph
+          as="span"
+          size="sm"
+          variant="institutional"
+          weight="bold"
+          text={title}
+        />
       </summary>
       {result || (
-        <form onSubmit={submit} className="mt-4 grid max-w-md gap-4">
+        <form onSubmit={submit} className="mt-4 grid max-w-md gap-4 border-t border-line/60 pt-4">
           {children}
           <PasswordField
             label="Tu contraseña actual"

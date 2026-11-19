@@ -29,10 +29,19 @@ export function ReissueActivationForm({ onIssued }) {
   }
 
   return (
-    <article className="rounded-[10px] border border-line bg-white p-6">
-      <Title level="h3" text="Reemitir código de activación" className="mb-1" />
-      <Paragraph text="Invalida invitaciones anteriores de una cuenta aún pendiente y emite un nuevo código por 24 horas. Si la cuenta ya fue activada, se indicará su estado." />
-      <form onSubmit={submit} aria-busy={busy} className="mt-8 grid gap-[18px]">
+    <article className="flex flex-col justify-between rounded-xl border border-line bg-card p-6 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.04)]">
+      <div>
+        <Title
+          level="h3"
+          text="Reemitir código de activación"
+          className="mb-1"
+        />
+        <Paragraph
+          size="sm"
+          text="Invalida invitaciones anteriores de una cuenta aún pendiente y emite un nuevo código por 24 horas. Si la cuenta ya fue activada, se indicará su estado."
+        />
+      </div>
+      <form onSubmit={submit} aria-busy={busy} className="mt-6 grid gap-4">
         <Field
           label="Correo de la cuenta pendiente"
           name="email"

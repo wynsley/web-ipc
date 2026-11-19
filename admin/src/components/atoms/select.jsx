@@ -2,7 +2,7 @@ import { FiChevronDown } from "react-icons/fi";
 import { twMerge } from "tailwind-merge";
 
 const base =
-  "min-h-12 w-full cursor-pointer appearance-none rounded-[7px] border bg-[#fafbfd] py-2.5 pr-10 pl-3.5 font-poppins text-base text-ink transition-colors duration-200 focus-visible:outline-3 focus-visible:outline-offset-3 focus-visible:outline-focus disabled:cursor-not-allowed disabled:opacity-70";
+  "min-h-11 w-full cursor-pointer appearance-none rounded-lg border bg-soft py-2.5 pr-10 pl-3.5 font-poppins text-base text-ink transition-colors duration-150 focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-focus disabled:cursor-not-allowed disabled:bg-surface disabled:opacity-60";
 
 export function Select({
   id,
@@ -31,7 +31,7 @@ export function Select({
         aria-invalid={error || undefined}
         className={twMerge(
           base,
-          error ? "border-red-600" : "border-line hover:border-blue-dark/60",
+          error ? "border-[#f87171]" : "border-line hover:border-blue-light/50",
           className,
         )}
         {...props}
@@ -42,7 +42,7 @@ export function Select({
                 key={opt.value}
                 value={opt.value}
                 disabled={opt.disabled}
-                className="bg-white font-poppins font-normal text-ink"
+                className="bg-[#121824] font-poppins font-normal text-ink"
               >
                 {opt.text}
               </option>
@@ -51,7 +51,7 @@ export function Select({
       </select>
       <FiChevronDown
         aria-hidden="true"
-        className="pointer-events-none absolute top-1/2 right-3.5 h-5 w-5 -translate-y-1/2 text-blue-dark"
+        className="pointer-events-none absolute top-1/2 right-3.5 h-5 w-5 -translate-y-1/2 text-blue-light"
       />
     </span>
   );

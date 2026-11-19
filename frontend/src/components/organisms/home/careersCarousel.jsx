@@ -26,10 +26,7 @@ function CareersCarousel() {
     return () => clearInterval(timerRef.current)
   }, [startTimer])
 
-  // Si cambia cardsPerView (resize) y el índice actual queda fuera de rango, lo corrige
-  useEffect(() => {
-    setCurrent(prev => prev % total)
-  }, [cardsPerView, total])
+  const safeCurrent = total > 0 ? current % total : 0
 
   const pauseAndResume = () => {
     paused.current = true
@@ -70,7 +67,7 @@ function CareersCarousel() {
   // Genera N índices consecutivos (con wrap), N = cardsPerView
   const visibleIndexes = Array.from(
     { length: Math.min(cardsPerView, total) },
-    (_, i) => (current + i) % total
+    (_, i) => (safeCurrent + i) % total
   )
 
   return (
@@ -89,7 +86,7 @@ function CareersCarousel() {
 
       <CarouselDots
         total={total}
-        current={current}
+        current={safeCurrent}
         onDotClick={handleDotClick}
       />
     </div>

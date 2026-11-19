@@ -4,7 +4,7 @@ const variants = {
   default: "text-ink",
   primary: "text-white",
   secondary: "text-orange",
-  institutional: "text-blue-dark",
+  institutional: "text-blue-light",
 };
 
 const alignments = {
@@ -54,7 +54,7 @@ export function Title({
   return (
     <Tag
       className={twMerge(
-        "m-0 font-hani focus:outline-0",
+        "m-0 font-hani text-balance focus:outline-0",
         defaultByLevel[level] || defaultByLevel.h1,
         sizes[size] || "",
         weights[weight] || weights.bold,

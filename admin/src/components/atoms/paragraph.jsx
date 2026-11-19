@@ -5,8 +5,8 @@ const variants = {
   default: "text-muted",
   ink: "text-ink",
   primary: "text-white",
-  institutional: "text-blue-dark",
-  danger: "text-[#b42318]",
+  institutional: "text-blue-light",
+  danger: "text-[#fca5a5]",
 };
 
 const alignments = {

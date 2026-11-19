@@ -1,14 +1,5 @@
 import { useState, useEffect, useCallback, useRef } from "react";
 
-function preloadImages(slides, getSrc) {
-  slides.forEach((slide) => {
-    const src = getSrc(slide);
-    if (!src) return;
-    const img = new Image();
-    img.src = src;
-  });
-}
-
 // Espera 2 frames para asegurar que el navegador pintó el "salto" sin animación
 const afterPaint = (fn) =>
   requestAnimationFrame(() => requestAnimationFrame(fn));
@@ -20,7 +11,7 @@ function useCarousel({
   dragThreshold = 50,
   getSrc = (slide) => slide.src,
   autoplay = true,
-  initialIndex = 0, 
+  initialIndex = 0,
   // Para carruseles de múltiples cards
   cardsPerView = 1,
   gapRem = 1.25,
@@ -42,21 +33,59 @@ function useCarousel({
   const [next, setNext] = useState(null);
   const [sliding, setSliding] = useState(false);
   const [userPaused, setUserPaused] = useState(false);
-
-  // NUEVO: permite apagar la transición CSS durante el salto invisible
   const [withTransition, setWithTransition] = useState(true);
 
   const dragStartX = useRef(null);
   const autoplayRef = useRef(null);
+  const transitionTimerRef = useRef(null);
+  const preloadedRef = useRef(new Set());
 
-  /* Preload*/
+  const safeCurrent = isMultiCard
+    ? total > 0
+      ? Math.min(current, total)
+      : 0
+    : total > 0
+      ? Math.min(current, total - 1)
+      : 0;
+
+  const safeNext =
+    !isMultiCard && next !== null && next < total ? next : null;
+  const safeSliding = sliding && safeNext !== null;
+
   useEffect(() => {
-    preloadImages(slides, getSrc);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    return () => {
+      clearTimeout(transitionTimerRef.current);
+      clearInterval(autoplayRef.current);
+    };
   }, []);
-  
+
+  /* Cancelar transición pendiente si la lista se redujo por debajo del destino */
+  useEffect(() => {
+    if (total === 0 || (!isMultiCard && next !== null && next >= total)) {
+      clearTimeout(transitionTimerRef.current);
+    }
+  }, [total, next, isMultiCard]);
+
+  /* Preload: solo solicita cada URL única una vez, sin repetir por re-renders */
+  const srcsKey = slides
+    .map((slide) => getSrc(slide))
+    .filter(Boolean)
+    .join("\0");
+
+  useEffect(() => {
+    if (!srcsKey) return;
+    for (const src of srcsKey.split("\0")) {
+      if (preloadedRef.current.has(src)) continue;
+      preloadedRef.current.add(src);
+      const img = new Image();
+      img.src = src;
+    }
+  }, [srcsKey]);
+
   const goTo = useCallback(
     (index, byUser = false) => {
+      if (total <= 1) return;
+
       if (isMultiCard) {
         if (byUser) setUserPaused(true);
         setWithTransition(true);
@@ -64,47 +93,50 @@ function useCarousel({
         return;
       }
 
-      if (sliding) return;
-      if (index === current) return;
+      if (safeSliding) return;
+      const target = ((index % total) + total) % total;
+      if (target === safeCurrent) return;
 
       if (byUser) setUserPaused(true);
 
-      setNext(index);
+      clearTimeout(transitionTimerRef.current);
+      setNext(target);
       setSliding(true);
 
-      setTimeout(() => {
-        setCurrent(index);
+      transitionTimerRef.current = setTimeout(() => {
+        setCurrent(target);
         setNext(null);
         setSliding(false);
       }, transitionMs);
     },
-    [sliding, current, transitionMs, isMultiCard]
+    [safeSliding, safeCurrent, total, transitionMs, isMultiCard],
   );
 
-  /*Siguiente*/
+  /* Siguiente */
   const goNext = useCallback(
     (byUser = false) => {
+      if (total <= 1) return;
+
       if (isMultiCard) {
         if (byUser) setUserPaused(true);
         setWithTransition(true);
-        // clamp: nunca pasamos de la zona clonada (evita espacio en blanco)
-        setCurrent((prev) => Math.min(prev + 1, total));
+        setCurrent(Math.min(safeCurrent + 1, total));
         return;
       }
 
-      goTo((current + 1) % total, byUser);
+      goTo((safeCurrent + 1) % total, byUser);
     },
-    [isMultiCard, current, total, goTo]
+    [isMultiCard, safeCurrent, total, goTo],
   );
 
-  /*Anterior*/
+  /* Anterior */
   const goPrev = useCallback(() => {
+    if (total <= 1) return;
+
     if (isMultiCard) {
       setUserPaused(true);
 
-      // Estamos en el inicio: saltamos (sin animar) a la zona clonada,
-      // que se ve idéntica, y desde ahí retrocedemos con animación.
-      if (current === 0) {
+      if (safeCurrent === 0) {
         setWithTransition(false);
         setCurrent(total);
 
@@ -116,42 +148,42 @@ function useCarousel({
       }
 
       setWithTransition(true);
-      setCurrent((prev) => prev - 1);
+      setCurrent(Math.max(0, safeCurrent - 1));
       return;
     }
 
-    goTo((current - 1 + total) % total, true);
-  }, [isMultiCard, current, total, goTo]);
+    goTo((safeCurrent - 1 + total) % total, true);
+  }, [isMultiCard, safeCurrent, total, goTo]);
 
-  /*Autoplay*/
+  /* Autoplay */
   useEffect(() => {
-    if (!autoplay || userPaused) return;
+    if (!autoplay || userPaused || total <= 1) return;
 
     autoplayRef.current = setInterval(() => {
       goNext(false);
     }, autoplayDelay);
 
     return () => clearInterval(autoplayRef.current);
-  }, [autoplay, userPaused, goNext, autoplayDelay]);
+  }, [autoplay, userPaused, total, goNext, autoplayDelay]);
 
   /*
    * Al llegar a la zona clonada, esperamos a que termine la animación
    * y volvemos al índice real SIN transición (salto invisible).
    */
   useEffect(() => {
-    if (!isMultiCard) return;
-    if (current < total) return;
+    if (!isMultiCard || total === 0) return;
+    if (safeCurrent < total) return;
 
     const timeout = setTimeout(() => {
       setWithTransition(false);
-      setCurrent(current - total);
+      setCurrent(safeCurrent - total);
       afterPaint(() => setWithTransition(true));
     }, transitionMs);
 
     return () => clearTimeout(timeout);
-  }, [current, total, transitionMs, isMultiCard]);
+  }, [safeCurrent, total, transitionMs, isMultiCard]);
 
-  /*Drag / Swipe*/
+  /* Drag / Swipe */
   const onDragStart = (clientX) => {
     dragStartX.current = clientX;
   };
@@ -183,38 +215,33 @@ function useCarousel({
     onDragStart: (e) => e.preventDefault(),
   };
 
-  /*Cálculos para múltiples cards*/
+  /* Cálculos para múltiples cards */
   const cardWidthExpr = isMultiCard
     ? `(100% - ${gapRem * (cardsPerView - 1)}rem) / ${cardsPerView}`
     : "100%";
 
   const translateX = isMultiCard
-    ? `calc(-1 * (${cardWidthExpr} + ${gapRem}rem) * ${current})`
+    ? `calc(-1 * (${cardWidthExpr} + ${gapRem}rem) * ${safeCurrent})`
     : null;
 
-  /*Dot activo*/
-  const activeDot = isMultiCard ? current % total : current;
+  /* Dot activo */
+  const activeDot =
+    total > 0 ? (isMultiCard ? safeCurrent % total : safeCurrent) : 0;
 
   return {
-    // Data
     extendedSlides,
-    // Estado
-    current,
-    next,
-    sliding,
+    current: safeCurrent,
+    next: safeNext,
+    sliding: safeSliding,
     userPaused,
-    // Navegación
     goTo,
     goNext,
     goPrev,
-    // Drag
     dragHandlers,
-    // Multi-card
     cardWidthExpr,
     translateX,
     activeDot,
-    withTransition, 
-    // Autoplay
+    withTransition,
     setUserPaused,
   };
 }

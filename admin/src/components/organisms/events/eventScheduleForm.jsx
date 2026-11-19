@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Field } from "../../molecules/field";
 import { TextareaField } from "../../molecules/textareaField";
 import { StatusBanner } from "../../molecules/statusBanner";
@@ -21,11 +21,21 @@ const time = new Intl.DateTimeFormat("sv-SE", {
   minute: "2-digit",
   hourCycle: "h23",
 });
-export function EventScheduleForm({ event, action, onSaved, onCancel }) {
+export function EventScheduleForm({
+  event,
+  action,
+  inline = false,
+  onSaved,
+  onCancel,
+}) {
+  const formRef = useRef(null);
   const [busy, setBusy] = useState(false);
   const [dirty, setDirty] = useState(false);
   const [error, setError] = useState("");
   const confirmExit = useDraftGuard(dirty, busy);
+  useEffect(() => {
+    formRef.current?.scrollIntoView?.({ behavior: "smooth", block: "nearest" });
+  }, []);
   const start = time.format(new Date(event.startsAt)).replace(" ", "T");
   const end = event.endsAt
     ? time.format(new Date(event.endsAt)).replace(" ", "T")
@@ -73,24 +83,33 @@ export function EventScheduleForm({ event, action, onSaved, onCancel }) {
   }
   return (
     <form
+      ref={formRef}
       onSubmit={submit}
       onChange={() => setDirty(true)}
       aria-busy={busy}
-      className="mt-5 grid max-w-xl gap-4 rounded-lg border border-line bg-white p-5"
+      className={
+        inline
+          ? "grid max-w-2xl gap-4"
+          : "mt-5 grid max-w-2xl gap-4 rounded-xl border border-line bg-card p-6 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.04)]"
+      }
     >
-      <Title level="h4" text={labels[action] + ": " + event.title} />
-      <Paragraph
-        text={
-          action === "reschedule"
-            ? "El nuevo horario reactiva el evento y conserva su publicación. Puedes corregir fechas pasadas o extender la finalización."
-            : action === "postpone"
-              ? "Quedará pendiente de una nueva fecha, sin cuenta regresiva ni aparición en la galería."
-              : "Conservará su aviso público de cancelación y no aparecerá como realizado."
-        }
-      />
+      <div className="border-b border-line/60 pb-3">
+        <Title level="h4" text={labels[action] + ": " + event.title} />
+        <Paragraph
+          size="sm"
+          className="mt-1"
+          text={
+            action === "reschedule"
+              ? "El nuevo horario reactiva el evento y conserva su publicación. Puedes corregir fechas pasadas o extender la finalización."
+              : action === "postpone"
+                ? "Quedará pendiente de una nueva fecha, sin cuenta regresiva ni aparición en la galería."
+                : "Conservará su aviso público de cancelación y no aparecerá como realizado."
+          }
+        />
+      </div>
       <fieldset disabled={busy} className="contents">
         {action === "reschedule" && (
-          <>
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <Field
               label="Nuevo inicio (hora de Lima)"
               name="startsAt"
@@ -105,7 +124,7 @@ export function EventScheduleForm({ event, action, onSaved, onCancel }) {
               defaultValue={end}
               required
             />
-          </>
+          </div>
         )}
         <TextareaField
           label="Motivo que se mostrará en la web"
@@ -115,7 +134,7 @@ export function EventScheduleForm({ event, action, onSaved, onCancel }) {
           required
         />
         {error && <StatusBanner role="alert" variant="danger" text={error} />}
-        <div className="flex flex-wrap gap-3">
+        <div className="flex flex-wrap gap-3 border-t border-line/60 pt-4">
           <Button
             type="submit"
             text={busy ? "Guardando…" : "Confirmar cambio"}

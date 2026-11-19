@@ -25,7 +25,7 @@ export function AccountItem({
       : "warning";
 
   return (
-    <li className="flex flex-col gap-3 p-4">
+    <li className="flex flex-col gap-3 rounded-xl border border-line bg-card p-4 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.05)] sm:px-5">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div className="min-w-0 wrap-anywhere">
           <Paragraph

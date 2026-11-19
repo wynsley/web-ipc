@@ -23,7 +23,7 @@ export function InvitationResult({ invitation }) {
 
   return (
     <article
-      className="mb-4 rounded-[10px] border border-line bg-white p-6"
+      className="mb-5 rounded-xl border border-line bg-card p-6 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.04)]"
       role="status"
     >
       <div className="mb-2 flex flex-wrap items-center justify-between gap-2">
@@ -49,7 +49,7 @@ export function InvitationResult({ invitation }) {
         identidad; vence en 24 horas y solo se muestra esta vez.
       </Paragraph>
       {visible && (
-        <div className="my-4.5 flex items-center justify-between gap-3 rounded-[7px] bg-soft p-3.5">
+        <div className="my-4.5 flex items-center justify-between gap-3 rounded-lg border border-line bg-soft p-3.5">
           <Code text={activationToken} />
           <IconButton
             variant="soft"

@@ -103,7 +103,7 @@ export function AccountList({ revision }) {
           text="Todavía no hay cuentas registradas."
         />
       ) : accounts ? (
-        <ul className="mt-3 divide-y divide-line rounded-lg border border-line bg-white">
+        <ul className="mt-4 grid gap-3">
           {accounts.map((account) => (
             <AccountItem
               key={account.id}

@@ -20,3 +20,14 @@ export function partitionEvents(events, now) {
   past.sort((a, b) => eventEndTime(b) - eventEndTime(a));
   return { active, past, exceptions };
 }
+export function nextLifecycleBoundary(events, now) {
+  let next = Infinity;
+  for (const event of events ?? []) {
+    if (event.status && event.status !== "scheduled") continue;
+    const start = Date.parse(event.startsAt ?? event.date);
+    if (Number.isFinite(start) && start > now && start < next) next = start;
+    const end = eventEndTime(event);
+    if (Number.isFinite(end) && end > now && end < next) next = end;
+  }
+  return Number.isFinite(next) ? next : null;
+}

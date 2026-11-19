@@ -1,5 +1,4 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import { FiKey, FiLock, FiSmartphone } from "react-icons/fi";
 import { clearRecoveryPending } from "../../../services/session";
 import { RECOVERY_KEY } from "../../../services/session/recoveryPending";
 import { Button } from "../../atoms/button";
@@ -57,16 +56,22 @@ export function AccessForm({ onAuthenticated, initialNotice }) {
     heading.current?.focus();
   }, [title]);
 
-  let icon = <FiLock />;
-  if (activating) icon = <FiKey />;
-  if (challenge || verified) icon = <FiSmartphone />;
-
   const isSuccessNotice = notice?.startsWith("Cuenta activada");
 
   return (
-    <section className="w-[min(100%,410px)]">
-      <div className="grid h-12.5 w-12.5 place-items-center rounded-xl bg-soft text-[23px] text-blue-dark">
-        {icon}
+    <section className="w-[min(100%,430px)] rounded-xl border border-line bg-card p-6 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.04)] sm:p-8">
+      <div className="flex items-center gap-2.5 border-b border-line pb-3">
+        <div
+          aria-hidden="true"
+          className="h-2 w-2 rounded-full bg-blue-light"
+        />
+        <Paragraph
+          as="span"
+          size="small"
+          variant="institutional"
+          weight="semi"
+          text="Acceso institucional · Personal IPC"
+        />
       </div>
       <Title
         level="h2"
@@ -74,7 +79,7 @@ export function AccessForm({ onAuthenticated, initialNotice }) {
         tabIndex={-1}
         ref={heading}
         text={title}
-        className="mt-12.5 mb-2.5"
+        className="mt-5 mb-2"
       />
       {verified ? (
         <RecoveryCodes
@@ -100,7 +105,7 @@ export function AccessForm({ onAuthenticated, initialNotice }) {
               role="status"
               variant={isSuccessNotice ? "success" : "info"}
               text={notice}
-              className="mt-3"
+              className="mt-4"
             />
           )}
           <LoginForm
@@ -112,7 +117,7 @@ export function AccessForm({ onAuthenticated, initialNotice }) {
               });
             }}
           />
-          <div className="mt-3 flex flex-wrap justify-between gap-2.5">
+          <div className="mt-6 flex flex-wrap items-center justify-between gap-3 border-t border-line/70 pt-4">
             <Button
               variant="link"
               text="Activar cuenta con código"

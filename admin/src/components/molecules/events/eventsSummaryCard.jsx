@@ -4,12 +4,12 @@ import { Title } from "../../atoms/titles";
 
 export function EventsSummaryCard({ title, detail, badge }) {
   return (
-    <article className="rounded-[10px] border border-line bg-white p-6">
+    <article className="rounded-xl border border-line bg-card p-6 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.04)]">
       <div className="mb-2 flex items-center justify-between gap-2">
         <Title level="h3" text={title} />
         <Badge text={badge} />
       </div>
-      <Paragraph text={detail} />
+      <Paragraph size="sm" text={detail} />
     </article>
   );
 }

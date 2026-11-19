@@ -1,5 +1,5 @@
 import { EventNotices } from "../organisms/events/eventNotices";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { MyTemplate } from "../templates/myTemplate";
 import { HeroEvents } from "../organisms/events/heroEvents";
 import { EventsShowcase } from "../organisms/events/eventsShowcase";
@@ -13,10 +13,24 @@ import { Button } from "../atoms/button";
 import { Paragraph } from "../atoms/paragraph";
 
 function EventsPage() {
-  const { events, now, failed, retry } = usePublishedEvents();
+  const { events, now, clockOffset, failed, retry } = usePublishedEvents();
   const { isOpen, openModal, closeModal } = useModal();
-  const { active, past, exceptions } = partitionEvents(events, now);
-  const featuredEvents = active.filter((event) => event.featured);
+  const { active, past, exceptions } = useMemo(
+    () => partitionEvents(events, now),
+    [events, now],
+  );
+  const featuredEvents = useMemo(
+    () => active.filter((event) => event.featured),
+    [active],
+  );
+  const noticeEvents = useMemo(
+    () => [
+      ...exceptions,
+      ...active.filter((event) => event.scheduleNotice),
+    ],
+    [exceptions, active],
+  );
+  const calendarEvents = useMemo(() => [...active, ...past], [active, past]);
   const [calendarEventId, setCalendarEventId] = useState(null);
   function openCalendar(eventId) {
     setCalendarEventId(eventId);
@@ -25,16 +39,11 @@ function EventsPage() {
   return (
     <MyTemplate>
       <HeroEvents event={active[0]} onOpenCalendar={openCalendar} />
-      <EventNotices
-        events={[
-          ...exceptions,
-          ...active.filter((event) => event.scheduleNotice),
-        ]}
-      />
       {active.length ? (
         <EventsShowcase
-          key={active.map((event) => event.id).join(",")}
           publishedEvents={active}
+          now={now}
+          clockOffset={clockOffset}
           onOpenCalendar={openCalendar}
         />
       ) : (
@@ -57,11 +66,9 @@ function EventsPage() {
           )}
         </section>
       )}
+      <EventNotices events={noticeEvents} />
       {featuredEvents.length > 0 && (
-        <FeatureEvents
-          key={featuredEvents.map((event) => event.id).join(",")}
-          events={featuredEvents}
-        />
+        <FeatureEvents events={featuredEvents} />
       )}
       {failed && events && (
         <Paragraph
@@ -73,7 +80,7 @@ function EventsPage() {
       {isOpen && events && (
         <EventsCalendarModal
           toggleModal={closeModal}
-          events={[...active, ...past]}
+          events={calendarEvents}
           initialEventId={calendarEventId}
         />
       )}

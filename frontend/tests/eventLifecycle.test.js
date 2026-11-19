@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import { test } from "node:test";
 import {
   eventEndTime,
+  nextLifecycleBoundary,
   partitionEvents,
 } from "../src/helpers/eventLifecycle.js";
 test("Un evento pasa a recuerdos al finalizar, no al comenzar", () => {
@@ -40,4 +41,39 @@ test("Pospuestos y cancelados no pasan al histórico aunque sus fechas vencieran
   assert.equal(groups.active.length, 0);
   assert.equal(groups.past.length, 0);
   assert.equal(groups.exceptions.length, 2);
+});
+
+test("nextLifecycleBoundary devuelve el próximo inicio o cierre programado e ignora excepciones", () => {
+  const events = [
+    {
+      id: "cancelled",
+      status: "cancelled",
+      startsAt: "2030-01-01T08:00:00Z",
+      endsAt: "2030-01-01T09:00:00Z",
+    },
+    {
+      id: "ongoing",
+      status: "scheduled",
+      startsAt: "2030-01-01T09:00:00Z",
+      endsAt: "2030-01-01T12:00:00Z",
+    },
+    {
+      id: "upcoming",
+      status: "scheduled",
+      startsAt: "2030-01-01T11:00:00Z",
+      endsAt: "2030-01-01T13:00:00Z",
+    },
+  ];
+  assert.equal(
+    nextLifecycleBoundary(events, Date.parse("2030-01-01T10:00:00Z")),
+    Date.parse("2030-01-01T11:00:00Z"),
+  );
+  assert.equal(
+    nextLifecycleBoundary(events, Date.parse("2030-01-01T11:00:00Z")),
+    Date.parse("2030-01-01T12:00:00Z"),
+  );
+  assert.equal(
+    nextLifecycleBoundary(events, Date.parse("2030-01-01T13:00:00Z")),
+    null,
+  );
 });

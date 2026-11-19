@@ -15,14 +15,9 @@ export function SidebarNav({ admin, busy, onLogout }) {
   );
 
   return (
-    <aside className="self-start bg-blue-dark px-5 py-3 text-white lg:sticky lg:top-0 lg:flex lg:h-svh lg:flex-col lg:overflow-y-auto lg:p-6">
-      <div className="flex items-center justify-between gap-3">
-        <Link
-          onClick={close}
-          to="/"
-          variant="plain"
-          className="text-white"
-        >
+    <aside className="self-start border-b border-line bg-blue-deep px-5 py-3.5 text-ink lg:sticky lg:top-0 lg:flex lg:h-svh lg:flex-col lg:overflow-y-auto lg:border-r lg:border-b-0 lg:px-5 lg:py-6">
+      <div className="flex items-center justify-between gap-3 lg:border-b lg:border-line lg:pb-5">
+        <Link onClick={close} to="/" variant="plain" className="text-white">
           <Brand />
         </Link>
         <Button
@@ -39,52 +34,61 @@ export function SidebarNav({ admin, busy, onLogout }) {
         id="workspace-menu"
         className={
           open
-            ? "mt-4 flex flex-col gap-4 lg:flex-1"
-            : "hidden lg:mt-6 lg:flex lg:flex-1 lg:flex-col lg:gap-4"
+            ? "mt-4 flex flex-col gap-5 lg:flex-1"
+            : "hidden lg:mt-6 lg:flex lg:flex-1 lg:flex-col lg:gap-5"
         }
       >
-        <div className="rounded-lg bg-white/10 p-3.5">
-          <Paragraph
-            size="sm"
-            variant="primary"
-            weight="bold"
-            text={admin.name}
-          />
-          <Badge
-            variant="light"
-            text={ROLE_LABELS[admin.role]}
-            className="mt-1.5"
-          />
-        </div>
         <nav
           aria-label="Navegación del panel"
-          className="flex flex-col gap-1.5"
+          className="flex flex-col gap-1"
         >
-          <Link nav onClick={close} to="/" end>
-            <FiGrid aria-hidden="true" className="shrink-0 text-lg" />
+          <Link nav onClick={close} to="/" end className="min-h-11">
+            <FiGrid aria-hidden="true" className="shrink-0 text-[17px]" />
             <Paragraph as="span" text="Escritorio" />
           </Link>
           {visibleAreas.map(({ slug, path, Icon, title, pending }) => (
-            <Link nav onClick={close} key={slug} to={path}>
-              <Icon aria-hidden="true" className="shrink-0 text-lg" />
-              <Paragraph as="span">
-                {title}
-                {pending && (
-                  <Paragraph
-                    as="span"
-                    size="small"
-                    weight="normal"
-                    text="En preparación"
-                    className="block"
-                  />
-                )}
+            <Link
+              nav
+              onClick={close}
+              key={slug}
+              to={path}
+              className="min-h-11 justify-between"
+            >
+              <Paragraph as="span" className="flex items-center gap-3">
+                <Icon aria-hidden="true" className="shrink-0 text-[17px]" />
+                <Paragraph as="span" text={title} />
               </Paragraph>
+              {pending && (
+                <Paragraph
+                  as="span"
+                  size="small"
+                  weight="normal"
+                  text="En preparación"
+                  className="text-[11px] opacity-75"
+                />
+              )}
             </Link>
           ))}
         </nav>
-        <div className="mt-auto border-t border-white/15 pt-4">
+
+        <div className="mt-auto border-t border-line pt-4">
+          <div className="mb-3 flex items-center justify-between gap-2 px-1">
+            <Paragraph
+              size="sm"
+              variant="ink"
+              weight="bold"
+              text={admin.name}
+              className="truncate"
+            />
+            <Badge
+              variant="institutional"
+              text={ROLE_LABELS[admin.role]}
+              className="shrink-0"
+            />
+          </div>
           <Button
-            variant="light"
+            variant="secondary"
+            size="sm"
             data-logout
             disabled={busy}
             onClick={onLogout}

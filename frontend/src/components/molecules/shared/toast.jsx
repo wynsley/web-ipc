@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 
-function Toast({ type = "error", message, visible, onClose, duration = 4000, fixed = false }) {
+function ToastContent({ type, message, onClose, duration, fixed }) {
   const [animateIn, setAnimateIn] = useState(false);
   const onCloseRef = useRef(onClose);
 
@@ -10,11 +10,6 @@ function Toast({ type = "error", message, visible, onClose, duration = 4000, fix
   }, [onClose]);
 
   useEffect(() => {
-    if (!visible) {
-      setAnimateIn((prev) => (prev ? false : prev));
-      return;
-    }
-
     const raf = requestAnimationFrame(() => setAnimateIn(true));
     const timer = setTimeout(() => onCloseRef.current?.(), duration);
 
@@ -22,9 +17,7 @@ function Toast({ type = "error", message, visible, onClose, duration = 4000, fix
       cancelAnimationFrame(raf);
       clearTimeout(timer);
     };
-  }, [visible, duration]);
-
-  if (!visible) return null;
+  }, [duration]);
 
   const isSuccess = type === "success";
 
@@ -98,6 +91,19 @@ function Toast({ type = "error", message, visible, onClose, duration = 4000, fix
   );
 
   return fixed ? createPortal(toast, document.body) : toast;
+}
+
+function Toast({ type = "error", message, visible, onClose, duration = 4000, fixed = false }) {
+  if (!visible) return null;
+  return (
+    <ToastContent
+      type={type}
+      message={message}
+      onClose={onClose}
+      duration={duration}
+      fixed={fixed}
+    />
+  );
 }
 
 export { Toast };

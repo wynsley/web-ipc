@@ -1,10 +1,10 @@
 import { twMerge } from "tailwind-merge";
 
 const textBase =
-  "min-h-12 w-full rounded-[7px] border bg-[#fafbfd] px-3.5 py-2.5 font-poppins text-base text-ink transition-colors duration-200 focus-visible:outline-3 focus-visible:outline-offset-3 focus-visible:outline-focus disabled:cursor-not-allowed disabled:opacity-70";
+  "min-h-11 w-full rounded-lg border bg-soft px-3.5 py-2.5 font-poppins text-base text-ink transition-colors duration-150 placeholder:text-muted/65 focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-focus disabled:cursor-not-allowed disabled:bg-surface disabled:opacity-60";
 
 const checkboxBase =
-  "size-5 shrink-0 cursor-pointer accent-blue-dark focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-focus disabled:cursor-not-allowed disabled:opacity-70";
+  "size-5 shrink-0 cursor-pointer rounded accent-blue-light focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-focus disabled:cursor-not-allowed disabled:opacity-60";
 
 export function Input({
   id,
@@ -43,8 +43,8 @@ export function Input({
             : twMerge(
                 textBase,
                 error
-                  ? "border-red-600"
-                  : "border-line hover:border-blue-dark/60",
+                  ? "border-[#f87171] bg-[#ef4444]/10"
+                  : "border-line hover:border-blue-light/50",
               ),
         className,
       )}

@@ -3,21 +3,21 @@ import { twMerge } from "tailwind-merge";
 
 const variants = {
   default:
-    "inline-flex items-center gap-2 font-poppins text-sm font-bold text-blue-dark transition-colors hover:underline focus-visible:outline-3 focus-visible:outline-offset-3 focus-visible:outline-focus",
+    "inline-flex items-center gap-2 font-poppins text-sm font-bold text-blue-light transition-colors hover:text-white hover:underline focus-visible:outline-3 focus-visible:outline-offset-3 focus-visible:outline-focus",
   plain:
     "transition-colors focus-visible:outline-3 focus-visible:outline-offset-3 focus-visible:outline-focus",
   card:
     "block rounded-md transition-colors focus-visible:outline-3 focus-visible:outline-offset-3 focus-visible:outline-focus",
   button:
-    "inline-flex items-center justify-center gap-3 rounded-[7px] bg-blue-dark px-5 py-3 font-poppins font-bold text-white transition-colors hover:bg-[#112c6b] focus-visible:outline-3 focus-visible:outline-offset-3 focus-visible:outline-focus",
+    "inline-flex items-center justify-center gap-3 rounded-lg bg-blue px-5 py-3 font-poppins font-bold text-white transition-colors hover:bg-[#1d4ed8] focus-visible:outline-3 focus-visible:outline-offset-3 focus-visible:outline-focus",
 };
 
 const navLinkClass = (className) => ({ isActive }) =>
   twMerge(
-    "flex items-center gap-3 rounded-[8px] px-3.5 py-2.5 font-poppins text-sm font-bold transition-colors focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-focus",
+    "flex items-center gap-3 rounded-lg px-3.5 py-2.5 font-poppins text-sm font-semibold transition-colors focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-focus",
     isActive
-      ? "bg-white text-blue-dark"
-      : "text-white/85 hover:bg-white/10 hover:text-white",
+      ? "border border-blue-light/25 bg-soft text-white"
+      : "border border-transparent text-muted hover:bg-white/6 hover:text-ink",
     className,
   );
 
@@ -37,7 +37,10 @@ export function Link({
   ...props
 }) {
   const content = children || text;
-  const resolvedClass = twMerge(variants[variant] || variants.default, className);
+  const resolvedClass = twMerge(
+    variants[variant] || variants.default,
+    className,
+  );
 
   if (nav && to !== undefined) {
     return (

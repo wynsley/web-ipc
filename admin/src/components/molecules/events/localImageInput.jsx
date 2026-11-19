@@ -19,8 +19,8 @@ export function LocalImageInput({ file, saved, disabled, onSelect, onError }) {
     event.target.value = "";
   }
   return (
-    <div className="grid justify-items-center gap-3 rounded-lg border border-dashed border-blue-light bg-surface px-4 py-6 text-center">
-      <FiUpload aria-hidden="true" className="text-2xl text-blue-dark" />
+    <div className="grid justify-items-center gap-3 rounded-lg border border-dashed border-line bg-surface px-4 py-6 text-center">
+      <FiUpload aria-hidden="true" className="text-2xl text-blue-light" />
       <div className="relative">
         <Input
           id={id}
@@ -34,7 +34,7 @@ export function LocalImageInput({ file, saved, disabled, onSelect, onError }) {
           htmlFor={id}
           variant="light"
           text={file || saved ? "Cambiar archivo" : "Seleccionar imagen"}
-          className="inline-flex min-h-11 cursor-pointer items-center rounded-lg bg-blue-dark px-5 py-2.5 text-sm font-bold text-white transition-colors hover:bg-blue-deep peer-focus-visible:outline-3 peer-focus-visible:outline-offset-3 peer-focus-visible:outline-focus peer-disabled:cursor-wait peer-disabled:opacity-60"
+          className="inline-flex min-h-11 cursor-pointer items-center rounded-lg border border-blue-light/25 bg-blue px-5 py-2.5 text-sm font-bold text-white transition-colors hover:bg-[#1d4ed8] peer-focus-visible:outline-3 peer-focus-visible:outline-offset-3 peer-focus-visible:outline-focus peer-disabled:cursor-not-allowed peer-disabled:opacity-60"
         />
       </div>
       <Paragraph

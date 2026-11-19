@@ -3,7 +3,6 @@ import {StudentLifeActivities } from "../organisms/studentLife/studentLifeActivi
 import { StudentLifeHero } from "../organisms/studentLife/studentLifeHero";
 import { MyTemplate } from "../templates/myTemplate";
 import { ModalStudentLifeCareer } from "../modals/modalStudentLifeCareer";
-import { useRef } from "react";
 import { useHoverMenu } from "@/hooks/modal/useHoverMenu";
 import { StudentLifeStats } from "../organisms/studentLife/studentLifeStats";
 import { StudentLifeWellbeing } from "../organisms/studentLife/studentLifeWellbeing";
@@ -12,16 +11,25 @@ import { InfrastructureGallery } from "../organisms/studentLife/studentLifeGaler
 const MENU_WIDTH = 288 
 
 function StudentLivePage() {
-  const sectionRef = useRef(null)
-
-  const careersMenu = useHoverMenu({
-    containerRef: sectionRef,
+  const {
+    isOpen,
+    position,
+    anchorRef,
+    menuRef,
+    open,
+    close,
+    scheduleClose,
+    cancelClose,
+  } = useHoverMenu({
     menuWidth: MENU_WIDTH,
   })
   return (
     <MyTemplate>
       <StudentLifeHero
-        careersMenu={careersMenu}
+        anchorRef={anchorRef}
+        isMenuOpen={isOpen}
+        onMenuOpen={open}
+        onMenuLeave={scheduleClose}
       />
       <StudentLifeStats/>
       <StudentLifeWellbeing/>
@@ -29,26 +37,26 @@ function StudentLivePage() {
       <InfrastructureGallery/>
       {/*Modal de carreras hero */}
       <AnimatePresence>
-        {careersMenu.isOpen && (
+        {isOpen && (
           <Motion.div
-            ref={careersMenu.menuRef}
+            ref={menuRef}
             initial={{ opacity: 0, y: -6 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -6 }}
             transition={{ duration: 0.15 }}
             style={{
-              top: careersMenu.position.top,
-              left: careersMenu.position.left,
+              top: position.top,
+              left: position.left,
               width: MENU_WIDTH,
             }}
             // pt-2 en vez de margen: sin hueco entre el botón y el menú.
             className="absolute z-30 pt-2"
-            onMouseEnter={careersMenu.cancelClose}
-            onMouseLeave={careersMenu.scheduleClose}
+            onMouseEnter={cancelClose}
+            onMouseLeave={scheduleClose}
           >
             <nav
               aria-label="Carreras"
-              onClick={careersMenu.close}
+              onClick={close}
               className="overflow-hidden rounded-xl border border-white/20 shadow-xl shadow-black/30"
             >
               <ModalStudentLifeCareer />

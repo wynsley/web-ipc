@@ -1,8 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import { useCarousel } from "../globals/useCarrusel";
 import { useSlideDirection } from "./useSlidesDirection";
-
 import { useMotionPreference } from "../globals/useMotionPreference";
+
+const getEventImage = (event) => event.image;
 
 function useEventsCarousel(publishedEvents) {
   const [manualPaused, setManualPaused] = useState(false);
@@ -11,17 +12,19 @@ function useEventsCarousel(publishedEvents) {
 
   const carousel = useCarousel({
     slides: events,
-    getSrc: (event) => event.image,
+    getSrc: getEventImage,
     autoplay: events.length > 1 && !manualPaused && !reducedMotion,
     autoplayDelay: 7000,
-    transitionMs: 900,
+    transitionMs: 650,
   });
 
   const { current, next, userPaused, setUserPaused } = carousel;
 
-  // Si hay transición en curso, mostramos el destino
-  const index = next !== null ? next : current;
-  const event = events[index];
+  // Si hay transición en curso, mostramos el destino siempre dentro de rango
+  const rawIndex = next !== null ? next : current;
+  const index =
+    events.length > 0 ? Math.min(rawIndex, events.length - 1) : 0;
+  const event = events[index] ?? events[0];
   const direction = useSlideDirection(index, events.length);
 
   const hovering = useRef(false);
@@ -46,9 +49,10 @@ function useEventsCarousel(publishedEvents) {
 
   return {
     ...carousel,
+    current: index,
     manualPaused,
     togglePause: () => setManualPaused((value) => !value),
-    events, // los del carrusel (próximos)
+    events,
     event,
     direction,
     hoverHandlers,

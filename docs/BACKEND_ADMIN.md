@@ -1,5 +1,13 @@
 # Backend y administración: punto de entrada
 
+## Correcciones críticas de eventos, medios y rendimiento — 18 de noviembre de 2026
+
+- **Medios públicos con ETag y límite independiente**: `GET /api/v1/media/:id` ahora responde `Cache-Control: public, no-cache`, `ETag` y `304 Not Modified` para imágenes de eventos publicados (evitando re-descargar bytes mientras respeta `404` inmediato al retirar la publicación) y conserva `private, no-store` para borradores. `POST /api/v1/admin/images` usa su propio contador de intentos (`throttleMediaUpload`), independiente del límite de login/MFA.
+- **Borradores sin aviso público falso**: editar fechas de un borrador por `PATCH` mantiene el registro `draft_dates` en el historial privado, pero ya no asigna `scheduleNotice`, `previousStartsAt` ni `previousEndsAt` públicos.
+- **Agenda pública y carrusel sin re-descargas por segundo**: `usePublishedEvents` reemplaza el `setInterval` de 1 s por un temporizador al próximo cambio de inicio/fin (`nextLifecycleBoundary`) y preserva referencias si el sondeo no trajo cambios; `useCountdown` y `EventsShowcase` usan el reloj sincronizado con el servidor; `useCarousel` precarga cada URL única una sola vez.
+- **Lint y carga inicial del sitio público**: resueltos los 14 errores de ESLint en `frontend` (`0` errores) y aplicado *code-splitting* por ruta y carga diferida de `PdfViewerModal` (chunk inicial de JS reducido de 1,542 kB a 550 kB; 174.7 kB gzip). Quedan pendientes comprimir los 8 PNG grandes de `frontend/src/assets`, añadir ESLint a `admin/` y sacar `admin/dist/` de Git.
+- **Verificación**: 64 pruebas del backend en verde con PostgreSQL real, ESLint y Prettier de `backend/src|tests|scripts` en verde, ESLint de `frontend` con 0 errores, 5 pruebas de ciclo temporal/calendario + 3 pruebas de contacto en verde y compilación de `frontend` correcta.
+
 ## Cambios de horario y situación — 18 de noviembre de 2026
 
 Implementadas reprogramación, posposición sin fecha y cancelación con acciones explícitas en API/admin. status (scheduled/postponed/cancelled) es independiente de published. Reprogramar conserva identidad y publicación, valida el intervalo y reactiva un pospuesto/cancelado con confirmación. En curso/finalizado se calculan con las fechas. El motivo de la acción se muestra públicamente cuando el evento está publicado; la interfaz lo advierte antes de guardar.

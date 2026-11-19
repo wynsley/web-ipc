@@ -1,10 +1,12 @@
 import { twMerge } from "tailwind-merge";
 
 const variants = {
-  institutional: "bg-soft text-blue-dark",
-  light: "bg-white/15 text-white",
-  warning: "bg-[#fef3c7] text-[#92400e]",
-  success: "bg-[#dcfce7] text-[#166534]",
+  institutional: "border border-blue-light/25 bg-blue/15 text-blue-light",
+  neutral: "border border-line bg-soft text-muted",
+  light: "border border-white/15 bg-white/10 text-ink",
+  warning: "border border-[#f59e0b]/30 bg-[#f59e0b]/12 text-[#fbbf24]",
+  danger: "border border-[#f87171]/30 bg-[#ef4444]/12 text-[#fca5a5]",
+  success: "border border-[#34d399]/30 bg-[#10b981]/12 text-[#6ee7b7]",
 };
 
 export function Badge({
@@ -17,7 +19,7 @@ export function Badge({
   return (
     <span
       className={twMerge(
-        "inline-flex w-fit items-center gap-1.5 rounded-full px-2.5 py-0.5 font-poppins text-xs font-semibold",
+        "inline-flex w-fit items-center gap-1.5 rounded-md px-2.5 py-0.5 font-poppins text-xs font-semibold tracking-tight",
         variants[variant] || variants.institutional,
         className,
       )}

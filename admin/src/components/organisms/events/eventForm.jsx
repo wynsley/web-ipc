@@ -5,6 +5,7 @@ import { CheckboxField } from "../../molecules/checkboxField";
 import { Field } from "../../molecules/field";
 import { TextareaField } from "../../molecules/textareaField";
 import { Button } from "../../atoms/button";
+import { Title } from "../../atoms/titles";
 import { StatusBanner } from "../../molecules/statusBanner";
 import { createEvent, editEvent } from "../../../services/events";
 
@@ -24,7 +25,7 @@ const localTime = new Intl.DateTimeFormat("sv-SE", {
   minute: "2-digit",
   hourCycle: "h23",
 });
-export function EventForm({ event, onSaved, onCancel }) {
+export function EventForm({ event, inline = false, onSaved, onCancel }) {
   const [image, setImage] = useState({
     url: event?.imageUrl ?? "",
     file: null,
@@ -59,6 +60,7 @@ export function EventForm({ event, onSaved, onCancel }) {
   }
   useEffect(() => {
     trackChanges();
+    formRef.current?.scrollIntoView?.({ behavior: "smooth", block: "nearest" });
   }, []);
   useEffect(() => {
     if (!busy && (error || Object.keys(fieldErrors).length))
@@ -145,8 +147,18 @@ export function EventForm({ event, onSaved, onCancel }) {
           trackChanges();
       }}
       onSubmit={submit}
-      className="mt-5 grid max-w-xl gap-4 rounded-lg border border-line bg-white p-5"
+      className={
+        inline
+          ? "grid max-w-2xl gap-4"
+          : "mt-5 grid max-w-2xl gap-4 rounded-xl border border-line bg-card p-6 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.04)]"
+      }
     >
+      <div className="border-b border-line/60 pb-3">
+        <Title
+          level="h4"
+          text={event ? `Editar borrador: ${event.title}` : "Nuevo evento"}
+        />
+      </div>
       <fieldset disabled={busy} className="contents">
         <Field
           label="Título"
@@ -156,22 +168,24 @@ export function EventForm({ event, onSaved, onCancel }) {
           maxLength={160}
           required
         />
-        <Field
-          label="Inicio (hora de Lima)"
-          name="startsAt"
-          errorMessage={fieldErrors.startsAt}
-          type="datetime-local"
-          defaultValue={originalTime}
-          required
-        />
-        <Field
-          label="Finalización (hora de Lima)"
-          name="endsAt"
-          type="datetime-local"
-          defaultValue={originalEnd}
-          errorMessage={fieldErrors.endsAt}
-          required
-        />
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+          <Field
+            label="Inicio (hora de Lima)"
+            name="startsAt"
+            errorMessage={fieldErrors.startsAt}
+            type="datetime-local"
+            defaultValue={originalTime}
+            required
+          />
+          <Field
+            label="Finalización (hora de Lima)"
+            name="endsAt"
+            type="datetime-local"
+            defaultValue={originalEnd}
+            errorMessage={fieldErrors.endsAt}
+            required
+          />
+        </div>
         <Field
           label="Lugar"
           name="location"
@@ -217,7 +231,7 @@ export function EventForm({ event, onSaved, onCancel }) {
             text={error}
           />
         )}
-        <div className="flex flex-wrap gap-3">
+        <div className="flex flex-wrap gap-3 border-t border-line/60 pt-4">
           <Button
             type="submit"
             text={busy ? "Guardando…" : "Guardar borrador"}

@@ -14,6 +14,7 @@ import { useMotionPreference } from "@/hooks/globals/useMotionPreference";
 
 const GAP_REM = 1.25;
 const TRANSITION_MS = 700;
+const getEventImage = (item) => item.image;
 
 function FeatureEvents({ events }) {
   const [paused, setPaused] = useState(false);
@@ -34,7 +35,7 @@ function FeatureEvents({ events }) {
   } = useCarousel({
     slides: events,
     autoplay: scrollable && !paused && !reducedMotion,
-    getSrc: (item) => item.image,
+    getSrc: getEventImage,
     cardsPerView,
     gapRem: GAP_REM,
     autoplayDelay: 4000,

@@ -110,17 +110,6 @@ export function createEventRepository(db) {
         const current = await tx.event.findUnique({ where: { id } });
         if (!current) throw missingEvent();
         assertEventDates({ ...current, ...changes });
-        if (
-          (changes.startsAt && +changes.startsAt !== +current.startsAt) ||
-          (changes.endsAt !== undefined && +changes.endsAt !== +current.endsAt)
-        ) {
-          changes = {
-            ...changes,
-            previousStartsAt: current.startsAt,
-            previousEndsAt: current.endsAt,
-            scheduleNotice: "Horario actualizado.",
-          };
-        }
         await assertImage(tx, changes.imageUrl);
         const [event] = await tx.event.updateManyAndReturn({
           where: { id, version, published: changes.published === false },

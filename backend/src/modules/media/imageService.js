@@ -5,6 +5,13 @@ import { canManageEvents } from "../events/eventRepository.js";
 import { AppError } from "../../middleware/errors.js";
 
 export const IMAGE_MAX_BYTES = 5 * 1024 * 1024;
+function matchesEtag(header, etag) {
+  if (!header) return false;
+  return header
+    .split(",")
+    .map((part) => part.trim())
+    .some((part) => part === "*" || part === etag || part === `W/${etag}`);
+}
 export async function normalizeImage(file) {
   if (!(file instanceof File) || !file.size || file.size > IMAGE_MAX_BYTES)
     throw new AppError(
@@ -54,19 +61,24 @@ export function createImageService(repository, auth, storage) {
       }
       return { imageUrl: "/api/v1/media/" + image.id };
     },
-    async read(id, accessToken) {
+    async read(id, accessToken, ifNoneMatch) {
       const missing = () => new AppError(404, "IMAGE_NOT_FOUND", "Imagen no encontrada.");
       if (!z.uuid().safeParse(id).success) throw missing();
-      if (!(await repository.isPublished(id))) {
+      const isPublic = await repository.isPublished(id);
+      if (!isPublic) {
         if (!accessToken) throw missing();
         const actor = await auth.authenticate(accessToken);
         if (!canManageEvents(actor.admin.role)) throw missing();
       }
       const image = await repository.findById(id);
       if (!image || image.deletedAt) throw missing();
+      const etag = `"${id}"`;
+      if (isPublic && matchesEtag(ifNoneMatch, etag)) {
+        return { isPublic, etag, notModified: true, data: null };
+      }
       const data = image.storageKey ? await storage.read(image.storageKey) : image.data;
       if (!data) throw missing();
-      return data;
+      return { isPublic, etag, notModified: false, data };
     },
   };
 }

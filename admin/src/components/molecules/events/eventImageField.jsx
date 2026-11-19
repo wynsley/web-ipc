@@ -37,12 +37,12 @@ export function EventImageField({ value, onChange, disabled, errorMessage }) {
   return (
     <fieldset
       disabled={disabled}
-      className="min-w-0 rounded-xl border border-line bg-white p-4 sm:p-5"
+      className="min-w-0 rounded-xl border border-line bg-surface/60 p-4 sm:p-5"
     >
-      <legend className="px-2 text-base font-bold text-blue-dark">
+      <legend className="px-2 text-base font-bold text-blue-light">
         Foto del evento
       </legend>
-      <div className="grid grid-cols-2 gap-2 rounded-lg bg-soft p-1.5">
+      <div className="grid grid-cols-2 gap-2 rounded-lg border border-line bg-surface p-1.5">
         {options.map(({ value: option, label, Icon }) => (
           <Label key={option} className="relative min-w-0 cursor-pointer">
             <Input
@@ -55,7 +55,7 @@ export function EventImageField({ value, onChange, disabled, errorMessage }) {
             />
             <Paragraph
               as="span"
-              className="flex h-full items-center justify-center gap-2 rounded-md border border-transparent px-2 py-3 text-sm font-bold text-muted transition-colors peer-checked:border-line peer-checked:bg-white peer-checked:text-blue-dark peer-checked:shadow-sm peer-focus-visible:outline-3 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-focus peer-disabled:opacity-60"
+              className="flex h-full items-center justify-center gap-2 rounded-md border border-transparent px-2 py-3 text-sm font-bold text-muted transition-colors peer-checked:border-blue-light/30 peer-checked:bg-soft peer-checked:text-ink peer-focus-visible:outline-3 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-focus peer-disabled:opacity-60"
             >
               <Icon aria-hidden="true" className="shrink-0 text-lg" />
               {label}
@@ -75,7 +75,7 @@ export function EventImageField({ value, onChange, disabled, errorMessage }) {
               type="url"
               pattern="https://.+"
               value={value.url ?? ""}
-              placeholder="https://sitio.com/imagen.jpg"
+              placeholder="https://sitio.com/imagen.jpg…"
               onChange={(e) => change({ url: e.target.value, file: null })}
               maxLength={2048}
             />

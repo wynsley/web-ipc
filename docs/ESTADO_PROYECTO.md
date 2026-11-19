@@ -1,3 +1,7 @@
+## Estabilización de eventos, lint y carga inicial — 18 de noviembre de 2026
+
+Corregido el bucle de re-descargas de imágenes en `/events` (temporizador por hitos de inicio/cierre en `usePublishedEvents`, precarga deduplicada en `useCarousel`, reloj sincronizado con el servidor en `EventsShowcase`/`useCountdown`, y revalidación `ETag`/`304` para medios publicados). Corregidos además el falso aviso público al editar fechas en borrador y el límite de intentos compartido entre subidas de imágenes y login. Resueltos los 14 errores de ESLint en `frontend` (`0` errores) y aplicado *code-splitting* por ruta y carga diferida de `PdfViewerModal`, reduciendo el bundle JS inicial de 1,542 kB a 550 kB (174.7 kB gzip). Verificados 64 pruebas del backend, 5+3 pruebas del frontend, ESLint en ambos paquetes y compilación pública. Detalle en [BACKEND_ADMIN.md](BACKEND_ADMIN.md).
+
 ## Actualización de eventos — 18 de noviembre de 2026
 
 La agenda se actualiza automáticamente y los eventos publicados finalizados aparecen en «Revive nuestros eventos». El admin permite indicar finalización; el carrusel y destacados muestran vigentes. Fotos por URL HTTPS o subida local, almacenada fuera de PostgreSQL con limpieza de huérfanos. Estado, pruebas y límites en [BACKEND_ADMIN.md](BACKEND_ADMIN.md) y [medios](backend/media.md).

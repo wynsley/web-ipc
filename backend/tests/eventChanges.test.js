@@ -139,3 +139,51 @@ test("Eventos: reprogramar, posponer, cancelar y recuperar con historial atómic
     await ctx.db.$disconnect();
   }
 });
+
+test("Eventos: editar fechas en borrador deja historial privado sin aviso público", async () => {
+  const ctx = await createJwtContext();
+  let id;
+  try {
+    const session = await ctx.login();
+    const request = (path, method = "GET", input) =>
+      ctx.app.request("/api/v1/admin/events" + path, {
+        method,
+        headers: {
+          Authorization: "Bearer " + session.accessToken,
+          "X-CSRF-Token": session.csrf,
+          "X-IPC-Client": "admin",
+          "Content-Type": "application/json",
+        },
+        ...(input && { body: JSON.stringify(input) }),
+      });
+    const created = await request("", "POST", {
+      title: "Seminario borrador",
+      description: "Ajuste previo a publicación",
+      location: "IPC",
+      startsAt: "2030-05-01T10:00:00-05:00",
+      endsAt: "2030-05-01T12:00:00-05:00",
+    });
+    assert.equal(created.status, 201);
+    id = (await created.json()).data.id;
+    const edited = await request("/" + id, "PATCH", {
+      version: 1,
+      startsAt: "2030-05-02T10:00:00-05:00",
+      endsAt: "2030-05-02T12:00:00-05:00",
+    });
+    assert.equal(edited.status, 200);
+    assert.equal((await request("/" + id + "/publish", "POST", { version: 2 })).status, 200);
+    const visible = (await (await ctx.app.request("/api/v1/events")).json()).data.events.find(
+      (e) => e.id === id,
+    );
+    assert.ok(visible);
+    assert.equal(visible.scheduleNotice, null);
+    assert.equal(visible.previousStartsAt, null);
+    assert.equal(visible.previousEndsAt, null);
+    const history = (await (await request("/" + id + "/history")).json()).data.changes;
+    assert.equal(history.length, 1);
+    assert.equal(history[0].action, "draft_dates");
+  } finally {
+    if (id) await ctx.db.event.deleteMany({ where: { id } });
+    await ctx.db.$disconnect();
+  }
+});

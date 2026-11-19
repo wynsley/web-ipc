@@ -39,14 +39,19 @@ export function RegisterAdminForm({ onIssued }) {
   }
 
   return (
-    <article className="rounded-[10px] border border-line bg-white p-6">
-      <Title
-        level="h3"
-        text="Registrar cuenta por invitación"
-        className="mb-1"
-      />
-      <Paragraph text="Crea una cuenta pendiente y genera un código de activación de un solo uso válido por 24 horas." />
-      <form onSubmit={submit} aria-busy={busy} className="mt-8 grid gap-4.5">
+    <article className="flex flex-col justify-between rounded-xl border border-line bg-card p-6 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.04)]">
+      <div>
+        <Title
+          level="h3"
+          text="Registrar cuenta por invitación"
+          className="mb-1"
+        />
+        <Paragraph
+          size="sm"
+          text="Crea una cuenta pendiente y genera un código de activación de un solo uso válido por 24 horas."
+        />
+      </div>
+      <form onSubmit={submit} aria-busy={busy} className="mt-6 grid gap-4">
         <Field
           label="Nombre completo"
           name="name"

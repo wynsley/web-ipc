@@ -4,17 +4,17 @@ import { Paragraph } from "../atoms/paragraph";
 
 const styles = {
   info: {
-    box: "border-blue-dark/20 bg-soft text-blue-dark",
+    box: "border-blue-light/25 bg-blue/12 text-blue-light",
     Icon: FiInfo,
     variant: "institutional",
   },
   success: {
-    box: "border-[#16a34a]/30 bg-[#f0fdf4] text-[#166534]",
+    box: "border-[#34d399]/30 bg-[#10b981]/12 text-[#a7f3d0]",
     Icon: FiCheckCircle,
     variant: "ink",
   },
   danger: {
-    box: "border-[#dc2626]/30 bg-[#fef2f2] text-[#b42318]",
+    box: "border-[#f87171]/30 bg-[#ef4444]/12 text-[#fca5a5]",
     Icon: FiAlertCircle,
     variant: "danger",
   },

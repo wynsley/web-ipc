@@ -6,7 +6,7 @@ Estado del 18 de noviembre de 2026. Se admiten enlaces HTTPS directos a imágene
 
 - LocalImageStorage encapsula escritura, lectura y borrado. Por defecto usa backend/.local/media, ignorado por Git; MEDIA_DIRECTORY permite una ruta persistente distinta.
 - Image conserva storageKey, orphanedAt y deletedAt. data queda nullable para poder leer imágenes heredadas hasta migrarlas.
-- La URL estable sigue siendo /api/v1/media/:id. La carpeta nunca se publica como directorio estático. El servicio comprueba publicación o sesión/rol antes de leerla.
+- La URL estable sigue siendo /api/v1/media/:id. La carpeta nunca se publica como directorio estático. El servicio comprueba publicación o sesión/rol antes de leerla; las imágenes publicadas admiten revalidación por `ETag` (`public, no-cache` / `304`) y las privadas conservan `private, no-store`. La subida (`POST /api/v1/admin/images`) usa un límite de intentos independiente del de login/MFA.
 - PostgreSQL conserva metadatos y auditoría. El guardado fallido intenta eliminar el archivo nuevo; una caída entre archivo y registro puede dejar un archivo huérfano que recoge el mantenimiento.
 
 ## Migración y limpieza
